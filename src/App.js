@@ -4,7 +4,7 @@ import Loadable from 'react-loadable';
 import "./App.css"
 
 const HomeIndex= Loadable({
-    loader: () => import("./components/home/Index.jsx"),
+    loader: () => import("./student/components/index"),
     loading: () => <div>Loading</div>,
 });
 
