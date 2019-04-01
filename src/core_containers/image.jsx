@@ -20,10 +20,10 @@ class ImageIndex extends Component {
   }
 }
 
-ImageIndex.propTypes = {
-  image: PropTypes.string.required,
+ImageIndex.propsTypes = {
+  image: PropsTypes.string.required,
   size: PropsTypes.string.required,
-  shape: PropTypes.string
+  shape: PropsTypes.string
 };
 
 export default ImageIndex;

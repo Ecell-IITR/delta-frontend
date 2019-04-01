@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import Searchbar from "./searchbar";
-import ImageIndex from "./image";
+import Searchbar from "../searchbar";
+import ImageIndex from "../image";
 import "./navbar.css";
 class Navbar extends Component {
   state = {};
@@ -37,7 +37,12 @@ class Navbar extends Component {
               </a>
             </li>
           </ul>
-          <ImageIndex image="" size="" shape="circular" />
+          <ImageIndex
+            image="asdfgh"
+            size="zcvbn"
+            shape="circular"
+            className="profilepic"
+          />
         </div>
       </div>
     );
