@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-import PropsTypes from "prop-types";
+import PropTypes from "prop-types";
 import { Image } from "semantic-ui-react";
+
 class ImageIndex extends Component {
   constructor(props) {
     super(props);
@@ -21,8 +22,8 @@ class ImageIndex extends Component {
 }
 
 ImageIndex.propTypes = {
-  image: PropTypes.string.required,
-  size: PropsTypes.string.required,
+  image: PropTypes.string.isRequired,
+  size: PropTypes.string.isRequired,
   shape: PropTypes.string
 };
 

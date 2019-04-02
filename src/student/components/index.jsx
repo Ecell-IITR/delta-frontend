@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import StudentLogin from "./StudentLogin/StudentLogin";
+import Login from "./login/index";
 class StudentIndex extends Component {
   constructor(props) {
     super(props);
@@ -8,7 +8,7 @@ class StudentIndex extends Component {
   render() {
     return (
       <div>
-        <StudentLogin />
+        <Login />
       </div>
     );
   }

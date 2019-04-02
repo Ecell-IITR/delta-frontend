@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { BrowserRouter as Router,  Route, Link } from 'react-router-dom';
 import {Container,Header,Checkbox,Divider,Dropdown} from 'semantic-ui-react'
-import './post.css'
+import "../css/post.css"
 import ImageIndex from '../image'
 
 
