@@ -3,12 +3,12 @@ import Searchbar from "../searchbar";
 import ImageIndex from "../image";
 import "./navbar.css";
 class Navbar extends Component {
-  state = {};
+  state = {}; 
   render() {
     return (
       <div className="navbar">
         <div className="title">DELTA</div>
-        <Searchbar />
+        {/* <Searchbar /> */}
         <div className="subnavbar">
           <ul>
             <li>
