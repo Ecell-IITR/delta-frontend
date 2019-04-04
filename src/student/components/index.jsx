@@ -1,17 +1,20 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
+import Login from "./login/index";
+import Navbar from '../../core_containers/Navbar/Navbar.js'
 
 class StudentIndex extends Component {
     constructor(props) {
         super(props);
-        this.state = {  }
+        this.state = {};
     }
-    render() { 
-        return ( 
+    render() {
+        return (
             <div>
-                Company Index
+                <Navbar />
+                <Login />
             </div>
-         );
+        );
     }
 }
- 
+
 export default StudentIndex;
