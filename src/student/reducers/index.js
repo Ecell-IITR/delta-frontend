@@ -1,14 +1,8 @@
-const initialState = {
-    counter: 0
-}
+import { combineReducers } from 'redux'
+import example from './example'
 
-const reducer = (state = initialState, action) => {
-    if (action.type === '') {
-        return {
-            counter: state.counter + 1
-        }
-    }
-    return state;
-};
+const rootReducers = combineReducers({
+  example
+})
 
-export default reducer;
+export default rootReducers
