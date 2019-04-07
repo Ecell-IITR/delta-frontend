@@ -3,28 +3,28 @@ import PropTypes from "prop-types";
 import { Image } from "semantic-ui-react";
 
 class ImageIndex extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
-  render() {
-    let { image, size, shape } = this.props;
-    return (
-      <div>
-        <Image
-          src={image}
-          size={size}
-          circular={shape === "circuar" ? true : false}
-        />
-      </div>
-    );
-  }
+    constructor(props) {
+        super(props);
+        this.state = {};
+    }
+    render() {
+        let { image, size, shape } = this.props;
+        return (
+            <div>
+                <Image
+                    src={image}
+                    size={size}
+                    circular={shape === "circuar" ? true : false}
+                />
+            </div>
+        );
+    }
 }
 
 ImageIndex.propTypes = {
-  image: PropTypes.string.isRequired,
-  size: PropTypes.string.isRequired,
-  shape: PropTypes.string
+    image: PropTypes.string.isRequired,
+    size: PropTypes.string.isRequired,
+    shape: PropTypes.string
 };
 
 export default ImageIndex;
