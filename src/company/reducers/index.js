@@ -1,8 +1,8 @@
-import { combineReducers } from 'redux'
-import example from './example'
+import { combineReducers } from "redux"
+import example from "./example"
 
 const rootReducers = combineReducers({
-  example
+	example
 })
 
 export default rootReducers
