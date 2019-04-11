@@ -5,6 +5,7 @@ module.exports = {
         "es6": true
     },
     "extends": "eslint:recommended",
+    "extends": "react-app",
     "parserOptions": {
         "ecmaFeatures": {
             "jsx": true
