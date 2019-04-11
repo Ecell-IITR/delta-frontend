@@ -1,8 +1,8 @@
 import { combineReducers } from "redux"
 import example from "./example"
 
-const rootReducers = combineReducers({
+const studentReducer = combineReducers({
 	example
 })
 
-export default rootReducers
+export default studentReducer
