@@ -8,12 +8,13 @@ export default class InputField extends Component {
   }
 
   render() {
-    let { placeholder,type } = this.props;
+    let { placeholder, type, name } = this.props;
     return (
       <Form.Input
         className={`general ${this.props.className}`}
         placeholder={placeholder}
         type={type}
+        name={name}
       />
     );
   }

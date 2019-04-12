@@ -6,7 +6,27 @@ import { Input, SubmitButton } from "../../../core_containers"
 import "../css/login.css"
 
 class LoginIndex extends Component {
-	render() {
+    constructor() {
+        super()
+        this.state = {
+            email: "",
+            password: "" 
+        }
+    }
+
+    onChange(e) {
+        const name = e.target.name
+        let value = e.target.value
+        this.setState({
+            [name]: value
+        })
+    }
+
+    handleSubmit(e) {
+        e.preventDefault()
+    }
+
+render() {
 		return (
 			<div className="login">
 				<div className="loginInput">
@@ -14,12 +34,14 @@ class LoginIndex extends Component {
 					<div className="subheading">
             An online opportunity portal for students of IIT-R
 					</div>
-					<Input type="email" placeholder="Email ID" className="loginField" />
-					<Input type="password" placeholder="Password" className="loginField" />
-					<div className="forgotPassword">
-						<Link to="#">Forgot Password?</Link>
-					</div>
-					<SubmitButton buttonContent="Sign Up" className="loginSubmit" />
+                    <form onSubmit={this.handleSubmit}>
+                        <Input type="email" placeholder="Email ID" className="loginField" name="email" onChange={this.onChange}/>
+                        <Input type="password" placeholder="Password" className="loginField" name="password" onChange={this.onChange} />
+                        <div className="forgotPassword">
+                            <Link to="#">Forgot Password?</Link>
+                        </div>
+                        <SubmitButton buttonContent="Sign Up" className="loginSubmit" />
+                    </form>
 				</div>
 			</div>
 		)
