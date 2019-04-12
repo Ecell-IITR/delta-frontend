@@ -1,6 +1,6 @@
 import React, { Component } from "react"
 import { Switch, Route } from "react-router-dom"
-import Login from "./login/index"
+import Login from "./login/Index"
 import Register from "./register/Index"
 import { Navbar } from "../../core_containers"
 class StudentIndex extends Component {

@@ -1,6 +1,6 @@
 export const isEmptyObject = obj => Object.keys(obj).length === 0
 
-export const isEmpty = obj => obj === '' || obj === null || obj === 0
+export const isEmpty = obj => obj === "" || obj === null || obj === 0
 
 export const isLengthBetween = (obj, range) => obj.length >= range.min && obj.length <= range.max
 
