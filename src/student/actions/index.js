@@ -43,6 +43,7 @@ export const register = (username, email, password1, password2) => {
 			.then(res => {
 				if(res.data.token) {
 					dispatch(success(data))
+                    setToken('student',res.data.token)
 					alert("registerd")
 				}
 			})

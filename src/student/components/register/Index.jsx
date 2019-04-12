@@ -68,15 +68,19 @@ class RegisterStudent extends Component {
     		<div>
                 {this.state.errors}
     			<form onSubmit={this.handleSubmit}>
-    				<input type="text" placeholder="Username" name="username" onChange={this.onChange} value={this.state.username}/>
-    				<input type="email" placeholder="Email ID" name="email" onChange={this.onChange} value={this.state.email}/>
-    				<input type="password" placeholder="password1" name="password1" onChange={this.onChange} value={this.state.password1}/>
-    				<input type="password" placeholder="password2" name="password2" onChange={this.onChange} value={this.state.password2}/>
+    				<Input type="text" placeholder="Username" name="username" onChange={this.onChange} value={this.state.username}/>
+    				<Input type="email" placeholder="Email ID" name="email" onChange={this.onChange} value={this.state.email}/>
+    				<Input type="password" placeholder="password1" name="password1" onChange={this.onChange} value={this.state.password1}/>
+    				<Input type="password" placeholder="password2" name="password2" onChange={this.onChange} value={this.state.password2}/>
     				<SubmitButton />
     			</form>
     		</div>
     	)
     } }
+
+RegisterStudent.propTypes = {
+    dispatch: PropTypes.func.isRequired
+}
 
 const mapStateToProps = state => {
 	return {

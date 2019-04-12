@@ -11,8 +11,9 @@ class LoginIndex extends Component {
 	constructor() {
 		super()
 		this.state = {
-			username: "shreyansh",
-			password: "shreyansh" 
+			username : "shreyansh",
+			password : "shreyansh",
+            errors   : ""
 		}
 	}
 
@@ -20,7 +21,8 @@ class LoginIndex extends Component {
     	const name = e.target.name
     	let value = e.target.value
     	this.setState({
-    		[name]: value
+    		[name]: value,
+            errors: ""
     	})
     }
 
@@ -48,13 +50,16 @@ class LoginIndex extends Component {
     	return (
     		<div className="login">
     			<div className="loginInput">
+                <span style={{position:"absolute",top:"0px",color:"red"}}>
+                    {this.state.errors}
+                </span>
     				<div className="heading">Welcome to DELTA</div>
     				<div className="subheading">
             An online opportunity portal for students of IIT-R
     				</div>
     				<form onSubmit={this.handleSubmit}>
-    					<input type="text" placeholder="Email ID" className="loginField" name="username" value={this.state.username} onChange={this.onChange}/><br />
-    					<input type="password" placeholder="Password" className="loginField" name="password" value={this.state.password} onChange={this.onChange} />
+    					<Input type="text" placeholder="Email ID" className="loginField" name="username" value={this.state.username} onChange={this.onChange}/><br />
+    					<Input type="password" placeholder="Password" className="loginField" name="password" value={this.state.password} onChange={this.onChange} />
     					<div className="forgotPassword">
     						<Link to="#">Forgot Password?</Link>
     					</div>
@@ -68,7 +73,7 @@ class LoginIndex extends Component {
 
 // Props validation
 LoginIndex.propTypes = {
-
+    dispatch: PropTypes.func.isRequired
 }
 
 const mapStateToProps = (state) => {

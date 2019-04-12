@@ -15,6 +15,7 @@ export default class InputField extends Component {
         placeholder={placeholder}
         type={type}
         name={name}
+        onChange={this.props.onChange}
       />
     );
   }
