@@ -1,33 +1,44 @@
-import { StudentConstants } from "../constants/index"
+import {
+	LOGIN_REQUEST,
+	LOGIN_FAILURE,
+	LOGIN_SUCCESS,
+	REGISTER_FAILURE,
+	REGISTER_SUCCESS,
+	REGISTER_REQUEST
+} from "../constants/index"
 import FetchApi from "../../utils/FetchAPI"
-import axios from "axios"
-import { hasToken, setToken } from "../utils.js"
+import { setToken } from "../utils.js"
 
 export const login = (username, password) => {
 	return dispatch => {
-
 		const data = {
 			username: username,
 			password: password
 		}
-		dispatch(request(data))
+		dispatch(request())
 		FetchApi("POST", "/api/auth/jwt/", data)
-			.then( res => {
-				dispatch(success(data))
-				if(res.data.token) {
-					setToken("student",res.data.token)
+			.then(res => {
+				if (res.data && res.data.token) {
+					setToken("student", res.data.token)
+					dispatch(success(res.data.token))
 					alert("Congratulation You are logged in")
 				}
 			})
-			.catch(err => {
-				dispatch(failure(err))
+			.catch(error => {
+				dispatch(failure(error))
 				alert("Wrong credentials")
 			})
 	}
 
-	function request(user)  { return { type : StudentConstants.LOGIN_REQUEST, user } }
-	function success(user)  { return { type : StudentConstants.LOGIN_SUCCESS, user } }
-	function failure(error) { return { type : StudentConstants.LOGIN_FAILURE, error } }
+	function request() {
+		return { type: LOGIN_REQUEST }
+	}
+	function success(data) {
+		return { type: LOGIN_SUCCESS, payload:data }
+	}
+	function failure(error) {
+		return { type: LOGIN_FAILURE, error }
+	}
 }
 
 export const register = (username, email, password1, password2) => {
@@ -35,24 +46,29 @@ export const register = (username, email, password1, password2) => {
 		username: username,
 		email: email,
 		password: password1,
-		password2: password2,
+		password2: password2
 	}
 	return dispatch => {
 		dispatch(request(data))
 		FetchApi("POST", "/api/auth/register/", data)
 			.then(res => {
-				if(res.data.token) {
-					dispatch(success(data))
-                    setToken('student',res.data.token)
+				if (res.data) {
+					dispatch(success(res.data))
 					alert("registerd")
 				}
 			})
-			.catch(err => {
-				dispatch(failure(err))
+			.catch(error => {
+				dispatch(failure(error))
 			})
 	}
 
-	function request(user) { return { type: StudentConstants.REGISTER_REQUEST, user } }
-	function success(user) { return { type: StudentConstants.REGISTER_SUCCESS, user } }
-	function failure(error) { return { type: StudentConstants.REGISTER_FAILURE, error } }
+	function request() {
+		return { type: REGISTER_REQUEST }
+	}
+	function success(data) {
+		return { type: REGISTER_SUCCESS, payload:data }
+	}
+	function failure(error) {
+		return { type: REGISTER_FAILURE, payload:error }
+	}
 }

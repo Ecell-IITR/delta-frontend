@@ -1,18 +1,31 @@
-import { StudentConstants } from "../constants/index"
+import { REGISTER_FAILURE, REGISTER_REQUEST, REGISTER_SUCCESS } from "../constants/index"
 
-const registration = (state={}, action) => {
+const initialState = {
+	isregistering: false
+}
+
+const register = (state = initialState, action) => {
 	switch (action.type) {
-	case StudentConstants.REGISTER_REQUEST:
+	case REGISTER_REQUEST:
 		return {
-			registering: true
+			...state,
+			isregistering: true
 		}
-	case StudentConstants.REGISTER_SUCCESS:
-		return {}
-	case StudentConstants.REGISTER_FAILURE:
-		return {}
-	default: 
+	case REGISTER_SUCCESS:
+		return {
+			...state,
+			isregistering: false,
+			userProfile: action.payload
+		}
+	case REGISTER_FAILURE:
+		return {
+			...state,
+			isregistering: false,
+			error: action.payload
+		}
+	default:
 		return state
 	}
-} 
+}
 
-export default registration
+export default register

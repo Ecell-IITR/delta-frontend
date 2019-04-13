@@ -1,18 +1,33 @@
-import { StudentConstants } from "../constants/index"
+import { LOGIN_FAILURE, LOGIN_REQUEST, LOGIN_SUCCESS } from "../constants/index"
 
-const login = (state={}, action) => {
+const initialState = {
+	isauthenticating: false,
+	token:"",
+	error:""
+}
+
+const login = (state = initialState, action) => {
 	switch (action.type) {
-	case StudentConstants.LOGIN_REQUEST:
+	case LOGIN_REQUEST:
 		return {
-			login: true
+			...state,
+			isauthenticating: true
 		}
-	case StudentConstants.LOGIN_SUCCESS:
-		return {}
-	case StudentConstants.LOGIN_FAILURE:
-		return {}
-	default: 
+	case LOGIN_SUCCESS:
+		return {
+			...state,
+			isauthenticating: false,
+			token: action.payload
+		}
+	case LOGIN_FAILURE:
+		return {
+			...state,
+			isauthenticating: false,
+			error: action.payload
+		}
+	default:
 		return state
 	}
-} 
+}
 
 export default login

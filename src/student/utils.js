@@ -1,6 +1,6 @@
 // @param: user type is required is every function
 export function hasToken(user_type) {
-	const token = this.getToken(user_type)
+	const token = getToken(user_type)
 	return !!token
 }
 export function getToken(user_type) {
@@ -13,5 +13,4 @@ export function logout(user_type) {
 }
 export function setToken(user_type,token) {
 	localStorage.setItem(user_type, token)
-	// this.removeTempToken()
 }
