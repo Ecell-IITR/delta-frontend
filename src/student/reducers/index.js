@@ -1,8 +1,10 @@
-import { combineReducers } from "redux"
-import example from "./example"
+import { combineReducers } from "redux";
+import registration from "./register";
+import login from "./login";
 
 const studentReducer = combineReducers({
-	example
-})
+  registration,
+  login
+});
 
-export default studentReducer
+export default studentReducer;
