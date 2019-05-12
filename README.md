@@ -1,7 +1,5 @@
 # Delta frontend repo
 
-Clone the forked backend repo :- https://github.com/Tushar19varshney/delta-backend 
-
 Move to development branch and start the server by running
 `python manage.py runserver` or `python3 manage.py runserver `
 
