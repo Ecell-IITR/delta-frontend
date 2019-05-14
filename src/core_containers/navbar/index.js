@@ -1,6 +1,6 @@
 import React, { Component } from "react"
 import { Link } from "react-router-dom"
-// import Searchbar from "../searchbar";
+import Searchbar from "../searchbar/index"
 import ImageIndex from "../image/index"
 import "../css/navbar.css"
 
@@ -9,32 +9,32 @@ class Navbar extends Component {
 		return (
 			<div className="navbar">
 				<div className="title">DELTA</div>
-				{/* <Searchbar /> */}
+				<Searchbar />
 				<div className="subnavbar">
 					<ul>
 						<li>
 							<Link to="/" className="profile">
-                                Profile
+								Profile
 							</Link>
 						</li>
 						<li>
 							<Link to="/" className="opportunities">
-                                Opportunities
+								Opportunities
 							</Link>
 						</li>{" "}
 						<li>
 							<Link to="/" className="createpost">
-                                Create Post
+								Create Post
 							</Link>
 						</li>{" "}
 						<li>
 							<Link to="/" className="notification">
-                                Notification
+								Notification
 							</Link>
 						</li>{" "}
 						<li>
 							<Link to="/" className="more">
-                                More
+								More
 							</Link>
 						</li>
 					</ul>
