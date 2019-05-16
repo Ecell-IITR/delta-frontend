@@ -84,6 +84,12 @@
     background-color: #007267;
 }
 
+.login-error-text{
+    position: absolute; 
+    top: 0px; 
+    color: red;
+}
+
 @media(max-width:414px) {
     .loginInput {
         width: 100%;

@@ -12,11 +12,11 @@ import { setToken } from "../utils.js"
 export const login = (username, password) => {
 	return dispatch => {
 		const data = {
-			username: username,
+			email: username,
 			password: password
 		}
 		dispatch(request())
-		FetchApi("POST", "/api/auth/jwt/", data)
+		FetchApi("POST", "/api/auth/login", data)
 			.then(res => {
 				if (res.data && res.data.token) {
 					setToken("student", res.data.token)
