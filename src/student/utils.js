@@ -7,7 +7,7 @@ export function getToken(user_type) {
 	return localStorage.getItem(user_type)
 }
 export function logout(user_type) {
-	if (this.getToken(user_type)) {
+	if (getToken(user_type)) {
 		localStorage.removeItem(user_type)
 	}
 }

@@ -37,7 +37,7 @@ class LoginIndex extends Component {
 		}
 		const checkPass = validateInput(password, "password")
 		if (checkPass.isValid) {
-			this.props.login(username,password)
+			this.props.login(username, password)
 		} else {
 			this.setState({
 				errors: checkPass.errors.password
