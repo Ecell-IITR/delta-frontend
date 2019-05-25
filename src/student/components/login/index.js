@@ -6,6 +6,7 @@ import { Input, SubmitButton } from "../../../core_containers"
 import validateInput from "../../../utils/validation/validation"
 import { login } from "../../actions/index"
 import "../css/login.css"
+import {hasToken} from "../../utils"
 
 class LoginIndex extends Component {
 	constructor(props) {
@@ -16,7 +17,11 @@ class LoginIndex extends Component {
 			errors: ""
 		}
 	}
-
+	componentDidMount(){
+		if(hasToken("student")){
+			this.props.history.push("/student/")
+		}
+	}
 	onChange = e => {
 		const name = e.target.name
 		let value = e.target.value
@@ -37,14 +42,16 @@ class LoginIndex extends Component {
 		}
 		const checkPass = validateInput(password, "password")
 		if (checkPass.isValid) {
-			this.props.login(username, password)
+			this.props.login(username, password,this.callback)
 		} else {
 			this.setState({
 				errors: checkPass.errors.password
 			})
 		}
 	}
-
+	callback=()=>{
+		this.props.history.push("/student/")
+	}
 	render() {
 		const { username, password, errors } = this.state
 		return (
@@ -93,14 +100,14 @@ LoginIndex.propTypes = {
 
 const mapStateToProps = state => {
 	return {
-		login: state.login
+		auth: state.studentReducer.login
 	}
 }
 
 const mapActionToProps = dispatch => {
 	return {
-		login: (username, password) => {
-			return dispatch(login(username, password))
+		login: (username, password,callback) => {
+			return dispatch(login(username, password,callback))
 		}
 	}
 }

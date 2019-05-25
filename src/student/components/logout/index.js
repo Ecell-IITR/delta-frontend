@@ -2,9 +2,15 @@ import React, { Component } from "react"
 import { connect } from "react-redux"
 import { log_out } from "../../actions/index"
 class Logout extends Component {
+	constructor(props){
+		super(props)
+		this.state={}
+	}
 	componentDidMount() {
-		console.log(this.props)
-		this.props.logout()
+		this.props.logout(this.callback)
+	}
+	callback=()=>{
+		this.props.history.push("/student/login")
 	}
 	render() {
 		return <></>
@@ -13,8 +19,8 @@ class Logout extends Component {
 
 const mapActionToProps = dispatch => {
 	return {
-		logout: () => {
-			return dispatch(log_out())
+		logout: (callback) => {
+			return dispatch(log_out(callback))
 		}
 	}
 }

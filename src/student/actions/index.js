@@ -11,7 +11,8 @@ import {
 import FetchApi from "../../utils/FetchAPI"
 import { setToken, logout } from "../utils.js"
 
-export const login = (username, password) => {
+
+export const login = (username, password,callback) => {
 	return dispatch => {
 		const data = {
 			email: username,
@@ -23,7 +24,7 @@ export const login = (username, password) => {
 				if (res.data && res.data.token) {
 					setToken("student", res.data.token)
 					dispatch(success(res.data.token))
-					alert("Congratulation You are logged in")
+					callback()
 				}
 			})
 			.catch(error => {
@@ -43,11 +44,12 @@ export const login = (username, password) => {
 	}
 }
 
-export const log_out = () => {
+export const log_out = (callback) => {
 	return dispatch => {
 		dispatch(request())
 		logout("student")
 		dispatch(success())
+		callback()
 	}
 
 	function request() {
