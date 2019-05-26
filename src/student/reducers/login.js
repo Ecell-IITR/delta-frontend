@@ -3,7 +3,8 @@ import {
 	LOGIN_REQUEST,
 	LOGIN_SUCCESS,
 	LOGOUT_REQUEST,
-	LOGOUT_SUCCESS
+	LOGOUT_SUCCESS,
+	SET_USER_AUTH
 } from "../constants/index"
 
 const initialState = {
@@ -32,6 +33,12 @@ const login = (state = initialState, action) => {
 			...state,
 			isauthenticating: false,
 			error: action.payload
+		}
+	case SET_USER_AUTH:
+		return {
+			...state,
+			isauthenticated: true,
+			token: action.payload
 		}
 	case LOGOUT_REQUEST:
 		return {

@@ -6,7 +6,8 @@ import { Input, SubmitButton } from "../../../core_containers"
 import validateInput from "../../../utils/validation/validation"
 import { login } from "../../actions/index"
 import "../css/login.css"
-import {hasToken} from "../../utils"
+import { hasToken } from "../../utils"
+import { TOKEN_TYPE } from "../../constants/index"
 
 class LoginIndex extends Component {
 	constructor(props) {
@@ -17,8 +18,8 @@ class LoginIndex extends Component {
 			errors: ""
 		}
 	}
-	componentDidMount(){
-		if(hasToken("student")){
+	componentDidMount() {
+		if (hasToken(TOKEN_TYPE)) {
 			this.props.history.push("/student/")
 		}
 	}
@@ -42,14 +43,14 @@ class LoginIndex extends Component {
 		}
 		const checkPass = validateInput(password, "password")
 		if (checkPass.isValid) {
-			this.props.login(username, password,this.callback)
+			this.props.login(username, password, this.callback)
 		} else {
 			this.setState({
 				errors: checkPass.errors.password
 			})
 		}
 	}
-	callback=()=>{
+	callback = () => {
 		this.props.history.push("/student/")
 	}
 	render() {
@@ -106,8 +107,8 @@ const mapStateToProps = state => {
 
 const mapActionToProps = dispatch => {
 	return {
-		login: (username, password,callback) => {
-			return dispatch(login(username, password,callback))
+		login: (username, password, callback) => {
+			return dispatch(login(username, password, callback))
 		}
 	}
 }

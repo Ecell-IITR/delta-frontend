@@ -6,13 +6,27 @@ import {
 	REGISTER_SUCCESS,
 	REGISTER_REQUEST,
 	LOGOUT_REQUEST,
-	LOGOUT_SUCCESS
+	LOGOUT_SUCCESS,
+	SET_USER_AUTH,
+	TOKEN_TYPE
 } from "../constants/index"
 import FetchApi from "../../utils/FetchAPI"
-import { setToken, logout } from "../utils.js"
+import { getToken, setToken, logout } from "../utils.js"
 
+export const set_user = () => {
+	return dispatch => {
+		dispatch(set_user_auth(getToken(TOKEN_TYPE)))
+	}
 
-export const login = (username, password,callback) => {
+	function set_user_auth(token) {
+		return {
+			type: SET_USER_AUTH,
+			payload: token
+		}
+	}
+}
+
+export const login = (username, password, callback) => {
 	return dispatch => {
 		const data = {
 			email: username,
@@ -22,7 +36,7 @@ export const login = (username, password,callback) => {
 		FetchApi("POST", "/api/v1/auth/login", data)
 			.then(res => {
 				if (res.data && res.data.token) {
-					setToken("student", res.data.token)
+					setToken(TOKEN_TYPE, res.data.token)
 					dispatch(success(res.data.token))
 					callback()
 				}
@@ -44,10 +58,10 @@ export const login = (username, password,callback) => {
 	}
 }
 
-export const log_out = (callback) => {
+export const log_out = callback => {
 	return dispatch => {
 		dispatch(request())
-		logout("student")
+		logout(TOKEN_TYPE)
 		dispatch(success())
 		callback()
 	}
