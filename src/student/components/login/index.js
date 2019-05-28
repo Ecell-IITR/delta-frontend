@@ -94,11 +94,6 @@ class LoginIndex extends Component {
 	}
 }
 
-// Props validation
-LoginIndex.propTypes = {
-	dispatch: PropTypes.func.isRequired
-}
-
 const mapStateToProps = state => {
 	return {
 		auth: state.studentReducer.login

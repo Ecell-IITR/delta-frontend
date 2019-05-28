@@ -26,6 +26,12 @@ export const set_user = () => {
 	}
 }
 
+export const showInfo =()=>{
+	return dispatch=>{
+		
+	}
+}
+
 export const login = (username, password, callback) => {
 	return dispatch => {
 		const data = {
@@ -83,7 +89,7 @@ export const register = (username, email, password1, password2) => {
 	}
 	return dispatch => {
 		dispatch(request(data))
-		FetchApi("POST", "/api/auth/register/", data)
+		FetchApi("POST", "/api/v1/auth/register", data)
 			.then(res => {
 				if (res.data) {
 					dispatch(success(res.data))

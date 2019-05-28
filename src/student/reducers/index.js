@@ -1,12 +1,12 @@
 import { combineReducers } from "redux"
 import registration from "./register"
 import login from "./login"
-import studentInfo from "./studentInfo"
+import profile from "./profile"
 
 const studentReducer = combineReducers({
 	registration,
 	login,
-	studentInfo
+	profile
 })
 
 export default studentReducer
