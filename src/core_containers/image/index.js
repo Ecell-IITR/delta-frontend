@@ -3,10 +3,6 @@ import PropTypes from "prop-types"
 import { Image } from "semantic-ui-react"
 
 class ImageIndex extends Component {
-	constructor(props) {
-		super(props)
-		this.state = {}
-	}
 	render() {
 		let { image, size, shape } = this.props
 		return (
