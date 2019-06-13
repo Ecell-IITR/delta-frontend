@@ -8,6 +8,7 @@ import PrivateRoute from "./pR"
 import { Navbar } from "../../core_containers"
 import Profile from "./profile/index"
 import Opportunities from "./opportunities/index"
+
 class StudentIndex extends Component {
 	render() {
 		const { match } = this.props
@@ -22,6 +23,7 @@ class StudentIndex extends Component {
 						<Route path={`${match.path}/logout`} component={Logout} />
 						<Route path={`${match.path}/login`} component={Login} />
 						<Route path={`${match.path}/register`} component={Register} />
+						
 					</Switch>
 				</React.Fragment>
 			</BrowserRouter>

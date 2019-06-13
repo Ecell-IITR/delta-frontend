@@ -6,7 +6,7 @@ import "./index.css"
 import "semantic-ui-css/semantic.min.css"
 import App from "./App"
 import * as serviceWorker from "./serviceWorker"
-import Opportunities from "./student/components/opportunities/Opportunites"
+import Opportunities from "./student/components/opportunities"
 ReactDOM.render(
 	<Provider store={store}>
 		<App />

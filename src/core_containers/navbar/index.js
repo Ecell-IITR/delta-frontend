@@ -2,38 +2,38 @@ import React, { Component } from "react"
 import { Link } from "react-router-dom"
 import Searchbar from "../searchbar/index"
 import ImageIndex from "../image/index"
-import "../css/navbar.css"
+import styles from "../css/navbar.module.css"
 
 class Navbar extends Component {
 	render() {
 		return (
-			<div className="navbar">
-				<div className="title">DELTA</div>
+			<div className={styles.navbar}>
+				<div className={styles.title}>DELTA</div>
 				<Searchbar />
-				<div className="subnavbar">
+				<div className={styles.subnavbar}>
 					<ul>
 						<li>
-							<Link to="/" className="profile">
+							<Link to="/" className={styles.profile}>
 								Profile
 							</Link>
 						</li>
 						<li>
-							<Link to="/" className="opportunities">
+							<Link to="/" className={styles.opportunities}>
 								Opportunities
 							</Link>
 						</li>{" "}
 						<li>
-							<Link to="/" className="createpost">
+							<Link to="/" className={styles.createpost}>
 								Create Post
 							</Link>
 						</li>{" "}
 						<li>
-							<Link to="/" className="notification">
+							<Link to="/" className={styles.notification}>
 								Notification
 							</Link>
 						</li>{" "}
 						<li>
-							<Link to="/" className="more">
+							<Link to="/" className={styles.more}>
 								More
 							</Link>
 						</li>
@@ -42,7 +42,7 @@ class Navbar extends Component {
 						image="asdfgh"
 						size="zcvbn"
 						shape="circular"
-						className="profilepic"
+						className={styles.profilepic}
 					/>
 				</div>
 			</div>

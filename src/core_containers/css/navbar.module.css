@@ -1,0 +1,121 @@
+.navbar {
+	width: 1920px;
+	height: 96px;
+	background-color: #f6f6f6;
+	display: inline-flex;
+}
+
+.title {
+	position: absolute;
+	margin-left: 44px;
+	margin-top: 28px;
+	width: 91px;
+	height: 39px;
+	font-family: NeutrifPro;
+	font-size: 30px;
+	font-weight: bold;
+	font-style: normal;
+	font-stretch: normal;
+	line-height: normal;
+	letter-spacing: normal;
+	text-transform: uppercase;
+	color: #000000;
+}
+
+li {
+	list-style: none;
+	display: inline-flex;
+}
+
+.profile {
+	position: absolute;
+	margin-left: 1087px;
+	margin-top: 33px;
+	width: 69px;
+	height: 27px;
+	font-family: NeutrifPro;
+	font-size: 21px;
+	font-weight: 600;
+	font-style: normal;
+	font-stretch: normal;
+	line-height: normal;
+	letter-spacing: 1.1px;
+	color: #000000;
+}
+
+.opportunities {
+	position: absolute;
+	margin-left: 1200px;
+	margin-top: 33px;
+	width: 149px;
+	height: 27px;
+	font-family: NeutrifPro;
+	font-size: 21px;
+	font-weight: 600;
+	font-style: normal;
+	font-stretch: normal;
+	line-height: normal;
+	letter-spacing: 1.1px;
+	text-align: center;
+	color: #000000;
+}
+
+.createpost {
+	position: absolute;
+	margin-left: 1393px;
+	margin-top: 33px;
+	width: 121px;
+	height: 27px;
+	font-family: NeutrifPro;
+	font-size: 21px;
+	font-weight: 600;
+	font-style: normal;
+	font-stretch: normal;
+	line-height: normal;
+	letter-spacing: 1.1px;
+	text-align: center;
+	color: #000000;
+}
+
+.notification {
+	position: absolute;
+	margin-left: 1558px;
+	margin-top: 33px;
+	width: 123px;
+	height: 27px;
+	font-family: NeutrifPro;
+	font-size: 21px;
+	font-weight: 600;
+	font-style: normal;
+	font-stretch: normal;
+	line-height: normal;
+	letter-spacing: 1.1px;
+	text-align: center;
+	color: #000000;
+}
+
+.more {
+	position: absolute;
+	margin-left: 1725px;
+	margin-top: 33px;
+	width: 53px;
+	height: 27px;
+	font-family: NeutrifPro;
+	font-size: 21px;
+	font-weight: 600;
+	font-style: normal;
+	font-stretch: normal;
+	line-height: normal;
+	letter-spacing: 1.1px;
+	text-align: center;
+	color: #000000;
+}
+
+.profilepic {
+	position: absolute;
+	margin-left: 1830px;
+	margin-top: 25px;
+	width: 46px;
+	height: 46px;
+	background-color: #666666;
+}

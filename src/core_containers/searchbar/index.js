@@ -1,6 +1,6 @@
 import React, { Component } from "react"
 import data from "./data.json"
-import "../css/searchbar.css"
+import styles from "../css/searchbar.module.css"
 class Searchbar extends Component {
 	constructor(props) {
 		super(props)
@@ -17,7 +17,7 @@ class Searchbar extends Component {
 			<div>
 				<input
 					type="text"
-					className="core-searchbar"
+					className={styles["core-searchbar"]}
 					onChange={this.handleSearchchange}
 				/>
 			</div>

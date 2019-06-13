@@ -5,7 +5,7 @@ import { Link } from "react-router-dom"
 import { Input, SubmitButton } from "../../../core_containers"
 import validateInput from "../../../utils/validation/validation"
 import { login } from "../../actions/index"
-import "../css/login.css"
+import styles from "../css/login.module.css"
 import { hasToken } from "../../utils"
 import { TOKEN_TYPE } from "../../constants/index"
 
@@ -56,20 +56,20 @@ class LoginIndex extends Component {
 	render() {
 		const { username, password, errors } = this.state
 		return (
-			<div className="login">
-				<div className="loginInput">
-					<span className="login-error-text" style={{}}>
+			<div className={styles.login}>
+				<div className={styles.loginInput}>
+					<span className={styles["login-error-text"]} style={{}}>
 						{errors}
 					</span>
-					<div className="heading">Welcome to DELTA</div>
-					<div className="subheading">
+					<div className={styles.heading}>Welcome to DELTA</div>
+					<div className={styles.subheading}>
 						An online opportunity portal for students of IIT-R
 					</div>
 					<form onSubmit={this.handleSubmit}>
 						<Input
 							type="text"
 							placeholder="Email ID"
-							className="loginField"
+							className={styles.loginField}
 							name="username"
 							value={username}
 							onChange={this.onChange}
@@ -78,15 +78,15 @@ class LoginIndex extends Component {
 						<Input
 							type="password"
 							placeholder="Password"
-							className="loginField"
+							className={styles.loginField}
 							name="password"
 							value={password}
 							onChange={this.onChange}
 						/>
-						<div className="forgotPassword">
+						<div className={styles.forgotPassword}>
 							<Link to="#">Forgot Password?</Link>
 						</div>
-						<SubmitButton buttonContent="Log in" className="loginSubmit" />
+						<SubmitButton buttonContent="Log in" className={styles.loginSubmit} />
 					</form>
 				</div>
 			</div>

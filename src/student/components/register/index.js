@@ -5,7 +5,7 @@ import { Link } from "react-router-dom"
 import { Input, SubmitButton } from "../../../core_containers"
 import { register } from "../../actions/index"
 import validateInput from "../../../utils/validation/validation"
-import "../css/login.css"
+import styles from "../css/login.module.css"
 
 class RegisterStudent extends Component {
 	constructor() {

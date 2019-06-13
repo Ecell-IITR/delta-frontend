@@ -7,7 +7,7 @@ import {
 	Divider,
 	Dropdown
 } from "semantic-ui-react"
-import "../css/post.css"
+import styles from "../css/post.module.css"
 import ImageIndex from "../image"
 
 export default class Post extends Component {
@@ -15,33 +15,33 @@ export default class Post extends Component {
 		let { designation, stipend, duration, imginfo } = this.props
 		let info = ["9 Applicants", "Bangalore", "2 weeks", "2 months"]
 		return (
-			<div className="post">
+			<div className={styles.post}>
 				<Container>
-					<div className="div1">
-						<div className="div1-1">
-							<Header className="header1" as="h1">
+					<div className={styles.div1}>
+						<div className={styles.div1 - 1}>
+							<Header className={styles.header1} as="h1">
 								{designation + " "}
 							</Header>
-							<Header className="header2" as="h1">
+							<Header className={styles.header2} as="h1">
 								{stipend + "." + duration}
 							</Header>
 						</div>
-						<div className="div1-2">
+						<div className={styles.div1 - 2}>
 							<ImageIndex />
 						</div>
 					</div>
-					<div className="div2">
+					<div className={styles.div2}>
 						<ul>
 							{info.map(a => (
 								<li>
-									<Checkbox className="checkbox" label={a} />
+									<Checkbox className={styles.checkbox} label={a} />
 								</li>
 							))}
 						</ul>
 					</div>
 					<Divider />
-					<div className="div3">
-						<div className="div3-1">
+					<div className={styles.div3}>
+						<div className={styles.div3 - 1}>
 							<Router>
 								<ul>
 									<li>
@@ -53,7 +53,7 @@ export default class Post extends Component {
 								</ul>
 							</Router>
 						</div>
-						<div className="div3-2">
+						<div className={styles.div3 - 2}>
 							<Dropdown text="View More">
 								<Dropdown.Menu>
 									<Dropdown.Item text="New" />
