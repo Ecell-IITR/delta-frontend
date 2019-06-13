@@ -18,12 +18,19 @@ class StudentIndex extends Component {
 					<PrivateRoute path={`${match.path}/`} component={Navbar} />
 					<Switch>
 						<PrivateRoute exact path={`${match.path}/`} component={Dashboard} />
-						<PrivateRoute exact path={`${match.path}/profile`} component={Profile} />
-						<PrivateRoute exact path={`${match.path}/opportunities`} component={Opportunities} />
+						<PrivateRoute
+							exact
+							path={`${match.path}/profile`}
+							component={Profile}
+						/>
+						<PrivateRoute
+							exact
+							path={`${match.path}/opportunities`}
+							component={Opportunities}
+						/>
 						<Route path={`${match.path}/logout`} component={Logout} />
 						<Route path={`${match.path}/login`} component={Login} />
 						<Route path={`${match.path}/register`} component={Register} />
-						
 					</Switch>
 				</React.Fragment>
 			</BrowserRouter>
