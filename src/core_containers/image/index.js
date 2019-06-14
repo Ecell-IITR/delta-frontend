@@ -10,7 +10,7 @@ class ImageIndex extends Component {
 				<Image
 					src={image}
 					size={size}
-					circular={shape === "circuar" ? true : false}
+					circular={shape === "circular" ? true : false}
 				/>
 			</div>
 		)

@@ -1,28 +1,45 @@
-import React, { Component } from "react"
-import data from "./data.json"
-import styles from "../css/searchbar.module.css"
-class Searchbar extends Component {
-	constructor(props) {
-		super(props)
-		this.state = {
-			list: data,
-			searchterm: ""
-		}
-	}
-	handleSearchchange = event => {
-		this.setState({ searchterm: event.target.value })
-	}
-	render() {
-		return (
-			<div>
-				<input
-					type="text"
-					className={styles["core-searchbar"]}
-					onChange={this.handleSearchchange}
-				/>
-			</div>
-		)
-	}
-}
+import _ from "lodash";
+import React, { Component } from "react";
+import { Search } from "semantic-ui-react";
+import searchbar from "../css/searchbar.module.css";
+const initialState = { isLoading: false, results: [], value: "" };
 
-export default Searchbar
+export default class SearchExampleStandard extends Component {
+  state = initialState;
+
+  handleResultSelect = (e, { result }) =>
+    this.setState({ value: result.title });
+
+  handleSearchChange = (e, { value }) => {
+    this.setState({ isLoading: true, value });
+
+    setTimeout(() => {
+      if (this.state.value.length < 1) return this.setState(initialState);
+
+      const re = new RegExp(_.escapeRegExp(this.state.value), "i");
+      const isMatch = result => re.test(result.title);
+
+      this.setState({
+        isLoading: false
+      });
+    }, 300);
+  };
+
+  render() {
+    const { isLoading, value, results } = this.state;
+
+    return (
+      <Search
+        className={searchbar.size}
+        loading={isLoading}
+        onResultSelect={this.handleResultSelect}
+        onSearchChange={_.debounce(this.handleSearchChange, 500, {
+          leading: true
+        })}
+        results={results}
+        value={value}
+        {...this.props}
+      />
+    );
+  }
+}
