@@ -5,10 +5,10 @@
 	background-color: #ffffff;
 	margin: auto;
 	display: grid;
-	grid-template-columns: 14% 61% 25%;
+	grid-template-columns: 17% 49% 34%;
 	grid-template-rows: 100%;
 	padding: 1.5% 1%;
-	margin-bottom: 30%;
+	/* margin-bottom: 30%; */
 }
 
 .student-img {
@@ -37,8 +37,8 @@
 
 .student-name {
 	padding-bottom: 1%;
-	font-family: NeutrifPro;
-	font-size: 27px;
+	font-family: Neutrifpro-semibold;
+	font-size: 24px;
 	font-weight: 600;
 	font-style: normal;
 	font-stretch: normal;
@@ -50,8 +50,8 @@
 .student-branch,
 .roll {
 	padding-bottom: 1%;
-	font-family: NeutrifPro;
-	font-size: 21px;
+	font-family: Neutrifpro-regular;
+	font-size: 18px;
 	font-weight: 500;
 	font-style: normal;
 	font-stretch: normal;
@@ -62,8 +62,8 @@
 
 .student-qualities {
 	transform: translateY(-20%);
-	font-family: NeutrifPro;
-	font-size: 20px;
+	font-family: Neutrifpro-regular;
+	font-size: 17px;
 	font-weight: normal;
 	font-style: normal;
 	font-stretch: normal;
@@ -94,8 +94,8 @@
 
 .profile-percent {
 	width: 80%;
-	font-family: NeutrifPro;
-	font-size: 23px;
+	font-family: Neutrifpro-regular;
+	font-size: 20px;
 	font-weight: 600;
 	font-style: normal;
 	font-stretch: normal;
@@ -123,8 +123,8 @@
 
 .label_1 span,
 .label_2 span {
-	font-family: NeutrifPro;
-	font-size: 20px;
+	font-family: Neutrifpro-regular;
+	font-size: 17px;
 	font-weight: 500;
 	font-style: normal;
 	font-stretch: normal;
