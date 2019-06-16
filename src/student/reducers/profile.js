@@ -1,26 +1,52 @@
+import {
+  FETCH_USER_PROFILE_REQUEST,
+  FETCH_USER_PROFILE_SUCCESS,
+  FETCH_USER_PROFILE_FAILURE
+} from "../constants/index";
 const initialState = {
   info: {
-    name: "Tushar Varshney",
-    branch: "Production and Industrial",
-    year: "2021",
-    course: "Mechanical",
-    roll: 17119035
+    branch: "",
+    year: "",
+    course: "",
+    roll: "",
+    bio: "",
+    profile_image: "",
+    interest: "",
+    skills: "",
+    social_links: ""
   },
-  isfetching: false
+  isfetching: false,
+  error: ""
 };
 
 const profile = (state = initialState, action) => {
   switch (action.type) {
-    case "PROFILE_REQUEST":
+    case FETCH_USER_PROFILE_REQUEST:
       return {
         ...state,
         isfetching: true
       };
-    case "PROFILE_SUCCESS":
+    case FETCH_USER_PROFILE_SUCCESS:
       return {
         ...state,
-        info: action.payload,
+        info: {
+          branch: action.payload.branch,
+          year: action.payload.year,
+          course: action.payload.course,
+          roll: action.payload.enrollment_number,
+          bio: action.payload.bio,
+          profile_image: action.payload.profile_image,
+          interest: action.payload.interest,
+          skills: action.payload.skills,
+          social_links: action.payload.social_links
+        },
         isfetching: false
+      };
+    case FETCH_USER_PROFILE_FAILURE:
+      return {
+        ...state,
+        isfetching: false,
+        error: action.payload
       };
     default:
       return state;

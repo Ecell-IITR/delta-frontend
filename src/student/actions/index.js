@@ -13,7 +13,6 @@ import {
   FETCH_USER_PROFILE_REQUEST,
   FETCH_USER_PROFILE_SUCCESS,
   FETCH_USER_PROFILE_FAILURE,
-  SET_USER_AUTH,
   TOKEN_TYPE
 } from "../constants/index";
 import FetchApi from "../../utils/FetchAPI";
@@ -24,7 +23,7 @@ let token = getToken(TOKEN_TYPE);
 export const fetchProfile = username => {
   return dispatch => {
     dispatch(request());
-    FetchApi("GET", "/api/v1/get/profile/" + username, null, token)
+    FetchApi("GET", "/api/v1/get/profile/" + username + "/", null, token)
       .then(res => {
         if (res.data) {
           dispatch(success(res.data));
@@ -45,13 +44,14 @@ export const fetchProfile = username => {
   }
 };
 
-export const fetchUser = username => {
+export const fetchUser = callback => {
   return dispatch => {
     dispatch(request());
     FetchApi("GET", "/api/v1/get/user", null, token)
       .then(res => {
         if (res.data) {
           dispatch(success(res.data));
+          callback();
         }
       })
       .catch(error => {

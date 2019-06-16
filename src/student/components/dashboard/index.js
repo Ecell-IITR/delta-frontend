@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { hasToken } from "../../utils";
 import { TOKEN_TYPE } from "../../constants/index";
-import { set_user } from "../../actions/index";
+import { fetchUser } from "../../actions/index";
 import { connect } from "react-redux";
 class StudentDashboard extends Component {
   constructor(props) {
@@ -12,7 +12,7 @@ class StudentDashboard extends Component {
     if (!hasToken(TOKEN_TYPE)) {
       this.props.history.push("/student/");
     } else {
-      this.props.set_user();
+      this.props.fetchUser();
     }
   }
   render() {
@@ -22,8 +22,8 @@ class StudentDashboard extends Component {
 
 const mapActionToProps = dispatch => {
   return {
-    set_user: (username, password, callback) => {
-      return dispatch(set_user(username, password, callback));
+    fetchUser: () => {
+      return dispatch(fetchUser());
     }
   };
 };

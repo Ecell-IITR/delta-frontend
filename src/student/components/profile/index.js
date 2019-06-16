@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Progress, Icon } from "semantic-ui-react";
 import { connect } from "react-redux";
-import { fetchProfile } from "../../actions/index";
+import { fetchUser, fetchProfile } from "../../actions/index";
 import { hasToken } from "../../utils";
 import { TOKEN_TYPE } from "../../constants/index";
 import styles from "../css/profile.module.css";
@@ -16,12 +16,15 @@ class StudentProfile extends Component {
 
   componentDidMount() {
     if (hasToken(TOKEN_TYPE)) {
-      this.props.fetchUser();
-      this.props.fetchProfile(this.props.user.username);
+      this.props.fetchUser(this.callback);
     }
   }
+  callback = () => {
+    this.props.fetchProfile(this.props.user.username);
+  };
   render() {
     const student = this.props.info;
+    const { user } = this.props;
     return (
       <div className={styles.info}>
         <div className={styles["student-img"]}>
@@ -33,7 +36,7 @@ class StudentProfile extends Component {
         </div>
         <div className={styles["student-info"]}>
           <div className={styles["student-personal-info"]}>
-            <span className={styles["student-name"]}>{student.name}</span>
+            <span className={styles["student-name"]}>{user.username}</span>
             <span className={styles["student-branch"]}>
               {student.branch + "    ." + student.year}
             </span>
@@ -44,7 +47,7 @@ class StudentProfile extends Component {
               <Icon name="circle" size="huge" />
             </div>
           </div>
-          <div className={styles["student-qualities"]}>{student.qualities}</div>
+          <div className={styles["student-bio"]}>{student.bio}</div>
           <div className={styles.icons}>
             <Icon name="circle" size="big" />
             <Icon name="circle" size="big" />
@@ -79,7 +82,6 @@ class StudentProfile extends Component {
 StudentProfile.propTypes = {
   info: PropTypes.objectOf(
     PropTypes.shape({
-      name: PropTypes.string,
       branch: PropTypes.string,
       year: PropTypes.string,
       course: PropTypes.string,
@@ -94,13 +96,16 @@ function mapDispatchToProps(dispatch) {
   return {
     fetchProfile: username => {
       dispatch(fetchProfile(username));
+    },
+    fetchUser: callback => {
+      dispatch(fetchUser(callback));
     }
   };
 }
 
 function mapStateToProps(state) {
   return {
-    user: state.studentReducer.user,
+    user: state.studentReducer.user.userDetails,
     info: state.studentReducer.profile.info
   };
 }
