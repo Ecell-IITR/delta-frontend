@@ -9,7 +9,7 @@ import styles from "../css/login.module.css";
 import { hasToken } from "../../utils";
 import { TOKEN_TYPE } from "../../constants/index";
 import GenButton from "../../../core_containers/button/general";
-import mainbuilding from "../../../core_containers/image/mainbuilding.svg";
+import mainbuilding from "../../../core_containers/static/img/mainbuilding.svg";
 class LoginIndex extends Component {
   constructor(props) {
     super(props);
