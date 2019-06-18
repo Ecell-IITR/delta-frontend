@@ -11,19 +11,10 @@ export default class GenButton extends Component {
 
 	render() {
 		return (
-			<div className="button">
-				<Button
-					primary={this.state.IsActive}
-					onClick={() => {
-						this.setState(
-							this.state.IsActive ? { IsActive: false } : { IsActive: true }
-						)
-					}}
-				>
-					{" "}
-					Click Here{" "}
-				</Button>
-			</div>
+			<Button className={`${this.props.className}`} primary={this.state.IsActive}
+				onClick={() => { this.setState(this.state.IsActive ? { IsActive: false } : { IsActive: true }) }}>
+				{this.props.content}
+			</Button>
 		)
 	}
 }

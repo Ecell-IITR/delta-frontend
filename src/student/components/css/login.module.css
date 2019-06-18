@@ -1,10 +1,11 @@
 .login {
     font-family: Neutrifpro-bold;
     display: flex;
-    font-weight: normal;
     font-style: normal;
     font-stretch: normal;
     line-height: normal;
+    height: 100vh;
+    padding: 0 0 0 30px;
 }
 
 .loginInput {
@@ -21,9 +22,10 @@
     width: 37vw;
     max-width: 570px !important;
     font-size: 3.6rem;
-    letter-spacing: 1.1px;
-    color: #000000;
     margin: 12px 0px;
+    line-height: normal;
+    letter-spacing: 1.1px;
+    color: #434660;
 }
 
 .subheading {
@@ -31,7 +33,7 @@
     max-width: 570px !important;
     font-size: 1.6rem;
     letter-spacing: 1px;
-    color: #7d7d7e;
+    color: #a8a9b5;
     margin: 0px 0px 24px 0;
 }
 
@@ -43,14 +45,16 @@
     width: 37vw;
     height: 50px;
     max-width: 570px !important;
-
 }
 
-.loginField>.input>*::placeholder {
-    font-size: 1.2rem;
+.loginField>*>*::placeholder {
+    font-size: 1rem;
     font-weight: 500;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
     letter-spacing: 0.8px;
-    color: #787879;
+    color: #5a5c74 !important;
 }
 
 
@@ -61,19 +65,48 @@
     margin: 0px 0px 40px 0;
 }
 
-.loginSubmit>.button {
+.notMember {
     width: 37vw;
     max-width: 570px !important;
-    font-size: 2rem;
-    font-weight: 500;
-    box-shadow: 4px 7px 10px 1px rgba(0, 0, 0, 0.15);
-    background-color: #00a89f;
-    letter-spacing: 0.5px;
-    text-align: center;
-    color: #ffffff;
+    text-align: left;
+    margin: 0px 0px 10px 0;
+
 }
 
-.loginSubmit>.button:hover {
+.forgotPassword>*,
+.notMember>* {
+    letter-spacing: 0.4px;
+    color: #2964ee;
+}
+
+.loginSubmit>* {
+    width: 37vw;
+    max-width: 570px !important;
+    font-size: 1.4rem !important;
+    font-weight: 500 !important;
+    border-radius: 5px !important;
+    box-shadow: 4px 7px 10px 1px rgba(0, 0, 0, 0.15) !important;
+    background-color: #2964ee !important;
+    letter-spacing: 0.5px !important;
+    text-align: center !important;
+    color: #ffffff !important;
+}
+
+.loginOption>.loginNotMember {
+    width: 37vw;
+    max-width: 570px !important;
+    font-size: 1.3rem !important;
+    font-weight: 500 !important;
+    border-radius: 5px !important;
+    box-shadow: 4px 7px 10px 1px rgba(0, 0, 0, 0.15);
+    border: solid 2px #2964ee;
+    color: #2964ee !important;
+    letter-spacing: 0.5px !important;
+    text-align: center !important;
+    background-color: transparent !important;
+}
+
+.loginSubmit>*:hover {
     color: #ffffff;
     background-color: rgb(0, 136, 120);
     box-shadow: 4px 7px 10px 1px rgba(0, 0, 0, 0.15);
@@ -84,15 +117,34 @@
     background-color: #007267;
 }
 
-.login-error-text{
-    position: absolute; 
-    top: 0px; 
+.login-error-text {
+    position: absolute;
+    top: 0px;
     color: red;
 }
 
+.loginOption {
+    margin: 40px 0px 0px 0;
+}
+
 @media(max-width:414px) {
+    .login {
+        display: flex;
+        position: relative;
+        flex-direction: column;
+        overflow: hidden;
+    }
+
     .loginInput {
         width: 100%;
+        z-index: 1;
+    }
+
+    .loginMainBuilding {
+        position: absolute;
+        top: 0;
+        opacity: 0.2;
+        height: 100vh;
     }
 
     .heading {
@@ -115,11 +167,23 @@
         text-align: left;
     }
 
-    .loginField>.input>*::placeholder {
-        font-size: 1.2rem;
+    .loginField>*>*::placeholder {
+        font-size: 1rem;
     }
 
-    .loginSubmit>.button {
+    .loginOption>.notMember {
+        width: 80vw
+    }
+
+    .loginOption>.loginNotMember {
+        width: 100%;
+    }
+
+    .loginOption {
+        width: 80vw;
+    }
+
+    .loginSubmit>* {
         width: 80vw;
         font-size: 1.2rem;
         font-weight: 500;

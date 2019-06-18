@@ -8,7 +8,8 @@ import { login } from "../../actions/index";
 import styles from "../css/login.module.css";
 import { hasToken } from "../../utils";
 import { TOKEN_TYPE } from "../../constants/index";
-
+import GenButton from "../../../core_containers/button/general";
+import mainbuilding from "../../../core_containers/image/mainbuilding.svg";
 class LoginIndex extends Component {
   constructor(props) {
     super(props);
@@ -84,14 +85,22 @@ class LoginIndex extends Component {
               onChange={this.onChange}
             />
             <div className={styles.forgotPassword}>
-              <Link to="#">Forgot Password?</Link>
+              <Link to="#" >Forgot Password?</Link>
             </div>
             <SubmitButton
               buttonContent="Log in"
               className={styles.loginSubmit}
             />
           </form>
+          <div className={styles.loginOption}>
+            <div className={styles.notMember}>
+              <Link to="#" >If you are not a member</Link>
+            </div>
+            <GenButton className={styles.loginNotMember} content="Sign up" />
+
+          </div>
         </div>
+        <img src={mainbuilding} className={styles.loginMainBuilding} alt="main building" />
       </div>
     );
   }
