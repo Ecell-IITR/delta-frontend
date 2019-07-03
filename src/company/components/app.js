@@ -2,7 +2,7 @@ import React, { Component } from "react"
 import { Switch, Route } from "react-router-dom"
 import Login from "./login/index"
 import { Navbar } from "../../core_containers"
-
+import Post from "./post/index"
 
 
 class CompanyIndex extends Component {
@@ -17,7 +17,7 @@ class CompanyIndex extends Component {
 				<Switch>
 					<Route exact path={"Path url"} component={"Component Name"} />
 				</Switch>
-				<Login />
+				<Post />
 			</React.Fragment>
 		)
 	}
