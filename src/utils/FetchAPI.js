@@ -11,9 +11,9 @@ const FetchApi = (method, url, params, TokenValue) => {
         url: url,
         data: params,
         headers: {
-          Authorization: 'JWT '+TokenValue,
+          Authorization: 'JWT ' + TokenValue
         },
-        responseType: 'json',
+        responseType: 'json'
       })
         .then(res => resolve(res))
         .catch(err => reject(err))
@@ -22,7 +22,7 @@ const FetchApi = (method, url, params, TokenValue) => {
         method: method,
         url: url,
         data: params,
-        responseType: 'json',
+        responseType: 'json'
       })
         .then(res => resolve(res))
         .catch(err => reject(err))

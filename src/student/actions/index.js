@@ -14,112 +14,112 @@ import {
   FETCH_USER_PROFILE_SUCCESS,
   FETCH_USER_PROFILE_FAILURE,
   TOKEN_TYPE
-} from "../constants/index";
-import FetchApi from "../../utils/FetchAPI";
-import { getToken, setToken, logout } from "../utils.js";
+} from '../constants/index'
+import FetchApi from '../../utils/FetchAPI'
+import { getToken, setToken, logout } from '../utils.js'
 
-let token = getToken(TOKEN_TYPE);
+let token = getToken(TOKEN_TYPE)
 
 export const fetchProfile = username => {
   return dispatch => {
-    dispatch(request());
-    FetchApi("GET", "/api/v1/get/profile/" + username + "/", null, token)
+    dispatch(request())
+    FetchApi('GET', '/api/v1/get/profile/' + username + '/', null, token)
       .then(res => {
         if (res.data) {
-          dispatch(success(res.data));
+          dispatch(success(res.data))
         }
       })
       .catch(error => {
-        dispatch(failure(error));
-      });
-  };
+        dispatch(failure(error))
+      })
+  }
   function request() {
-    return { type: FETCH_USER_PROFILE_REQUEST };
+    return { type: FETCH_USER_PROFILE_REQUEST }
   }
   function success(data) {
-    return { type: FETCH_USER_PROFILE_SUCCESS, payload: data };
+    return { type: FETCH_USER_PROFILE_SUCCESS, payload: data }
   }
   function failure(error) {
-    return { type: FETCH_USER_PROFILE_FAILURE, error };
+    return { type: FETCH_USER_PROFILE_FAILURE, error }
   }
-};
+}
 
 export const fetchUser = callback => {
   return dispatch => {
-    dispatch(request());
-    FetchApi("GET", "/api/v1/get/user", null, token)
+    dispatch(request())
+    FetchApi('GET', '/api/v1/get/user', null, token)
       .then(res => {
         if (res.data) {
-          dispatch(success(res.data));
-          callback();
+          dispatch(success(res.data))
+          callback()
         }
       })
       .catch(error => {
-        dispatch(failure(error));
-      });
-  };
+        dispatch(failure(error))
+      })
+  }
   function request() {
-    return { type: FETCH_USER_REQUEST };
+    return { type: FETCH_USER_REQUEST }
   }
   function success(data) {
-    return { type: FETCH_USER_SUCCESS, payload: data };
+    return { type: FETCH_USER_SUCCESS, payload: data }
   }
   function failure(error) {
-    return { type: FETCH_USER_FAILURE, error };
+    return { type: FETCH_USER_FAILURE, error }
   }
-};
+}
 
 export const showInfo = () => {
-  return dispatch => {};
-};
+  return dispatch => {}
+}
 
 export const login = (username, password, callback) => {
   return dispatch => {
     const data = {
       email: username,
       password: password
-    };
-    dispatch(request());
-    FetchApi("POST", "/api/v1/auth/login", data)
+    }
+    dispatch(request())
+    FetchApi('POST', '/api/v1/auth/login', data)
       .then(res => {
         if (res.data && res.data.token) {
-          setToken(TOKEN_TYPE, res.data.token);
-          dispatch(success(res.data.token));
-          callback();
+          setToken(TOKEN_TYPE, res.data.token)
+          dispatch(success(res.data.token))
+          callback()
         }
       })
       .catch(error => {
-        dispatch(failure(error));
-        alert("Wrong credentials");
-      });
-  };
+        dispatch(failure(error))
+        alert('Wrong credentials')
+      })
+  }
 
   function request() {
-    return { type: LOGIN_REQUEST };
+    return { type: LOGIN_REQUEST }
   }
   function success(data) {
-    return { type: LOGIN_SUCCESS, payload: data };
+    return { type: LOGIN_SUCCESS, payload: data }
   }
   function failure(error) {
-    return { type: LOGIN_FAILURE, error };
+    return { type: LOGIN_FAILURE, error }
   }
-};
+}
 
 export const log_out = callback => {
   return dispatch => {
-    dispatch(request());
-    logout(TOKEN_TYPE);
-    dispatch(success());
-    callback();
-  };
+    dispatch(request())
+    logout(TOKEN_TYPE)
+    dispatch(success())
+    callback()
+  }
 
   function request() {
-    return { type: LOGOUT_REQUEST };
+    return { type: LOGOUT_REQUEST }
   }
   function success(data) {
-    return { type: LOGOUT_SUCCESS };
+    return { type: LOGOUT_SUCCESS }
   }
-};
+}
 
 export const register = (username, email, password1, password2) => {
   const data = {
@@ -127,35 +127,35 @@ export const register = (username, email, password1, password2) => {
     email: email,
     password: password1,
     password2: password2
-  };
+  }
   return dispatch => {
-    dispatch(request(data));
-    FetchApi("POST", "/api/v1/auth/register", data)
+    dispatch(request(data))
+    FetchApi('POST', '/api/v1/auth/register', data)
       .then(res => {
         if (res.data) {
-          dispatch(success(res.data));
-          alert("registerd");
+          dispatch(success(res.data))
+          alert('registerd')
         }
       })
       .catch(error => {
-        dispatch(failure(error));
-      });
-  };
+        dispatch(failure(error))
+      })
+  }
 
   function request() {
-    return { type: REGISTER_REQUEST };
+    return { type: REGISTER_REQUEST }
   }
   function success(data) {
-    return { type: REGISTER_SUCCESS, payload: data };
+    return { type: REGISTER_SUCCESS, payload: data }
   }
   function failure(error) {
-    return { type: REGISTER_FAILURE, payload: error };
+    return { type: REGISTER_FAILURE, payload: error }
   }
-};
+}
 export const ShowInfo = () => {
   const action = {
-    type: "RENDER_INFO"
-  };
+    type: 'RENDER_INFO'
+  }
 
-  return action;
-};
+  return action
+}

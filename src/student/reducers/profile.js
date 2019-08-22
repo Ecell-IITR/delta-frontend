@@ -2,22 +2,22 @@ import {
   FETCH_USER_PROFILE_REQUEST,
   FETCH_USER_PROFILE_SUCCESS,
   FETCH_USER_PROFILE_FAILURE
-} from "../constants/index";
+} from '../constants/index'
 const initialState = {
   info: {
-    branch: "",
-    year: "",
-    course: "",
-    roll: "",
-    bio: "",
-    profile_image: "",
-    interest: "",
-    skills: "",
-    social_links: ""
+    branch: '',
+    year: '',
+    course: '',
+    roll: '',
+    bio: '',
+    profile_image: '',
+    interest: '',
+    skills: '',
+    social_links: ''
   },
   isfetching: false,
-  error: ""
-};
+  error: ''
+}
 
 const profile = (state = initialState, action) => {
   switch (action.type) {
@@ -25,7 +25,7 @@ const profile = (state = initialState, action) => {
       return {
         ...state,
         isfetching: true
-      };
+      }
     case FETCH_USER_PROFILE_SUCCESS:
       return {
         ...state,
@@ -41,16 +41,16 @@ const profile = (state = initialState, action) => {
           social_links: action.payload.social_links
         },
         isfetching: false
-      };
+      }
     case FETCH_USER_PROFILE_FAILURE:
       return {
         ...state,
         isfetching: false,
         error: action.payload
-      };
+      }
     default:
-      return state;
+      return state
   }
-};
+}
 
-export default profile;
+export default profile

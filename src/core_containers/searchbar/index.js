@@ -1,32 +1,31 @@
-import _ from "lodash";
-import React, { Component } from "react";
-import { Search } from "semantic-ui-react";
-import searchbar from "../css/searchbar.module.css";
-const initialState = { isLoading: false, results: [], value: "" };
+import _ from 'lodash'
+import React, { Component } from 'react'
+import { Search } from 'semantic-ui-react'
+import searchbar from '../css/searchbar.module.css'
+const initialState = { isLoading: false, results: [], value: '' }
 
 export default class SearchExampleStandard extends Component {
-  state = initialState;
+  state = initialState
 
-  handleResultSelect = (e, { result }) =>
-    this.setState({ value: result.title });
+  handleResultSelect = (e, { result }) => this.setState({ value: result.title })
 
   handleSearchChange = (e, { value }) => {
-    this.setState({ isLoading: true, value });
+    this.setState({ isLoading: true, value })
 
     setTimeout(() => {
-      if (this.state.value.length < 1) return this.setState(initialState);
+      if (this.state.value.length < 1) return this.setState(initialState)
 
-      const re = new RegExp(_.escapeRegExp(this.state.value), "i");
-      const isMatch = result => re.test(result.title);
+      const re = new RegExp(_.escapeRegExp(this.state.value), 'i')
+      const isMatch = result => re.test(result.title)
 
       this.setState({
         isLoading: false
-      });
-    }, 300);
-  };
+      })
+    }, 300)
+  }
 
   render() {
-    const { isLoading, value, results } = this.state;
+    const { isLoading, value, results } = this.state
 
     return (
       <Search
@@ -40,6 +39,6 @@ export default class SearchExampleStandard extends Component {
         value={value}
         {...this.props}
       />
-    );
+    )
   }
 }

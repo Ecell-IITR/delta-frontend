@@ -6,8 +6,9 @@
     "axios": "^0.18.0",
     "commondir": "^1.0.1",
     "http-proxy-middleware": "^0.19.1",
-    "lodash": "^4.17.11",
+    "lodash": "^4.17.15",
     "node-sass": "^4.12.0",
+    "prettier": "^1.18.2",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.4",
@@ -27,7 +28,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint": "eslint --fix ./src/*"
+    "lint": "eslint src/ --fix",
+    "format": "prettier --write \"src/**/*.{js,jsx,json}\""
   },
   "eslintConfig": {
     "extends": "react-app"

@@ -1,65 +1,65 @@
-import React, { Component } from "react";
+import React, { Component } from 'react'
 // import PropTypes from "prop-types"
-import { connect } from "react-redux";
-import { Link } from "react-router-dom";
-import { Input, SubmitButton } from "../../../core_containers";
-import validateInput from "../../../utils/validation/validation";
-import { login } from "../../actions/index";
-import styles from "../css/login.module.css";
-import { hasToken } from "../../utils";
-import { TOKEN_TYPE } from "../../constants/index";
-import GenButton from "../../../core_containers/button/general";
-import mainbuilding from "../../../core_containers/static/img/mainbuilding.svg";
+import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
+import { Input, SubmitButton } from '../../../core_containers'
+import validateInput from '../../../utils/validation/validation'
+import { login } from '../../actions/index'
+import styles from '../css/login.module.css'
+import { hasToken } from '../../utils'
+import { TOKEN_TYPE } from '../../constants/index'
+import GenButton from '../../../core_containers/button/general'
+import mainbuilding from '../../../core_containers/static/img/mainbuilding.svg'
 class LoginIndex extends Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
-      username: "",
-      password: "",
-      errors: ""
-    };
+      username: '',
+      password: '',
+      errors: ''
+    }
   }
   componentDidMount() {
     if (hasToken(TOKEN_TYPE)) {
-      this.props.history.push("/student/");
+      this.props.history.push('/student/')
     }
   }
   onChange = e => {
-    const name = e.target.name;
-    let value = e.target.value;
+    const name = e.target.name
+    let value = e.target.value
     this.setState({
       [name]: value,
-      errors: ""
-    });
-  };
+      errors: ''
+    })
+  }
 
   handleSubmit = e => {
-    e.preventDefault();
-    let { username, password } = this.state;
+    e.preventDefault()
+    let { username, password } = this.state
     if (username) {
-      username = username.trim();
+      username = username.trim()
     }
     if (password) {
-      password = password.trim();
+      password = password.trim()
     }
-    const checkPass = validateInput(password, "password");
+    const checkPass = validateInput(password, 'password')
     if (checkPass.isValid) {
-      this.props.login(username, password, this.callback);
+      this.props.login(username, password, this.callback)
     } else {
       this.setState({
         errors: checkPass.errors.password
-      });
+      })
     }
-  };
+  }
   callback = () => {
-    this.props.history.push("/student/");
-  };
+    this.props.history.push('/student/')
+  }
   render() {
-    const { username, password, errors } = this.state;
+    const { username, password, errors } = this.state
     return (
       <div className={styles.login}>
         <div className={styles.loginInput}>
-          <span className={styles["login-error-text"]} style={{}}>
+          <span className={styles['login-error-text']} style={{}}>
             {errors}
           </span>
           <div className={styles.heading}>Welcome to DELTA</div>
@@ -85,7 +85,7 @@ class LoginIndex extends Component {
               onChange={this.onChange}
             />
             <div className={styles.forgotPassword}>
-              <Link to="#" >Forgot Password?</Link>
+              <Link to="#">Forgot Password?</Link>
             </div>
             <SubmitButton
               buttonContent="Log in"
@@ -94,33 +94,36 @@ class LoginIndex extends Component {
           </form>
           <div className={styles.loginOption}>
             <div className={styles.notMember}>
-              <Link to="#" >If you are not a member</Link>
+              <Link to="#">If you are not a member</Link>
             </div>
             <GenButton className={styles.loginNotMember} content="Sign up" />
-
           </div>
         </div>
-        <img src={mainbuilding} className={styles.loginMainBuilding} alt="main building" />
+        <img
+          src={mainbuilding}
+          className={styles.loginMainBuilding}
+          alt="main building"
+        />
       </div>
-    );
+    )
   }
 }
 
 const mapStateToProps = state => {
   return {
     auth: state.studentReducer.login
-  };
-};
+  }
+}
 
 const mapActionToProps = dispatch => {
   return {
     login: (username, password, callback) => {
-      return dispatch(login(username, password, callback));
+      return dispatch(login(username, password, callback))
     }
-  };
-};
+  }
+}
 
 export default connect(
   mapStateToProps,
   mapActionToProps
-)(LoginIndex);
+)(LoginIndex)

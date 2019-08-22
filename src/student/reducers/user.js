@@ -5,20 +5,20 @@ import {
   UPLOAD_USER_IMAGE_FAILURE,
   UPLOAD_USER_IMAGE_REQUEST,
   UPLOAD_USER_IMAGE_SUCCESS
-} from "../constants/index";
+} from '../constants/index'
 const initialState = {
   userActions: {
     isuploading: false,
     isfetching: false,
     isinitializing: false,
-    errors: ""
+    errors: ''
   },
   userDetails: {
-    username: "",
-    email: "",
-    id: ""
+    username: '',
+    email: '',
+    id: ''
   }
-};
+}
 
 const user = (state = initialState, action) => {
   switch (action.type) {
@@ -28,29 +28,29 @@ const user = (state = initialState, action) => {
         userActions: {
           isuploading: true
         }
-      };
+      }
     case UPLOAD_USER_IMAGE_FAILURE:
       return {
         ...state,
         userActions: {
           isuploading: false,
-          errors: "Something went wrong!"
+          errors: 'Something went wrong!'
         }
-      };
+      }
     case UPLOAD_USER_IMAGE_SUCCESS:
       return {
         ...state,
         userActions: {
           isuploading: false
         }
-      };
+      }
     case FETCH_USER_REQUEST:
       return {
         ...state,
         userActions: {
           isfetching: true
         }
-      };
+      }
     case FETCH_USER_SUCCESS:
       return {
         ...state,
@@ -62,17 +62,17 @@ const user = (state = initialState, action) => {
           email: action.payload.email,
           username: action.payload.username
         }
-      };
+      }
     case FETCH_USER_FAILURE:
       return {
         ...state,
         userActions: {
           errors: action.payload
         }
-      };
+      }
     default:
-      return state;
+      return state
   }
-};
+}
 
-export default user;
+export default user

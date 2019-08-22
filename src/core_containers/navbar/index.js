@@ -1,9 +1,9 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import { Icon } from "semantic-ui-react";
-import Searchbar from "../searchbar/index";
-import ImageIndex from "../image/index";
-import styles from "../css/navbar.module.css";
+import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
+import { Icon } from 'semantic-ui-react'
+import Searchbar from '../searchbar/index'
+import ImageIndex from '../image/index'
+import styles from '../css/navbar.module.css'
 
 class Navbar extends Component {
   render() {
@@ -45,8 +45,8 @@ class Navbar extends Component {
           </ul>
         </div>
       </div>
-    );
+    )
   }
 }
 
-export default Navbar;
+export default Navbar
