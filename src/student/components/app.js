@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { BrowserRouter, Switch, Route } from 'react-router-dom'
+import { Switch, Route } from 'react-router-dom'
 import Register from './register/index'
 import Dashboard from './dashboard/index'
 import Logout from './logout/index'
@@ -13,12 +13,11 @@ class StudentIndex extends Component {
   render() {
     const { match } = this.props
     return (
-      <BrowserRouter>
-        <React.Fragment>
+      <React.Fragment>
+        <Switch>
+          <Route exact path={`${match.path}/login`} component={Login} />
           <Route exact path={`${match.path}/logout`} component={Logout} />
           <Route exact path={`${match.path}/register`} component={Register} />
-          <Route exact path={`${match.path}/login`} component={Login} />
-          {/* <Switch> */}
           <PrivateRoute path={`${match.path}/`} component={Navbar} />
           <PrivateRoute exact path={`${match.path}/`} component={Dashboard} />
           <PrivateRoute
@@ -31,9 +30,8 @@ class StudentIndex extends Component {
             path={`${match.path}/opportunities`}
             component={Opportunities}
           />
-          {/* </Switch> */}
-        </React.Fragment>
-      </BrowserRouter>
+        </Switch>
+      </React.Fragment>
     )
   }
 }

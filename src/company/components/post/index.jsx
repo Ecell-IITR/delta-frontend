@@ -27,14 +27,14 @@ export default class post extends Component {
           <form onSubmit={this.handleSubmit}>
             <div className="c1">
               <div className="jobpos">
-                <span class="fieldTitle">
+                <span className="fieldTitle">
                   Job Position
                   <br />
                   <input type="text" className="positionField" />
                 </span>
               </div>
               <div className="workloc">
-                <span class="fieldTitle">
+                <span className="fieldTitle">
                   Location of Work
                   <br />
                   <input type="text" className="locationField" />
@@ -43,7 +43,7 @@ export default class post extends Component {
             </div>
 
             <div className="c2">
-              <div class="fieldTitle">Job Description</div>
+              <div className="fieldTitle">Job Description</div>
               <input type="text" className="descriptionField" />
             </div>
 
