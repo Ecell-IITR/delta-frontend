@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { Icon } from 'semantic-ui-react'
@@ -5,6 +6,14 @@ import Searchbar from '../searchbar/index'
 import ImageIndex from '../image/index'
 import styles from '../css/navbar.module.css'
 import PropTypes from 'prop-types'
+=======
+import React, { Component } from "react"
+import { Link } from "react-router-dom"
+import Searchbar from "../searchbar/index"
+import ImageIndex from "../image/index"
+import styles from "../css/navbar.module.css"
+import PropTypes from "prop-types"
+>>>>>>> PropType added
 class Navbar extends Component {
   render() {
     return (
@@ -48,6 +57,7 @@ class Navbar extends Component {
     )
   }
 }
+<<<<<<< HEAD
 // Navbar.propTypes = {
 //   profile: PropTypes.string.isRequired,
 //   opportunities: PropTypes.string.isRequired,
@@ -56,5 +66,15 @@ class Navbar extends Component {
 //   more: PropTypes.string.isRequired,
 //   profilepic: PropTypes.string.isRequired
 // }
+=======
+Navbar.propTypes = {
+	profile: PropTypes.string.isRequired,
+	opportunities: PropTypes.string.isRequired,
+	createpost: PropTypes.string.isRequired,
+	notification: PropTypes.string.isRequired,
+	more: PropTypes.string.isRequired,
+	profilepic: PropTypes.string.isRequired,
+}
+>>>>>>> PropType added
 
 export default Navbar

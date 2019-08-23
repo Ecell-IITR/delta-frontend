@@ -1,7 +1,14 @@
+<<<<<<< HEAD
 import React, { Component } from 'react'
 import { Form } from 'semantic-ui-react'
 import PropTypes from 'prop-types'
 import styles from '../css/input.module.css'
+=======
+import React, { Component } from "react"
+import { Form } from "semantic-ui-react"
+import PropTypes from "prop-types"
+import styles from "../css/input.module.css"
+>>>>>>> PropType added
 export default class InputField extends Component {
   render() {
     let { placeholder, type, name } = this.props
@@ -21,4 +28,10 @@ InputField.propTypes = {
   type: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired
+}
+InputField.propTypes = {
+	placeholder: PropTypes.string,
+	type: PropTypes.string.isRequired,
+	name: PropTypes.string.isRequired,
+	onChange: PropTypes.func.isRequired
 }

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 import {
+<<<<<<< HEAD
   Container,
   Header,
   Checkbox,
@@ -10,6 +11,17 @@ import {
 import styles from '../css/post.module.css'
 import ImageIndex from '../image'
 import PropTypes from 'prop-types'
+=======
+	Container,
+	Header,
+	Checkbox,
+	Divider,
+	Dropdown
+} from "semantic-ui-react"
+import styles from "../css/post.module.css"
+import ImageIndex from "../image"
+import PropTypes from "prop-types"
+>>>>>>> PropType added
 
 export default class Post extends Component {
   render() {
@@ -66,4 +78,14 @@ Post.propTypes = {
   duration: PropTypes.string.isRequired,
   imginfo: PropTypes.string
 }
+<<<<<<< HEAD
 
+=======
+Post.propTypes = {
+	post: PropTypes.string,
+	designation: PropTypes.string.isRequired,
+	stipend: PropTypes.number.isRequired,
+	duration: PropTypes.string.isRequired,
+
+}
+>>>>>>> PropType added
