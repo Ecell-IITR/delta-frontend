@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import styles from '../css/rectangle.module.css'
+import PropTypes from 'prop-types'
 
 class Rectangle extends Component {
   constructor(props) {
@@ -26,5 +27,11 @@ class Rectangle extends Component {
     )
   }
 }
-
+Rectangle.propTypes = {
+  rectangle: PropTypes.string.isRequired,
+  item: PropTypes.string.isRequired,
+  blank: PropTypes.string.isRequired,
+  text: PropTypes.string.isRequired,
+  item: PropTypes.string.isRequired
+}
 export default Rectangle

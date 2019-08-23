@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Icon, Label } from 'semantic-ui-react'
+import PropTypes from 'prop-types'
 export default class label extends Component {
   render() {
     return (
@@ -11,4 +12,7 @@ export default class label extends Component {
       </div>
     )
   }
+}
+label.propTypes = {
+  labelName: PropTypes.string
 }

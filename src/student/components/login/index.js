@@ -8,8 +8,7 @@ import { login } from '../../actions/index'
 import styles from '../css/login.module.css'
 import { hasToken } from '../../utils'
 import { TOKEN_TYPE } from '../../constants/index'
-import GenButton from '../../../core_containers/button/general'
-import mainbuilding from '../../../core_containers/static/img/mainbuilding.svg'
+import PropTypes from 'prop-types'
 class LoginIndex extends Component {
   constructor(props) {
     super(props)
@@ -107,6 +106,18 @@ class LoginIndex extends Component {
       </div>
     )
   }
+}
+LoginIndex.propTypes = {
+  username: PropTypes.string.isRequired,
+  password: PropTypes.string.isRequired,
+  errors: PropTypes.string.isRequired,
+  login: PropTypes.string.isRequired,
+  loginInput: PropTypes.string.isRequired,
+  heading: PropTypes.string.isRequired,
+  subheading: PropTypes.string.isRequired,
+  forgotPassword: PropTypes.string.isRequired,
+  loginSubmit: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired
 }
 
 const mapStateToProps = state => {

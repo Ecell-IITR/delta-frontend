@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Form } from 'semantic-ui-react'
-
+import PropTypes from 'prop-types'
 import styles from '../css/input.module.css'
 export default class InputField extends Component {
   render() {
@@ -15,4 +15,10 @@ export default class InputField extends Component {
       />
     )
   }
+}
+InputField.propTypes = {
+  placeholder: PropTypes.string,
+  type: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired
 }

@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Button } from 'semantic-ui-react'
+import PropTypes from 'prop-types'
 
 export default class GenButton extends Component {
   constructor(props) {
@@ -24,4 +25,7 @@ export default class GenButton extends Component {
       </Button>
     )
   }
+}
+GenButton.propTypes = {
+  IsActive: PropTypes.bool
 }

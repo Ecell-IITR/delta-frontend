@@ -9,6 +9,7 @@ import {
 } from 'semantic-ui-react'
 import styles from '../css/post.module.css'
 import ImageIndex from '../image'
+import PropTypes from 'prop-types'
 
 export default class Post extends Component {
   render() {
@@ -68,4 +69,10 @@ export default class Post extends Component {
       </div>
     )
   }
+}
+Post.propTypes = {
+  post: PropTypes.string,
+  designation: PropTypes.string.isRequired,
+  stipend: PropTypes.number.isRequired,
+  duration: PropTypes.string.isRequired
 }
