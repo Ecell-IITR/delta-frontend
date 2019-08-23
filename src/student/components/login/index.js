@@ -122,6 +122,18 @@ LoginIndex.propTypes = {
   loginSubmit: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired
 }
+LoginIndex.propTypes = {
+  username: PropTypes.string.isRequired,
+  password: PropTypes.string.isRequired,
+  errors: PropTypes.string.isRequired,
+  login: PropTypes.string.isRequired,
+  loginInput: PropTypes.string.isRequired,
+  heading: PropTypes.string.isRequired,
+  subheading: PropTypes.string.isRequired,
+  forgotPassword: PropTypes.string.isRequired,
+  loginSubmit: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
+}
 
 const mapStateToProps = state => {
   return {
@@ -136,6 +148,7 @@ const mapActionToProps = dispatch => {
     }
   }
 }
+
 
 export default connect(
   mapStateToProps,
