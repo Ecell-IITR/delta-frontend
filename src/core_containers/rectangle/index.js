@@ -15,9 +15,9 @@ class Rectangle extends Component {
     //let content = this.state.content
     return (
       <div className={styles.rectangle}>
-        {content.map(item => {
+        {content.map((item, index) => {
           return (
-            <div className={styles.item}>
+            <div key={index} className={styles.item}>
               <div className={styles.blank}></div>
               <span className={styles.text}>{item}</span>
             </div>
@@ -28,14 +28,11 @@ class Rectangle extends Component {
   }
 }
 Rectangle.propTypes = {
-<<<<<<< HEAD
   rectangle: PropTypes.string.isRequired,
   item: PropTypes.string.isRequired,
   blank: PropTypes.string.isRequired,
   text: PropTypes.string.isRequired,
-  item: PropTypes.string.isRequired
-=======
-  content=PropTypes.array.isRequired
->>>>>>> Added extra proptypes
+  item: PropTypes.string.isRequired,
+  content: PropTypes.array.isRequired
 }
 export default Rectangle
