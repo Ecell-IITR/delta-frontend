@@ -159,3 +159,37 @@ export const ShowInfo = () => {
 
   return action
 }
+
+/* Skill component action creators*/
+export const showSkills = () => {
+  return { type: 'SHOW_SKILLS' }
+}
+export const removeSkill = (skill, index) => {
+  return {
+    type: 'REMOVE_SKILL',
+    index: index,
+    skill: skill
+  }
+}
+
+export const addSkill = (skill, index) => {
+  console.log(skill)
+  return {
+    type: 'ADD_SKILL',
+    index: index,
+    skill: skill
+  }
+}
+export const handleSkills = newArray => {
+  return {
+    type: 'HANDLE_SKILLS',
+    newArray: newArray
+  }
+}
+export const removeAll = () => {
+  return {
+    type: 'REMOVE_ALL'
+  }
+}
+
+/* ends*/
