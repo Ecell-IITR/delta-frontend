@@ -47,7 +47,6 @@ class Skill extends Component {
   }
 
   render() {
-    console.log(this.props)
     return (
       <div className="skills_container">
         <div className="filterSkills">
