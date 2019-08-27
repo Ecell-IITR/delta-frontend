@@ -14,11 +14,11 @@ class StudentIndex extends Component {
     const { match } = this.props
     return (
       <React.Fragment>
+        <PrivateRoute path={`${match.path}/`} component={Navbar} />
         <Switch>
           <Route exact path={`${match.path}/login`} component={Login} />
           <Route exact path={`${match.path}/logout`} component={Logout} />
           <Route exact path={`${match.path}/register`} component={Register} />
-          <PrivateRoute path={`${match.path}/`} component={Navbar} />
           <PrivateRoute exact path={`${match.path}/`} component={Dashboard} />
           <PrivateRoute
             exact

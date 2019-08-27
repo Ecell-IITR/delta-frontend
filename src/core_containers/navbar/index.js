@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
+import { Icon } from 'semantic-ui-react'
 import Searchbar from '../searchbar/index'
 import ImageIndex from '../image/index'
 import styles from '../css/navbar.module.css'

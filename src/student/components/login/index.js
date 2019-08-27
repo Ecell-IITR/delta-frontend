@@ -95,14 +95,17 @@ class LoginIndex extends Component {
             <div className={styles.notMember}>
               <Link to="#">If you are not a member</Link>
             </div>
-            <GenButton className={styles.loginNotMember} content="Sign up" />
+            <SubmitButton
+              className={styles.loginNotMember}
+              buttonContent="Sign up"
+            />
           </div>
         </div>
-        <img
+        {/* <img
           src={mainbuilding}
           className={styles.loginMainBuilding}
           alt="main building"
-        />
+        /> */}
       </div>
     )
   }
