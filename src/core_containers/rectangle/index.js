@@ -1,13 +1,7 @@
-<<<<<<< HEAD
 import React, { Component } from 'react'
 import styles from '../css/rectangle.module.css'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
-=======
-import React, { Component } from "react"
-import styles from "../css/rectangle.module.css"
-import PropTypes from "prop-types"
->>>>>>> PropType added
 
 class Rectangle extends Component {
   constructor(props) {
@@ -36,7 +30,6 @@ class Rectangle extends Component {
   }
 }
 Rectangle.propTypes = {
-<<<<<<< HEAD
   rectangle: PropTypes.string.isRequired,
   blank: PropTypes.string.isRequired,
   text: PropTypes.string.isRequired,
@@ -45,12 +38,3 @@ Rectangle.propTypes = {
   content: PropTypes.array.isRequired
 }
 export default Rectangle
-=======
-	rectangle: PropTypes.string.isRequired,
-	item: PropTypes.string.isRequired,
-	blank: PropTypes.string.isRequired,
-	text: PropTypes.string.isRequired,
-	item: PropTypes.string.isRequired,
-}
-export default Rectangle
->>>>>>> PropType added
