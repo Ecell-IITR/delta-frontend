@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 import React, { Component } from 'react'
 import { Icon, Label } from 'semantic-ui-react'
 import PropTypes from 'prop-types'
@@ -7,6 +8,11 @@ import React, { Component } from "react"
 import { Icon, Label } from "semantic-ui-react"
 import PropTypes from "prop-types"
 >>>>>>> PropType added
+=======
+import React, { Component } from 'react'
+import { Icon, Label } from 'semantic-ui-react'
+import PropTypes from 'prop-types'
+>>>>>>> Added extra proptypes
 export default class label extends Component {
   render() {
     return (
@@ -21,7 +27,4 @@ export default class label extends Component {
 }
 label.propTypes = {
   labelName: PropTypes.string
-}
-label.propTypes = {
-	labelName: PropTypes.string,
 }

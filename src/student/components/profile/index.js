@@ -98,9 +98,14 @@ StudentProfile.propTypes = {
   user: PropTypes.shape({
     username: PropTypes.string,
     userDetails: PropTypes.string
+<<<<<<< HEAD
   }).isRequired,
   match: PropTypes.object.isRequired
+=======
+  }).isRequired
+>>>>>>> Added extra proptypes
 }
+
 
 function mapDispatchToProps(dispatch) {
   return {

@@ -33,7 +33,7 @@ class Skill extends Component {
   handleChange = e => {
     let toRemove = this.props.addedSkills
     let newList = []
-    let currentList = constantList.filter(function(item) {
+    let currentList = constantList.filter(function (item) {
       return toRemove.indexOf(item) < 0
     })
     if (e.target.value !== '') {
@@ -118,7 +118,11 @@ Skill.propTypes = {
   handleSkills: PropTypes.func.isRequired,
   skills: PropTypes.array.isRequired,
   addSkills: PropTypes.func.isRequired,
+<<<<<<< HEAD
   removeSkill: PropTypes.func.isRequired
+=======
+  removeSkill: PropTypes.func.isRequired,
+>>>>>>> Added extra proptypes
 }
 
 const mapStateToProps = state => {

@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 import React, { Component } from 'react'
 import { Button } from 'semantic-ui-react'
 import PropTypes from 'prop-types'
@@ -7,6 +8,11 @@ import React, { Component } from "react"
 import { Button } from "semantic-ui-react"
 import PropTypes from "prop-types"
 >>>>>>> PropType added
+=======
+import React, { Component } from 'react'
+import { Button } from 'semantic-ui-react'
+import PropTypes from 'prop-types'
+>>>>>>> Added extra proptypes
 
 export default class GenButton extends Component {
   constructor(props) {
@@ -36,7 +42,10 @@ GenButton.propTypes = {
   IsActive: PropTypes.bool,
   className: PropTypes.string.isRequired,
   content: PropTypes.string.isRequired
+<<<<<<< HEAD
 }
 GenButton.propTypes = {
 	IsActive: PropTypes.bool,
+=======
+>>>>>>> Added extra proptypes
 }

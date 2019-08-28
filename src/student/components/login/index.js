@@ -1,4 +1,8 @@
 import React, { Component } from 'react'
+<<<<<<< HEAD
+=======
+// import PropTypes from "prop-types"
+>>>>>>> Added extra proptypes
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { Input, SubmitButton } from '../../../core_containers'
@@ -8,7 +12,10 @@ import styles from '../css/login.module.css'
 import { hasToken } from '../../utils'
 import { TOKEN_TYPE } from '../../constants/index'
 import PropTypes from 'prop-types'
+<<<<<<< HEAD
 import mainbuilding from '../../../images/mainbuilding.svg'
+=======
+>>>>>>> Added extra proptypes
 class LoginIndex extends Component {
   constructor(props) {
     super(props)
@@ -121,6 +128,7 @@ class LoginIndex extends Component {
   }
 }
 LoginIndex.propTypes = {
+<<<<<<< HEAD
   username: PropTypes.string.isRequired,
   password: PropTypes.string.isRequired,
   errors: PropTypes.string.isRequired,
@@ -144,6 +152,19 @@ LoginIndex.propTypes = {
 	forgotPassword: PropTypes.string.isRequired,
 	loginSubmit: PropTypes.string.isRequired,
 	onChange: PropTypes.func.isRequired,
+=======
+  // username: PropTypes.string.isRequired,
+  // password: PropTypes.string.isRequired,
+  // errors: PropTypes.string.isRequired,
+  // login: PropTypes.string.isRequired,
+  // loginInput: PropTypes.string.isRequired,
+  // heading: PropTypes.string.isRequired,
+  // subheading: PropTypes.string.isRequired,
+  // forgotPassword: PropTypes.string.isRequired,
+  // loginSubmit: PropTypes.string.isRequired,
+  // onChange: PropTypes.func.isRequired
+  history: PropTypes.object.isRequired
+>>>>>>> Added extra proptypes
 }
 
 const mapStateToProps = state => {

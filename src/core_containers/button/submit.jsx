@@ -34,7 +34,13 @@ export default class SubmitButton extends Component {
 
 SubmitButton.propTypes = {
   className: PropTypes.string.isRequired,
+<<<<<<< HEAD
   buttonContent: PropTypes.string.isRequired,
   color: PropTypes.string.isRequired,
   handleClick: PropTypes.func
 }
+=======
+  buttonContent: PropTypes.string.isRequired
+}
+
+>>>>>>> Added extra proptypes
