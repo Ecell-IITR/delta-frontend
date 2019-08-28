@@ -10,7 +10,7 @@ import {
 } from '../../actions/index'
 import { Icon, Input } from 'semantic-ui-react'
 import '../css/skill.css'
-
+import PropTypes from 'prop-types'
 const constantList = [
   'web developer',
   'Competitive coder',
@@ -33,7 +33,7 @@ class Skill extends Component {
   handleChange = e => {
     let toRemove = this.props.addedSkills
     let newList = []
-    let currentList = constantList.filter(function(item) {
+    let currentList = constantList.filter(function (item) {
       return toRemove.indexOf(item) < 0
     })
     if (e.target.value !== '') {
@@ -110,6 +110,14 @@ class Skill extends Component {
       </div>
     )
   }
+}
+Skill.propTypes = {
+  showSkills: PropTypes.func.isRequired,
+  addedSkills: PropTypes.array.isRequired,
+  handleSkills: PropTypes.func.isRequired,
+  skills: PropTypes.array.isRequired,
+  addSkills: PropTypes.func.isRequired,
+  removeSkill: PropTypes.func.isRequired,
 }
 
 const mapStateToProps = state => {

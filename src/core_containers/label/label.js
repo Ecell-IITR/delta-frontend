@@ -16,6 +16,3 @@ export default class label extends Component {
 label.propTypes = {
   labelName: PropTypes.string
 }
-label.propTypes = {
-	labelName: PropTypes.string,
-}

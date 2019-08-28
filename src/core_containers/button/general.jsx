@@ -27,8 +27,7 @@ export default class GenButton extends Component {
   }
 }
 GenButton.propTypes = {
-  IsActive: PropTypes.bool
-}
-GenButton.propTypes = {
-	IsActive: PropTypes.bool,
+  IsActive: PropTypes.bool,
+  className: PropTypes.string.isRequired,
+  content: PropTypes.string.isRequired
 }

@@ -48,21 +48,13 @@ class Navbar extends Component {
     )
   }
 }
-Navbar.propTypes = {
-  profile: PropTypes.string.isRequired,
-  opportunities: PropTypes.string.isRequired,
-  createpost: PropTypes.string.isRequired,
-  notification: PropTypes.string.isRequired,
-  more: PropTypes.string.isRequired,
-  profilepic: PropTypes.string.isRequired
-}
-Navbar.propTypes = {
-	profile: PropTypes.string.isRequired,
-	opportunities: PropTypes.string.isRequired,
-	createpost: PropTypes.string.isRequired,
-	notification: PropTypes.string.isRequired,
-	more: PropTypes.string.isRequired,
-	profilepic: PropTypes.string.isRequired,
-}
+// Navbar.propTypes = {
+//   profile: PropTypes.string.isRequired,
+//   opportunities: PropTypes.string.isRequired,
+//   createpost: PropTypes.string.isRequired,
+//   notification: PropTypes.string.isRequired,
+//   more: PropTypes.string.isRequired,
+//   profilepic: PropTypes.string.isRequired
+// }
 
 export default Navbar

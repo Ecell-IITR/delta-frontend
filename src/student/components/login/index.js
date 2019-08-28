@@ -111,6 +111,7 @@ class LoginIndex extends Component {
   }
 }
 LoginIndex.propTypes = {
+<<<<<<< HEAD
   username: PropTypes.string.isRequired,
   password: PropTypes.string.isRequired,
   errors: PropTypes.string.isRequired,
@@ -133,6 +134,19 @@ LoginIndex.propTypes = {
   forgotPassword: PropTypes.string.isRequired,
   loginSubmit: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
+=======
+  // username: PropTypes.string.isRequired,
+  // password: PropTypes.string.isRequired,
+  // errors: PropTypes.string.isRequired,
+  // login: PropTypes.string.isRequired,
+  // loginInput: PropTypes.string.isRequired,
+  // heading: PropTypes.string.isRequired,
+  // subheading: PropTypes.string.isRequired,
+  // forgotPassword: PropTypes.string.isRequired,
+  // loginSubmit: PropTypes.string.isRequired,
+  // onChange: PropTypes.func.isRequired
+  history: PropTypes.object.isRequired
+>>>>>>> Added extra proptypes
 }
 
 const mapStateToProps = state => {

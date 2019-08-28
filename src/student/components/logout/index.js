@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { log_out } from '../../actions/index'
+import PropTypes from 'prop-types'
 class Logout extends Component {
   constructor(props) {
     super(props)
@@ -16,7 +17,9 @@ class Logout extends Component {
     return <></>
   }
 }
-
+Logout.propTypes = {
+  history: PropTypes.object.isRequired
+}
 const mapActionToProps = dispatch => {
   return {
     logout: callback => {

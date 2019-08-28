@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Form, FormButton } from 'semantic-ui-react'
+import PropTypes from 'prop-types'
 export default class SubmitButton extends Component {
   constructor(props) {
     super(props)
@@ -28,3 +29,9 @@ export default class SubmitButton extends Component {
     )
   }
 }
+
+SubmitButton.propTypes = {
+  className: PropTypes.string.isRequired,
+  buttonContent: PropTypes.string.isRequired
+}
+

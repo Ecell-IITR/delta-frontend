@@ -22,9 +22,3 @@ InputField.propTypes = {
   name: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired
 }
-InputField.propTypes = {
-	placeholder: PropTypes.string,
-	type: PropTypes.string.isRequired,
-	name: PropTypes.string.isRequired,
-	onChange: PropTypes.func.isRequired
-}

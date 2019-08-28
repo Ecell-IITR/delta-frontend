@@ -74,12 +74,7 @@ Post.propTypes = {
   post: PropTypes.string,
   designation: PropTypes.string.isRequired,
   stipend: PropTypes.number.isRequired,
-  duration: PropTypes.string.isRequired
+  duration: PropTypes.string.isRequired,
+  imginfo: PropTypes.string
 }
-Post.propTypes = {
-	post: PropTypes.string,
-	designation: PropTypes.string.isRequired,
-	stipend: PropTypes.number.isRequired,
-	duration: PropTypes.string.isRequired,
 
-}

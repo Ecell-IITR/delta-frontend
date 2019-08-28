@@ -89,8 +89,13 @@ StudentProfile.propTypes = {
       src: PropTypes.string,
       profilePercentage: PropTypes.number
     })
-  )
+  ),
+  user: PropTypes.shape({
+    username: PropTypes.string,
+    userDetails: PropTypes.string
+  }).isRequired
 }
+
 
 function mapDispatchToProps(dispatch) {
   return {

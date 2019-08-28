@@ -3,6 +3,7 @@ import { hasToken } from '../../utils'
 import { TOKEN_TYPE } from '../../constants/index'
 import { fetchUser } from '../../actions/index'
 import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
 class StudentDashboard extends Component {
   constructor(props) {
     super(props)
@@ -26,6 +27,10 @@ const mapActionToProps = dispatch => {
       return dispatch(fetchUser())
     }
   }
+}
+StudentDashboard.propTypes = {
+  history: PropTypes.object.isRequired,
+  fetchUser: PropTypes.func,
 }
 
 export default connect(

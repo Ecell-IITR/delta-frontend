@@ -28,10 +28,14 @@ class Rectangle extends Component {
   }
 }
 Rectangle.propTypes = {
+<<<<<<< HEAD
   rectangle: PropTypes.string.isRequired,
   item: PropTypes.string.isRequired,
   blank: PropTypes.string.isRequired,
   text: PropTypes.string.isRequired,
   item: PropTypes.string.isRequired
+=======
+  content=PropTypes.array.isRequired
+>>>>>>> Added extra proptypes
 }
 export default Rectangle
