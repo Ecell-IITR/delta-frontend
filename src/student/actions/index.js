@@ -194,3 +194,14 @@ export const removeAll = () => {
 }
 
 /* ends*/
+/* Resume Component actions*/
+
+export const viewResume = () => {
+  return dispatch => {
+    FetchApi('GET', '/api/v1/get/resume', null, token).then(res => {
+      if (res.data) {
+        dispatch({ type: 'VIEW_RESUME', payload: res.data })
+      }
+    })
+  }
+}

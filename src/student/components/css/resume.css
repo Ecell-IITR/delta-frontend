@@ -1,0 +1,48 @@
+.resume {
+  height: 100%;
+  background: white;
+}
+.content {
+  height: 85%;
+}
+.optionsBar {
+  padding: 0 5%;
+  height: 15%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 5px;
+  background-color: #dee0e6;
+}
+.viewResume {
+  width: 20%;
+}
+.viewResume .field button {
+  width: 100%;
+}
+.uploadResume {
+  width: 30%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.uploadResume .field {
+  width: 70%;
+  padding: 0;
+}
+.uploadResume .fileInput {
+  text-align: center;
+}
+.uploadResume .fileInput input {
+  width: 80%;
+  overflow: hidden;
+}
+
+.uploadResume .field .button {
+  width: 100%;
+  margin: 0;
+}

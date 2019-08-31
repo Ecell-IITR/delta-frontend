@@ -2,16 +2,13 @@
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
-  margin: 5% 0;
-  background-color: #f1f2f7;
-  padding: 5%;
 }
 
 span:hover {
   cursor: pointer;
 }
 .filterSkills {
-  width: 20%;
+  width: 40%;
 }
 
 .searchBox {
@@ -60,7 +57,7 @@ span:hover {
   text-transform: capitalize;
 }
 .addedSkills {
-  width: 20%;
+  width: 40%;
 }
 .addedSkills .selected {
   height: 6vh;
@@ -85,7 +82,7 @@ span:hover {
   text-transform: capitalize;
   font-size: 130%;
   margin: 0;
-  display: inline;
+  width: 60%;
 }
 .selected span {
   width: 25%;

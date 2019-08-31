@@ -23,8 +23,10 @@ export default class SubmitButton extends Component {
   render() {
     return (
       <Form.Button
+        style={{ background: `${this.props.color}` }}
         className={`${this.props.className}`}
         content={this.state.content}
+        color={this.props.color}
       />
     )
   }
@@ -32,6 +34,7 @@ export default class SubmitButton extends Component {
 
 SubmitButton.propTypes = {
   className: PropTypes.string.isRequired,
-  buttonContent: PropTypes.string.isRequired
+  buttonContent: PropTypes.string.isRequired,
+  color: PropTypes.string.isRequired,
+  handleClick: PropTypes.func
 }
-
