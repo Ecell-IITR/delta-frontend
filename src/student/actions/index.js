@@ -85,12 +85,13 @@ export const login = (username, password, callback) => {
         if (res.data && res.data.token) {
           setToken(TOKEN_TYPE, res.data.token)
           dispatch(success(res.data.token))
-          callback()
+          callback('ok')
         }
       })
       .catch(error => {
         dispatch(failure(error))
-        alert('Wrong credentials')
+        callback(error)
+        // alert('Wrong credentials')
       })
   }
 

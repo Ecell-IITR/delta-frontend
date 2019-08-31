@@ -18,8 +18,7 @@ export default function validateInput(data, thisCase) {
     if (isEmpty(pass)) {
       errors.password = 'Password is required'
     } else if (!isLengthBetween(pass, { min: 8, max: 100 })) {
-      errors.password =
-        'Password is not of sufficient Length. It should be atleast 8 characters.'
+      errors.password = 'Password should be atleast 8 characters.'
     }
   }
 

@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-// import PropTypes from "prop-types"
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { Input, SubmitButton } from '../../../core_containers'
@@ -9,6 +8,7 @@ import styles from '../css/login.module.css'
 import { hasToken } from '../../utils'
 import { TOKEN_TYPE } from '../../constants/index'
 import PropTypes from 'prop-types'
+import mainbuilding from '../../../images/mainbuilding.svg'
 class LoginIndex extends Component {
   constructor(props) {
     super(props)
@@ -41,31 +41,41 @@ class LoginIndex extends Component {
     if (password) {
       password = password.trim()
     }
+    const checkUsername = validateInput(username, 'email')
     const checkPass = validateInput(password, 'password')
-    if (checkPass.isValid) {
-      this.props.login(username, password, this.callback)
-    } else {
+    if (!checkUsername.isValid)
+      this.setState({
+        errors: checkUsername.errors.email
+      })
+    if (!checkPass.isValid) {
       this.setState({
         errors: checkPass.errors.password
       })
     }
+    if (checkPass.isValid && checkUsername.isValid)
+      this.props.login(username, password, this.callback)
   }
-  callback = () => {
-    this.props.history.push('/student/')
+  callback = error => {
+    if (error === 'ok') this.props.history.push('/student/')
+    else {
+      this.setState({
+        errors: 'Wrong credentials'
+      })
+    }
   }
   render() {
     const { username, password, errors } = this.state
     return (
       <div className={styles.login}>
         <div className={styles.loginInput}>
-          <span className={styles['login-error-text']} style={{}}>
-            {errors}
-          </span>
           <div className={styles.heading}>Welcome to DELTA</div>
           <div className={styles.subheading}>
             An online opportunity portal for students of IIT-R
           </div>
-          <form onSubmit={this.handleSubmit}>
+          <form className={styles.loginForm} onSubmit={this.handleSubmit}>
+            <div className={styles['login-error-text']} style={{}}>
+              {errors}
+            </div>
             <Input
               type="text"
               placeholder="Email ID"
@@ -101,11 +111,11 @@ class LoginIndex extends Component {
             />
           </div>
         </div>
-        {/* <img
+        <img
           src={mainbuilding}
           className={styles.loginMainBuilding}
           alt="main building"
-        /> */}
+        />
       </div>
     )
   }
@@ -121,7 +131,8 @@ LoginIndex.propTypes = {
   subheading: PropTypes.string.isRequired,
   forgotPassword: PropTypes.string.isRequired,
   loginSubmit: PropTypes.string.isRequired,
-  onChange: PropTypes.func.isRequired
+  onChange: PropTypes.func.isRequired,
+  history: PropTypes.isRequired
 }
 LoginIndex.propTypes = {
   username: PropTypes.string.isRequired,
