@@ -41,28 +41,17 @@ export default class Post extends Component {
             </ul>
           </div>
           <Divider />
-          <div className={styles.div3}>
-            <div className={styles.div3 - 1}>
-              <Router>
-                <ul>
-                  <li>
-                    <Link to={'/Edit'}>Edit</Link>
-                  </li>
-                  <li>
-                    <Link to={'/Repost'}>Repost</Link>
-                  </li>
-                </ul>
-              </Router>
-            </div>
-            <div className={styles.div3 - 2}>
-              <Dropdown text="View More">
-                <Dropdown.Menu>
-                  <Dropdown.Item text="New" />
-                  <Dropdown.Item text="Open..." description="ctrl + o" />
-                  <Dropdown.Item text="Save as..." description="ctrl + s" />
-                  <Dropdown.Item text="Rename" description="ctrl + r" />
-                </Dropdown.Menu>
-              </Dropdown>
+
+          <div className={styles.div3 - 2}>
+            <div className={styles.viewMoreContainer}>
+              <input type="checkbox" />
+              <span className={styles.viewMore}>
+                <i className={`angle down icon ${styles.arrowDown}`}></i> View
+                More
+              </span>
+              <span className={styles.viewMoreDescription}>
+                Test Description
+              </span>
             </div>
           </div>
         </Container>
