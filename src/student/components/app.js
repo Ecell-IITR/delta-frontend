@@ -13,9 +13,9 @@ class StudentIndex extends Component {
     return (
       <React.Fragment>
         <Switch>
+          <Route exact path={`${match.path}/register`} component={Register} />
           <Route exact path={`${match.path}/login`} component={Login} />
           <Route exact path={`${match.path}/logout`} component={Logout} />
-          <Route exact path={`${match.path}/register`} component={Register} />
           <PrivateRoute
             path={`${match.path}/`}
             component={AuthenticativeRoutes}

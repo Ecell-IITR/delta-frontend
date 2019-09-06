@@ -118,11 +118,7 @@ Skill.propTypes = {
   handleSkills: PropTypes.func.isRequired,
   skills: PropTypes.array.isRequired,
   addSkills: PropTypes.func.isRequired,
-<<<<<<< HEAD
   removeSkill: PropTypes.func.isRequired
-=======
-  removeSkill: PropTypes.func.isRequired,
->>>>>>> Added extra proptypes
 }
 
 const mapStateToProps = state => {
