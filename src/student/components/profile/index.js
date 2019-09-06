@@ -1,12 +1,35 @@
 import React, { Component } from 'react'
+import { Switch, Route } from 'react-router-dom'
 import { Progress, Icon } from 'semantic-ui-react'
 import { connect } from 'react-redux'
+import Loadable from 'react-loadable'
 import { fetchUser, fetchProfile } from '../../actions/index'
 import { hasToken } from '../../utils'
 import { TOKEN_TYPE } from '../../constants/index'
 import styles from '../css/profile.module.css'
 import PropTypes from 'prop-types'
-import Profile2 from './profile2'
+import '../css/profile2.css'
+import Loader from '../loading/index'
+
+const Loading = ({ error }) => {
+  if (error) return <div>Error loading component</div>
+  else return <Loader />
+}
+
+const Skills = Loadable({
+  loader: () => import('../addSkill/index'),
+  loading: Loading
+})
+
+const Resume = Loadable({
+  loader: () => import('../resume/index'),
+  loading: Loading
+})
+
+const Sidebar = Loadable({
+  loader: () => import('../../../core_containers/rectangle/index.js'),
+  loading: Loading
+})
 // import { Image } from "../../../core_containers";
 
 class StudentProfile extends Component {
@@ -24,9 +47,8 @@ class StudentProfile extends Component {
     this.props.fetchProfile(this.props.user.username)
   }
   render() {
-    console.log(this.props)
     const student = this.props.info
-    const { user } = this.props
+    const { user, match } = this.props
     return (
       <React.Fragment>
         <div className={styles.info}>
@@ -78,7 +100,17 @@ class StudentProfile extends Component {
             </div>
           </div>
         </div>
-        <Profile2 match={this.props.match} />
+        <div className="profile2">
+          <div className="sidebar">
+            <Sidebar />
+          </div>
+          <div className="contentBox">
+            <Switch>
+              <Route exact path={`${match.path}/skills`} componenet={Skills} />
+              <Route exact path={`${match.path}/resume`} componenet={Resume} />
+            </Switch>
+          </div>
+        </div>
       </React.Fragment>
     )
   }

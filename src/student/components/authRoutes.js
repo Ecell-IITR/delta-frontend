@@ -13,7 +13,7 @@ class AuthenticativeRoutes extends Component {
       <React.Fragment>
         <Navbar />
         <Route exact path={`${match.path}/`} component={Dashboard} />
-        <Route exact path={`${match.path}profile`} component={Profile} />
+        <Route path={`${match.path}profile`} component={Profile} />
         <Route
           exact
           path={`${match.path}opportunities`}

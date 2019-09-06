@@ -11,6 +11,7 @@ import {
 import { Icon, Input } from 'semantic-ui-react'
 import '../css/skill.css'
 import PropTypes from 'prop-types'
+
 const constantList = [
   'web developer',
   'Competitive coder',

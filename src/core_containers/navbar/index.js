@@ -4,7 +4,7 @@ import { Icon } from 'semantic-ui-react'
 import Searchbar from '../searchbar/index'
 import ImageIndex from '../image/index'
 import styles from '../css/navbar.module.css'
-import PropTypes from 'prop-types'
+// import PropTypes from 'prop-types'
 class Navbar extends Component {
   render() {
     return (
@@ -47,14 +47,6 @@ class Navbar extends Component {
       </div>
     )
   }
-}
-Navbar.propTypes = {
-  profile: PropTypes.string.isRequired,
-  opportunities: PropTypes.string.isRequired,
-  createpost: PropTypes.string.isRequired,
-  notification: PropTypes.string.isRequired,
-  more: PropTypes.string.isRequired,
-  profilepic: PropTypes.string.isRequired
 }
 
 export default Navbar
