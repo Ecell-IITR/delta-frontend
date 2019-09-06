@@ -102,7 +102,6 @@ StudentProfile.propTypes = {
   match: PropTypes.object.isRequired
 }
 
-
 function mapDispatchToProps(dispatch) {
   return {
     fetchProfile: username => {

@@ -30,7 +30,7 @@ const mapActionToProps = dispatch => {
 }
 StudentDashboard.propTypes = {
   history: PropTypes.object.isRequired,
-  fetchUser: PropTypes.func,
+  fetchUser: PropTypes.func
 }
 
 export default connect(
