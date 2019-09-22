@@ -1,12 +1,5 @@
 import React, { Component } from 'react'
-import { BrowserRouter as Router, Link } from 'react-router-dom'
-import {
-  Container,
-  Header,
-  Checkbox,
-  Divider,
-  Dropdown
-} from 'semantic-ui-react'
+import { Container, Header, Checkbox, Divider } from 'semantic-ui-react'
 import styles from '../css/post.module.css'
 import ImageIndex from '../image'
 import PropTypes from 'prop-types'
