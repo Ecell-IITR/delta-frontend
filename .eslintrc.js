@@ -23,7 +23,7 @@ module.exports = {
     ],
     'no-console': 'off',
     'prettier/prettier': ['warn', { semi: false, singleQuote: true }],
-    'react/display-name': [{ ignoreTranspilerName: false }]
+    'react/display-name': 2
   },
   settings: {
     react: {
