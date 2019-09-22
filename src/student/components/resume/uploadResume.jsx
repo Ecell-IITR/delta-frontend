@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import SubmitButton from '../../../core_containers/button/submit'
 import FetchAPI from '../../../utils/FetchAPI'
-import ViewResume from './viewResume'
+
 
 class uploadResume extends Component {
   constructor(props) {

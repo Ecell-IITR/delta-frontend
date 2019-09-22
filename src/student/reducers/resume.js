@@ -6,7 +6,7 @@ const initialState = {
 
 const resume = (state = initialState, action) => {
   switch (action.type) {
-    case 'VIEW_RESUME':
+    case VIEW_RESUME:
       return {
         ...state,
         file: action.payload

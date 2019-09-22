@@ -1,12 +1,11 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-// import { Link } from 'react-router-dom'
 import { Input, SubmitButton } from '../../../core_containers'
 import { Dropdown } from 'semantic-ui-react'
 import { register } from '../../actions/index'
 import validateInput from '../../../utils/validation/validation'
-import styles from '../css/login.module.css'
+import '../css/login.module.css'
 import { Form, TextArea } from 'semantic-ui-react'
 
 const branchOptions = [
