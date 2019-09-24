@@ -15,16 +15,16 @@ class Dropdown extends React.Component {
     this.setState({ selectedOption })
     this.props.handleChange(selectedOption)
     // this.props.refresh(selectedOption)
-    // console.log(`Option selected:`, selectedOption)
+    //console.log(`Option selected:`, selectedOption)
   }
 
   render() {
-    const { selectedOption, options } = this.state
+    const { options } = this.state
     const { name, isMulti } = this.props
     return (
       <Select
         name={name}
-        value={selectedOption}
+        value={''}
         onChange={this.handleChange}
         options={options}
         isMulti={isMulti}
@@ -34,7 +34,7 @@ class Dropdown extends React.Component {
 }
 
 Dropdown.propTypes = {
-  options: PropTypes.object.isRequired,
+  options: PropTypes.array.isRequired,
   handleChange: PropTypes.func.isRequired,
   name: PropTypes.string.isRequired,
   isMulti: PropTypes.bool,

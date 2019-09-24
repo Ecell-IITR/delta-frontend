@@ -1,0 +1,22 @@
+.filteredLabels {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 0 0 0.8rem 0;
+}
+.filteredLabels > div {
+  margin: 1% 1%;
+  padding: 2% 2%;
+  font-family: NeutrifPro;
+  font-size: 1rem;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: 0.85px;
+  background-color: #f1f2f7;
+  text-transform: capitalize;
+}
+.filteredLabels > div > span {
+  cursor: pointer;
+}
