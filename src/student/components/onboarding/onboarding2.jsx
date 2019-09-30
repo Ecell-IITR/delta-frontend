@@ -9,7 +9,13 @@ class OnBoarding2 extends Component {
         <Header className="question" as="h1">
           Select Resume file to Upload
         </Header>
-        <input type="file" placeholder="Select file" />
+        <div class="onboarding2File">
+          <label className="labelUploadFile" htmlFor="uploadFile">
+            <div></div>
+            Select File
+          </label>
+          <input id="uploadFile" type="file" />
+        </div>
       </div>
     )
   }

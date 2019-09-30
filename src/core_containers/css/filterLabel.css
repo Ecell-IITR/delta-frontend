@@ -4,9 +4,10 @@
   align-items: center;
   margin: 0 0 0.8rem 0;
 }
+
 .filteredLabels > div {
-  margin: 1% 1%;
-  padding: 2% 2%;
+  margin: 1% 2%;
+  padding: 1% 2%;
   font-family: NeutrifPro;
   font-size: 1rem;
   font-weight: normal;
@@ -19,4 +20,18 @@
 }
 .filteredLabels > div > span {
   cursor: pointer;
+}
+.css-2b097c-container {
+  border: solid 1px #5a5c74;
+  background-color: #f1f2f7;
+}
+.css-yk16xz-control {
+  padding: 2%;
+  border-radius: 5px;
+}
+.css-1okebmr-indicatorSeparator {
+  display: none;
+}
+svg {
+  size: 4rem;
 }

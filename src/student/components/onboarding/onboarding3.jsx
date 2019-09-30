@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Header, Input } from 'semantic-ui-react'
+import { Header, Input, Dropdown } from 'semantic-ui-react'
 import '../css/onboarding.css'
 
 const socialLinkOptions = [
