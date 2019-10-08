@@ -2,33 +2,32 @@ import React, { Component } from 'react'
 import Dropdown from '../dropdown/index'
 import { Icon } from 'semantic-ui-react'
 import '../css/filterLabel.css'
+import PropTypes from 'prop-types'
 
 export default class FilterLabel extends Component {
   constructor(props) {
     super(props)
     this.state = {
       options: this.props.options,
-      test1SelectedOption: null,
+      SelectedOption: null,
       selected: []
     }
   }
 
-  test1handleChange = selectedOption => {
+  handleChange = selectedOption => {
     const newArray1 = this.state.selected
-    newArray1.push(selectedOption[0].label)
+    newArray1.push(selectedOption.label)
     const newArray2 = this.state.options.filter(item => {
-      /*console.log(item)*/
-      return item.label !== selectedOption[0].label
+      return item.label !== selectedOption.label
     })
-
+    this.props.callback(newArray1)
     this.setState({
       options: newArray2,
-      test1SelectedOption: selectedOption,
+      SelectedOption: selectedOption,
       selected: newArray1
     })
   }
   handleClick = item => {
-    console.log(item)
     const newArray1 = this.state.options
     newArray1.push({
       label: item,
@@ -46,8 +45,6 @@ export default class FilterLabel extends Component {
 
   render() {
     const { options, selected } = this.state
-    /*console.log(options)
-    console.log(selected)*/
     return (
       <div className="filterLabel">
         <div className="filteredLabels">
@@ -62,11 +59,16 @@ export default class FilterLabel extends Component {
         </div>
         <Dropdown
           options={options}
-          handleChange={this.test1handleChange}
+          handleChange={this.handleChange}
           name="test1"
-          isMulti={true}
+          isMulti={false}
         />
       </div>
     )
   }
+}
+
+FilterLabel.propTypes = {
+  options: PropTypes.array.isRequired,
+  callback: PropTypes.func.isRequired
 }

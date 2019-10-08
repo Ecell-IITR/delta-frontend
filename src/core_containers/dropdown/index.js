@@ -11,6 +11,15 @@ class Dropdown extends React.Component {
       isMulti: false || props.isMulti
     }
   }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.options !== this.props.options) {
+      this.setState({
+        options: this.props.options
+      })
+    }
+  }
+
   handleChange = selectedOption => {
     this.setState({ selectedOption })
     this.props.handleChange(selectedOption)
@@ -22,13 +31,17 @@ class Dropdown extends React.Component {
     const { options } = this.state
     const { name, isMulti } = this.props
     return (
-      <Select
-        name={name}
-        value={''}
-        onChange={this.handleChange}
-        options={options}
-        isMulti={isMulti}
-      />
+      <React.Fragment>
+        {options ? (
+          <Select
+            name={name}
+            value={''}
+            onChange={this.handleChange}
+            options={options}
+            isMulti={isMulti}
+          />
+        ) : null}
+      </React.Fragment>
     )
   }
 }

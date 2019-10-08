@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Switch, Route } from 'react-router-dom'
 import PropTypes from 'prop-types'
-import Register from './register/index'
+import OnBoardingIndex from './onboarding/index'
 import Logout from './logout/index'
 import Login from './login/index'
 import AuthenticativeRoutes from './authRoutes'
@@ -13,7 +13,11 @@ class StudentIndex extends Component {
     return (
       <React.Fragment>
         <Switch>
-          <Route exact path={`${match.path}/register`} component={Register} />
+          <Route
+            exact
+            path={`${match.path}/register`}
+            component={OnBoardingIndex}
+          />
           <Route exact path={`${match.path}/login`} component={Login} />
           <Route exact path={`${match.path}/logout`} component={Logout} />
           <PrivateRoute

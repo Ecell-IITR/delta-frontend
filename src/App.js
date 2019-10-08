@@ -5,11 +5,13 @@ import './App.css'
 
 const StudentIndex = Loadable({
   loader: () => import('./student/index'),
+  // eslint-disable-next-line react/display-name
   loading: () => <div>Loading</div>
 })
 
 const CompanyIndex = Loadable({
   loader: () => import('./company/index'),
+  // eslint-disable-next-line react/display-name
   loading: () => <div>Loading</div>
 })
 export default class App extends Component {

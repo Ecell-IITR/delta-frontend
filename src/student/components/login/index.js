@@ -32,6 +32,11 @@ class LoginIndex extends Component {
     })
   }
 
+  handleClick = e => {
+    e.preventDefault()
+    this.props.history.push('/student/register')
+  }
+
   handleSubmit = e => {
     e.preventDefault()
     let { username, password } = this.state
@@ -105,10 +110,12 @@ class LoginIndex extends Component {
             <div className={styles.notMember}>
               <Link to="#">If you are not a member</Link>
             </div>
-            <SubmitButton
-              className={styles.loginNotMember}
-              buttonContent="Sign up"
-            />
+            <div onClick={this.handleClick}>
+              <SubmitButton
+                className={styles.loginNotMember}
+                buttonContent="Sign up"
+              />
+            </div>
           </div>
         </div>
         <img

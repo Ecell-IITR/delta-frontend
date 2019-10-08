@@ -1,4 +1,7 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { PropTypes } from 'prop-types'
+import { addProfileSkills } from '../../actions/index'
 import { Header } from 'semantic-ui-react'
 import '../css/onboarding.css'
 import FilterLabel from '../../../core_containers/filterLabel/index'
@@ -25,21 +28,50 @@ const skillOptions = [
   { label: 'ux', value: 'ux' }
 ]
 
-class OnBoarding1 extends Component {
+class onBoarding1 extends Component {
   constructor(props) {
     super(props)
     this.state = {}
   }
+
+  updateSelectedSkills(selectedSkills) {
+    addProfileSkills(selectedSkills)
+  }
+
   render() {
+    console.log(this.props)
     return (
       <div className="onboarding1">
         <Header className="question" as="h1">
           What are your fields of Interest?
         </Header>
-        <FilterLabel options={skillOptions} />
+        <FilterLabel
+          options={skillOptions}
+          callback={this.updateSelectedSkills}
+        />
       </div>
     )
   }
 }
 
-export default OnBoarding1
+onBoarding1.propTypes = {
+  addProfileSkills: PropTypes.func.isRequired
+}
+
+const mapDispatchToProps = state => {
+  return {
+    selectedSkills: state.studentReducer.profile.info.skills
+  }
+}
+const mapActionToProps = dispatch => {
+  return {
+    addProfileSkills: skills => {
+      return dispatch(addProfileSkills(skills))
+    }
+  }
+}
+
+export default connect(
+  mapDispatchToProps,
+  mapActionToProps
+)(onBoarding1)

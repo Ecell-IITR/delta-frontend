@@ -18,7 +18,8 @@ class Logout extends Component {
   }
 }
 Logout.propTypes = {
-  history: PropTypes.object.isRequired
+  history: PropTypes.object.isRequired,
+  logout: PropTypes.func.isRequired
 }
 const mapActionToProps = dispatch => {
   return {

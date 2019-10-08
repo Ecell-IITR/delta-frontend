@@ -1,13 +1,18 @@
 .filteredLabels {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   align-items: center;
-  margin: 0 0 0.8rem 0;
+  padding: 0 0 0.8rem 0;
 }
 
 .filteredLabels > div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
   margin: 1% 2%;
-  padding: 1% 2%;
+  padding: 0.8% 1%;
+  border-radius: 4px;
   font-family: NeutrifPro;
   font-size: 1rem;
   font-weight: normal;
@@ -20,6 +25,8 @@
 }
 .filteredLabels > div > span {
   cursor: pointer;
+  padding: 0 0 0 5px;
+  color: #4e4e4e;
 }
 .css-2b097c-container {
   border: solid 1px #5a5c74;

@@ -12,7 +12,7 @@ const initialState = {
     bio: '',
     profile_image: '',
     interest: '',
-    skills: '',
+    skills: [],
     social_links: ''
   },
   isfetching: false,
@@ -47,6 +47,20 @@ const profile = (state = initialState, action) => {
         ...state,
         isfetching: false,
         error: action.payload
+      }
+    case 'ADD_PROFILE_SKILLS':
+      return {
+        ...state,
+        info: {
+          skills: action.payload
+        }
+      }
+    case 'ADD_PROFILE_SOCIAL_LINKS':
+      return {
+        ...state,
+        info: {
+          social_links: action.payload
+        }
       }
     default:
       return state

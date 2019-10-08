@@ -131,7 +131,9 @@ StudentProfile.propTypes = {
     username: PropTypes.string,
     userDetails: PropTypes.string
   }).isRequired,
-  match: PropTypes.object.isRequired
+  match: PropTypes.object.isRequired,
+  fetchUser: PropTypes.func.isRequired,
+  fetchProfile: PropTypes.func.isRequired
 }
 
 function mapDispatchToProps(dispatch) {

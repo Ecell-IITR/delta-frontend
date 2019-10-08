@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Route } from 'react-router-dom'
+import PropTypes from 'prop-types'
 import App from './components/app'
 
 export default class AppRouter extends Component {
@@ -11,4 +12,8 @@ export default class AppRouter extends Component {
       </React.Fragment>
     )
   }
+}
+AppRouter.propTypes = {
+  match: PropTypes.object.isRequired,
+  path: PropTypes.string.isRequired
 }

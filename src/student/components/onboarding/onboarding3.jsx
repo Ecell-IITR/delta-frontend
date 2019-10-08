@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { addProfileSocialLinks } from '../../actions/index'
 import { Header, Input, Dropdown } from 'semantic-ui-react'
 import '../css/onboarding.css'
 
@@ -13,26 +15,29 @@ const socialLinkOptions = [
   { key: 'hr', text: 'HackerRank', value: 'HackerRank' }
 ]
 
-export const SocialLinks = () => (
-  <Dropdown
-    placeholder=" Select name of Website"
-    selection
-    options={socialLinkOptions}
-  />
-)
-
-class OnBoarding3 extends Component {
+class onBoarding3 extends Component {
+  handleChange = selectedOption => {
+    addProfileSocialLinks(selectedOption)
+  }
   render() {
     return (
       <div className="onboarding3">
         <Header className="question" as="h1">
           Add Social Links
         </Header>
-        <SocialLinks />
+        <Dropdown
+          placeholder=" Select name of Website"
+          selection
+          options={socialLinkOptions}
+          onChange={this.handleChange}
+        />
         <Input placeholder="Enter Website Url" />
       </div>
     )
   }
 }
 
-export default OnBoarding3
+export default connect(
+  null,
+  null
+)(onBoarding3)

@@ -251,7 +251,11 @@ class RegisterStudent extends Component {
 RegisterStudent.propTypes = {
   dispatch: PropTypes.func.isRequired
 }
-
+Textarea.propTypes = {
+  placeholder: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
+  name: PropTypes.string.isRequired
+}
 const mapStateToProps = state => {
   return {
     registering: state.registering

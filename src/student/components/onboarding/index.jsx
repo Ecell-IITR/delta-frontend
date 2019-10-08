@@ -1,13 +1,17 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
+import { createProfile } from '../../actions/index'
 import { Button } from 'semantic-ui-react'
 import OnBoarding1 from './onboarding1'
 import OnBoarding2 from './onboarding2'
 import OnBoarding3 from './onboarding3'
+import RegisterStudent from './onboarding0'
 import '../css/onboarding.css'
-import mainbuilding from '../../../images/mainbuilding.svg'
 
 var slideIndex = 1
-class OnBoardingIndex extends Component {
+
+class onBoardingIndex extends Component {
   constructor(props) {
     super(props)
     this.state = {}
@@ -15,24 +19,30 @@ class OnBoardingIndex extends Component {
   componentDidMount = () => {
     this.showSlides(slideIndex)
   }
-  Skip = n => {
+  skip = n => {
     this.showSlides((slideIndex += n))
   }
 
-  Next = n => {
+  next = n => {
+    if (slideIndex === 3) {
+      createProfile(this.props.info)
+    }
     this.showSlides((slideIndex += n))
   }
-  Current = n => {
+  current = n => {
     this.showSlides((slideIndex = n))
   }
   showSlides = n => {
     var i
     var slides = document.getElementsByClassName('slide')
     var dots = document.getElementsByClassName('dot')
+    var onboarding = document.getElementById('onboarding')
     if (slideIndex > slides.length) {
       slideIndex = 1
     }
-
+    if (slideIndex === 1) {
+      onboarding.style.height = '60vh'
+    } else onboarding.style.height = '45vh'
     for (i = 0; i < slides.length; i++) {
       slides[i].style.display = 'none'
     }
@@ -45,8 +55,11 @@ class OnBoardingIndex extends Component {
   render() {
     return (
       <div className="onboardingContainer">
-        <div className="onboarding">
+        <div className="onboarding" id="onboarding">
           <div className="slider">
+            <div className="slide fade">
+              <RegisterStudent />
+            </div>
             <div className="slide fade">
               <OnBoarding1 />
             </div>
@@ -62,7 +75,7 @@ class OnBoardingIndex extends Component {
               basic
               color="blue"
               onClick={() => {
-                this.Skip(1)
+                this.skip(1)
               }}
             >
               Skip
@@ -71,38 +84,55 @@ class OnBoardingIndex extends Component {
               <div
                 className="dot"
                 onClick={() => {
-                  this.Current(1)
+                  this.current(1)
                 }}
               ></div>
               <div
                 className="dot"
                 onClick={() => {
-                  this.Current(2)
+                  this.current(2)
                 }}
               ></div>
               <div
                 className="dot"
                 onClick={() => {
-                  this.Current(3)
+                  this.current(3)
+                }}
+              ></div>
+              <div
+                className="dot"
+                onClick={() => {
+                  this.current(4)
                 }}
               ></div>
             </div>
             <Button
               primary
               onClick={() => {
-                this.Next(1)
+                this.next(1)
               }}
             >
               Next
             </Button>
           </div>
         </div>
-        <div className="loginMainBuilding">
-          <img src={mainbuilding} alt="main building" />
-        </div>
+        <div className="loginMainBuilding"></div>
       </div>
     )
   }
 }
 
-export default OnBoardingIndex
+onBoardingIndex.propTypes = {
+  info: PropTypes.object.isRequired
+}
+
+const mapDispatchToProps = state => {
+  return {
+    info: state.studentReducer.profile.info
+  }
+}
+
+export default connect(
+  mapDispatchToProps,
+  null
+)(onBoardingIndex)

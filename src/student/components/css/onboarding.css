@@ -1,29 +1,38 @@
 .onboardingContainer {
+  height: 100vh;
+  width: 100vw;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 }
 .onboarding {
-  height: 22rem;
-  width: 30rem;
   margin: auto;
+  align-self: center;
+  /* height: 50vh; */
+  width: 30vw;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 .loginMainBuilding {
-  overflow: hidden;
+  width: 55vw;
+  background-image: url('../../../images/mainbuilding.svg');
+  background-position-x: left;
+  background-position-y: bottom;
+  background-repeat: repeat;
 }
 
 .slider {
-  width: 30rem;
-  height: 14rem;
+  width: 100%;
+  height: 75%;
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: space-between;
   position: relative;
 }
+
 .slide {
   height: 100%;
   width: 100%;
@@ -35,8 +44,9 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-around;
 }
+
 .fade {
   animation-name: fade;
   animation-duration: 1s;
@@ -55,8 +65,8 @@
 
 .ui.header.question {
   margin: 0;
-  width: 75%;
-  font-size: 250%;
+  width: 80%;
+  font-size: 2.5rem;
   font-weight: normal;
   font-style: normal;
   font-stretch: normal;
@@ -65,7 +75,7 @@
   color: #434660;
 }
 .footer {
-  width: 30rem;
+  width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;

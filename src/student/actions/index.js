@@ -13,7 +13,12 @@ import {
   FETCH_USER_PROFILE_REQUEST,
   FETCH_USER_PROFILE_SUCCESS,
   FETCH_USER_PROFILE_FAILURE,
-  TOKEN_TYPE
+  TOKEN_TYPE,
+  ADD_PROFILE_SKILLS,
+  ADD_PROFILE_SOCIAL_LINKS,
+  CREATE_USER_PROFILE_REQUEST,
+  CREATE_USER_PROFILE_SUCCESS,
+  CREATE_USER_PROFILE_FAILURE
 } from '../constants/index'
 import FetchApi from '../../utils/FetchAPI'
 import { getToken, setToken, logout } from '../utils.js'
@@ -44,6 +49,52 @@ export const fetchProfile = username => {
   }
 }
 
+export const createProfile = profile => {
+  return dispatch => {
+    const data = {
+      skills: profile.skills,
+      social_links: profile.social_links
+    }
+    dispatch(request())
+    FetchApi('POST', '/api/v1/create/profile/', data, null)
+      .then(res => {
+        if (res.data) {
+          dispatch(success(res.data))
+        }
+      })
+      .catch(error => {
+        dispatch(failure(error))
+      })
+  }
+  function request() {
+    return { type: CREATE_USER_PROFILE_REQUEST }
+  }
+  function success(data) {
+    return { type: CREATE_USER_PROFILE_SUCCESS, payload: data }
+  }
+  function failure(error) {
+    return { type: CREATE_USER_PROFILE_FAILURE, error }
+  }
+}
+
+export const addProfileSkills = skills => {
+  // console.log(skills)
+  return dispatch => {
+    dispatch({
+      type: ADD_PROFILE_SKILLS,
+      payload: skills
+    })
+  }
+}
+
+export const addProfileSocialLinks = socialLink => {
+  return dispatch => {
+    dispatch({
+      type: ADD_PROFILE_SOCIAL_LINKS,
+      payload: socialLink
+    })
+  }
+}
 export const fetchUser = callback => {
   return dispatch => {
     dispatch(request())
@@ -131,7 +182,7 @@ export const register = (username, email, password1, password2) => {
   }
   return dispatch => {
     dispatch(request(data))
-    FetchApi('POST', '/api/v1/auth/register', data)
+    FetchApi('POST', '/api/v1/auth/register', data, null)
       .then(res => {
         if (res.data) {
           dispatch(success(res.data))
