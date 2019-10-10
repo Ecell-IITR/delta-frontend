@@ -152,11 +152,14 @@
 }
 .ui.dropdown:not(.button) > .default.text {
   color: #5a5c74;
+  font-weight: 500;
 }
-.ui.input {
+.onboarding3Input {
   border-radius: 3px;
   border: solid 1px #5a5c74;
   color: #5a5c74;
+  padding: 4%;
+  font-weight: 500;
 }
 .ui.input > input {
   padding: 4%;

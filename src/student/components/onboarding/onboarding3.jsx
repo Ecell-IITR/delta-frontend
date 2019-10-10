@@ -1,23 +1,28 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { addProfileSocialLinks } from '../../actions/index'
-import { Header, Input, Dropdown } from 'semantic-ui-react'
+import PropTypes from 'prop-types'
+import Dropdown from '../../../core_containers/dropdown/index'
+import { Header, Input } from 'semantic-ui-react'
 import '../css/onboarding.css'
 
 const socialLinkOptions = [
-  { key: 'fb', text: 'Facebook', value: 'Facebook' },
-  { key: 'likedin', text: 'linkedIn', value: 'linkedIn' },
-  { key: 'tw', text: 'Twitter', value: 'Twitter' },
-  { key: 'hk', text: 'HackerEarth', value: 'HackerEarth' },
-  { key: 'gh', text: 'Github', value: 'Github' },
-  { key: 'cf', text: 'CodeForce', value: 'CodeForce' },
-  { key: 'cdechef', text: 'CodeChef', value: 'CodeChef' },
-  { key: 'hr', text: 'HackerRank', value: 'HackerRank' }
+  { label: 'Facebook', value: 'Facebook' },
+  { label: 'linkedIn', value: 'linkedIn' },
+  { label: 'Twitter', value: 'Twitter' },
+  { label: 'HackerEarth', value: 'HackerEarth' },
+  { label: 'Github', value: 'Github' },
+  { label: 'CodeForce', value: 'CodeForce' },
+  { label: 'CodeChef', value: 'CodeChef' },
+  { label: 'HackerRank', value: 'HackerRank' }
 ]
 
 class onBoarding3 extends Component {
   handleChange = selectedOption => {
-    addProfileSocialLinks(selectedOption)
+    console.log(selectedOption.label)
+    this.props.dispatch({
+      type: 'ADD_PROFILE_SOCIAL_LINKS',
+      payload: selectedOption.label
+    })
   }
   render() {
     return (
@@ -29,14 +34,17 @@ class onBoarding3 extends Component {
           placeholder=" Select name of Website"
           selection
           options={socialLinkOptions}
-          onChange={this.handleChange}
+          handleChange={this.handleChange}
         />
-        <Input placeholder="Enter Website Url" />
+        <input className="onboarding3Input" placeholder="Enter Website Url" />
       </div>
     )
   }
 }
 
+onBoarding3.propTypes = {
+  dispatch: PropTypes.func
+}
 export default connect(
   null,
   null

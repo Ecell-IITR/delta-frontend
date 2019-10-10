@@ -36,7 +36,7 @@ export default class FilterLabel extends Component {
     const newArray2 = this.state.selected.filter(value => {
       return item !== value
     })
-
+    this.props.callback(newArray2)
     this.setState({
       options: newArray1,
       selected: newArray2

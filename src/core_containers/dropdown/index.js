@@ -29,7 +29,7 @@ class Dropdown extends React.Component {
 
   render() {
     const { options } = this.state
-    const { name, isMulti } = this.props
+    const { name, isMulti, placeholder } = this.props
     return (
       <React.Fragment>
         {options ? (
@@ -39,6 +39,7 @@ class Dropdown extends React.Component {
             onChange={this.handleChange}
             options={options}
             isMulti={isMulti}
+            placeholder={placeholder}
           />
         ) : null}
       </React.Fragment>
@@ -51,6 +52,7 @@ Dropdown.propTypes = {
   handleChange: PropTypes.func.isRequired,
   name: PropTypes.string.isRequired,
   isMulti: PropTypes.bool,
-  refresh: PropTypes.func
+  refresh: PropTypes.func,
+  placeholder: PropTypes.string.isRequired
 }
 export default Dropdown

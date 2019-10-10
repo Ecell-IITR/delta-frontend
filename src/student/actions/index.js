@@ -14,8 +14,6 @@ import {
   FETCH_USER_PROFILE_SUCCESS,
   FETCH_USER_PROFILE_FAILURE,
   TOKEN_TYPE,
-  ADD_PROFILE_SKILLS,
-  ADD_PROFILE_SOCIAL_LINKS,
   CREATE_USER_PROFILE_REQUEST,
   CREATE_USER_PROFILE_SUCCESS,
   CREATE_USER_PROFILE_FAILURE
@@ -53,7 +51,8 @@ export const createProfile = profile => {
   return dispatch => {
     const data = {
       skills: profile.skills,
-      social_links: profile.social_links
+      social_links: profile.social_links,
+      resume_file: profile.resume_file
     }
     dispatch(request())
     FetchApi('POST', '/api/v1/create/profile/', data, null)
@@ -77,24 +76,6 @@ export const createProfile = profile => {
   }
 }
 
-export const addProfileSkills = skills => {
-  // console.log(skills)
-  return dispatch => {
-    dispatch({
-      type: ADD_PROFILE_SKILLS,
-      payload: skills
-    })
-  }
-}
-
-export const addProfileSocialLinks = socialLink => {
-  return dispatch => {
-    dispatch({
-      type: ADD_PROFILE_SOCIAL_LINKS,
-      payload: socialLink
-    })
-  }
-}
 export const fetchUser = callback => {
   return dispatch => {
     dispatch(request())

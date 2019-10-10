@@ -24,9 +24,9 @@ class onBoardingIndex extends Component {
   }
 
   next = n => {
-    if (slideIndex === 3) {
-      createProfile(this.props.info)
-    }
+    // if (slideIndex === 3) {
+    //   this.props.createProfile(this.props.info)
+    // }
     this.showSlides((slideIndex += n))
   }
   current = n => {
@@ -123,16 +123,25 @@ class onBoardingIndex extends Component {
 }
 
 onBoardingIndex.propTypes = {
-  info: PropTypes.object.isRequired
+  info: PropTypes.object.isRequired,
+  createProfile: PropTypes.func.isRequired
 }
 
-const mapDispatchToProps = state => {
+const mapStateToProps = state => {
   return {
     info: state.studentReducer.profile.info
   }
 }
 
+const mapDispatchToProps = dispatch => {
+  return {
+    createProfile: info => {
+      return dispatch(createProfile(info))
+    }
+  }
+}
+
 export default connect(
-  mapDispatchToProps,
-  null
+  mapStateToProps,
+  mapDispatchToProps
 )(onBoardingIndex)

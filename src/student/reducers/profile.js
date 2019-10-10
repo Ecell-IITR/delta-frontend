@@ -13,7 +13,8 @@ const initialState = {
     profile_image: '',
     interest: '',
     skills: [],
-    social_links: ''
+    social_links: '',
+    resume_file: ''
   },
   isfetching: false,
   error: ''
@@ -38,7 +39,8 @@ const profile = (state = initialState, action) => {
           profile_image: action.payload.profile_image,
           interest: action.payload.interest,
           skills: action.payload.skills,
-          social_links: action.payload.social_links
+          social_links: action.payload.social_links,
+          resume_file: action.payload.resume_file
         },
         isfetching: false
       }
@@ -60,6 +62,13 @@ const profile = (state = initialState, action) => {
         ...state,
         info: {
           social_links: action.payload
+        }
+      }
+    case 'ADD_PROFILE_RESUME_FILE':
+      return {
+        ...state,
+        info: {
+          resume_file: action.payload
         }
       }
     default:

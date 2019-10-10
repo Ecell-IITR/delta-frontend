@@ -1,8 +1,28 @@
 import React, { Component } from 'react'
 import { Header } from 'semantic-ui-react'
+import { connect } from 'react-redux'
+import { PropTypes } from 'prop-types'
 import '../css/onboarding.css'
 
 class onBoarding2 extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {}
+  }
+
+  handleChange = e => {
+    let files = e.target.files
+
+    let reader = new FileReader()
+    reader.readAsDataURL(files[0])
+
+    reader.onload = e => {
+      this.props.dispatch({
+        action: 'ADD_PROFILE_RESUME_FILE',
+        payload: e.target.result
+      })
+    }
+  }
   render() {
     return (
       <div className="onboarding2">
@@ -14,11 +34,23 @@ class onBoarding2 extends Component {
             <div></div>
             Select File
           </label>
-          <input id="uploadFile" type="file" />
+          <input
+            id="uploadFile"
+            name="file"
+            onChange={this.handleChange}
+            type="file"
+          />
         </div>
       </div>
     )
   }
 }
 
-export default onBoarding2
+onBoarding2.propTypes = {
+  dispatch: PropTypes.func
+}
+
+export default connect(
+  null,
+  null
+)(onBoarding2)

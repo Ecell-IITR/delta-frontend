@@ -50,17 +50,24 @@ class RegisterStudent extends Component {
         this.setState({
           errors: checkEmail.errors.email
             ? checkEmail.errors.email
-            : checkPass.errors.password
+            : checkPass.errors.password,
+          username: '',
+          password1: '',
+          password2: ''
         })
       }
     } else {
       this.setState({
-        errors: 'Passwords are not matching'
+        errors: 'Passwords are not matching',
+        username: '',
+        password1: '',
+        password2: ''
       })
     }
   }
 
   render() {
+    console.log(this.state.username)
     const { username, password1, password2, errors } = this.state
     return (
       <div

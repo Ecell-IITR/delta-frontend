@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { PropTypes } from 'prop-types'
-import { addProfileSkills } from '../../actions/index'
 import { Header } from 'semantic-ui-react'
 import '../css/onboarding.css'
 import FilterLabel from '../../../core_containers/filterLabel/index'
@@ -34,12 +33,14 @@ class onBoarding1 extends Component {
     this.state = {}
   }
 
-  updateSelectedSkills(selectedSkills) {
-    addProfileSkills(selectedSkills)
+  updateSelectedSkills = selectedSkills => {
+    this.props.dispatch({
+      type: 'ADD_PROFILE_SKILLS',
+      payload: selectedSkills
+    })
   }
 
   render() {
-    console.log(this.props)
     return (
       <div className="onboarding1">
         <Header className="question" as="h1">
@@ -55,23 +56,11 @@ class onBoarding1 extends Component {
 }
 
 onBoarding1.propTypes = {
-  addProfileSkills: PropTypes.func.isRequired
-}
-
-const mapDispatchToProps = state => {
-  return {
-    selectedSkills: state.studentReducer.profile.info.skills
-  }
-}
-const mapActionToProps = dispatch => {
-  return {
-    addProfileSkills: skills => {
-      return dispatch(addProfileSkills(skills))
-    }
-  }
+  addProfileSkills: PropTypes.func.isRequired,
+  dispatch: PropTypes.func
 }
 
 export default connect(
-  mapDispatchToProps,
-  mapActionToProps
+  null,
+  null
 )(onBoarding1)
