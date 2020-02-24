@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
+// import { Link } from 'react-router-dom'
 import { Input, SubmitButton } from '../../../core_containers'
 import { register } from '../../actions/index'
 import validateInput from '../../../utils/validation/validation'
-import styles from '../css/login.module.css'
+// import styles from '../css/login.module.css'
 
 class RegisterStudent extends Component {
   constructor() {

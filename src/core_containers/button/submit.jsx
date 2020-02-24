@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Form, FormButton } from 'semantic-ui-react'
+import { Form } from 'semantic-ui-react'
 export default class SubmitButton extends Component {
   constructor(props) {
     super(props)

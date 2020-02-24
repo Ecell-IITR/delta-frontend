@@ -19,7 +19,8 @@ export default class SearchExampleStandard extends Component {
       const isMatch = result => re.test(result.title)
 
       this.setState({
-        isLoading: false
+        isLoading: false,
+        results: _.filter(isMatch)
       })
     }, 300)
   }

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
+import { BrowserRouter as Router, Link } from 'react-router-dom'
 import {
   Container,
   Header,
@@ -12,7 +12,7 @@ import ImageIndex from '../image'
 
 export default class Post extends Component {
   render() {
-    let { designation, stipend, duration, imginfo } = this.props
+    let { designation, stipend, duration } = this.props
     let info = ['9 Applicants', 'Bangalore', '2 weeks', '2 months']
     return (
       <div className={styles.post}>
