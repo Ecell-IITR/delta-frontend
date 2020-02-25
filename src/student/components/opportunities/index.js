@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import styles from '../css/opportunities.module.css'
 import Post from '../../../core_containers/post/index'
-import Label from '../../../core_containers/label/label'
+// import Label from '../../../core_containers/label/label'
 import Input from '../../../core_containers/input/index'
 export default class Opportunities extends Component {
   render() {
