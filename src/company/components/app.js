@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Switch, Route } from 'react-router-dom'
 import Login from './login/index'
-import { Navbar } from '../../core_containers'
+import { Navbar } from '../../coreContainers'
 
 class CompanyIndex extends Component {
   constructor(props) {

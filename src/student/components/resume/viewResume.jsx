@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import SubmitButton from '../../../core_containers/button/submit'
+import SubmitButton from '../../../coreContainers/button/submit'
 import { connect } from 'react-redux'
 import { viewResume } from '../../actions'
 

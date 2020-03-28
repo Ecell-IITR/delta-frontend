@@ -27,10 +27,10 @@ const Resume = Loadable({
 })
 
 const Sidebar = Loadable({
-  loader: () => import('../../../core_containers/rectangle/index.js'),
+  loader: () => import('../../../coreContainers/rectangle/index.js'),
   loading: Loading
 })
-// import { Image } from "../../../core_containers";
+// import { Image } from "../../../coreContainers";
 
 class StudentProfile extends Component {
   constructor(props) {

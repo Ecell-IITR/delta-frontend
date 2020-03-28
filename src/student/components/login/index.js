@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { Input, SubmitButton } from '../../../core_containers'
+import { Input, SubmitButton } from '../../../coreContainers'
 import validateInput from '../../../utils/validation/validation'
 import { login } from '../../actions/index'
 import styles from '../css/login.module.css'

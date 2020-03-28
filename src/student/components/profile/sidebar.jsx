@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import SideBarRow from '../../../core_containers/sideBarRow'
+import SideBarRow from '../../../coreContainers/sideBarRow'
 import "../css/profileSidebar.css"
 class ProfileSidebar extends Component {
   state = {}

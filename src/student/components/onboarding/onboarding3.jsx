@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
-import Dropdown from '../../../core_containers/dropdown/index'
+import Dropdown from '../../../coreContainers/dropdown/index'
 import { Header, Input } from 'semantic-ui-react'
 import '../css/onboarding.css'
 

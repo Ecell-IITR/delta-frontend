@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { SubmitButton } from '../../../core_containers'
+import { SubmitButton } from '../../../coreContainers'
 import '../css/post.css'
 
 export default class post extends Component {

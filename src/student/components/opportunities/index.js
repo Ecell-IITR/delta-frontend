@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
 import '../css/opportunities.css'
-import Post from '../../../core_containers/post/index'
-/*import Label from '../../../core_containers/label/label'*/
-import Input from '../../../core_containers/input/index'
-import FilterLabel from '../../../core_containers/filterLabel/index'
+import Post from '../../../coreContainers/post/index'
+import Input from '../../../coreContainers/input/index'
+import FilterLabel from '../../../coreContainers/filterLabel/index'
 
 export default class Opportunites extends Component {
   constructor(props) {

@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { PropTypes } from 'prop-types'
 import { Header } from 'semantic-ui-react'
 import '../css/onboarding.css'
-import FilterLabel from '../../../core_containers/filterLabel/index'
+import FilterLabel from '../../../coreContainers/filterLabel/index'
 
 const skillOptions = [
   { label: 'angular', value: 'angular' },

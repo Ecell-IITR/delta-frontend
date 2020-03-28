@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Route } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import Dashboard from './dashboard/index'
-import { Navbar } from '../../core_containers'
+import { Navbar } from '../../coreContainers'
 import Profile from './profile/index'
 import Opportunities from './opportunities/index'
 

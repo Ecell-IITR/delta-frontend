@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { Input, SubmitButton } from '../../../core_containers'
+import { Input, SubmitButton } from '../../../coreContainers'
 import { Dropdown } from 'semantic-ui-react'
 import { register } from '../../actions/index'
 import validateInput from '../../../utils/validation/validation'
