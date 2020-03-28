@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import SubmitButton from '../../../coreContainers/button/submit'
 import { connect } from 'react-redux'
 import { viewResume } from '../../actions'
+import PropTypes from 'prop-types'
 
 class ViewResume extends Component {
   constructor(props) {
@@ -20,6 +21,11 @@ class ViewResume extends Component {
     )
   }
 }
+
+ViewResume.propTypes = {
+  viewResume: PropTypes.func,
+}
+
 
 function mapdispatchToProps(dispatch) {
   return {

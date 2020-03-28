@@ -1,19 +1,24 @@
+// eslint-disable-next-line react/prop-types
 import React, { Component } from 'react'
-import Loadable from 'react-loadable'
+// import Loadable from 'react-loadable'
+import UploadResume from './uploadResume'
+import ViewResume from './viewResume'
 import { connect } from 'react-redux'
 import '../css/resume.css'
 import { Document, Page, pdfjs } from 'react-pdf'
+import PropTypes from 'prop-types'
+
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`
 
-const UploadResume = Loadable({
-  loader: () => import('./uploadResume'),
-  loading: () => <div>Loading ...</div>
-})
+// const UploadResume = Loadable({
+//   loader: () => import('./uploadResume'),
+//   loading: () => <div>Loading ...</div>
+// })
 
-const ViewResume = Loadable({
-  loader: () => import('./viewResume'),
-  loading: () => <div>Loading ...</div>
-})
+// const ViewResume = Loadable({
+//   loader: () => import('./viewResume'),
+//   loading: () => <div>Loading ...</div>
+// })
 
 class Resume extends Component {
   constructor(props) {
@@ -39,20 +44,19 @@ class Resume extends Component {
 
   render() {
     const { numPages, pageNumber } = this.state
-    console.log(this.props)
+    const { file } = this.props
 
     return (
       <div className="resume">
         <div className="content">
-          {this.props.file[0] && (
+          {file[0] && (
             <div>
               <nav>
                 <button onClick={this.goToPrevPage}>Prev</button>
                 <button onClick={this.goToNextPage}>Next</button>
               </nav>
               <Document
-                // eslint-disable-next-line react/prop-types
-                file={this.props.file}
+                file={file}
                 onLoadSuccess={this.onResumeLoad}
               >
                 <Page pageNumber={pageNumber} />
@@ -71,6 +75,11 @@ class Resume extends Component {
     )
   }
 }
+
+Resume.propTypes = {
+  file: PropTypes.string,
+}
+
 function mapStateToProps(state) {
   return {
     file: state.studentReducer.resume.file

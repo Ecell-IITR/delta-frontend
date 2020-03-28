@@ -8,7 +8,7 @@ export default class SubmitButton extends Component {
       content: ''
     })
   }
-  componentWillMount = () => {
+  componentDidlMount = () => {
     if (this.props.buttonContent !== undefined) {
       this.setState({
         content: this.props.buttonContent

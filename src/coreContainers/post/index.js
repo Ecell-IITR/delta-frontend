@@ -26,8 +26,8 @@ export default class Post extends Component {
           </div>
           <div className={styles.div2}>
             <ul>
-              {info.map(a => (
-                <li>
+              {info.map((a, index) => (
+                <li key={index}>
                   <Checkbox className={styles.checkbox} label={a} />
                 </li>
               ))}
