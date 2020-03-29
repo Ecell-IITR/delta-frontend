@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Route, Redirect } from 'react-router-dom'
 import { TOKEN_TYPE } from '../constants/index'
+
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route
     {...rest}
@@ -9,8 +10,8 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
       localStorage.getItem(TOKEN_TYPE) ? (
         <Component {...props} />
       ) : (
-        <Redirect to="/student/login" />
-      )
+          <Redirect to="/student/login" />
+        )
     }
   />
 )

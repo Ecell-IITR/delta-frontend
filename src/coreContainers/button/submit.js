@@ -1,32 +1,33 @@
 import React, { Component } from 'react'
-import { Form, } from 'semantic-ui-react'
+import { Form } from 'semantic-ui-react'
 import PropTypes from 'prop-types'
 export default class SubmitButton extends Component {
   constructor(props) {
     super(props)
-    this.setState({
-      content: ''
-    })
+    this.state = {
+      content: 'Submit'
+    }
   }
-  componentDidlMount = () => {
-    if (this.props.buttonContent !== undefined) {
+  componentDidMount = () => {
+    const { buttonContent } = this.props
+
+    if (buttonContent !== undefined) {
       this.setState({
-        content: this.props.buttonContent
-      })
-    } else {
-      this.setState({
-        content: 'Submit'
+        content: buttonContent
       })
     }
   }
 
   render() {
+    const { color, className } = this.props
+    const { content } = this.state
+
     return (
       <Form.Button
-        style={{ background: `${this.props.color}` }}
-        className={`${this.props.className}`}
-        content={this.state.content}
-        color={this.props.color}
+        style={{ background: `${color}` }}
+        className={`${className}`}
+        content={content}
+        color={color}
       />
     )
   }

@@ -6,22 +6,22 @@ export default class GenButton extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      IsActive: false
+      isActive: false
     }
   }
 
   render() {
+    const { className, content } = this.props
+    const { isActive } = this.state
     return (
       <Button
-        className={`${this.props.className}`}
-        primary={this.state.IsActive}
+        className={`${className}`}
+        primary={this.state.isActive}
         onClick={() => {
-          this.setState(
-            this.state.IsActive ? { IsActive: false } : { IsActive: true }
-          )
+          this.setState({ isActive: !isActive })
         }}
       >
-        {this.props.content}
+        {content}
       </Button>
     )
   }

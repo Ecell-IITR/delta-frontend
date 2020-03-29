@@ -9,6 +9,7 @@ import { hasToken } from '../../utils'
 import { TOKEN_TYPE } from '../../constants/index'
 import PropTypes from 'prop-types'
 import mainbuilding from '../../../images/mainbuilding.svg'
+
 class LoginIndex extends Component {
   constructor(props) {
     super(props)
@@ -40,6 +41,7 @@ class LoginIndex extends Component {
   handleSubmit = e => {
     e.preventDefault()
     let { username, password } = this.state
+    const { login } = this.props
     if (username) {
       username = username.trim()
     }
@@ -58,10 +60,13 @@ class LoginIndex extends Component {
       })
     }
     if (checkPass.isValid && checkUsername.isValid)
-      this.props.login(username, password, this.callback)
+      login(username, password, this.callback)
   }
+
   callback = error => {
-    if (error === 'ok') this.props.history.push('/student/')
+    const { history } = this.props
+
+    if (error === 'ok') history.push('/student/')
     else {
       this.setState({
         errors: 'Wrong credentials'
@@ -155,7 +160,4 @@ const mapActionToProps = dispatch => {
   }
 }
 
-export default connect(
-  mapStateToProps,
-  mapActionToProps
-)(LoginIndex)
+export default connect(mapStateToProps, mapActionToProps)(LoginIndex)
