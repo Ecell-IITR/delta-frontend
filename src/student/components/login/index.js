@@ -4,11 +4,12 @@ import { Link } from 'react-router-dom'
 import { Input, SubmitButton } from '../../../coreContainers'
 import validateInput from '../../../utils/validation/validation'
 import { login } from '../../actions/index'
-import styles from '../css/login.module.css'
 import { hasToken } from '../../utils'
 import { TOKEN_TYPE } from '../../constants/index'
 import PropTypes from 'prop-types'
 import mainbuilding from '../../../images/mainbuilding.svg'
+
+import styles from '../css/login.css'
 
 class LoginIndex extends Component {
   constructor(props) {
@@ -76,20 +77,18 @@ class LoginIndex extends Component {
   render() {
     const { username, password, errors } = this.state
     return (
-      <div className={styles.login}>
-        <div className={styles.loginInput}>
-          <div className={styles.heading}>Welcome to DELTA</div>
-          <div className={styles.subheading}>
+      <div styleName="styles.login">
+        <div styleName="styles.loginInput">
+          <div styleName="styles.heading">Welcome to DELTA</div>
+          <div styleName="styles.subheading">
             An online opportunity portal for students of IIT-R
           </div>
-          <form className={styles.loginForm} onSubmit={this.handleSubmit}>
-            <div className={styles['login-error-text']} style={{}}>
-              {errors}
-            </div>
+          <form onSubmit={this.handleSubmit}>
+            <div styleName="styles.login-error-text">{errors}</div>
             <Input
               type="text"
               placeholder="Email ID"
-              className={styles.loginField}
+              styleName="styles.loginField"
               name="username"
               value={username}
               onChange={this.onChange}
@@ -98,26 +97,26 @@ class LoginIndex extends Component {
             <Input
               type="password"
               placeholder="Password"
-              className={styles.loginField}
+              styleName="styles.loginField"
               name="password"
               value={password}
               onChange={this.onChange}
             />
-            <div className={styles.forgotPassword}>
+            <div styleName="styles.forgotPassword">
               <Link to="#">Forgot Password?</Link>
             </div>
             <SubmitButton
               buttonContent="Log in"
-              className={styles.loginSubmit}
+              styleName="styles.loginSubmit"
             />
           </form>
-          <div className={styles.loginOption}>
-            <div className={styles.notMember}>
+          <div styleName="styles.loginOption">
+            <div styleName="styles.notMember">
               <Link to="#">If you are not a member</Link>
             </div>
             <div onClick={this.handleClick}>
               <SubmitButton
-                className={styles.loginNotMember}
+                styleName="styles.loginNotMember"
                 buttonContent="Sign up"
               />
             </div>
@@ -125,7 +124,7 @@ class LoginIndex extends Component {
         </div>
         <img
           src={mainbuilding}
-          className={styles.loginMainBuilding}
+          styleName="styles.loginMainBuilding"
           alt="main building"
         />
       </div>

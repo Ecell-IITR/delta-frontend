@@ -9,21 +9,23 @@ export default class FilterLabel extends Component {
     super(props)
     this.state = {
       options: this.props.options,
-      SelectedOption: null,
+      selectedOption: null,
       selected: []
     }
   }
 
   handleChange = selectedOption => {
-    const newArray1 = this.state.selected
+    const { selected, options } = this.state
+
+    const newArray1 = selected
     newArray1.push(selectedOption.label)
-    const newArray2 = this.state.options.filter(item => {
+    const newArray2 = options.filter(item => {
       return item.label !== selectedOption.label
     })
     this.props.callback(newArray1)
     this.setState({
       options: newArray2,
-      SelectedOption: selectedOption,
+      selectedOption: selectedOption,
       selected: newArray1
     })
   }

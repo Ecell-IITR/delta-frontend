@@ -11,11 +11,10 @@ export default class GenButton extends Component {
   }
 
   render() {
-    const { className, content } = this.props
+    const { content } = this.props
     const { isActive } = this.state
     return (
       <Button
-        className={`${className}`}
         primary={this.state.isActive}
         onClick={() => {
           this.setState({ isActive: !isActive })

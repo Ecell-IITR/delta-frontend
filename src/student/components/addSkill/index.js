@@ -9,8 +9,9 @@ import {
   removeAll
 } from '../../actions/index'
 import { Icon, Input } from 'semantic-ui-react'
-import '../css/skill.css'
 import PropTypes from 'prop-types'
+
+import skills from '../css/skill.css'
 
 const constantList = [
   'web developer',
@@ -22,6 +23,7 @@ const constantList = [
   'finance',
   'quant'
 ]
+
 class Skill extends Component {
   constructor(props) {
     super(props)
@@ -34,7 +36,7 @@ class Skill extends Component {
   handleChange = e => {
     let toRemove = this.props.addedSkills
     let newList = []
-    let currentList = constantList.filter(function(item) {
+    let currentList = constantList.filter(function (item) {
       return toRemove.indexOf(item) < 0
     })
     if (e.target.value !== '') {
@@ -50,16 +52,16 @@ class Skill extends Component {
   render() {
     console.log(this.props)
     return (
-      <div className="skills_container">
-        <div className="filterSkills">
-          <div className="searchBox">
+      <div styleName="skills.skills_container">
+        <div styleName="skills.filterSkills">
+          <div styleName="skills.searchBox">
             <Input
               icon="search"
               placeholder="Add Skills..."
               onChange={this.handleChange}
             />
           </div>
-          <div className="skills">
+          <div styleName="skills.skills">
             {this.props.skills.map((skill, index) => (
               <div key={index}>
                 {skill}
@@ -75,8 +77,8 @@ class Skill extends Component {
           </div>
         </div>
 
-        <div className="addedSkills">
-          <div className="selected">
+        <div styleName="skills.addedSkills">
+          <div styleName="skills.selected">
             <div>
               <p> Selected skills</p>
             </div>
@@ -89,12 +91,12 @@ class Skill extends Component {
               <Icon
                 size="large"
                 color="red"
-                className="removeAll"
+                // styleName="skills.removeAll"
                 name="remove circle"
               />
             </span>
           </div>
-          <div className="skills">
+          <div styleName="skills.skills">
             {this.props.addedSkills.map((skill, index) => (
               <div key={index}>
                 {skill}
@@ -149,7 +151,4 @@ const mapActionToProps = dispatch => {
   }
 }
 
-export default connect(
-  mapStateToProps,
-  mapActionToProps
-)(Skill)
+export default connect(mapStateToProps, mapActionToProps)(Skill)

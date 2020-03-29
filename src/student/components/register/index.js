@@ -5,7 +5,7 @@ import { Input, SubmitButton } from '../../../coreContainers'
 import { Dropdown } from 'semantic-ui-react'
 import { register } from '../../actions/index'
 import validateInput from '../../../utils/validation/validation'
-import '../css/login.module.css'
+import '../css/login.css'
 import { Form, TextArea } from 'semantic-ui-react'
 
 const branchOptions = [

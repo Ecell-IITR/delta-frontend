@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { Input, SubmitButton } from '../../../coreContainers'
 import { register } from '../../actions/index'
 import validateInput from '../../../utils/validation/validation'
-import styles from '../css/login.module.css'
+import styles from '../css/login.css'
 
 class RegisterStudent extends Component {
   constructor() {
