@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import styles from '../css/rectangle.module.css'
+import styles from './rectangle.module.css'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 
