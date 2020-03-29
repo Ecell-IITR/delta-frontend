@@ -1,7 +1,7 @@
 import _ from 'lodash'
 import React, { Component } from 'react'
 import { Search } from 'semantic-ui-react'
-import searchbar from '../css/searchbar.module.css'
+import searchbar from './searchbar.module.css'
 import PropTypes from 'prop-types'
 const initialState = { isLoading: false, results: [], value: '' }
 
