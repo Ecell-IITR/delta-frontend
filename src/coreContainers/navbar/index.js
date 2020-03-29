@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { Icon } from 'semantic-ui-react'
 import Searchbar from '../searchbar/index'
 import ImageIndex from '../image/index'
-import styles from '../css/navbar.module.css'
+import styles from './navbar.module.css'
 // import PropTypes from 'prop-types'
 class Navbar extends Component {
   render() {

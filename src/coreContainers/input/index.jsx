@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Form } from 'semantic-ui-react'
 import PropTypes from 'prop-types'
-import styles from '../css/input.module.css'
+import styles from './input.module.css'
 export default class InputField extends Component {
   render() {
     let { placeholder, type, name } = this.props
