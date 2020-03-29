@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Dropdown from '../dropdown/index'
 import { Icon } from 'semantic-ui-react'
-import '../css/filterLabel.css'
+import './filterLabel.css'
 import PropTypes from 'prop-types'
 
 export default class FilterLabel extends Component {
