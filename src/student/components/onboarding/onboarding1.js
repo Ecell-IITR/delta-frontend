@@ -60,7 +60,4 @@ onBoarding1.propTypes = {
   dispatch: PropTypes.func
 }
 
-export default connect(
-  null,
-  null
-)(onBoarding1)
+export default connect(null, null)(onBoarding1)
