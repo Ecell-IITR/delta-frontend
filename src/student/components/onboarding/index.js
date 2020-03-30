@@ -141,7 +141,4 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(onBoardingIndex)
+export default connect(mapStateToProps, mapDispatchToProps)(onBoardingIndex)
