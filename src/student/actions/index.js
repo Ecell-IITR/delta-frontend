@@ -126,7 +126,10 @@ export const login = (username, password, callback) => {
         dispatch(failure(error))
         callback(error)
         addToast(error.message, { appearance: 'error' })
-        addToast("Wrong credentials!!", { appearance: 'warning', autoDismiss: false })
+        addToast('Wrong credentials!!', {
+          appearance: 'warning',
+          autoDismiss: false
+        })
       })
   }
 
@@ -171,7 +174,7 @@ export const register = (username, email, password1, password2) => {
       .then(res => {
         if (res.data) {
           dispatch(success(res.data))
-          addToast("Registered", { appearance: 'success', autoDismiss: true })
+          addToast('Registered', { appearance: 'success', autoDismiss: true })
         }
       })
       .catch(error => {
