@@ -29,7 +29,4 @@ const mapActionToProps = dispatch => {
   }
 }
 
-export default connect(
-  null,
-  mapActionToProps
-)(Logout)
+export default connect(null, mapActionToProps)(Logout)
