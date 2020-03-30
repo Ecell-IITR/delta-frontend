@@ -23,9 +23,8 @@ class ViewResume extends Component {
 }
 
 ViewResume.propTypes = {
-  viewResume: PropTypes.func,
+  viewResume: PropTypes.func
 }
-
 
 function mapdispatchToProps(dispatch) {
   return {
@@ -35,7 +34,4 @@ function mapdispatchToProps(dispatch) {
   }
 }
 
-export default connect(
-  null,
-  mapdispatchToProps
-)(ViewResume)
+export default connect(null, mapdispatchToProps)(ViewResume)
