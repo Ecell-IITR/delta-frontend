@@ -10,8 +10,8 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
       localStorage.getItem(TOKEN_TYPE) ? (
         <Component {...props} />
       ) : (
-          <Redirect to="/student/login" />
-        )
+        <Redirect to="/student/login" />
+      )
     }
   />
 )
