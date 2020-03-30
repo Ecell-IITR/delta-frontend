@@ -6,7 +6,7 @@ import PropTypes from 'prop-types'
 
 export default class Post extends Component {
   render() {
-    let { designation, stipend, duration, } = this.props
+    let { designation, stipend, duration } = this.props
     let info = ['9 Applicants', 'Bangalore', '2 weeks', '2 months']
     return (
       <div className={styles.post}>
