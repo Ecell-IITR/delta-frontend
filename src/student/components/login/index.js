@@ -77,18 +77,18 @@ class LoginIndex extends Component {
   render() {
     const { username, password, errors } = this.state
     return (
-      <div styleName="styles.login">
-        <div styleName="styles.loginInput">
-          <div styleName="styles.heading">Welcome to DELTA</div>
-          <div styleName="styles.subheading">
+      <div className={styles.login}>
+        <div className={styles.loginInput}>
+          <div className={styles.heading}>Welcome to DELTA</div>
+          <div className={styles.subheading}>
             An online opportunity portal for students of IIT-R
           </div>
           <form onSubmit={this.handleSubmit}>
-            <div styleName="styles.login-error-text">{errors}</div>
+            <div className={styles['login-error-text']}>{errors}</div>
             <Input
               type="text"
               placeholder="Email ID"
-              styleName="styles.loginField"
+              className={styles.loginField}
               name="username"
               value={username}
               onChange={this.onChange}
@@ -97,26 +97,26 @@ class LoginIndex extends Component {
             <Input
               type="password"
               placeholder="Password"
-              styleName="styles.loginField"
+              className={styles.loginField}
               name="password"
               value={password}
               onChange={this.onChange}
             />
-            <div styleName="styles.forgotPassword">
+            <div className={styles.forgotPassword}>
               <Link to="#">Forgot Password?</Link>
             </div>
             <SubmitButton
               buttonContent="Log in"
-              styleName="styles.loginSubmit"
+              className={styles.loginSubmit}
             />
           </form>
-          <div styleName="styles.loginOption">
-            <div styleName="styles.notMember">
+          <div className={styles.loginOption}>
+            <div className={styles.notMember}>
               <Link to="#">If you are not a member</Link>
             </div>
             <div onClick={this.handleClick}>
               <SubmitButton
-                styleName="styles.loginNotMember"
+                className={styles.loginNotMember}
                 buttonContent="Sign up"
               />
             </div>
@@ -124,7 +124,7 @@ class LoginIndex extends Component {
         </div>
         <img
           src={mainbuilding}
-          styleName="styles.loginMainBuilding"
+          className={styles.loginMainBuilding}
           alt="main building"
         />
       </div>
