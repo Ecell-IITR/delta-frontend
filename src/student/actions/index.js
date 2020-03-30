@@ -12,6 +12,7 @@ import {
 } from "../constants/index"
 import FetchApi from "../../utils/FetchAPI"
 import { getToken, setToken, logout } from "../utils.js"
+import { useToasts } from 'react-toast-notifications'
 
 export const set_user = () => {
 	return dispatch => {
@@ -28,6 +29,7 @@ export const set_user = () => {
 
 export const login = (username, password, callback) => {
 	return dispatch => {
+    const { addToast } = useToasts()
 		const data = {
 			email: username,
 			password: password
@@ -42,8 +44,9 @@ export const login = (username, password, callback) => {
 				}
 			})
 			.catch(error => {
-				dispatch(failure(error))
-				alert("Wrong credentials")
+        dispatch(failure(error))
+        addToast(error.message, { appearance: 'error' })
+        addToast("Wrong credentials!!", { appearance: 'warning', autoDismiss: false })
 			})
 	}
 
@@ -82,16 +85,18 @@ export const register = (username, email, password1, password2) => {
 		password2: password2
 	}
 	return dispatch => {
+    const { addToast } = useToasts()
 		dispatch(request(data))
 		FetchApi("POST", "/api/auth/register/", data)
 			.then(res => {
 				if (res.data) {
 					dispatch(success(res.data))
-					alert("registerd")
+					addToast("Registered", { appearance: 'success', autoDismiss: true })
 				}
 			})
 			.catch(error => {
-				dispatch(failure(error))
+        dispatch(failure(error))
+        addToast(error.message, { appearance: 'error' })
 			})
 	}
 
