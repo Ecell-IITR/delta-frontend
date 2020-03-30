@@ -55,10 +55,7 @@ class Resume extends Component {
                 <button onClick={this.goToPrevPage}>Prev</button>
                 <button onClick={this.goToNextPage}>Next</button>
               </nav>
-              <Document
-                file={file}
-                onLoadSuccess={this.onResumeLoad}
-              >
+              <Document file={file} onLoadSuccess={this.onResumeLoad}>
                 <Page pageNumber={pageNumber} />
               </Document>
               <p>
@@ -77,7 +74,7 @@ class Resume extends Component {
 }
 
 Resume.propTypes = {
-  file: PropTypes.string,
+  file: PropTypes.string
 }
 
 function mapStateToProps(state) {
@@ -86,7 +83,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(
-  mapStateToProps,
-  null
-)(Resume)
+export default connect(mapStateToProps, null)(Resume)
