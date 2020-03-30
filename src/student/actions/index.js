@@ -20,6 +20,7 @@ import {
 } from '../constants/index'
 import FetchApi from '../../utils/FetchAPI'
 import { getToken, setToken, logout } from '../utils.js'
+import { useToasts } from 'react-toast-notifications'
 
 let token = getToken(TOKEN_TYPE)
 
@@ -107,6 +108,7 @@ export const showInfo = () => {
 
 export const login = (username, password, callback) => {
   return dispatch => {
+    const { addToast } = useToasts()
     const data = {
       email: username,
       password: password
@@ -123,7 +125,8 @@ export const login = (username, password, callback) => {
       .catch(error => {
         dispatch(failure(error))
         callback(error)
-        // alert('Wrong credentials')
+        addToast(error.message, { appearance: 'error' })
+        addToast("Wrong credentials!!", { appearance: 'warning', autoDismiss: false })
       })
   }
 
@@ -162,16 +165,18 @@ export const register = (username, email, password1, password2) => {
     password2: password2
   }
   return dispatch => {
+    const { addToast } = useToasts()
     dispatch(request(data))
     FetchApi('POST', '/api/v1/auth/register', data, null)
       .then(res => {
         if (res.data) {
           dispatch(success(res.data))
-          alert('registerd')
+          addToast("Registered", { appearance: 'success', autoDismiss: true })
         }
       })
       .catch(error => {
         dispatch(failure(error))
+        addToast(error.message, { appearance: 'error' })
       })
   }
 
