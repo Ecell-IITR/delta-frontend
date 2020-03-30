@@ -149,7 +149,4 @@ const mapActionToProps = dispatch => {
   }
 }
 
-export default connect(
-  mapStateToProps,
-  mapActionToProps
-)(Skill)
+export default connect(mapStateToProps, mapActionToProps)(Skill)
