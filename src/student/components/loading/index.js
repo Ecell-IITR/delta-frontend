@@ -7,7 +7,4 @@ class Loading extends Component {
   }
 }
 
-export default connect(
-  null,
-  null
-)(Loading)
+export default connect(null, null)(Loading)
