@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { Input, SubmitButton } from '../../../coreContainers'
-import styles from '../css/login.module.css'
+import styles from '../css/login.css'
 
 class LoginIndex extends Component {
   render() {
