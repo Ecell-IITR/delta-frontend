@@ -1,8 +1,8 @@
-import { combineReducers } from "redux"
-import example from "./example"
+import { combineReducers } from 'redux'
+import example from './example'
 
 const companyReducer = combineReducers({
-	example
+  example
 })
 
 export default companyReducer

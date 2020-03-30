@@ -12,7 +12,9 @@ Run the following command :-
 `npm start`
 
 Go to url to check login register of student.
-
+```
 http://localhost:3000/student/register
-
+```
+```
 http://localhost:3000/student/login
+```

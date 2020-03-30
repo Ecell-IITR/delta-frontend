@@ -1,34 +1,39 @@
-import React, { Component } from "react"
-import { hasToken } from "../../utils"
-import { TOKEN_TYPE } from "../../constants/index"
-import { set_user } from "../../actions/index"
-import { connect } from "react-redux"
+import React, { Component } from 'react'
+import { hasToken } from '../../utils'
+import { TOKEN_TYPE } from '../../constants/index'
+import { fetchUser } from '../../actions/index'
+import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
 class StudentDashboard extends Component {
-	constructor(props) {
-		super(props)
-		this.state = {}
-	}
-	componentDidMount() {
-		if (!hasToken(TOKEN_TYPE)) {
-			this.props.history.push("/student/")
-		} else {
-			this.props.set_user()
-		}
-	}
-	render() {
-		return <div>Welcome!</div>
-	}
+  constructor(props) {
+    super(props)
+    this.state = {}
+  }
+  componentDidMount() {
+    if (!hasToken(TOKEN_TYPE)) {
+      this.props.history.push('/student/')
+    } else {
+      this.props.fetchUser()
+    }
+  }
+  render() {
+    return <div>Welcome!</div>
+  }
 }
 
 const mapActionToProps = dispatch => {
-	return {
-		set_user: (username, password, callback) => {
-			return dispatch(set_user(username, password, callback))
-		}
-	}
+  return {
+    fetchUser: () => {
+      return dispatch(fetchUser())
+    }
+  }
+}
+StudentDashboard.propTypes = {
+  history: PropTypes.object.isRequired,
+  fetchUser: PropTypes.func
 }
 
 export default connect(
-	null,
-	mapActionToProps
+  null,
+  mapActionToProps
 )(StudentDashboard)
