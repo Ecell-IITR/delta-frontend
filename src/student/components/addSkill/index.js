@@ -36,7 +36,7 @@ class Skill extends Component {
   handleChange = e => {
     let toRemove = this.props.addedSkills
     let newList = []
-    let currentList = constantList.filter(function(item) {
+    let currentList = constantList.filter(function (item) {
       return toRemove.indexOf(item) < 0
     })
     if (e.target.value !== '') {
@@ -51,16 +51,16 @@ class Skill extends Component {
   render() {
     console.log(this.props)
     return (
-      <div styleName="skills.skills_container">
-        <div styleName="skills.filterSkills">
-          <div styleName="skills.searchBox">
+      <div className={skills.skills_container}>
+        <div className={skills.filterSkills}>
+          <div className={skills.searchBox}>
             <Input
               icon="search"
               placeholder="Add Skills..."
               onChange={this.handleChange}
             />
           </div>
-          <div styleName="skills.skills">
+          <div className={skills.skills}>
             {this.props.skills.map((skill, index) => (
               <div key={index}>
                 {skill}
@@ -76,8 +76,8 @@ class Skill extends Component {
           </div>
         </div>
 
-        <div styleName="skills.addedSkills">
-          <div styleName="skills.selected">
+        <div className={skills.addedSkills}>
+          <div className={skills.selected}>
             <div>
               <p> Selected skills</p>
             </div>
@@ -90,12 +90,12 @@ class Skill extends Component {
               <Icon
                 size="large"
                 color="red"
-                // styleName="skills.removeAll"
+                // className={skills.removeAll}
                 name="remove circle"
               />
             </span>
           </div>
-          <div styleName="skills.skills">
+          <div className={skills.skills}>
             {this.props.addedSkills.map((skill, index) => (
               <div key={index}>
                 {skill}
