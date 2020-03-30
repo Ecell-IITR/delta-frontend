@@ -45,7 +45,4 @@ class onBoarding3 extends Component {
 onBoarding3.propTypes = {
   dispatch: PropTypes.func
 }
-export default connect(
-  null,
-  null
-)(onBoarding3)
+export default connect(null, null)(onBoarding3)
