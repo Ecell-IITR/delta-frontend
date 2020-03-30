@@ -33,7 +33,4 @@ StudentDashboard.propTypes = {
   fetchUser: PropTypes.func
 }
 
-export default connect(
-  null,
-  mapActionToProps
-)(StudentDashboard)
+export default connect(null, mapActionToProps)(StudentDashboard)
