@@ -154,7 +154,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(StudentProfile)
+export default connect(mapStateToProps, mapDispatchToProps)(StudentProfile)
