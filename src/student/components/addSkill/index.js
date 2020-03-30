@@ -36,7 +36,7 @@ class Skill extends Component {
   handleChange = e => {
     let toRemove = this.props.addedSkills
     let newList = []
-    let currentList = constantList.filter(function (item) {
+    let currentList = constantList.filter(function(item) {
       return toRemove.indexOf(item) < 0
     })
     if (e.target.value !== '') {
@@ -48,7 +48,6 @@ class Skill extends Component {
     } else newList = currentList
     this.props.handleSkills(newList)
   }
-
   render() {
     console.log(this.props)
     return (
