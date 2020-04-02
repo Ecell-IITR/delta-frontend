@@ -1,9 +1,15 @@
 import axios from 'axios'
 
+// const getAPIUrl = url => {
+//   let newUrl = ''
+//   if (process.env.NODE_ENV === 'development') {
+//     return `http://localhost:${process.env.REACT_APP_SERVER_PORT || 8000}${url}`
+//   }
+//   return newUrl
+// }
+
 const FetchApi = (method, url, params, TokenValue) => {
-  if (process.env.REACT_APP_SERVER_ENVIORNMENT === 'dev') {
-    url = 'http://localhost:' + process.env.REACT_APP_SERVER_PORT + url
-  }
+  // url = getAPIUrl(url)
   return new Promise((resolve, reject) => {
     if (TokenValue) {
       axios({

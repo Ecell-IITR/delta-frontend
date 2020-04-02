@@ -103,12 +103,12 @@ export const fetchUser = callback => {
 }
 
 export const showInfo = () => {
-  return dispatch => {}
+  return dispatch => { }
 }
 
 export const login = (username, password, callback) => {
   return dispatch => {
-    const { addToast } = useToasts()
+    // const { addToast } = useToasts()
     const data = {
       email: username,
       password: password
@@ -125,11 +125,11 @@ export const login = (username, password, callback) => {
       .catch(error => {
         dispatch(failure(error))
         callback(error)
-        addToast(error.message, { appearance: 'error' })
-        addToast('Wrong credentials!!', {
-          appearance: 'warning',
-          autoDismiss: false
-        })
+        // addToast(error.message, { appearance: 'error' })
+        // addToast('Wrong credentials!!', {
+        //   appearance: 'warning',
+        //   autoDismiss: false
+        // })
       })
   }
 

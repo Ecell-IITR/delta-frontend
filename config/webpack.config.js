@@ -137,6 +137,13 @@ module.exports = function (webpackEnv) {
         ? 'source-map'
         : false
       : isEnvDevelopment && 'cheap-module-source-map',
+    devServer: {
+      contentBase: path.join(__dirname, 'dist'),
+      compress: true,
+      proxy: {
+        '/api': `http://localhost:${process.env.REACT_APP_SERVER_PORT || 8000}`
+      }
+    },
     // These are the "entry points" to our application.
     // This means they will be the "root" imports that are included in JS bundle.
     entry: [
@@ -354,7 +361,7 @@ module.exports = function (webpackEnv) {
               loader: 'babel-loader',
               exclude: /node_modules/,
               options: {
-                presets: ['@babel/preset-react', '@babel/preset-env'],
+                presets: ['@babel/preset-react'],
                 plugins: [
                   'transform-react-jsx',
                   [
