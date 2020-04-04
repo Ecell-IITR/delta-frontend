@@ -270,7 +270,7 @@ export function itemsFetchDataSuccess(items) {
 }
 
 export function itemsFetchData() {
-  return (dispatch) => {
+  return dispatch => {
     dispatch(itemsIsLoading(true));
     FetchApi('GET', '/api/v1/user', null)
       .then((response) => {
