@@ -1,3 +1,4 @@
+import { useToasts } from 'react-toast-notifications'
 import {
   LOGIN_REQUEST,
   LOGIN_FAILURE,
@@ -16,13 +17,12 @@ import {
   TOKEN_TYPE,
   CREATE_USER_PROFILE_REQUEST,
   CREATE_USER_PROFILE_SUCCESS,
-  CREATE_USER_PROFILE_FAILURE
+  CREATE_USER_PROFILE_FAILURE,
 } from '../constants/index'
 import FetchApi from '../../utils/FetchAPI'
 import { getToken, setToken, logout } from '../utils.js'
-import { useToasts } from 'react-toast-notifications'
 
-let token = getToken(TOKEN_TYPE)
+const token = getToken(TOKEN_TYPE)
 
 export const fetchProfile = username => {
   return dispatch => {
@@ -53,7 +53,7 @@ export const createProfile = profile => {
     const data = {
       skills: profile.skills,
       social_links: profile.social_links,
-      resume_file: profile.resume_file
+      resume_file: profile.resume_file,
     }
     dispatch(request())
     FetchApi('POST', '/api/v1/create/profile/', data, null)
@@ -111,7 +111,7 @@ export const login = (username, password, callback) => {
     // const { addToast } = useToasts()
     const data = {
       email: username,
-      password: password
+      password,
     }
     dispatch(request())
     FetchApi('POST', '/api/v1/auth/login', data)
@@ -162,10 +162,10 @@ export const log_out = callback => {
 
 export const register = (username, email, password1, password2) => {
   const data = {
-    username: username,
-    email: email,
+    username,
+    email,
     password: password1,
-    password2: password2
+    password2,
   }
   return dispatch => {
     const { addToast } = useToasts()
@@ -195,21 +195,21 @@ export const register = (username, email, password1, password2) => {
 }
 export const ShowInfo = () => {
   const action = {
-    type: 'RENDER_INFO'
+    type: 'RENDER_INFO',
   }
 
   return action
 }
 
-/* Skill component action creators*/
+/* Skill component action creators */
 export const showSkills = () => {
   return { type: 'SHOW_SKILLS' }
 }
 export const removeSkill = (skill, index) => {
   return {
     type: 'REMOVE_SKILL',
-    index: index,
-    skill: skill
+    index,
+    skill,
   }
 }
 
@@ -217,24 +217,24 @@ export const addSkill = (skill, index) => {
   console.log(skill)
   return {
     type: 'ADD_SKILL',
-    index: index,
-    skill: skill
+    index,
+    skill,
   }
 }
 export const handleSkills = newArray => {
   return {
     type: 'HANDLE_SKILLS',
-    newArray: newArray
+    newArray,
   }
 }
 export const removeAll = () => {
   return {
-    type: 'REMOVE_ALL'
+    type: 'REMOVE_ALL',
   }
 }
 
-/* ends*/
-/* Resume Component actions*/
+/* ends */
+/* Resume Component actions */
 
 export const viewResume = () => {
   return dispatch => {
