@@ -18,17 +18,20 @@ class LoginIndex extends Component {
           <Input
             type="email"
             placeholder="Email ID"
-            className={styles.loginField} />
+            className={styles.loginField}
+          />
           <Input
             type="password"
             placeholder="Password"
-            className={styles.loginField} />
+            className={styles.loginField}
+          />
           <div className={styles.forgotPassword}>
             <Link to="#">Forgot Password?</Link>
           </div>
           <SubmitButton
             buttonContent="Sign Up"
-            className={styles.loginSubmit} />
+            className={styles.loginSubmit}
+          />
         </div>
       </div>
     )
@@ -38,11 +41,11 @@ class LoginIndex extends Component {
 // Props validation
 LoginIndex.propTypes = {}
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {}
 }
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {}
 }
 
