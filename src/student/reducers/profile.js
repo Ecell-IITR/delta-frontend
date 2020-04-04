@@ -1,8 +1,9 @@
 import {
   FETCH_USER_PROFILE_REQUEST,
   FETCH_USER_PROFILE_SUCCESS,
-  FETCH_USER_PROFILE_FAILURE
+  FETCH_USER_PROFILE_FAILURE,
 } from '../constants/index'
+
 const initialState = {
   info: {
     branch: '',
@@ -14,10 +15,10 @@ const initialState = {
     interest: '',
     skills: [],
     social_links: '',
-    resume_file: ''
+    resume_file: '',
   },
   isfetching: false,
-  error: ''
+  error: '',
 }
 
 const profile = (state = initialState, action) => {
@@ -25,7 +26,7 @@ const profile = (state = initialState, action) => {
     case FETCH_USER_PROFILE_REQUEST:
       return {
         ...state,
-        isfetching: true
+        isfetching: true,
       }
     case FETCH_USER_PROFILE_SUCCESS:
       return {
@@ -40,36 +41,36 @@ const profile = (state = initialState, action) => {
           interest: action.payload.interest,
           skills: action.payload.skills,
           social_links: action.payload.social_links,
-          resume_file: action.payload.resume_file
+          resume_file: action.payload.resume_file,
         },
-        isfetching: false
+        isfetching: false,
       }
     case FETCH_USER_PROFILE_FAILURE:
       return {
         ...state,
         isfetching: false,
-        error: action.payload
+        error: action.payload,
       }
     case 'ADD_PROFILE_SKILLS':
       return {
         ...state,
         info: {
-          skills: action.payload
-        }
+          skills: action.payload,
+        },
       }
     case 'ADD_PROFILE_SOCIAL_LINKS':
       return {
         ...state,
         info: {
-          social_links: action.payload
-        }
+          social_links: action.payload,
+        },
       }
     case 'ADD_PROFILE_RESUME_FILE':
       return {
         ...state,
         info: {
-          resume_file: action.payload
-        }
+          resume_file: action.payload,
+        },
       }
     default:
       return state

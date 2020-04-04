@@ -10,7 +10,7 @@ class AuthenticativeRoutes extends Component {
   render() {
     const { match } = this.props
     return (
-      <React.Fragment>
+      <>
         <Navbar />
         <Route exact path={`${match.path}/`} component={Dashboard} />
         <Route path={`${match.path}profile`} component={Profile} />
@@ -19,13 +19,13 @@ class AuthenticativeRoutes extends Component {
           path={`${match.path}opportunities`}
           component={Opportunities}
         />
-      </React.Fragment>
+      </>
     )
   }
 }
 
 AuthenticativeRoutes.propTypes = {
-  match: PropTypes.object
+  match: PropTypes.object,
 }
 
 export default AuthenticativeRoutes

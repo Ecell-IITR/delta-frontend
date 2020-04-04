@@ -22,11 +22,11 @@ export class SearchBar extends Component {
 
       this.setState({ results: itemsFetchData() })
       const re = new RegExp(_.escapeRegExp(this.state.value), 'i')
-      const isMatch = result => re.test(result.title)
+      const isMatch = (result) => re.test(result.title)
 
       this.setState({
         isLoading: false,
-        results: _.filter(isMatch)
+        results: _.filter(isMatch),
       })
     }, 300)
   }
@@ -40,7 +40,7 @@ export class SearchBar extends Component {
         loading={isLoading}
         onResultSelect={this.handleResultSelect}
         onSearchChange={_.debounce(this.handleSearchChange, 500, {
-          leading: true
+          leading: true,
         })}
         results={results}
         value={value}
@@ -49,6 +49,7 @@ export class SearchBar extends Component {
     )
   }
 }
+
 SearchBar.propTypes = {
   placeholder: PropTypes.string
 }

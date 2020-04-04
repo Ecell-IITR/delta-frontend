@@ -2,18 +2,21 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import './sidebarRow.css'
 import { Icon } from 'semantic-ui-react'
+
 export default class SideBarRow extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      mouseOver: false
+      mouseOver: false,
     }
   }
+
   handleHover = () => {
     this.setState({
-      mouseOver: !this.state.mouseOver
+      mouseOver: !this.state.mouseOver,
     })
   }
+
   render() {
     const { mouseOver } = this.state
     return (
@@ -41,5 +44,5 @@ export default class SideBarRow extends Component {
 }
 SideBarRow.propTypes = {
   Icon: PropTypes.string,
-  Title: PropTypes.string
+  Title: PropTypes.string,
 }

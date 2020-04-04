@@ -1,11 +1,11 @@
 import {
   REGISTER_FAILURE,
   REGISTER_REQUEST,
-  REGISTER_SUCCESS
+  REGISTER_SUCCESS,
 } from '../constants/index'
 
 const initialState = {
-  isregistering: false
+  isregistering: false,
 }
 
 const register = (state = initialState, action) => {
@@ -13,19 +13,19 @@ const register = (state = initialState, action) => {
     case REGISTER_REQUEST:
       return {
         ...state,
-        isregistering: true
+        isregistering: true,
       }
     case REGISTER_SUCCESS:
       return {
         ...state,
         isregistering: false,
-        userProfile: action.payload
+        userProfile: action.payload,
       }
     case REGISTER_FAILURE:
       return {
         ...state,
         isregistering: false,
-        error: action.payload
+        error: action.payload,
       }
     default:
       return state

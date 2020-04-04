@@ -7,13 +7,13 @@ export default class AppRouter extends Component {
   render() {
     const { match } = this.props
     return (
-      <React.Fragment>
+      <>
         <Route path={`${match.path}`} component={App} />
-      </React.Fragment>
+      </>
     )
   }
 }
 AppRouter.propTypes = {
   match: PropTypes.object.isRequired,
-  path: PropTypes.string.isRequired
+  path: PropTypes.string.isRequired,
 }

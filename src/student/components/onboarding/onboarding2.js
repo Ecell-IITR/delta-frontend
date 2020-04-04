@@ -10,19 +10,20 @@ class onBoarding2 extends Component {
     this.state = {}
   }
 
-  handleChange = e => {
-    let files = e.target.files
+  handleChange = (e) => {
+    const { files } = e.target
 
-    let reader = new FileReader()
+    const reader = new FileReader()
     reader.readAsDataURL(files[0])
 
-    reader.onload = e => {
+    reader.onload = (e) => {
       this.props.dispatch({
         action: 'ADD_PROFILE_RESUME_FILE',
-        payload: e.target.result
+        payload: e.target.result,
       })
     }
   }
+
   render() {
     return (
       <div className="onboarding2">
@@ -47,10 +48,7 @@ class onBoarding2 extends Component {
 }
 
 onBoarding2.propTypes = {
-  dispatch: PropTypes.func
+  dispatch: PropTypes.func,
 }
 
-export default connect(
-  null,
-  null
-)(onBoarding2)
+export default connect(null, null)(onBoarding2)

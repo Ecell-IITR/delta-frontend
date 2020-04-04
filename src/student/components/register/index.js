@@ -1,12 +1,11 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
+import { Dropdown, Form, TextArea } from 'semantic-ui-react'
 import { Input, SubmitButton } from '../../../coreContainers'
-import { Dropdown } from 'semantic-ui-react'
 import { register } from '../../actions/index'
 import validateInput from '../../../utils/validation/validation'
 import '../css/login.css'
-import { Form, TextArea } from 'semantic-ui-react'
 
 const branchOptions = [
   { key: 'ARN', value: 'ARN', text: 'B.Arch. Architecture' },
@@ -18,20 +17,20 @@ const branchOptions = [
   {
     key: 'ECN',
     value: 'ECN',
-    text: ' B. Tech. Electronics & Communication Engineering'
+    text: ' B. Tech. Electronics & Communication Engineering',
   },
   { key: 'CSN', value: 'CSN', text: 'B. Tech. Computer Science & Engineering' },
   { key: 'MIN', value: 'MIN', text: ' B. Tech. Mechanical Engineering' },
   {
     key: 'IN',
     value: 'IN',
-    text: 'B. Tech. Production & Industrial Engineering'
+    text: 'B. Tech. Production & Industrial Engineering',
   },
   {
     key: 'MTN',
     value: 'MTN',
-    text: ' B. Tech. Metallurgical & Materials Engineering'
-  }
+    text: ' B. Tech. Metallurgical & Materials Engineering',
+  },
 ]
 const socialLinkOptions = [
   { key: 'fb', text: 'Facebook', value: 'Facebook' },
@@ -41,7 +40,7 @@ const socialLinkOptions = [
   { key: 'gh', text: 'Github', value: 'Github' },
   { key: 'cf', text: 'CodeForce', value: 'CodeForce' },
   { key: 'cdechef', text: 'CodeChef', value: 'CodeChef' },
-  { key: 'hr', text: 'HackerRank', value: 'HackerRank' }
+  { key: 'hr', text: 'HackerRank', value: 'HackerRank' },
 ]
 const skillOptions = [
   { key: 'angular', text: 'Angular', value: 'angular' },
@@ -62,7 +61,7 @@ const skillOptions = [
   { key: 'repair', text: 'Kitchen Repair', value: 'repair' },
   { key: 'ruby', text: 'Ruby', value: 'ruby' },
   { key: 'ui', text: 'UI Design', value: 'ui' },
-  { key: 'ux', text: 'User Experience', value: 'ux' }
+  { key: 'ux', text: 'User Experience', value: 'ux' },
 ]
 export const SocialLinks = () => (
   <div style={{ display: 'inline-flex', marginRight: '20px' }}>
@@ -85,7 +84,7 @@ export const DropdownMultipleSelectionSkill = () => (
   />
 )
 
-export const Textarea = props => (
+export const Textarea = (props) => (
   <Form>
     <TextArea
       placeholder={props.placeholder}
@@ -114,20 +113,20 @@ class RegisterStudent extends Component {
       interest: '',
       Bio: 'alksjfchklerbcjrebcber',
       Achievements: 'jsfvwhebrc',
-      resume: ''
+      resume: '',
     }
   }
 
-  onChange = e => {
-    const name = e.target.name
-    let value = e.target.value
+  onChange = (e) => {
+    const { name } = e.target
+    const { value } = e.target
     this.setState({
       [name]: value,
-      errors: ''
+      errors: '',
     })
   }
 
-  handleSubmit = e => {
+  handleSubmit = (e) => {
     e.preventDefault()
     let { username, email, password1, password2 } = this.state
     if (username) {
@@ -151,12 +150,12 @@ class RegisterStudent extends Component {
         this.setState({
           errors: checkEmail.errors.email
             ? checkEmail.errors.email
-            : checkPass.errors.password
+            : checkPass.errors.password,
         })
       }
     } else {
       this.setState({
-        errors: 'Passwords are not matching'
+        errors: 'Passwords are not matching',
       })
     }
   }
@@ -249,16 +248,16 @@ class RegisterStudent extends Component {
 }
 
 RegisterStudent.propTypes = {
-  dispatch: PropTypes.func.isRequired
+  dispatch: PropTypes.func.isRequired,
 }
 Textarea.propTypes = {
   placeholder: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
-  name: PropTypes.string.isRequired
+  name: PropTypes.string.isRequired,
 }
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
-    registering: state.registering
+    registering: state.registering,
   }
 }
 

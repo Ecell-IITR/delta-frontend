@@ -13,20 +13,20 @@ class RegisterStudent extends Component {
       username: '',
       email: 'abcd@gmail.com',
       password1: 'password123',
-      password2: 'password123'
+      password2: 'password123',
     }
   }
 
-  onChange = e => {
-    const name = e.target.name
-    let value = e.target.value
+  onChange = (e) => {
+    const { name } = e.target
+    const { value } = e.target
     this.setState({
       [name]: value,
-      errors: ''
+      errors: '',
     })
   }
 
-  handleSubmit = e => {
+  handleSubmit = (e) => {
     e.preventDefault()
     let { username, email, password1, password2 } = this.state
     if (username) {
@@ -53,7 +53,7 @@ class RegisterStudent extends Component {
             : checkPass.errors.password,
           username: '',
           password1: '',
-          password2: ''
+          password2: '',
         })
       }
     } else {
@@ -61,7 +61,7 @@ class RegisterStudent extends Component {
         errors: 'Passwords are not matching',
         username: '',
         password1: '',
-        password2: ''
+        password2: '',
       })
     }
   }
@@ -77,7 +77,7 @@ class RegisterStudent extends Component {
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'space-between',
-          alignItems: 'center'
+          alignItems: 'center',
         }}
       >
         {errors}
@@ -92,7 +92,7 @@ class RegisterStudent extends Component {
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'space-between',
-            alignItems: 'center'
+            alignItems: 'center',
           }}
           onSubmit={this.handleSubmit}
         >
@@ -132,12 +132,12 @@ class RegisterStudent extends Component {
 }
 
 RegisterStudent.propTypes = {
-  dispatch: PropTypes.func.isRequired
+  dispatch: PropTypes.func.isRequired,
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
-    registering: state.registering
+    registering: state.registering,
   }
 }
 

@@ -1,42 +1,46 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
-import { createProfile } from '../../actions/index'
 import { Button } from 'semantic-ui-react'
+import { createProfile } from '../../actions/index'
 import OnBoarding1 from './onboarding1'
 import OnBoarding2 from './onboarding2'
 import OnBoarding3 from './onboarding3'
 import RegisterStudent from './onboarding0'
 import '../css/onboarding.css'
 
-var slideIndex = 1
+let slideIndex = 1
 
 class onBoardingIndex extends Component {
   constructor(props) {
     super(props)
     this.state = {}
   }
+
   componentDidMount = () => {
     this.showSlides(slideIndex)
   }
-  skip = n => {
+
+  skip = (n) => {
     this.showSlides((slideIndex += n))
   }
 
-  next = n => {
+  next = (n) => {
     // if (slideIndex === 3) {
     //   this.props.createProfile(this.props.info)
     // }
     this.showSlides((slideIndex += n))
   }
-  current = n => {
+
+  current = (n) => {
     this.showSlides((slideIndex = n))
   }
-  showSlides = n => {
-    var i
-    var slides = document.getElementsByClassName('slide')
-    var dots = document.getElementsByClassName('dot')
-    var onboarding = document.getElementById('onboarding')
+
+  showSlides = (n) => {
+    let i
+    const slides = document.getElementsByClassName('slide')
+    const dots = document.getElementsByClassName('dot')
+    const onboarding = document.getElementById('onboarding')
     if (slideIndex > slides.length) {
       slideIndex = 1
     }
@@ -52,6 +56,7 @@ class onBoardingIndex extends Component {
     slides[slideIndex - 1].style.display = 'block'
     dots[slideIndex - 1].className += ' active'
   }
+
   render() {
     return (
       <div className="onboardingContainer">
@@ -124,24 +129,21 @@ class onBoardingIndex extends Component {
 
 onBoardingIndex.propTypes = {
   info: PropTypes.object.isRequired,
-  createProfile: PropTypes.func.isRequired
+  createProfile: PropTypes.func.isRequired,
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
-    info: state.studentReducer.profile.info
+    info: state.studentReducer.profile.info,
   }
 }
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    createProfile: info => {
+    createProfile: (info) => {
       return dispatch(createProfile(info))
-    }
+    },
   }
 }
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(onBoardingIndex)
+export default connect(mapStateToProps, mapDispatchToProps)(onBoardingIndex)

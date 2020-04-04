@@ -1,15 +1,15 @@
 /* eslint-disable react/prop-types */
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { Icon, Input } from 'semantic-ui-react'
+import PropTypes from 'prop-types'
 import {
   showSkills,
   addSkill,
   removeSkill,
   handleSkills,
-  removeAll
+  removeAll,
 } from '../../actions/index'
-import { Icon, Input } from 'semantic-ui-react'
-import PropTypes from 'prop-types'
 
 import skills from '../css/skill.css'
 
@@ -21,7 +21,7 @@ const constantList = [
   'designer',
   'deep learning',
   'finance',
-  'quant'
+  'quant',
 ]
 
 class Skill extends Component {
@@ -29,18 +29,19 @@ class Skill extends Component {
     super(props)
     this.state = {}
   }
+
   componentDidMount = () => {
     this.props.showSkills()
   }
 
-  handleChange = e => {
-    let toRemove = this.props.addedSkills
+  handleChange = (e) => {
+    const toRemove = this.props.addedSkills
     let newList = []
-    let currentList = constantList.filter(function (item) {
+    const currentList = constantList.filter(function (item) {
       return toRemove.indexOf(item) < 0
     })
     if (e.target.value !== '') {
-      newList = currentList.filter(item => {
+      newList = currentList.filter((item) => {
         const lc = item.toLowerCase()
         const filter = e.target.value.toLowerCase()
         return lc.includes(filter)
@@ -52,16 +53,16 @@ class Skill extends Component {
   render() {
     console.log(this.props)
     return (
-      <div styleName="skills.skills_container">
-        <div styleName="skills.filterSkills">
-          <div styleName="skills.searchBox">
+      <div className={skills.skills_container}>
+        <div className={skills.filterSkills}>
+          <div className={skills.searchBox}>
             <Input
               icon="search"
               placeholder="Add Skills..."
               onChange={this.handleChange}
             />
           </div>
-          <div styleName="skills.skills">
+          <div className={skills.skills}>
             {this.props.skills.map((skill, index) => (
               <div key={index}>
                 {skill}
@@ -77,8 +78,8 @@ class Skill extends Component {
           </div>
         </div>
 
-        <div styleName="skills.addedSkills">
-          <div styleName="skills.selected">
+        <div className={skills.addedSkills}>
+          <div className={skills.selected}>
             <div>
               <p> Selected skills</p>
             </div>
@@ -91,12 +92,12 @@ class Skill extends Component {
               <Icon
                 size="large"
                 color="red"
-                // styleName="skills.removeAll"
+                // className={skills.removeAll}
                 name="remove circle"
               />
             </span>
           </div>
-          <div styleName="skills.skills">
+          <div className={skills.skills}>
             {this.props.addedSkills.map((skill, index) => (
               <div key={index}>
                 {skill}
@@ -121,33 +122,33 @@ Skill.propTypes = {
   handleSkills: PropTypes.func.isRequired,
   skills: PropTypes.array.isRequired,
   addSkills: PropTypes.func.isRequired,
-  removeSkill: PropTypes.func.isRequired
+  removeSkill: PropTypes.func.isRequired,
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     skills: state.studentReducer.skill.skills,
-    addedSkills: state.studentReducer.skill.addedSkills
+    addedSkills: state.studentReducer.skill.addedSkills,
   }
 }
 
-const mapActionToProps = dispatch => {
+const mapActionToProps = (dispatch) => {
   return {
     showSkills: () => {
       return dispatch(showSkills())
     },
-    addSkill: skill => {
+    addSkill: (skill) => {
       return dispatch(addSkill(skill))
     },
-    removeSkill: skill => {
+    removeSkill: (skill) => {
       return dispatch(removeSkill(skill))
     },
-    handleSkills: newArray => {
+    handleSkills: (newArray) => {
       return dispatch(handleSkills(newArray))
     },
     removeAll: () => {
       return dispatch(removeAll())
-    }
+    },
   }
 }
 

@@ -25,20 +25,23 @@ class Resume extends Component {
     super(props)
     this.state = {
       numPages: null,
-      pageNumber: 1
+      pageNumber: 1,
     }
   }
+
   goToPrevPage = () => {
     if (this.state.pageNumber > 1)
-      this.setState(state => ({ pageNumber: state.pageNumber - 1 }))
+      this.setState((state) => ({ pageNumber: state.pageNumber - 1 }))
   }
+
   goToNextPage = () => {
     if (this.state.pageNumber < this.state.numPages)
-      this.setState(state => ({ pageNumber: state.pageNumber + 1 }))
+      this.setState((state) => ({ pageNumber: state.pageNumber + 1 }))
   }
+
   onResumeLoad = ({ numPages }) => {
     this.setState({
-      numPages: numPages
+      numPages,
     })
   }
 
@@ -55,10 +58,7 @@ class Resume extends Component {
                 <button onClick={this.goToPrevPage}>Prev</button>
                 <button onClick={this.goToNextPage}>Next</button>
               </nav>
-              <Document
-                file={file}
-                onLoadSuccess={this.onResumeLoad}
-              >
+              <Document file={file} onLoadSuccess={this.onResumeLoad}>
                 <Page pageNumber={pageNumber} />
               </Document>
               <p>
@@ -82,11 +82,8 @@ Resume.propTypes = {
 
 function mapStateToProps(state) {
   return {
-    file: state.studentReducer.resume.file
+    file: state.studentReducer.resume.file,
   }
 }
 
-export default connect(
-  mapStateToProps,
-  null
-)(Resume)
+export default connect(mapStateToProps, null)(Resume)

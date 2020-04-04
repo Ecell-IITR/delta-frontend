@@ -1,20 +1,25 @@
 # Delta frontend repo
 
-Move to development branch and start the server by running
-`python manage.py runserver` or `python3 manage.py runserver `
+### Run the following command :-
 
-Now move to frontend repo.
+#### For installing all dependecies:
 
-Create a file .env and copy the content of .env.example to it.
+`yarn`
 
-Run the following command :-
-`npm install`
-`npm start`
+#### For starting dev server:
 
-Go to url to check login register of student.
-```
-http://localhost:3000/student/register
-```
+`yarn start`
+
+### For adding any dev-dependencies:
+
+`yarn add -D {}`
+
+### For adding any dependency:
+
+`yarn add {}`
+
+#### Login URL:
+
 ```
 http://localhost:3000/student/login
 ```

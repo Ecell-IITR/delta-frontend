@@ -1,3 +1,4 @@
+import { useToasts } from 'react-toast-notifications'
 import {
   LOGIN_REQUEST,
   LOGIN_FAILURE,
@@ -23,9 +24,8 @@ import {
 } from '../constants/index'
 import FetchApi from '../../utils/FetchAPI'
 import { getToken, setToken, logout } from '../utils.js'
-import { useToasts } from 'react-toast-notifications'
 
-let token = getToken(TOKEN_TYPE)
+const token = getToken(TOKEN_TYPE)
 
 export const fetchProfile = username => {
   return dispatch => {
@@ -56,7 +56,7 @@ export const createProfile = profile => {
     const data = {
       skills: profile.skills,
       social_links: profile.social_links,
-      resume_file: profile.resume_file
+      resume_file: profile.resume_file,
     }
     dispatch(request())
     FetchApi('POST', '/api/v1/create/profile/', data, null)
@@ -106,41 +106,34 @@ export const fetchUser = callback => {
 }
 
 export const showInfo = () => {
-  return dispatch => {}
+  return dispatch => { }
 }
 
 export const login = (username, password, callback) => {
   return dispatch => {
-    const { addToast } = useToasts()
+    // const { addToast } = useToasts()
     const data = {
       email: username,
-      password: password
+      password,
     }
-    dispatch(request())
-    FetchApi('POST', '/api/v1/auth/login', data)
+    dispatch({ type: LOGIN_REQUEST })
+    FetchApi('POST', '/api/v1/auth/login/', data)
       .then(res => {
         if (res.data && res.data.token) {
           setToken(TOKEN_TYPE, res.data.token)
-          dispatch(success(res.data.token))
+          dispatch({ type: LOGIN_SUCCESS, payload: res.data.token })
           callback('ok')
         }
       })
       .catch(error => {
-        dispatch(failure(error))
+        dispatch({ type: LOGIN_FAILURE, error })
         callback(error)
-        addToast(error.message, { appearance: 'error' })
-        addToast("Wrong credentials!!", { appearance: 'warning', autoDismiss: false })
+        // addToast(error.message, { appearance: 'error' })
+        // addToast('Wrong credentials!!', {
+        //   appearance: 'warning',
+        //   autoDismiss: false
+        // })
       })
-  }
-
-  function request() {
-    return { type: LOGIN_REQUEST }
-  }
-  function success(data) {
-    return { type: LOGIN_SUCCESS, payload: data }
-  }
-  function failure(error) {
-    return { type: LOGIN_FAILURE, error }
   }
 }
 
@@ -162,10 +155,10 @@ export const log_out = callback => {
 
 export const register = (username, email, password1, password2) => {
   const data = {
-    username: username,
-    email: email,
+    username,
+    email,
     password: password1,
-    password2: password2
+    password2,
   }
   return dispatch => {
     const { addToast } = useToasts()
@@ -174,7 +167,7 @@ export const register = (username, email, password1, password2) => {
       .then(res => {
         if (res.data) {
           dispatch(success(res.data))
-          addToast("Registered", { appearance: 'success', autoDismiss: true })
+          addToast('Registered', { appearance: 'success', autoDismiss: true })
         }
       })
       .catch(error => {
@@ -195,46 +188,45 @@ export const register = (username, email, password1, password2) => {
 }
 export const ShowInfo = () => {
   const action = {
-    type: 'RENDER_INFO'
+    type: 'RENDER_INFO',
   }
 
   return action
 }
 
-/* Skill component action creators*/
+/* Skill component action creators */
 export const showSkills = () => {
   return { type: 'SHOW_SKILLS' }
 }
 export const removeSkill = (skill, index) => {
   return {
     type: 'REMOVE_SKILL',
-    index: index,
-    skill: skill
+    index,
+    skill,
   }
 }
 
 export const addSkill = (skill, index) => {
-  console.log(skill)
   return {
     type: 'ADD_SKILL',
-    index: index,
-    skill: skill
+    index,
+    skill,
   }
 }
 export const handleSkills = newArray => {
   return {
     type: 'HANDLE_SKILLS',
-    newArray: newArray
+    newArray,
   }
 }
 export const removeAll = () => {
   return {
-    type: 'REMOVE_ALL'
+    type: 'REMOVE_ALL',
   }
 }
 
-/* ends*/
-/* Resume Component actions*/
+/* ends */
+/* Resume Component actions */
 
 export const viewResume = () => {
   return dispatch => {

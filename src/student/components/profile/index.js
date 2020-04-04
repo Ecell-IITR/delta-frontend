@@ -3,32 +3,32 @@ import { Switch, Route } from 'react-router-dom'
 import { Progress, Icon } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import Loadable from 'react-loadable'
+import PropTypes from 'prop-types'
 import { fetchUser, fetchProfile } from '../../actions/index'
 import { hasToken } from '../../utils'
 import { TOKEN_TYPE } from '../../constants/index'
 import styles from '../css/profile.module.css'
-import PropTypes from 'prop-types'
 import '../css/profile2.css'
 import Loader from '../loading/index'
 
 const Loading = ({ error }) => {
   if (error) return <div>Error loading component</div>
-  else return <Loader />
+  return <Loader />
 }
 
 const Skills = Loadable({
   loader: () => import('../addSkill/index'),
-  loading: Loading
+  loading: Loading,
 })
 
 const Resume = Loadable({
   loader: () => import('../resume/index'),
-  loading: Loading
+  loading: Loading,
 })
 
 const Sidebar = Loadable({
   loader: () => import('../../../coreContainers/rectangle/index.js'),
-  loading: Loading
+  loading: Loading,
 })
 // import { Image } from "../../../coreContainers";
 
@@ -43,14 +43,16 @@ class StudentProfile extends Component {
       this.props.fetchUser(this.callback)
     }
   }
+
   callback = () => {
     this.props.fetchProfile(this.props.user.username)
   }
+
   render() {
     const student = this.props.info
     const { user, match } = this.props
     return (
-      <React.Fragment>
+      <>
         <div className={styles.info}>
           <div className={styles['student-img']}>
             {/* <Image
@@ -111,7 +113,7 @@ class StudentProfile extends Component {
             </Switch>
           </div>
         </div>
-      </React.Fragment>
+      </>
     )
   }
 }
@@ -124,37 +126,34 @@ StudentProfile.propTypes = {
       course: PropTypes.string,
       roll: PropTypes.number,
       src: PropTypes.string,
-      profilePercentage: PropTypes.number
-    })
+      profilePercentage: PropTypes.number,
+    }),
   ),
   user: PropTypes.shape({
     username: PropTypes.string,
-    userDetails: PropTypes.string
+    userDetails: PropTypes.string,
   }).isRequired,
   match: PropTypes.object.isRequired,
   fetchUser: PropTypes.func.isRequired,
-  fetchProfile: PropTypes.func.isRequired
+  fetchProfile: PropTypes.func.isRequired,
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    fetchProfile: username => {
+    fetchProfile: (username) => {
       dispatch(fetchProfile(username))
     },
-    fetchUser: callback => {
+    fetchUser: (callback) => {
       dispatch(fetchUser(callback))
-    }
+    },
   }
 }
 
 function mapStateToProps(state) {
   return {
     user: state.studentReducer.user.userDetails,
-    info: state.studentReducer.profile.info
+    info: state.studentReducer.profile.info,
   }
 }
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(StudentProfile)
+export default connect(mapStateToProps, mapDispatchToProps)(StudentProfile)

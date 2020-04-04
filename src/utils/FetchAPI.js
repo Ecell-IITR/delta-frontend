@@ -1,31 +1,28 @@
 import axios from 'axios'
 
 const FetchApi = (method, url, params, TokenValue) => {
-  if (process.env.REACT_APP_SERVER_ENVIORNMENT === 'dev') {
-    url = 'http://localhost:' + process.env.REACT_APP_SERVER_PORT + url
-  }
   return new Promise((resolve, reject) => {
     if (TokenValue) {
       axios({
-        method: method,
-        url: url,
+        method,
+        url,
         data: params,
         headers: {
-          Authorization: 'JWT ' + TokenValue
+          Authorization: 'JWT ' + TokenValue,
         },
-        responseType: 'json'
+        responseType: 'json',
       })
-        .then(res => resolve(res))
-        .catch(err => reject(err))
+        .then((res) => resolve(res))
+        .catch((err) => reject(err))
     } else {
       axios({
-        method: method,
-        url: url,
+        method,
+        url,
         data: params,
-        responseType: 'json'
+        responseType: 'json',
       })
-        .then(res => resolve(res))
-        .catch(err => reject(err))
+        .then((res) => resolve(res))
+        .catch((err) => reject(err))
     }
   })
 }

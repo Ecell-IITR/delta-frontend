@@ -11,8 +11,8 @@ export default class Opportunites extends Component {
       options: [
         { label: 'ecell', value: 'rocks' },
         { label: 'delta', value: 'also rocks' },
-        { label: 'edc', value: ' rocks' }
-      ]
+        { label: 'edc', value: ' rocks' },
+      ],
     }
   }
 

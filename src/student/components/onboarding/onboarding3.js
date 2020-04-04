@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
-import Dropdown from '../../../coreContainers/dropdown/index'
 import { Header, Input } from 'semantic-ui-react'
+import Dropdown from '../../../coreContainers/dropdown/index'
 import '../css/onboarding.css'
 
 const socialLinkOptions = [
@@ -13,17 +13,18 @@ const socialLinkOptions = [
   { label: 'Github', value: 'Github' },
   { label: 'CodeForce', value: 'CodeForce' },
   { label: 'CodeChef', value: 'CodeChef' },
-  { label: 'HackerRank', value: 'HackerRank' }
+  { label: 'HackerRank', value: 'HackerRank' },
 ]
 
 class onBoarding3 extends Component {
-  handleChange = selectedOption => {
+  handleChange = (selectedOption) => {
     console.log(selectedOption.label)
     this.props.dispatch({
       type: 'ADD_PROFILE_SOCIAL_LINKS',
-      payload: selectedOption.label
+      payload: selectedOption.label,
     })
   }
+
   render() {
     return (
       <div className="onboarding3">
@@ -43,9 +44,6 @@ class onBoarding3 extends Component {
 }
 
 onBoarding3.propTypes = {
-  dispatch: PropTypes.func
+  dispatch: PropTypes.func,
 }
-export default connect(
-  null,
-  null
-)(onBoarding3)
+export default connect(null, null)(onBoarding3)

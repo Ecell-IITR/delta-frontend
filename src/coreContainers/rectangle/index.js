@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import styles from './rectangle.module.css'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
+import styles from './rectangle.module.css'
 
 class Rectangle extends Component {
   constructor(props) {
@@ -10,9 +10,9 @@ class Rectangle extends Component {
   }
 
   render() {
-    let content = ['posts', 'skills', 'achievements', 'resume']
+    const content = ['posts', 'skills', 'achievements', 'resume']
     // const { match } = this.props
-    //console.log(this.props.match)
+    // console.log(this.props.match)
     return (
       <div className={styles.rectangle}>
         {content.map((item, index) => {
@@ -35,6 +35,6 @@ Rectangle.propTypes = {
   text: PropTypes.string.isRequired,
   item: PropTypes.string.isRequired,
   match: PropTypes.object.isRequired,
-  content: PropTypes.array.isRequired
+  content: PropTypes.array.isRequired,
 }
 export default Rectangle
