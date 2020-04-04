@@ -1,8 +1,9 @@
 import _ from 'lodash'
 import React, { Component } from 'react'
 import { Search } from 'semantic-ui-react'
-import searchbar from './searchbar.module.css'
 import PropTypes from 'prop-types'
+import searchbar from './searchbar.module.css'
+
 const initialState = { isLoading: false, results: [], value: '' }
 
 export default class SearchExampleStandard extends Component {
@@ -17,11 +18,11 @@ export default class SearchExampleStandard extends Component {
       if (this.state.value.length < 1) return this.setState(initialState)
 
       const re = new RegExp(_.escapeRegExp(this.state.value), 'i')
-      const isMatch = result => re.test(result.title)
+      const isMatch = (result) => re.test(result.title)
 
       this.setState({
         isLoading: false,
-        results: _.filter(isMatch)
+        results: _.filter(isMatch),
       })
     }, 300)
   }
@@ -35,7 +36,7 @@ export default class SearchExampleStandard extends Component {
         loading={isLoading}
         onResultSelect={this.handleResultSelect}
         onSearchChange={_.debounce(this.handleSearchChange, 500, {
-          leading: true
+          leading: true,
         })}
         results={results}
         value={value}
@@ -45,5 +46,5 @@ export default class SearchExampleStandard extends Component {
   }
 }
 SearchExampleStandard.propTypes = {
-  placeholder: PropTypes.string
+  placeholder: PropTypes.string,
 }

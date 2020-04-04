@@ -4,7 +4,7 @@ import companyReducer from '../company/reducers/index'
 
 const rootReducer = combineReducers({
   studentReducer,
-  companyReducer
+  companyReducer,
 })
 
 export default rootReducer

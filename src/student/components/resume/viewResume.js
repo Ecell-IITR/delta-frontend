@@ -1,14 +1,15 @@
 import React, { Component } from 'react'
-import SubmitButton from '../../../coreContainers/button/submit'
 import { connect } from 'react-redux'
-import { viewResume } from '../../actions'
 import PropTypes from 'prop-types'
+import SubmitButton from '../../../coreContainers/button/submit'
+import { viewResume } from '../../actions'
 
 class ViewResume extends Component {
   constructor(props) {
     super(props)
     this.state = {}
   }
+
   handleClick = () => {
     this.props.viewResume()
   }
@@ -23,14 +24,14 @@ class ViewResume extends Component {
 }
 
 ViewResume.propTypes = {
-  viewResume: PropTypes.func
+  viewResume: PropTypes.func,
 }
 
 function mapdispatchToProps(dispatch) {
   return {
     viewResume: () => {
       dispatch(viewResume())
-    }
+    },
   }
 }
 

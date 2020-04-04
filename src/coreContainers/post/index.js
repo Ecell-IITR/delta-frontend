@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
 import { Container, Header, Checkbox, Divider } from 'semantic-ui-react'
+import PropTypes from 'prop-types'
 import styles from './post.module.css'
 import ImageIndex from '../image'
-import PropTypes from 'prop-types'
 
 export default class Post extends Component {
   render() {
-    let { designation, stipend, duration } = this.props
-    let info = ['9 Applicants', 'Bangalore', '2 weeks', '2 months']
+    const { designation, stipend, duration } = this.props
+    const info = ['9 Applicants', 'Bangalore', '2 weeks', '2 months']
     return (
       <div className={styles.post}>
         <Container>
@@ -57,5 +57,5 @@ Post.propTypes = {
   designation: PropTypes.string.isRequired,
   stipend: PropTypes.number.isRequired,
   duration: PropTypes.string.isRequired,
-  imginfo: PropTypes.string
+  imginfo: PropTypes.string,
 }

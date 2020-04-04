@@ -12,8 +12,8 @@ const FetchApi = (method, url, params, TokenValue) => {
         },
         responseType: 'json',
       })
-        .then(res => resolve(res))
-        .catch(err => reject(err))
+        .then((res) => resolve(res))
+        .catch((err) => reject(err))
     } else {
       axios({
         method,
@@ -21,8 +21,8 @@ const FetchApi = (method, url, params, TokenValue) => {
         data: params,
         responseType: 'json',
       })
-        .then(res => resolve(res))
-        .catch(err => reject(err))
+        .then((res) => resolve(res))
+        .catch((err) => reject(err))
     }
   })
 }

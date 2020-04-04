@@ -1,7 +1,7 @@
 const VIEW_RESUME = 'VIEW_RESUME'
 
 const initialState = {
-  file: []
+  file: [],
 }
 
 const resume = (state = initialState, action) => {
@@ -9,7 +9,7 @@ const resume = (state = initialState, action) => {
     case VIEW_RESUME:
       return {
         ...state,
-        file: action.payload
+        file: action.payload,
       }
     default:
       return { ...state }

@@ -10,38 +10,39 @@ export default class FilterLabel extends Component {
     this.state = {
       options: this.props.options,
       selectedOption: null,
-      selected: []
+      selected: [],
     }
   }
 
-  handleChange = selectedOption => {
+  handleChange = (selectedOption) => {
     const { selected, options } = this.state
 
     const newArray1 = selected
     newArray1.push(selectedOption.label)
-    const newArray2 = options.filter(item => {
+    const newArray2 = options.filter((item) => {
       return item.label !== selectedOption.label
     })
     this.props.callback(newArray1)
     this.setState({
       options: newArray2,
-      selectedOption: selectedOption,
-      selected: newArray1
+      selectedOption,
+      selected: newArray1,
     })
   }
-  handleClick = item => {
+
+  handleClick = (item) => {
     const newArray1 = this.state.options
     newArray1.push({
       label: item,
-      value: item
+      value: item,
     })
-    const newArray2 = this.state.selected.filter(value => {
+    const newArray2 = this.state.selected.filter((value) => {
       return item !== value
     })
     this.props.callback(newArray2)
     this.setState({
       options: newArray1,
-      selected: newArray2
+      selected: newArray2,
     })
   }
 
@@ -72,5 +73,5 @@ export default class FilterLabel extends Component {
 
 FilterLabel.propTypes = {
   options: PropTypes.array.isRequired,
-  callback: PropTypes.func.isRequired
+  callback: PropTypes.func.isRequired,
 }

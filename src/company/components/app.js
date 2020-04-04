@@ -8,15 +8,16 @@ class CompanyIndex extends Component {
     super(props)
     this.state = {}
   }
+
   render() {
     return (
-      <React.Fragment>
+      <>
         <Navbar />
         <Switch>
-          <Route exact path={'Path url'} component={'Component Name'} />
+          <Route exact path="Path url" component="Component Name" />
         </Switch>
         <Login />
-      </React.Fragment>
+      </>
     )
   }
 }

@@ -28,7 +28,7 @@ class LoginIndex extends Component {
     }
   }
 
-  onChange = e => {
+  onChange = (e) => {
     const { name } = e.target
     const { value } = e.target
     this.setState({
@@ -37,14 +37,14 @@ class LoginIndex extends Component {
     })
   }
 
-  handleClick = e => {
+  handleClick = (e) => {
     e.preventDefault()
     const { history } = this.props
 
     history.push('/student/register')
   }
 
-  handleSubmit = e => {
+  handleSubmit = (e) => {
     e.preventDefault()
     let { username, password } = this.state
     const { login } = this.props
@@ -70,7 +70,7 @@ class LoginIndex extends Component {
       login(username, password, this.callback)
   }
 
-  callback = error => {
+  callback = (error) => {
     const { history } = this.props
 
     if (error === 'ok') history.push('/student/')
@@ -152,13 +152,13 @@ LoginIndex.propTypes = {
   history: PropTypes.isRequired,
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     auth: state.studentReducer.login,
   }
 }
 
-const mapActionToProps = dispatch => {
+const mapActionToProps = (dispatch) => {
   return {
     login: (username, password, callback) => {
       return dispatch(login(username, password, callback))

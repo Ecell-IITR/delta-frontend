@@ -6,7 +6,7 @@ import styles from './input.css'
 
 export default class InputField extends Component {
   render() {
-    let { placeholder, type, name, onChange } = this.props
+    const { placeholder, type, name, onChange } = this.props
     return (
       <Form.Input
         className={styles.general}
@@ -24,5 +24,5 @@ InputField.propTypes = {
   type: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
-  className: PropTypes.string
+  className: PropTypes.string,
 }

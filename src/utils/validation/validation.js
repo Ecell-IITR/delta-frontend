@@ -3,18 +3,18 @@ import {
   isEmpty,
   isLengthBetween,
   isEmail,
-  isMobilePhone
+  isMobilePhone,
 } from '../helpers/helpers'
 
 export default function validateInput(data, thisCase) {
-  const checkEmail = email => {
+  const checkEmail = (email) => {
     if (isEmpty(email)) {
       errors.email = 'Email field is required'
     } else if (!isEmail(email)) {
       errors.email = 'Email is invalid'
     }
   }
-  const checkPass = pass => {
+  const checkPass = (pass) => {
     if (isEmpty(pass)) {
       errors.password = 'Password is required'
     } else if (!isLengthBetween(pass, { min: 8, max: 100 })) {
@@ -22,7 +22,7 @@ export default function validateInput(data, thisCase) {
     }
   }
 
-  const checkMobile = mobile => {
+  const checkMobile = (mobile) => {
     if (isEmpty(mobile)) {
       errors.mobile = 'Mobile is required'
     } else if (!isMobilePhone(mobile)) {
@@ -48,6 +48,6 @@ export default function validateInput(data, thisCase) {
   }
   return {
     errors,
-    isValid: isEmptyObject(errors)
+    isValid: isEmptyObject(errors),
   }
 }

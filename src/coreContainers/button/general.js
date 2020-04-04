@@ -6,7 +6,7 @@ export default class GenButton extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      isActive: false
+      isActive: false,
     }
   }
 
@@ -28,5 +28,5 @@ export default class GenButton extends Component {
 GenButton.propTypes = {
   IsActive: PropTypes.bool,
   className: PropTypes.string.isRequired,
-  content: PropTypes.string.isRequired
+  content: PropTypes.string.isRequired,
 }

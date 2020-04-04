@@ -6,7 +6,7 @@ import { TOKEN_TYPE } from '../constants/index'
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route
     {...rest}
-    render={props =>
+    render={(props) =>
       localStorage.getItem(TOKEN_TYPE) ? (
         <Component {...props} />
       ) : (
@@ -18,7 +18,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
 
 PrivateRoute.propTypes = {
   history: PropTypes.object.isRequired,
-  component: PropTypes.element.isRequired
+  component: PropTypes.element.isRequired,
 }
 
 export default PrivateRoute

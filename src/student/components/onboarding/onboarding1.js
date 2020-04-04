@@ -24,7 +24,7 @@ const skillOptions = [
   { label: 'repair', value: 'repair' },
   { label: 'ruby', value: 'ruby' },
   { label: 'ui', value: 'ui' },
-  { label: 'ux', value: 'ux' }
+  { label: 'ux', value: 'ux' },
 ]
 
 class onBoarding1 extends Component {
@@ -33,10 +33,10 @@ class onBoarding1 extends Component {
     this.state = {}
   }
 
-  updateSelectedSkills = selectedSkills => {
+  updateSelectedSkills = (selectedSkills) => {
     this.props.dispatch({
       type: 'ADD_PROFILE_SKILLS',
-      payload: selectedSkills
+      payload: selectedSkills,
     })
   }
 
@@ -57,7 +57,7 @@ class onBoarding1 extends Component {
 
 onBoarding1.propTypes = {
   addProfileSkills: PropTypes.func.isRequired,
-  dispatch: PropTypes.func
+  dispatch: PropTypes.func,
 }
 
 export default connect(null, null)(onBoarding1)

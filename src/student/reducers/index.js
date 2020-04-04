@@ -12,7 +12,7 @@ const studentReducer = combineReducers({
   profile,
   user,
   skill,
-  resume
+  resume,
 })
 
 export default studentReducer

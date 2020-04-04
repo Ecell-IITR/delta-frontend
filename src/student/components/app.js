@@ -11,7 +11,7 @@ class StudentIndex extends Component {
   render() {
     const { match } = this.props
     return (
-      <React.Fragment>
+      <>
         <Switch>
           <Route
             exact
@@ -25,13 +25,13 @@ class StudentIndex extends Component {
             component={AuthenticativeRoutes}
           />
         </Switch>
-      </React.Fragment>
+      </>
     )
   }
 }
 
 StudentIndex.propTypes = {
-  match: PropTypes.object
+  match: PropTypes.object,
 }
 
 export default StudentIndex

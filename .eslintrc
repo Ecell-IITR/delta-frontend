@@ -51,10 +51,7 @@
     "jest/no-identical-title": "error",
     "jest/prefer-to-have-length": "warn",
     "jest/valid-expect": "error",
-    "react/require-default-props": [
-      "warn",
-      "never"
-    ],
+    "react/require-default-props": 0,
     "jsx-a11y/href-no-hash": "off",
     "jsx-a11y/anchor-is-valid": [
       "warn",
@@ -64,18 +61,12 @@
         ]
       }
     ],
-    "react/jsx-boolean-value": [
-      "warn",
-      "never"
-    ],
+    "react/jsx-boolean-value": 0,
     "react/jsx-closing-bracket-location": [
       "warn",
       "after-props"
     ],
-    "react/jsx-curly-spacing": [
-      "warn",
-      "never"
-    ],
+    "react/jsx-curly-spacing": 0,
     "react/jsx-filename-extension": [
       "warn",
       {
@@ -124,5 +115,13 @@
     "browser": true,
     "node": true,
     "commonjs": true
-  }
+  },
+  "overrides": [
+    {
+      "files": [
+        "*.md"
+      ],
+      "excludedFiles": "*.md"
+    }
+  ]
 }
