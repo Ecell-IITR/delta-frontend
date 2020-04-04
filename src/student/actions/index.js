@@ -114,7 +114,7 @@ export const login = (username, password, callback) => {
       password,
     }
     dispatch(request())
-    FetchApi('POST', '/api/v1/auth/login', data)
+    FetchApi('POST', '/api/v1/auth/login/', data)
       .then(res => {
         if (res.data && res.data.token) {
           setToken(TOKEN_TYPE, res.data.token)

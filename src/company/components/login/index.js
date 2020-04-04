@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-/*import PropTypes from 'prop-types'*/
+/* import PropTypes from 'prop-types' */
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { Input, SubmitButton } from '../../../coreContainers'
@@ -18,20 +18,17 @@ class LoginIndex extends Component {
           <Input
             type="email"
             placeholder="Email ID"
-            className={styles.loginField}
-          />
+            className={styles.loginField} />
           <Input
             type="password"
             placeholder="Password"
-            className={styles.loginField}
-          />
+            className={styles.loginField} />
           <div className={styles.forgotPassword}>
             <Link to="#">Forgot Password?</Link>
           </div>
           <SubmitButton
             buttonContent="Sign Up"
-            className={styles.loginSubmit}
-          />
+            className={styles.loginSubmit} />
         </div>
       </div>
     )
