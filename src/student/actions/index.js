@@ -24,90 +24,63 @@ import { getToken, setToken, logout } from '../utils.js'
 
 const token = getToken(TOKEN_TYPE)
 
-export const fetchProfile = username => {
-  return dispatch => {
-    dispatch(request())
+export const fetchProfile = (username) => {
+  return (dispatch) => {
+    dispatch({ type: FETCH_USER_PROFILE_REQUEST })
     FetchApi('GET', '/api/v1/get/profile/' + username + '/', null, token)
-      .then(res => {
+      .then((res) => {
         if (res.data) {
-          dispatch(success(res.data))
+          dispatch({ type: FETCH_USER_PROFILE_SUCCESS, payload: res.data })
         }
       })
-      .catch(error => {
-        dispatch(failure(error))
+      .catch((error) => {
+        dispatch({ type: FETCH_USER_PROFILE_FAILURE, error })
       })
-  }
-  function request() {
-    return { type: FETCH_USER_PROFILE_REQUEST }
-  }
-  function success(data) {
-    return { type: FETCH_USER_PROFILE_SUCCESS, payload: data }
-  }
-  function failure(error) {
-    return { type: FETCH_USER_PROFILE_FAILURE, error }
   }
 }
 
-export const createProfile = profile => {
-  return dispatch => {
+export const createProfile = (profile) => {
+  return (dispatch) => {
     const data = {
       skills: profile.skills,
       social_links: profile.social_links,
       resume_file: profile.resume_file,
     }
-    dispatch(request())
+    dispatch({ type: CREATE_USER_PROFILE_REQUEST })
     FetchApi('POST', '/api/v1/create/profile/', data, null)
-      .then(res => {
+      .then((res) => {
         if (res.data) {
-          dispatch(success(res.data))
+          dispatch({ type: CREATE_USER_PROFILE_SUCCESS, payload: res.data })
         }
       })
-      .catch(error => {
-        dispatch(failure(error))
+      .catch((error) => {
+        dispatch({ type: CREATE_USER_PROFILE_FAILURE, error })
       })
-  }
-  function request() {
-    return { type: CREATE_USER_PROFILE_REQUEST }
-  }
-  function success(data) {
-    return { type: CREATE_USER_PROFILE_SUCCESS, payload: data }
-  }
-  function failure(error) {
-    return { type: CREATE_USER_PROFILE_FAILURE, error }
   }
 }
 
-export const fetchUser = callback => {
-  return dispatch => {
-    dispatch(request())
+export const fetchUser = (callback) => {
+  return (dispatch) => {
+    dispatch({ type: FETCH_USER_REQUEST })
     FetchApi('GET', '/api/v1/get/user', null, token)
-      .then(res => {
+      .then((res) => {
         if (res.data) {
-          dispatch(success(res.data))
+          dispatch({ type: FETCH_USER_SUCCESS, payload: res.data })
           callback()
         }
       })
-      .catch(error => {
-        dispatch(failure(error))
+      .catch((error) => {
+        dispatch({ type: FETCH_USER_FAILURE, error })
       })
-  }
-  function request() {
-    return { type: FETCH_USER_REQUEST }
-  }
-  function success(data) {
-    return { type: FETCH_USER_SUCCESS, payload: data }
-  }
-  function failure(error) {
-    return { type: FETCH_USER_FAILURE, error }
   }
 }
 
 export const showInfo = () => {
-  return dispatch => { }
+  return (dispatch) => {}
 }
 
 export const login = (username, password, callback) => {
-  return dispatch => {
+  return (dispatch) => {
     // const { addToast } = useToasts()
     const data = {
       email: username,
@@ -115,14 +88,14 @@ export const login = (username, password, callback) => {
     }
     dispatch({ type: LOGIN_REQUEST })
     FetchApi('POST', '/api/v1/auth/login/', data)
-      .then(res => {
+      .then((res) => {
         if (res.data && res.data.token) {
           setToken(TOKEN_TYPE, res.data.token)
           dispatch({ type: LOGIN_SUCCESS, payload: res.data.token })
           callback('ok')
         }
       })
-      .catch(error => {
+      .catch((error) => {
         dispatch({ type: LOGIN_FAILURE, error })
         callback(error)
         // addToast(error.message, { appearance: 'error' })
@@ -134,19 +107,12 @@ export const login = (username, password, callback) => {
   }
 }
 
-export const log_out = callback => {
-  return dispatch => {
-    dispatch(request())
+export const log_out = (callback) => {
+  return (dispatch) => {
+    dispatch({ type: LOGOUT_REQUEST })
     logout(TOKEN_TYPE)
-    dispatch(success())
+    dispatch({ type: LOGOUT_SUCCESS })
     callback()
-  }
-
-  function request() {
-    return { type: LOGOUT_REQUEST }
-  }
-  function success(data) {
-    return { type: LOGOUT_SUCCESS }
   }
 }
 
@@ -157,30 +123,20 @@ export const register = (username, email, password1, password2) => {
     password: password1,
     password2,
   }
-  return dispatch => {
+  return (dispatch) => {
     const { addToast } = useToasts()
-    dispatch(request(data))
+    dispatch({ type: REGISTER_REQUEST })
     FetchApi('POST', '/api/v1/auth/register', data, null)
-      .then(res => {
+      .then((res) => {
         if (res.data) {
-          dispatch(success(res.data))
+          dispatch({ type: REGISTER_SUCCESS, payload: res.data })
           addToast('Registered', { appearance: 'success', autoDismiss: true })
         }
       })
-      .catch(error => {
-        dispatch(failure(error))
+      .catch((error) => {
+        dispatch({ type: REGISTER_FAILURE, payload: error })
         addToast(error.message, { appearance: 'error' })
       })
-  }
-
-  function request() {
-    return { type: REGISTER_REQUEST }
-  }
-  function success(data) {
-    return { type: REGISTER_SUCCESS, payload: data }
-  }
-  function failure(error) {
-    return { type: REGISTER_FAILURE, payload: error }
   }
 }
 export const ShowInfo = () => {
@@ -210,7 +166,7 @@ export const addSkill = (skill, index) => {
     skill,
   }
 }
-export const handleSkills = newArray => {
+export const handleSkills = (newArray) => {
   return {
     type: 'HANDLE_SKILLS',
     newArray,
@@ -226,8 +182,8 @@ export const removeAll = () => {
 /* Resume Component actions */
 
 export const viewResume = () => {
-  return dispatch => {
-    FetchApi('GET', '/api/v1/get/resume', null, token).then(res => {
+  return (dispatch) => {
+    FetchApi('GET', '/api/v1/get/resume', null, token).then((res) => {
       if (res.data) {
         dispatch({ type: 'VIEW_RESUME', payload: res.data })
       }
