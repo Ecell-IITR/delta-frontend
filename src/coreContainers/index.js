@@ -1,4 +1,4 @@
-import Input from './input'
+import Input from './input/index'
 import GeneralButton from './button/general'
 import SubmitButton from './button/submit'
 import Post from './post/index'

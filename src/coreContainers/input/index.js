@@ -9,7 +9,7 @@ export default class InputField extends Component {
     const { placeholder, type, name, onChange } = this.props
     return (
       <Form.Input
-        className={styles.general}
+        className={`${styles.general}  ${this.props.className}`}
         placeholder={placeholder}
         type={type}
         name={name}
