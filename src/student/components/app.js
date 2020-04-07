@@ -1,3 +1,4 @@
+/* eslint-disable react/forbid-prop-types */
 import React, { Component } from 'react'
 import { Switch, Route } from 'react-router-dom'
 import PropTypes from 'prop-types'
@@ -16,14 +17,12 @@ class StudentIndex extends Component {
           <Route
             exact
             path={`${match.path}/register`}
-            component={OnBoardingIndex}
-          />
+            component={OnBoardingIndex} />
           <Route exact path={`${match.path}/login`} component={Login} />
           <Route exact path={`${match.path}/logout`} component={Logout} />
           <PrivateRoute
             path={`${match.path}/`}
-            component={AuthenticativeRoutes}
-          />
+            component={AuthenticativeRoutes} />
         </Switch>
       </>
     )

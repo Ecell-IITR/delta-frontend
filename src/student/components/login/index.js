@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { Input, SubmitButton } from '../../../coreContainers'
 import validateInput from '../../../utils/validation/validation'
-import { login } from '../../actions/index'
+import { loginAction } from '../../actions/index'
 import { hasToken } from '../../utils'
 import { TOKEN_TYPE } from '../../constants/index'
 import mainbuilding from '../../../images/mainbuilding.svg'
@@ -28,7 +28,7 @@ class LoginIndex extends Component {
     }
   }
 
-  onChange = (e) => {
+  handleChange = (e) => {
     const { name } = e.target
     const { value } = e.target
     this.setState({
@@ -47,7 +47,7 @@ class LoginIndex extends Component {
   handleSubmit = (e) => {
     e.preventDefault()
     let { username, password } = this.state
-    const { login } = this.props
+    const { loginComponent } = this.props
 
     if (username) {
       username = username.trim()
@@ -55,19 +55,14 @@ class LoginIndex extends Component {
     if (password) {
       password = password.trim()
     }
-    const checkUsername = validateInput(username, 'email')
+
     const checkPass = validateInput(password, 'password')
-    if (!checkUsername.isValid)
-      this.setState({
-        errors: checkUsername.errors.email,
-      })
     if (!checkPass.isValid) {
       this.setState({
         errors: checkPass.errors.password,
       })
     }
-    if (checkPass.isValid && checkUsername.isValid)
-      login(username, password, this.callback)
+    if (checkPass.isValid) loginComponent(username, password, this.callback)
   }
 
   callback = (error) => {
@@ -98,7 +93,7 @@ class LoginIndex extends Component {
               className={styles.loginField}
               name="username"
               value={username}
-              onChange={this.onChange}
+              onChange={this.handleChange}
             />
             <br />
             <Input
@@ -107,7 +102,7 @@ class LoginIndex extends Component {
               className={styles.loginField}
               name="password"
               value={password}
-              onChange={this.onChange}
+              onChange={this.handleChange}
             />
             <div className={styles.forgotPassword}>
               <Link to="#">Forgot Password?</Link>
@@ -139,17 +134,8 @@ class LoginIndex extends Component {
   }
 }
 LoginIndex.propTypes = {
-  username: PropTypes.string.isRequired,
-  password: PropTypes.string.isRequired,
-  errors: PropTypes.string.isRequired,
-  login: PropTypes.string.isRequired,
-  loginInput: PropTypes.string.isRequired,
-  heading: PropTypes.string.isRequired,
-  subheading: PropTypes.string.isRequired,
-  forgotPassword: PropTypes.string.isRequired,
-  loginSubmit: PropTypes.string.isRequired,
-  onChange: PropTypes.func.isRequired,
   history: PropTypes.isRequired,
+  loginComponent: PropTypes.func,
 }
 
 const mapStateToProps = (state) => {
@@ -160,8 +146,8 @@ const mapStateToProps = (state) => {
 
 const mapActionToProps = (dispatch) => {
   return {
-    login: (username, password, callback) => {
-      return dispatch(login(username, password, callback))
+    loginComponent: (username, password, callback) => {
+      return dispatch(loginAction(username, password, callback))
     },
   }
 }
