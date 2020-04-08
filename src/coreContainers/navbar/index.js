@@ -18,10 +18,10 @@ class Navbar extends Component {
         <div className={styles.subnavbar}>
           <ul>
             <li>
-              <Link to="/student/profile">Profile</Link>
+              <Link to="/profile">Profile</Link>
             </li>
             <li>
-              <Link to="/student/opportunities">Opportunities</Link>
+              <Link to="/opportunities">Opportunities</Link>
             </li>
             <li>
               <Link to="/">Create Post</Link>

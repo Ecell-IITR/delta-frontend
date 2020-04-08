@@ -82,7 +82,7 @@ Resume.propTypes = {
 
 function mapStateToProps(state) {
   return {
-    file: state.studentReducer.resume.file,
+    file: state.student.resume.file,
   }
 }
 

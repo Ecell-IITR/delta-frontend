@@ -21,5 +21,5 @@
 #### Login URL:
 
 ```
-http://localhost:3000/student/login
+http://localhost:3000/login
 ```

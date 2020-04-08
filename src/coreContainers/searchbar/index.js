@@ -1,22 +1,23 @@
 import _ from 'lodash'
 import React, { Component } from 'react'
 import { Search } from 'semantic-ui-react'
-import searchbar from './searchbar.module.css'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
+import searchbar from './searchbar.module.css'
 import { itemsFetchData } from '../../student/actions/index'
 
 const initialState = { isLoading: false, results: [], value: '' }
 
 export class SearchBar extends Component {
   state = initialState
+
   handleResultSelect = (e, { result }) => {
     this.setState({ value: result.title })
   }
 
   handleSearchChange = (e, { value }) => {
     this.setState({ isLoading: true, value })
-    
+
     setTimeout(() => {
       if (this.state.value.length < 1) return this.setState(initialState)
 
@@ -36,7 +37,7 @@ export class SearchBar extends Component {
 
     return (
       <Search
-        className={searchbar.core-searchbar}
+        className={searchbar.core - searchbar}
         loading={isLoading}
         onResultSelect={this.handleResultSelect}
         onSearchChange={_.debounce(this.handleSearchChange, 500, {
@@ -51,11 +52,11 @@ export class SearchBar extends Component {
 }
 
 SearchBar.propTypes = {
-  placeholder: PropTypes.string
+  placeholder: PropTypes.string,
 }
 
-const mapStateToProps = state => ({
-//
+const mapStateToProps = (state) => ({
+  //
 })
 
 export default connect(mapStateToProps, { itemsFetchData })(SearchBar)

@@ -127,8 +127,8 @@ Skill.propTypes = {
 
 const mapStateToProps = (state) => {
   return {
-    skills: state.studentReducer.skill.skills,
-    addedSkills: state.studentReducer.skill.addedSkills,
+    skills: state.student.skill.skills,
+    addedSkills: state.student.skill.addedSkills,
   }
 }
 

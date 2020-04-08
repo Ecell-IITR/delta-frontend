@@ -62,10 +62,6 @@
       }
     ],
     "react/jsx-boolean-value": 0,
-    "react/jsx-closing-bracket-location": [
-      "warn",
-      "after-props"
-    ],
     "react/jsx-curly-spacing": 0,
     "react/jsx-filename-extension": [
       "warn",
@@ -76,6 +72,7 @@
         ]
       }
     ],
+    "react/jsx-props-no-spreading": 0,
     "react/jsx-first-prop-new-line": [
       "warn",
       "multiline"

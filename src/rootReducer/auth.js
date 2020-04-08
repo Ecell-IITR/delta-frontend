@@ -5,16 +5,15 @@ import {
   LOGOUT_REQUEST,
   LOGOUT_SUCCESS,
   SET_USER_AUTH,
-} from '../constants/index'
+} from '../auth/constants'
 
 const initialState = {
   isauthenticating: false,
   isauthenticated: false,
-  token: '',
   error: '',
 }
 
-const login = (state = initialState, action) => {
+const authReducer = (state = initialState, action) => {
   switch (action.type) {
     case LOGIN_REQUEST:
       return {
@@ -26,7 +25,6 @@ const login = (state = initialState, action) => {
         ...state,
         isauthenticating: false,
         isauthenticated: true,
-        token: action.payload,
       }
     case LOGIN_FAILURE:
       return {
@@ -38,7 +36,6 @@ const login = (state = initialState, action) => {
       return {
         ...state,
         isauthenticated: true,
-        token: action.payload,
       }
     case LOGOUT_REQUEST:
       return {
@@ -55,4 +52,4 @@ const login = (state = initialState, action) => {
   }
 }
 
-export default login
+export default authReducer

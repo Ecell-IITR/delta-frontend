@@ -21,7 +21,7 @@ export default class SubmitButton extends Component {
   }
 
   render() {
-    const { color,className } = this.props
+    const { color, className } = this.props
     const { content } = this.state
 
     return (

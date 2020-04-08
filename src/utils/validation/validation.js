@@ -7,6 +7,8 @@ import {
 } from '../helpers/helpers'
 
 export default function validateInput(data, thisCase) {
+  const errors = {}
+
   const checkEmail = (email) => {
     if (isEmpty(email)) {
       errors.email = 'Email field is required'
@@ -30,7 +32,6 @@ export default function validateInput(data, thisCase) {
     }
   }
 
-  const errors = {}
   switch (thisCase) {
     case 'email':
       checkEmail(data)

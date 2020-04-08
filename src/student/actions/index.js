@@ -1,20 +1,14 @@
-import { useToasts } from 'react-toast-notifications'
+// import { notify } from 'react-notify-toast'
 import {
-  LOGIN_REQUEST,
-  LOGIN_FAILURE,
-  LOGIN_SUCCESS,
   REGISTER_FAILURE,
   REGISTER_SUCCESS,
   REGISTER_REQUEST,
-  LOGOUT_REQUEST,
-  LOGOUT_SUCCESS,
   FETCH_USER_REQUEST,
   FETCH_USER_SUCCESS,
   FETCH_USER_FAILURE,
   FETCH_USER_PROFILE_REQUEST,
   FETCH_USER_PROFILE_SUCCESS,
   FETCH_USER_PROFILE_FAILURE,
-  TOKEN_TYPE,
   CREATE_USER_PROFILE_REQUEST,
   CREATE_USER_PROFILE_SUCCESS,
   CREATE_USER_PROFILE_FAILURE,
@@ -23,7 +17,8 @@ import {
   ITEMS_FETCH_DATA_SUCCESS,
 } from '../constants/index'
 import FetchApi from '../../utils/FetchAPI'
-import { getToken, setToken, logout } from '../utils.js'
+import { getToken } from '../../utils/tokenFunc'
+import { TOKEN_TYPE } from '../../globalConstants'
 
 const token = getToken(TOKEN_TYPE)
 
@@ -82,43 +77,6 @@ export const fetchUser = (callback) => {
 //   return (dispatch) => { }
 // }
 
-export const loginAction = (username, password, callback) => {
-  return (dispatch) => {
-    // const { addToast } = useToasts()
-    const data = {
-      email: username,
-      password,
-    }
-    dispatch({ type: LOGIN_REQUEST })
-    FetchApi('POST', '/api/v1/auth/login/', data)
-      .then((res) => {
-        if (res.data && res.data.token) {
-          setToken(TOKEN_TYPE, res.data.token)
-          dispatch({ type: LOGIN_SUCCESS, payload: res.data.token })
-          callback('ok')
-        }
-      })
-      .catch((error) => {
-        dispatch({ type: LOGIN_FAILURE, error })
-        callback(error)
-        // addToast(error.message, { appearance: 'error' })
-        // addToast('Wrong credentials!!', {
-        //   appearance: 'warning',
-        //   autoDismiss: false
-        // })
-      })
-  }
-}
-
-export const log_out = (callback) => {
-  return (dispatch) => {
-    dispatch({ type: LOGOUT_REQUEST })
-    logout(TOKEN_TYPE)
-    dispatch({ type: LOGOUT_SUCCESS })
-    callback()
-  }
-}
-
 export const register = (username, email, password1, password2) => {
   const data = {
     username,
@@ -127,18 +85,15 @@ export const register = (username, email, password1, password2) => {
     password2,
   }
   return (dispatch) => {
-    const { addToast } = useToasts()
     dispatch({ type: REGISTER_REQUEST })
     FetchApi('POST', '/api/v1/auth/register', data, null)
       .then((res) => {
         if (res.data) {
           dispatch({ type: REGISTER_SUCCESS, payload: res.data })
-          addToast('Registered', { appearance: 'success', autoDismiss: true })
         }
       })
       .catch((error) => {
         dispatch({ type: REGISTER_FAILURE, payload: error })
-        addToast(error.message, { appearance: 'error' })
       })
   }
 }

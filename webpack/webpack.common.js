@@ -61,7 +61,7 @@ module.exports = {
     ],
   },
   serve: {
-    add: app => {
+    add: (app) => {
       app.use(convert(history()))
     },
     content: commonPaths.appIndexJs,
@@ -71,8 +71,19 @@ module.exports = {
     open: true,
   },
   resolve: {
-    modules: ['src', 'node_modules'],
-    extensions: ['*', '.js', '.jsx', '.css', '.scss'],
+    modules: [
+      'node_modules',
+      'src',
+      commonPaths.globalConstants, // Enable absolute imports from globalConstants
+      commonPaths.coreContainers, // Enable absolute imports from coreContainers
+      commonPaths.utils, // Enable absolute imports from coreContainers
+    ],
+    extensions: ['.js', '.json', '.jsx', '.css'],
+    alias: {
+      globalConstants: commonPaths.globalConstants,
+      coreContainers: commonPaths.coreContainers,
+      utils: commonPaths.utils,
+    },
   },
   performance: {
     hints: false,

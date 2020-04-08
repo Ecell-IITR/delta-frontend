@@ -2,14 +2,14 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
-import { Input, SubmitButton } from '../../../coreContainers'
-import validateInput from '../../../utils/validation/validation'
-import { loginAction } from '../../actions/index'
-import { hasToken } from '../../utils'
-import { TOKEN_TYPE } from '../../constants/index'
-import mainbuilding from '../../../images/mainbuilding.svg'
+import { notify } from 'react-notify-toast'
+import { NOTIF_SUCCESS_TYPE } from 'globalConstants'
+import validateInput from 'utils/validation/validation'
+import { Input, SubmitButton } from '../../coreContainers'
+import { loginAction } from '../actions'
+import mainbuilding from '../../images/mainbuilding.svg'
 
-import styles from '../css/login.css'
+import styles from './style.css'
 
 class LoginIndex extends Component {
   constructor(props) {
@@ -18,13 +18,6 @@ class LoginIndex extends Component {
       username: '',
       password: '',
       errors: '',
-    }
-  }
-
-  componentDidMount() {
-    const { history } = this.props
-    if (hasToken(TOKEN_TYPE)) {
-      history.push('/student/')
     }
   }
 
@@ -39,15 +32,14 @@ class LoginIndex extends Component {
 
   handleClick = (e) => {
     e.preventDefault()
-    const { history } = this.props
-
-    history.push('/student/register')
+    // const { history } = this.props
+    // history.push('/register')
   }
 
   handleSubmit = (e) => {
     e.preventDefault()
     let { username, password } = this.state
-    const { loginComponent } = this.props
+    const { loginComponent, history } = this.props
 
     if (username) {
       username = username.trim()
@@ -62,18 +54,19 @@ class LoginIndex extends Component {
         errors: checkPass.errors.password,
       })
     }
-    if (checkPass.isValid) loginComponent(username, password, this.callback)
-  }
-
-  callback = (error) => {
-    const { history } = this.props
-
-    if (error === 'ok') history.push('/student/')
-    else {
-      this.setState({
-        errors: 'Wrong credentials',
-      })
+    const data = {
+      username,
+      password,
     }
+    if (checkPass.isValid)
+      loginComponent(data, (status) => {
+        if (status === 200) {
+          notify.show('Successfully logged in!', NOTIF_SUCCESS_TYPE, 1000)
+          history.push('/')
+        } else {
+          notify.show('Something went wrong!', 'error', 3000)
+        }
+      })
   }
 
   render() {
@@ -140,14 +133,14 @@ LoginIndex.propTypes = {
 
 const mapStateToProps = (state) => {
   return {
-    auth: state.studentReducer.login,
+    auth: state.auth.login,
   }
 }
 
 const mapActionToProps = (dispatch) => {
   return {
-    loginComponent: (username, password, callback) => {
-      return dispatch(loginAction(username, password, callback))
+    loginComponent: (data, callback) => {
+      return dispatch(loginAction(data, callback))
     },
   }
 }

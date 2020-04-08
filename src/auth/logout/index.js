@@ -1,20 +1,18 @@
+/* eslint-disable react/forbid-prop-types */
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
-import { log_out } from '../../actions/index'
+import { logoutAction } from '../actions'
 
 class Logout extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {}
-  }
-
   componentDidMount() {
-    this.props.logout(this.callback)
+    const { logoutComponent } = this.props
+    logoutComponent(this.callback)
   }
 
   callback = () => {
-    this.props.history.push('/student/login')
+    const { history } = this.props
+    history.push('/login')
   }
 
   render() {
@@ -23,12 +21,12 @@ class Logout extends Component {
 }
 Logout.propTypes = {
   history: PropTypes.object.isRequired,
-  logout: PropTypes.func.isRequired,
+  logoutComponent: PropTypes.func.isRequired,
 }
 const mapActionToProps = (dispatch) => {
   return {
-    logout: (callback) => {
-      return dispatch(log_out(callback))
+    logoutComponent: (callback) => {
+      return dispatch(logoutAction(callback))
     },
   }
 }

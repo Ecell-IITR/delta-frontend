@@ -1,36 +1,49 @@
-/* eslint-disable react/forbid-prop-types */
 import React, { Component } from 'react'
-import { Switch, Route } from 'react-router-dom'
+import { Route } from 'react-router-dom'
+import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
-import OnBoardingIndex from './onboarding/index'
-import Logout from './logout/index'
-import Login from './login/index'
-import AuthenticativeRoutes from './authRoutes'
-import PrivateRoute from './pR'
+import { fetchUser } from '../actions'
 
-class StudentIndex extends Component {
+class StudentApp extends Component {
+  componentDidMount() {
+    const { fetchUserComponent } = this.props
+    fetchUserComponent()
+  }
+
   render() {
     const { match } = this.props
     return (
       <>
-        <Switch>
-          <Route
-            exact
-            path={`${match.path}/register`}
-            component={OnBoardingIndex} />
-          <Route exact path={`${match.path}/login`} component={Login} />
-          <Route exact path={`${match.path}/logout`} component={Logout} />
-          <PrivateRoute
-            path={`${match.path}/`}
-            component={AuthenticativeRoutes} />
-        </Switch>
+        <Route
+          exact
+          path={`${match.path}`}
+          component={React.lazy(() => import('./dashboard'))}
+        />
+        <Route
+          path={`${match.path}profile`}
+          component={React.lazy(() => import('./profile'))}
+        />
+        <Route
+          exact
+          path={`${match.path}opportunities`}
+          component={React.lazy(() => import('./opportunities'))}
+        />
       </>
     )
   }
 }
 
-StudentIndex.propTypes = {
+StudentApp.propTypes = {
   match: PropTypes.object,
+  fetchUserComponent: PropTypes.func,
 }
 
-export default StudentIndex
+const mapActionToProps = (dispatch) => {
+  return {
+    fetchUserComponent: () => {
+      return dispatch(fetchUser())
+    },
+  }
+}
+
+export default connect(null, mapActionToProps)(StudentApp)

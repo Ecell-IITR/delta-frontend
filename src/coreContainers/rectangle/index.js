@@ -17,7 +17,7 @@ class Rectangle extends Component {
       <div className={styles.rectangle}>
         {content.map((item, index) => {
           return (
-            <Link to={`/student/profile/${item}`} key={index}>
+            <Link to={`/profile/${item}`} key={index}>
               <div className={styles.item}>
                 <div className={styles.blank}></div>
                 <span className={styles.text}>{item}</span>

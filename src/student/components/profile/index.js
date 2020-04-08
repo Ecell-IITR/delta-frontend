@@ -2,35 +2,11 @@ import React, { Component } from 'react'
 import { Switch, Route } from 'react-router-dom'
 import { Progress, Icon } from 'semantic-ui-react'
 import { connect } from 'react-redux'
-import Loadable from 'react-loadable'
 import PropTypes from 'prop-types'
-import { fetchUser, fetchProfile } from '../../actions/index'
-import { hasToken } from '../../utils'
-import { TOKEN_TYPE } from '../../constants/index'
+import { fetchProfile } from '../../actions/index'
 import styles from '../css/profile.module.css'
+import Sidebar from './sidebar'
 import '../css/profile2.css'
-import Loader from '../loading/index'
-
-const Loading = ({ error }) => {
-  if (error) return <div>Error loading component</div>
-  return <Loader />
-}
-
-const Skills = Loadable({
-  loader: () => import('../addSkill/index'),
-  loading: Loading,
-})
-
-const Resume = Loadable({
-  loader: () => import('../resume/index'),
-  loading: Loading,
-})
-
-const Sidebar = Loadable({
-  loader: () => import('../../../coreContainers/rectangle/index.js'),
-  loading: Loading,
-})
-// import { Image } from "../../../coreContainers";
 
 class StudentProfile extends Component {
   constructor(props) {
@@ -39,18 +15,14 @@ class StudentProfile extends Component {
   }
 
   componentDidMount() {
-    if (hasToken(TOKEN_TYPE)) {
-      this.props.fetchUser(this.callback)
+    const { user, fetchProfileComponent } = this.props
+    if (user && user.username) {
+      fetchProfileComponent(user.username)
     }
   }
 
-  callback = () => {
-    this.props.fetchProfile(this.props.user.username)
-  }
-
   render() {
-    const student = this.props.info
-    const { user, match } = this.props
+    const { user, match, student } = this.props
     return (
       <>
         <div className={styles.info}>
@@ -108,8 +80,16 @@ class StudentProfile extends Component {
           </div>
           <div className="contentBox">
             <Switch>
-              <Route exact path={`${match.path}/skills`} componenet={Skills} />
-              <Route exact path={`${match.path}/resume`} componenet={Resume} />
+              <Route
+                exact
+                path={`${match.path}/skills`}
+                componenet={React.lazy(() => import('../addSkill'))}
+              />
+              <Route
+                exact
+                path={`${match.path}/resume`}
+                componenet={React.lazy(() => import('../resume'))}
+              />
             </Switch>
           </div>
         </div>
@@ -119,7 +99,7 @@ class StudentProfile extends Component {
 }
 
 StudentProfile.propTypes = {
-  info: PropTypes.objectOf(
+  student: PropTypes.objectOf(
     PropTypes.shape({
       branch: PropTypes.string,
       year: PropTypes.string,
@@ -134,25 +114,21 @@ StudentProfile.propTypes = {
     userDetails: PropTypes.string,
   }).isRequired,
   match: PropTypes.object.isRequired,
-  fetchUser: PropTypes.func.isRequired,
-  fetchProfile: PropTypes.func.isRequired,
+  fetchProfileComponent: PropTypes.func.isRequired,
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    fetchProfile: (username) => {
+    fetchProfileComponent: (username) => {
       dispatch(fetchProfile(username))
-    },
-    fetchUser: (callback) => {
-      dispatch(fetchUser(callback))
     },
   }
 }
 
 function mapStateToProps(state) {
   return {
-    user: state.studentReducer.user.userDetails,
-    info: state.studentReducer.profile.info,
+    user: state.student.user.userDetails,
+    student: state.student.profile.info,
   }
 }
 

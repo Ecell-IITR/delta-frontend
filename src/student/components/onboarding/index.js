@@ -134,7 +134,7 @@ onBoardingIndex.propTypes = {
 
 const mapStateToProps = (state) => {
   return {
-    info: state.studentReducer.profile.info,
+    info: state.student.profile.info,
   }
 }
 
