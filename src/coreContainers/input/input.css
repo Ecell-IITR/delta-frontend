@@ -1,8 +1,8 @@
 .general {
     font-size: 1rem;
     font-family: Neutrifpro-regular;
-    letter-spacing: 1.3px;
-    color: #5e5e5e;
+    letter-spacing: 0.5px;
+    color: #000000;
     width: 100%;
     border-radius: 5px;
     border: solid 1px #a8a9b5;
@@ -10,7 +10,6 @@
 }
 
 .general::placeholder {
-    color: #5a5c74;
-    letter-spacing: 0.84px;
+    font-size: 1rem;
     font-family: Neutrifpro-regular;
 }

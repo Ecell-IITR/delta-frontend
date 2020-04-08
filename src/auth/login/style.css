@@ -32,7 +32,6 @@
 
 .subheading {
   font-size: 1.6rem;
-  letter-spacing: 1px;
   line-height: normal;
   color: #a8a9b5;
   margin: 0px 0px 16px 0;
@@ -87,7 +86,7 @@
   box-shadow: 4px 7px 10px 1px rgba(0, 0, 0, 0.15);
 }
 
-.loginSubmit > button:active {
+.loginSubmit:active {
   color: #ffffff;
   background-color: #2964ee;
 }
