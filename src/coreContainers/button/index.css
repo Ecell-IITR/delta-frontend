@@ -1,0 +1,9 @@
+.general {
+  font-family: Neutrifpro-regular;
+  width: 100%;
+  background-color: transparent;
+  margin: 0;
+  padding: 1rem 1.4rem;
+  border: none;
+  cursor: pointer;
+}

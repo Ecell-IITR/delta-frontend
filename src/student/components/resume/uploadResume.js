@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import SubmitButton from '../../../coreContainers/button/submit'
+// import SubmitButton from '../../../coreContainers/button/submit'
 import FetchAPI from '../../../utils/FetchAPI'
 
 class uploadResume extends Component {
@@ -33,14 +33,13 @@ class uploadResume extends Component {
   }
 
   render() {
-    console.log(this.state)
     return (
       <div className="uploadResume">
-        <SubmitButton
+        {/* <SubmitButton
           color="white"
           buttonContent="Upload Resume"
           onClick={this.handleUpload}
-        />
+        /> */}
         <div className="fileInput">
           <input type="file" name="file" onChange={this.handleChange} />
         </div>

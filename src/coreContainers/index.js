@@ -1,8 +1,7 @@
-import Input from './input/index'
-import GeneralButton from './button/general'
-import SubmitButton from './button/submit'
-import Post from './post/index'
-import Image from './image/index'
-import Navbar from './navbar/index'
+import Input from './input'
+import Button from './button'
+import Post from './post'
+import Image from './image'
+import Navbar from './navbar'
 
-export { Input, GeneralButton, SubmitButton, Post, Image, Navbar }
+export { Input, Button, Post, Image, Navbar }

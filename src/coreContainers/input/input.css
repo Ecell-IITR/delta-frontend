@@ -1,10 +1,16 @@
 .general {
-    border-radius: 5px;
     font-size: 1rem;
-    font-weight: normal;
-    font-style: normal;
-    font-stretch: normal;
-    line-height: normal;
+    font-family: Neutrifpro-regular;
     letter-spacing: 1.3px;
     color: #5e5e5e;
+    width: 100%;
+    border-radius: 5px;
+    border: solid 1px #a8a9b5;
+    padding: 1rem 1.4rem;
+}
+
+.general::placeholder {
+    color: #5a5c74;
+    letter-spacing: 0.84px;
+    font-family: Neutrifpro-regular;
 }
