@@ -57,6 +57,7 @@ class Skill extends Component {
         <div className={skills.filterSkills}>
           <div className={skills.searchBox}>
             <Input
+              className={skills.searchBoxinput}
               icon="search"
               placeholder="Add Skills..."
               onChange={this.handleChange}
