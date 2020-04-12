@@ -1,11 +1,12 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
 import { Icon } from 'semantic-ui-react'
 import Searchbar from '../searchbar/index'
 import ImageIndex from '../image/index'
-import styles from './navbar.module.css'
+
+import styles from './navbar.css'
 // import PropTypes from 'prop-types'
-class Navbar extends Component {
+class Navbar extends React.PureComponent {
   render() {
     return (
       <div className={styles.navbar}>
