@@ -1,4 +1,4 @@
-.each-row {
+.eachrow {
   width: 270px;
   display: flex;
   align-items: center;
@@ -6,12 +6,12 @@
   padding-left:13px;
 
 }
-.name-each-row {
+.nameeachrow {
   padding-left: 15px;
   font-size: 18px;
   font-weight: 500;
   color: #5a5c74;
 }
-.icon-style {
+.iconstyle {
   color: #5a5c74;
 }

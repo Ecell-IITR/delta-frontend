@@ -6,8 +6,7 @@ import PropTypes from 'prop-types'
 import { fetchProfile } from '../../actions/index'
 import styles from '../css/profile.module.css'
 import Sidebar from './sidebar'
-import '../css/profile2.css'
-
+import styles_1 from '../css/profile2.module.css'
 class StudentProfile extends Component {
   constructor(props) {
     super(props)
@@ -74,21 +73,21 @@ class StudentProfile extends Component {
             </div>
           </div>
         </div>
-        <div className="profile2">
-          <div className="sidebar">
+        <div className={styles_1.profile2}>
+          <div className={styles_1.sidebar}>
             <Sidebar />
           </div>
-          <div className="contentBox">
+          <div className={styles_1.contentBox}>
             <Switch>
               <Route
                 exact
                 path={`${match.path}/skills`}
-                componenet={React.lazy(() => import('../addSkill'))}
+                component={React.lazy(() => import('../addSkill'))}
               />
               <Route
                 exact
                 path={`${match.path}/resume`}
-                componenet={React.lazy(() => import('../resume'))}
+                component={React.lazy(() => import('../resume'))}
               />
             </Switch>
           </div>

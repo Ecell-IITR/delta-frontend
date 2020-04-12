@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import './sidebarRow.css'
+import styles from './sidebarRow.module.css'
 import { Icon } from 'semantic-ui-react'
 
 export default class SideBarRow extends Component {
@@ -21,7 +21,7 @@ export default class SideBarRow extends Component {
     const { mouseOver } = this.state
     return (
       <div
-        className="each-row"
+        className={styles.eachrow}
         onMouseOver={this.handleHover}
         onMouseOut={this.handleHover}
         style={mouseOver ? { backgroundColor: '#2964ee' } : null}
@@ -29,11 +29,11 @@ export default class SideBarRow extends Component {
         <Icon
           name={this.props.Icon}
           size="big"
-          className="icon-style"
+          className={styles.iconstyle}
           style={mouseOver ? { color: 'white' } : null}
         />
         <span
-          className="name-each-row"
+          className={styles.nameeachrow}
           style={mouseOver ? { color: 'white' } : null}
         >
           {this.props.Title}
