@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 // import SubmitButton from '../../../coreContainers/button/submit'
-import FetchAPI from '../../../utils/FetchAPI'
+import FetchAPI from '../../../../utils/FetchAPI'
 
 class uploadResume extends Component {
   constructor(props) {

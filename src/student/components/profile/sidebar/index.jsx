@@ -1,20 +1,20 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
-import SideBarRow from '../../../coreContainers/sideBarRow'
-import styles_2 from "../css/profileSidebar.module.css"
+import { Link, NavLink } from 'react-router-dom'
+import SideBarRow from '../../../../coreContainers/sideBarRow'
+import styles_2 from './index.module.css'
 class ProfileSidebar extends Component {
   state = {}
   render() {
     return (
       <div className={styles_2.profilesidebar}>
         <SideBarRow Icon="th list" Title="Posts" />
-        <Link to="/profile/skills">
+        <NavLink to="/profile/skills" activeClassName={styles_2.active}>
         <SideBarRow Icon="id card outline" Title="Skills" />
-        </Link>
+        </NavLink>
         <SideBarRow Icon="trophy" Title="Achievements" />
-        <Link to="/profile/resume">
+        <NavLink to="/profile/resume" activeClassName={styles_2.active}>
         <SideBarRow Icon="file alternate" Title="Resume" />
-        </Link>
+        </NavLink>
       </div>
     )
   }

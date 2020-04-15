@@ -4,7 +4,7 @@ import React, { Component } from 'react'
 import UploadResume from './uploadResume'
 import ViewResume from './viewResume'
 import { connect } from 'react-redux'
-import '../css/resume.css'
+import './index.css'
 import { Document, Page, pdfjs } from 'react-pdf'
 import PropTypes from 'prop-types'
 

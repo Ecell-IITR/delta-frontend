@@ -9,9 +9,9 @@ import {
   removeSkill,
   handleSkills,
   removeAll,
-} from '../../actions/index'
+} from '../../../actions/index'
 
-import skills from '../css/skill.css'
+import skills from './index.css'
 
 const constantList = [
   'web developer',
