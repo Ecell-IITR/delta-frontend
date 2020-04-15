@@ -9,16 +9,11 @@ import {
 
 const initialState = {
   userActions: {
-    isuploading: false,
-    isfetching: false,
-    isinitializing: false,
+    isUploading: false,
+    isFetching: false,
     errors: '',
   },
-  userDetails: {
-    username: '',
-    email: '',
-    id: '',
-  },
+  userDetails: {},
 }
 
 const user = (state = initialState, action) => {
@@ -27,14 +22,14 @@ const user = (state = initialState, action) => {
       return {
         ...state,
         userActions: {
-          isuploading: true,
+          isUploading: true,
         },
       }
     case UPLOAD_USER_IMAGE_FAILURE:
       return {
         ...state,
         userActions: {
-          isuploading: false,
+          isUploading: false,
           errors: 'Something went wrong!',
         },
       }
@@ -42,27 +37,23 @@ const user = (state = initialState, action) => {
       return {
         ...state,
         userActions: {
-          isuploading: false,
+          isUploading: false,
         },
       }
     case FETCH_USER_REQUEST:
       return {
         ...state,
         userActions: {
-          isfetching: true,
+          isFetching: true,
         },
       }
     case FETCH_USER_SUCCESS:
       return {
         ...state,
         userActions: {
-          isfetching: false,
+          isFetching: false,
         },
-        userDetails: {
-          id: action.payload.id,
-          email: action.payload.email,
-          username: action.payload.username,
-        },
+        userDetails: action.payload,
       }
     case FETCH_USER_FAILURE:
       return {

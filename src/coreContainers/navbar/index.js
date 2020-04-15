@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { Icon } from 'semantic-ui-react'
+// import { Icon } from 'semantic-ui-react'
 import Searchbar from '../searchbar/index'
 import ImageIndex from '../image/index'
 
@@ -30,11 +30,11 @@ class Navbar extends React.PureComponent {
             <li>
               <Link to="/">More</Link>
             </li>
-            <li>
+            {/* <li>
               <Link to="/">
                 <Icon name="bell" />
               </Link>
-            </li>
+            </li> */}
             <li>
               <ImageIndex
                 image="https://3.bp.blogspot.com/-iRUC5QuV8Bc/XM8aQxSkntI/AAAAAAAAB64/k4Dcl-z0GhYjP7oHUUPO5XsSw3tWeyNlgCEwYBhgL/s1600/summer_of_code_15yrs_square_PS_400px_RGB.png"

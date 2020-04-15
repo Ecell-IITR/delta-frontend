@@ -3,9 +3,6 @@ import {
   REGISTER_FAILURE,
   REGISTER_SUCCESS,
   REGISTER_REQUEST,
-  FETCH_USER_REQUEST,
-  FETCH_USER_SUCCESS,
-  FETCH_USER_FAILURE,
   FETCH_USER_PROFILE_REQUEST,
   FETCH_USER_PROFILE_SUCCESS,
   FETCH_USER_PROFILE_FAILURE,
@@ -19,6 +16,8 @@ import {
 import FetchApi from '../../utils/FetchAPI'
 import { getToken } from '../../utils/tokenFunc'
 import { TOKEN_TYPE } from '../../globalConstants'
+
+export * from './fetchStudent'
 
 const token = getToken(TOKEN_TYPE)
 
@@ -53,22 +52,6 @@ export const createProfile = (profile) => {
       })
       .catch((error) => {
         dispatch({ type: CREATE_USER_PROFILE_FAILURE, error })
-      })
-  }
-}
-
-export const fetchUser = (callback) => {
-  return (dispatch) => {
-    dispatch({ type: FETCH_USER_REQUEST })
-    FetchApi('GET', '/api/v1/get/user', null, token)
-      .then((res) => {
-        if (res.data) {
-          dispatch({ type: FETCH_USER_SUCCESS, payload: res.data })
-          callback()
-        }
-      })
-      .catch((error) => {
-        dispatch({ type: FETCH_USER_FAILURE, error })
       })
   }
 }

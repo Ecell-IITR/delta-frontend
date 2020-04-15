@@ -1,3 +1,4 @@
+/* eslint-disable react/forbid-prop-types */
 import React, { Component } from 'react'
 import { Switch, Route } from 'react-router-dom'
 import { Progress, Icon } from 'semantic-ui-react'
@@ -7,6 +8,7 @@ import { fetchProfile } from '../../actions/index'
 import styles from '../css/profile.module.css'
 import Sidebar from './sidebar'
 import styles_1 from '../css/profile2.module.css'
+
 class StudentProfile extends Component {
   constructor(props) {
     super(props)

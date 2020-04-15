@@ -8,7 +8,7 @@ const FetchApi = (method, url, params, TokenValue) => {
         url,
         data: params,
         headers: {
-          Authorization: 'JWT ' + TokenValue,
+          Authorization: 'Token ' + TokenValue,
         },
         responseType: 'json',
       })

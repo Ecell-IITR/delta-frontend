@@ -1,15 +1,14 @@
 import { notify } from 'react-notify-toast'
 import { setToken, logout } from 'utils/tokenFunc'
 import {
-  WRONG_CREDENTIALS,
   NOTIF_ERROR_TYPE,
   NOTIF_SUCCESS_TYPE,
   TOKEN_TYPE,
-  SERVER_ERROR,
   NOTIF_MID_RANGE_TIMEOUT,
   LOGOUT_SUCCESS_MSG,
 } from 'globalConstants'
 import FetchApi from 'utils/FetchAPI'
+import { getErrorMsg } from 'utils/getErrorMsg'
 import {
   LOGIN_REQUEST,
   LOGIN_FAILURE,
@@ -35,9 +34,7 @@ export const loginAction = (data, callback) => {
           error: error.response && error.response.statusText,
         })
         notify.show(
-          error.response && error.response.status === 403
-            ? WRONG_CREDENTIALS
-            : SERVER_ERROR,
+          getErrorMsg(error),
           NOTIF_ERROR_TYPE,
           NOTIF_MID_RANGE_TIMEOUT,
         )
