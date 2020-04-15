@@ -6,7 +6,7 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { fetchProfile } from '../../actions/index'
 import styles from '../css/profile.module.css'
-import Sidebar from './sidebar'
+import Sidebar from './sidebar/index'
 import styles_1 from '../css/profile2.module.css'
 
 class StudentProfile extends Component {
@@ -84,12 +84,12 @@ class StudentProfile extends Component {
               <Route
                 exact
                 path={`${match.path}/skills`}
-                component={React.lazy(() => import('../addSkill'))}
+                component={React.lazy(() => import('./skills/index'))}
               />
               <Route
                 exact
                 path={`${match.path}/resume`}
-                component={React.lazy(() => import('../resume'))}
+                component={React.lazy(() => import('./resume'))}
               />
             </Switch>
           </div>

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 // import SubmitButton from '../../../coreContainers/button/submit'
-import { viewResume } from '../../actions'
+import { viewResume } from '../../../actions'
 
 class ViewResume extends Component {
   constructor(props) {
