@@ -190,3 +190,120 @@ export function itemsFetchData() {
 }
 
 // Searchbar Ends
+
+
+
+//////////////////////////////////////////////////////////////////
+///////////////////// CREATE POST actions/////////////////////////
+//////////////////////////////////////////////////////////////////
+
+
+
+export function createPostSuccess(data) {
+  return {
+    type: CREATE_POST_SUCCESS,
+    payload: data,
+  }
+}
+
+export function createPostLoading(bool) {
+  return {
+    type: CREATE_POST_LOADING,
+    isLoading: bool,
+  }
+}
+
+export function createPostFailure(bool) {
+  return {
+    type: CREATE_POST_FAILURE,
+    hasErrored: bool,
+  }
+}
+
+//Internship
+export function createPostInternship() {
+  
+  const data = {
+    job_position,
+    type_of_work,
+    work_description,
+    duration_of_intern,
+    stipend,
+    required_skills,
+    post_expiry_date,
+  }
+  
+  return (dispatch) => {
+    dispatch(createPostLoading(true))
+    FetchApi('POST', '/api/v1/post/', data)
+      .then((res => {
+        if(res.data) {
+          dispatch(createPostSuccess(data))
+        }
+      })
+      )
+      .catch((error) => {
+        dispatch(createPostFailure(true))
+      })
+      dispatch(createPostLoading(false))
+  }
+}
+
+//Project
+
+export function createPostProject() {
+  const data = {
+    title,
+    stipend,
+    work_description,
+    project_file,
+    approx_duration,
+    required_skills,
+    post_expiry_date,
+  }
+  return (dispatch) => {
+    dispatch(createPostLoading(true))
+    FetchApi('POST', '/api/v1/post/', data)
+      .then((res => {
+        if(res.data) {
+          dispatch(createPostSuccess(data))
+        }
+      })
+      )
+      .catch((error) => {
+        dispatch(createPostFailure(true))
+      })
+      dispatch(createPostLoading(false))
+  }
+}
+
+
+//Competition
+
+export function createPostCompetion() {
+  const data = {
+    title,
+    type_of_competition,
+    competition_description,
+    poster,
+    date_of_competition,
+    post_expiry_date,
+    link,
+    prize,
+    skill_set
+  }
+  return (dispatch) => {
+    dispatch(createPostLoading(true))
+    FetchApi('POST', '/api/v1/post/', data)
+      .then((res => {
+        if(res.data) {
+          dispatch(createPostSuccess(data))
+        }
+      })
+      )
+      .catch((error) => {
+        dispatch(createPostFailure(true))
+      })
+      dispatch(createPostLoading(false))
+  }
+}
