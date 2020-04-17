@@ -1,24 +1,22 @@
 import {
-    CREATE_POST_FAILURE,
-    CREATE_POST_LOADING,
-    CREATE_POST_SUCCESS,
+  CREATE_POST_FAILURE,
+  CREATE_POST_LOADING,
+  CREATE_POST_SUCCESS,
 } from '../constants/index'
 
 const initialState = {
-    data: {
-        title: '',
-        type_of_competition: '',
-        competition_description: '',
-        poster: null,
-        date_of_competition: '',
-        post_expiry_date: '',
-        link: '',
-        prize: [],
-        required_skills: []
-
-    }
+  data: {
+    title: '',
+    type_of_competition: '',
+    competition_description: '',
+    poster: null,
+    date_of_competition: '',
+    post_expiry_date: '',
+    link: '',
+    prize: [],
+    required_skills: [],
+  },
 }
-
 
 const createPostCompetitionReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -30,16 +28,13 @@ const createPostCompetitionReducer = (state = initialState, action) => {
 
     case CREATE_POST_SUCCESS:
       return {
-          ...state,
-          data: {
-              
-          }
+        ...state,
+        data: {},
       }
 
     default:
       return state
   }
 }
-
 
 export default createPostCompetitionReducer

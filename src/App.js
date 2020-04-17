@@ -14,7 +14,7 @@ export default class App extends Component {
           <>
             <PrivateRoute
               path="/"
-              component={React.lazy(() => import('./coreContainers/navbar'))}
+              component={React.lazy(() => import('coreContainers/navbar'))}
             />
             <Switch>
               {/* <Route

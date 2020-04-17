@@ -174,13 +174,9 @@ export function itemsFetchData() {
 
 // Searchbar Ends
 
-
-
 //////////////////////////////////////////////////////////////////
 ///////////////////// CREATE POST actions/////////////////////////
 //////////////////////////////////////////////////////////////////
-
-
 
 export function createPostSuccess(data) {
   return {
@@ -205,7 +201,6 @@ export function createPostFailure(bool) {
 
 //Internship
 export function createPostInternship() {
-  
   const data = {
     job_position,
     type_of_work,
@@ -215,20 +210,19 @@ export function createPostInternship() {
     required_skills,
     post_expiry_date,
   }
-  
+
   return (dispatch) => {
     dispatch(createPostLoading(true))
     FetchApi('POST', '/api/v1/post/', data)
-      .then((res => {
-        if(res.data) {
+      .then((res) => {
+        if (res.data) {
           dispatch(createPostSuccess(data))
         }
       })
-      )
       .catch((error) => {
         dispatch(createPostFailure(true))
       })
-      dispatch(createPostLoading(false))
+    dispatch(createPostLoading(false))
   }
 }
 
@@ -247,19 +241,17 @@ export function createPostProject() {
   return (dispatch) => {
     dispatch(createPostLoading(true))
     FetchApi('POST', '/api/v1/post/', data)
-      .then((res => {
-        if(res.data) {
+      .then((res) => {
+        if (res.data) {
           dispatch(createPostSuccess(data))
         }
       })
-      )
       .catch((error) => {
         dispatch(createPostFailure(true))
       })
-      dispatch(createPostLoading(false))
+    dispatch(createPostLoading(false))
   }
 }
-
 
 //Competition
 
@@ -273,20 +265,19 @@ export function createPostCompetion() {
     post_expiry_date,
     link,
     prize,
-    skill_set
+    skill_set,
   }
   return (dispatch) => {
     dispatch(createPostLoading(true))
     FetchApi('POST', '/api/v1/post/', data)
-      .then((res => {
-        if(res.data) {
+      .then((res) => {
+        if (res.data) {
           dispatch(createPostSuccess(data))
         }
       })
-      )
       .catch((error) => {
         dispatch(createPostFailure(true))
       })
-      dispatch(createPostLoading(false))
+    dispatch(createPostLoading(false))
   }
 }

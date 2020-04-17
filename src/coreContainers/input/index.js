@@ -5,7 +5,14 @@ import styles from './input.css'
 
 export default class InputField extends Component {
   render() {
-    const { placeholder, type, name, onChange, label, customClassName } = this.props
+    const {
+      placeholder,
+      type,
+      name,
+      onChange,
+      label,
+      customClassName,
+    } = this.props
     return (
       <input
         className={`${styles.general}  ${customClassName}`}

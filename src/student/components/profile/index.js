@@ -84,7 +84,7 @@ class StudentProfile extends Component {
               <Route
                 exact
                 path={`${match.path}/skills`}
-                component={React.lazy(() => import('./skills/index'))}
+                component={React.lazy(() => import('./skills'))}
               />
               <Route
                 exact
