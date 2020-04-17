@@ -5,20 +5,9 @@ import {
 } from '../constants/index'
 
 const initialState = {
-  info: {
-    branch: '',
-    year: '',
-    course: '',
-    roll: '',
-    bio: '',
-    profile_image: '',
-    interest: '',
-    skills: [],
-    social_links: '',
-    resume_file: '',
-  },
-  isfetching: false,
+  isFetching: false,
   error: '',
+  profile: {},
 }
 
 const profile = (state = initialState, action) => {
@@ -26,29 +15,18 @@ const profile = (state = initialState, action) => {
     case FETCH_USER_PROFILE_REQUEST:
       return {
         ...state,
-        isfetching: true,
+        isFetching: true,
       }
     case FETCH_USER_PROFILE_SUCCESS:
       return {
         ...state,
-        info: {
-          branch: action.payload.branch,
-          year: action.payload.year,
-          course: action.payload.course,
-          roll: action.payload.enrollment_number,
-          bio: action.payload.bio,
-          profile_image: action.payload.profile_image,
-          interest: action.payload.interest,
-          skills: action.payload.skills,
-          social_links: action.payload.social_links,
-          resume_file: action.payload.resume_file,
-        },
-        isfetching: false,
+        isFetching: false,
+        profile: action.payload,
       }
     case FETCH_USER_PROFILE_FAILURE:
       return {
         ...state,
-        isfetching: false,
+        isFetching: false,
         error: action.payload,
       }
     case 'ADD_PROFILE_SKILLS':

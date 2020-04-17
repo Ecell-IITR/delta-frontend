@@ -17,7 +17,8 @@ import FetchApi from '../../utils/FetchAPI'
 import { getToken } from '../../utils/tokenFunc'
 import { TOKEN_TYPE } from '../../globalConstants'
 
-export * from './fetchStudent'
+export * from './fetch-user'
+export * from './fetch-student-profile'
 
 const token = getToken(TOKEN_TYPE)
 
@@ -174,9 +175,9 @@ export function itemsFetchData() {
 
 // Searchbar Ends
 
-//////////////////////////////////////////////////////////////////
-///////////////////// CREATE POST actions/////////////////////////
-//////////////////////////////////////////////////////////////////
+// ////////////////////////////////////////////////////////////////
+// /////////////////// CREATE POST actions/////////////////////////
+// ////////////////////////////////////////////////////////////////
 
 export function createPostSuccess(data) {
   return {
@@ -199,7 +200,7 @@ export function createPostFailure(bool) {
   }
 }
 
-//Internship
+// Internship
 export function createPostInternship() {
   const data = {
     job_position,
@@ -226,7 +227,7 @@ export function createPostInternship() {
   }
 }
 
-//Project
+// Project
 
 export function createPostProject() {
   const data = {
@@ -253,7 +254,7 @@ export function createPostProject() {
   }
 }
 
-//Competition
+// Competition
 
 export function createPostCompetion() {
   const data = {

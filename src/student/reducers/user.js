@@ -8,12 +8,9 @@ import {
 } from '../constants/index'
 
 const initialState = {
-  userActions: {
-    isUploading: false,
-    isFetching: false,
-    errors: '',
-  },
-  userDetails: {},
+  isLoading: false,
+  errors: '',
+  user: {},
 }
 
 const user = (state = initialState, action) => {
@@ -21,46 +18,34 @@ const user = (state = initialState, action) => {
     case UPLOAD_USER_IMAGE_REQUEST:
       return {
         ...state,
-        userActions: {
-          isUploading: true,
-        },
+        isLoading: true,
       }
     case UPLOAD_USER_IMAGE_FAILURE:
       return {
         ...state,
-        userActions: {
-          isUploading: false,
-          errors: 'Something went wrong!',
-        },
+        isLoading: false,
+        errors: 'Something went wrong!',
       }
     case UPLOAD_USER_IMAGE_SUCCESS:
       return {
         ...state,
-        userActions: {
-          isUploading: false,
-        },
+        isLoading: false,
       }
     case FETCH_USER_REQUEST:
       return {
         ...state,
-        userActions: {
-          isFetching: true,
-        },
+        isLoading: true,
       }
     case FETCH_USER_SUCCESS:
       return {
         ...state,
-        userActions: {
-          isFetching: false,
-        },
-        userDetails: action.payload,
+        isLoading: false,
+        user: action.payload,
       }
     case FETCH_USER_FAILURE:
       return {
         ...state,
-        userActions: {
-          errors: action.payload,
-        },
+        errors: action.payload,
       }
     default:
       return state
