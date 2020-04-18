@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Route } from 'react-router-dom'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
-import { fetchUser } from '../actions'
+import { fetchUser } from '../actions/fetch-user'
 
 class StudentApp extends Component {
   componentDidMount() {
@@ -11,16 +11,17 @@ class StudentApp extends Component {
   }
 
   render() {
-    const { match } = this.props
+    const { match,user } = this.props
     return (
       <>
+        
         <Route
           exact
           path={`${match.path}`}
           component={React.lazy(() => import('./dashboard'))}
         />
         <Route
-          path={`${match.path}profile`}
+          path={`${match.path}user/${user.username}`}
           component={React.lazy(() => import('./profile'))}
         />
         <Route
@@ -51,6 +52,7 @@ class StudentApp extends Component {
 StudentApp.propTypes = {
   match: PropTypes.object,
   fetchUserComponent: PropTypes.func,
+  user: PropTypes.object,
 }
 
 const mapActionToProps = (dispatch) => {
@@ -61,4 +63,11 @@ const mapActionToProps = (dispatch) => {
   }
 }
 
-export default connect(null, mapActionToProps)(StudentApp)
+function mapStateToProps(state) {
+  return {
+    user: state.student.user.user,
+  
+  }
+}
+
+export default connect(mapStateToProps, mapActionToProps)(StudentApp)

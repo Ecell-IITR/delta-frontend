@@ -86,7 +86,7 @@ class StudentProfile extends Component {
             </div>
             <div className={stylesNew.profile2}>
               <div className={stylesNew.sidebar}>
-                <Sidebar />
+                <Sidebar User={user.username} />
               </div>
               <div className={stylesNew.contentBox}>
                 <Switch>
