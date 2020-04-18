@@ -16,7 +16,7 @@ import {
 export const fetchUser = () => {
   return (dispatch) => {
     dispatch({ type: FETCH_USER_REQUEST })
-    FetchApi('GET', '/api/v1/user', null, getToken(TOKEN_TYPE))
+    FetchApi('GET', '/api/v1/user/', null, getToken(TOKEN_TYPE))
       .then((res) => {
         if (res.data) {
           dispatch({ type: FETCH_USER_SUCCESS, payload: res.data })
