@@ -28,7 +28,6 @@ class Project extends Component {
   render() {
     return (
       <div>
-        <CreatePost />
         <Form.Group>
           <InputField label="Title" placeholder="Enter title of project" />
           <InputField label="Stipend" placeholder="Enter Stipend" />

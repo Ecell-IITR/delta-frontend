@@ -32,9 +32,6 @@ class Internship extends Component {
     return (
       <div className="internship-container">
         <div>
-          <CreatePost />
-        </div>
-        <div>
           <Form.Group widths="equal">
             <InputField label="Job Position" placeholder="Enter job position" />
             <Dropdown options={this.state.options_work} />

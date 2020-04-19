@@ -29,7 +29,6 @@ class Competition extends Component {
   render() {
     return (
       <div>
-        <CreatePost />
         <Form.Group>
           <InputField label="Title" placeholder="Enter title of project" />
           <InputField
