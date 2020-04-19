@@ -8,11 +8,11 @@ const initialState = {
   data: {
     title: '',
     stipend: '',
-    work_description: '',
-    project_file: null,
-    approx_duration: '',
-    required_skills: [],
-    post_exipry_date: '',
+    workDescription: '',
+    projectFile: null,
+    approxDuration: '',
+    requiredSkills: [],
+    postExipryDate: '',
   },
 }
 
@@ -27,7 +27,15 @@ const createPostProjectReducer = (state = initialState, action) => {
     case CREATE_POST_SUCCESS:
       return {
         ...state,
-        data: {},
+        data: {
+          title: action.payload.title,
+          stipend: action.payload.stipend,
+          workDescription: action.payload.workDescription,
+          projectFile: action.payload.projectFile,
+          approxDuration: action.payload.approxDuration,
+          requiredSkills: action.payload.requiredSkills,
+          postExipryDate: action.payload.postExipryDate
+        },
       }
 
     default:

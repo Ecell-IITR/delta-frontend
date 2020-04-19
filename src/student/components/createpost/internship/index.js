@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { Form } from 'semantic-ui-react'
 import CreatePost from '.'
-import InputField from '../../../coreContainers/input'
-import Dropdown from '../../../coreContainers/dropdown'
-import { SubmitButton } from '../../../coreContainers'
+import InputField from '../../../../coreContainers/input'
+import Dropdown from '../../../../coreContainers/dropdown'
+import { SubmitButton } from '../../../../coreContainers'
 
 class Internship extends Component {
   constructor(props) {

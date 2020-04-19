@@ -33,7 +33,7 @@ class Navbar extends React.PureComponent {
               <Link to="/opportunities">Opportunities</Link>
             </li>
             <li>
-              <Link to="/">Create Post</Link>
+              <Link to="/create-post">Create Post</Link>
             </li>
             <li>
               <Link to="/">More</Link>

@@ -12,6 +12,9 @@ import {
   ITEMS_HAS_ERRORED,
   ITEMS_IS_LOADING,
   ITEMS_FETCH_DATA_SUCCESS,
+  CREATE_POST_SUCCESS,
+  CREATE_POST_LOADING,
+  CREATE_POST_FAILURE,
 } from '../constants/index'
 import FetchApi from '../../utils/FetchAPI'
 import { getToken } from '../../utils/tokenFunc'
@@ -203,13 +206,13 @@ export function createPostFailure(bool) {
 // Internship
 export function createPostInternship() {
   const data = {
-    job_position,
-    type_of_work,
-    work_description,
-    duration_of_intern,
+    jobPosition,
+    typeOfWork,
+    workDescription,
+    durationOfIntern,
     stipend,
-    required_skills,
-    post_expiry_date,
+    requiredSkills,
+    postExpiryDate,
   }
 
   return (dispatch) => {
@@ -233,11 +236,11 @@ export function createPostProject() {
   const data = {
     title,
     stipend,
-    work_description,
-    project_file,
-    approx_duration,
-    required_skills,
-    post_expiry_date,
+    workDescription,
+    projectFile,
+    approxDuration,
+    requiredSkills,
+    postExpiryDate,
   }
   return (dispatch) => {
     dispatch(createPostLoading(true))
@@ -259,14 +262,14 @@ export function createPostProject() {
 export function createPostCompetion() {
   const data = {
     title,
-    type_of_competition,
-    competition_description,
+    typeOfCompetition,
+    competitionDescription,
     poster,
-    date_of_competition,
-    post_expiry_date,
+    dateOfCompetition,
+    postExpiryDate,
     link,
     prize,
-    skill_set,
+    skillSet,
   }
   return (dispatch) => {
     dispatch(createPostLoading(true))
@@ -280,5 +283,49 @@ export function createPostCompetion() {
         dispatch(createPostFailure(true))
       })
     dispatch(createPostLoading(false))
+  }
+}
+
+
+//////////////////////////////////////////////////////////////////
+///////////////////// Fetch POST actions/////////////////////////
+//////////////////////////////////////////////////////////////////
+
+
+export function postFetchFailure(bool) {
+  return {
+    type: POST_FETCH_ERRORED,
+    hasErrored: bool,
+  }
+}
+
+export function postFetchLoading(bool) {
+  return {
+    type: POST_FETCH_LOADING,
+    isLoading: bool,
+  }
+}
+
+export function postFetchSuccess(post) {
+  return {
+    type: POST_FETCH_SUCCESS,
+    post,
+  }
+}
+
+export function postFetchData() {
+  return (dispatch) => {
+    dispatch(postFetchLoading(true))
+    FetchApi('GET', '/api/v1/post/', null)
+      .then((response) => {
+        if (!response.ok) {
+          throw Error(response.statusText)
+        }
+        dispatch(postFetchLoading(false))
+        return response
+      })
+      .then((response) => response.json())
+      .then((post) => dispatch(postFetchSuccess(post)))
+      .catch(() => dispatch(postFetchFailure(true)))
   }
 }
