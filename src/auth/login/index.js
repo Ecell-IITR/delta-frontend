@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { notify } from 'react-notify-toast'
 import { NOTIF_SUCCESS_TYPE, NOTIF_ERROR_TYPE } from 'globalConstants'
-import validateInput from 'utils/validation/validation'
+import validateInput from 'utils/validation'
 import { Input, Button } from 'coreContainers'
 import { loginAction } from '../actions'
 
