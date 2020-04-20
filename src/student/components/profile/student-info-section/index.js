@@ -9,7 +9,7 @@ class StudentInfoSection extends Component {
   render() {
     const { user, studentProfile } = this.props
     return (
-      <div>
+      <div className={styles['profile']}>
         <div className={styles['student-img']}>
           {/* <Image
             className={styles.image}
@@ -47,11 +47,11 @@ class StudentInfoSection extends Component {
                     /> */}
           </div>
           <div className={styles.label}>
-            <div className={styles['following-label']}>
+            <div className={styles['label_1']}>
               <span>Following 36</span>
               <Icon name="circle" size="big" />
             </div>
-            <div className={styles['available-label']}>
+            <div className={styles['label_2']}>
               <span>Available</span>
               <Icon name="circle" size="big" />
             </div>
