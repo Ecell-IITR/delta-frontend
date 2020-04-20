@@ -1,11 +1,11 @@
 // import { notify } from 'react-notify-toast'
+import FetchApi from 'utils/FetchAPI'
+import { getToken } from 'utils/tokenFunc'
+import { TOKEN_TYPE } from 'globalConstants'
 import {
   REGISTER_FAILURE,
   REGISTER_SUCCESS,
   REGISTER_REQUEST,
-  FETCH_USER_PROFILE_REQUEST,
-  FETCH_USER_PROFILE_SUCCESS,
-  FETCH_USER_PROFILE_FAILURE,
   CREATE_USER_PROFILE_REQUEST,
   CREATE_USER_PROFILE_SUCCESS,
   CREATE_USER_PROFILE_FAILURE,
@@ -13,29 +13,11 @@ import {
   ITEMS_IS_LOADING,
   ITEMS_FETCH_DATA_SUCCESS,
 } from '../constants/index'
-import FetchApi from '../../utils/FetchAPI'
-import { getToken } from '../../utils/tokenFunc'
-import { TOKEN_TYPE } from '../../globalConstants'
 
 export * from './fetch-user'
 export * from './fetch-student-profile'
 
 const token = getToken(TOKEN_TYPE)
-
-export const fetchProfile = (username) => {
-  return (dispatch) => {
-    dispatch({ type: FETCH_USER_PROFILE_REQUEST })
-    FetchApi('GET', '/api/v1/get/profile/' + username + '/', null, token)
-      .then((res) => {
-        if (res.data) {
-          dispatch({ type: FETCH_USER_PROFILE_SUCCESS, payload: res.data })
-        }
-      })
-      .catch((error) => {
-        dispatch({ type: FETCH_USER_PROFILE_FAILURE, error })
-      })
-  }
-}
 
 export const createProfile = (profile) => {
   return (dispatch) => {
@@ -117,19 +99,6 @@ export const handleSkills = (newArray) => {
 export const removeAll = () => {
   return {
     type: 'REMOVE_ALL',
-  }
-}
-
-/* ends */
-/* Resume Component actions */
-
-export const viewResume = () => {
-  return (dispatch) => {
-    FetchApi('GET', '/api/v1/get/resume', null, token).then((res) => {
-      if (res.data) {
-        dispatch({ type: 'VIEW_RESUME', payload: res.data })
-      }
-    })
   }
 }
 

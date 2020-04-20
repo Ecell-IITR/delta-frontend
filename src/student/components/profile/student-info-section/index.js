@@ -7,9 +7,9 @@ import styles from './index.css'
 
 class StudentInfoSection extends Component {
   render() {
-    const { user, studentProfile } = this.props
+    const { studentProfile } = this.props
     return (
-      <div className={styles['profile']}>
+      <div className={styles.profile}>
         <div className={styles['student-img']}>
           {/* <Image
             className={styles.image}
@@ -19,7 +19,9 @@ class StudentInfoSection extends Component {
         </div>
         <div className={styles['student-info']}>
           <div className={styles['student-personal-info']}>
-            <span className={styles['student-name']}>{user.username}</span>
+            <span className={styles['student-name']}>
+              {studentProfile.name}
+            </span>
             <span className={styles['student-branch']}>
               {studentProfile.branch + '    .' + studentProfile.year}
             </span>
@@ -47,11 +49,11 @@ class StudentInfoSection extends Component {
                     /> */}
           </div>
           <div className={styles.label}>
-            <div className={styles['label_1']}>
+            <div className={styles.label_1}>
               <span>Following 36</span>
               <Icon name="circle" size="big" />
             </div>
-            <div className={styles['label_2']}>
+            <div className={styles.label_2}>
               <span>Available</span>
               <Icon name="circle" size="big" />
             </div>
@@ -64,7 +66,6 @@ class StudentInfoSection extends Component {
 
 StudentInfoSection.propTypes = {
   studentProfile: PropTypes.object,
-  user: PropTypes.object,
 }
 
 export default StudentInfoSection

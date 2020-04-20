@@ -7,17 +7,9 @@ import {
 } from '../constants/index'
 
 const initialState = {
-  skills: [
-    'web developer',
-    'Competitive coder',
-    'blockchain developer',
-    'machine learning',
-    'designer',
-    'deep learning',
-    'finance',
-    'quant',
-  ],
-  addedSkills: ['illustrator'],
+  skills: [],
+  addedSkills: [],
+  skillsLoading: false,
 }
 
 function insertItem(array, action) {

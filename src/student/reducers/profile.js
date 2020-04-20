@@ -5,7 +5,7 @@ import {
 } from '../constants/index'
 
 const initialState = {
-  isFetching: false,
+  isLoading: false,
   error: '',
   profile: {},
 }
@@ -15,18 +15,18 @@ const profile = (state = initialState, action) => {
     case FETCH_USER_PROFILE_REQUEST:
       return {
         ...state,
-        isFetching: true,
+        isLoading: true,
       }
     case FETCH_USER_PROFILE_SUCCESS:
       return {
         ...state,
-        isFetching: false,
+        isLoading: false,
         profile: action.payload,
       }
     case FETCH_USER_PROFILE_FAILURE:
       return {
         ...state,
-        isFetching: false,
+        isLoading: false,
         error: action.payload,
       }
     case 'ADD_PROFILE_SKILLS':

@@ -15,20 +15,22 @@ class StudentProfile extends Component {
   componentDidMount() {
     const { fetchStudentProfileComponent, match, user } = this.props
     const { params } = match
-    fetchStudentProfileComponent(
-      user.username === params.username ? SELF_PROFILE : PUBLIC_PROFILE,
-    )
+    if (Object.keys(user).length > 0 && user.username) {
+      fetchStudentProfileComponent(
+        user.username === params.username ? SELF_PROFILE : PUBLIC_PROFILE,
+      )
+    }
   }
 
   render() {
-    const { user, match, studentProfile } = this.props
+    const { user, match, studentProfile, studentProfileLoading } = this.props
     return (
       <>
-        {studentProfile.isLoading ? (
+        {studentProfileLoading ? (
           <div>Loading....</div>
         ) : (
             <div className={styles.info}>
-              <StudentInfoSection studentProfile={studentProfile} user={user} />
+              <StudentInfoSection studentProfile={studentProfile} />
               <div className={stylesNew.profile2}>
                 <div className={stylesNew.sidebar}>
                   <Sidebar User={user.username} />
@@ -61,6 +63,7 @@ StudentProfile.propTypes = {
   match: PropTypes.object.isRequired,
   fetchStudentProfileComponent: PropTypes.func,
   params: PropTypes.object,
+  studentProfileLoading: PropTypes.bool,
 }
 
 function mapDispatchToProps(dispatch) {
@@ -74,6 +77,7 @@ function mapDispatchToProps(dispatch) {
 function mapStateToProps(state) {
   return {
     user: state.student.user.user,
+    studentProfileLoading: state.student.profile.isLoading,
     studentProfile: state.student.profile.profile,
   }
 }

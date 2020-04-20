@@ -1,13 +1,17 @@
+/* eslint-disable react/forbid-prop-types */
 import React, { Component } from 'react'
 import { Route } from 'react-router-dom'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
-import { fetchUser } from '../actions/fetch-user'
+// import { fetchUser } from '../actions/fetch-user'
 
 class StudentApp extends Component {
   componentDidMount() {
-    const { fetchUserComponent } = this.props
-    fetchUserComponent()
+    // const { fetchUserComponent, user } = this.props
+    // console.log(user, 'user')
+    // if (Object.keys(user).length === 0) {
+    //   fetchUserComponent()
+    // }
   }
 
   render() {
@@ -50,15 +54,21 @@ class StudentApp extends Component {
 
 StudentApp.propTypes = {
   match: PropTypes.object,
-  fetchUserComponent: PropTypes.func,
+  // fetchUserComponent: PropTypes.func,
+  // user: PropTypes.object,
 }
 
-const mapActionToProps = (dispatch) => {
+// const mapActionToProps = (dispatch) => {
+//   return {
+//     // fetchUserComponent: () => {
+//     //   return dispatch(fetchUser())
+//     // },
+//   }
+// }
+
+const mapStateToProps = (state) => {
   return {
-    fetchUserComponent: () => {
-      return dispatch(fetchUser())
-    },
+    user: state.student.user.user,
   }
 }
-
-export default connect(null, mapActionToProps)(StudentApp)
+export default connect(mapStateToProps, null)(StudentApp)
