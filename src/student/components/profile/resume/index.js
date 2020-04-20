@@ -2,13 +2,9 @@
 import React, { Component } from 'react'
 // import Loadable from 'react-loadable'
 import UploadResume from './uploadResume'
-import ViewResume from './viewResume'
 import { connect } from 'react-redux'
-import './index.css'
-import { Document, Page, pdfjs } from 'react-pdf'
+import styles from './index.css'
 import PropTypes from 'prop-types'
-
-pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`
 
 // const UploadResume = Loadable({
 //   loader: () => import('./uploadResume'),
@@ -46,43 +42,60 @@ class Resume extends Component {
   }
 
   render() {
-    const { numPages, pageNumber } = this.state
-    const { file } = this.props
-
+    const { studentProfile } = this.props;
     return (
-      <div className="resume">
-        <div className="content">
-          {file[0] && (
+      <div className={styles.resume}>
+        <div className={styles.content}>
+          {studentProfile.resume ? (
+            <iframe
+              src={`http://localhost:8000${studentProfile.resume}`}
+              width="100%"
+              height="100%"
+            ></iframe>
+          ) : (
+              <div>No resume file yet</div>
+            )}
+        </div>
+        {studentProfile.resume ? (
+          <div className={styles.optionsBar}>
+            <div class={styles.viewResume}>
+              <a
+                href={`http://localhost:8000${studentProfile.resume}`}
+                class={styles.viewButton}
+                target="__blank"
+              >
+                View Resume
+              </a>
+            </div>
+            <div class={styles.viewResume}>
+              <a href="" class={styles.viewButton} target="__blank">
+                Update Resume
+              </a>
+              {/*<UploadResume />*/}
+            </div>
+          </div>
+        ) : (
             <div>
-              <nav>
-                <button onClick={this.goToPrevPage}>Prev</button>
-                <button onClick={this.goToNextPage}>Next</button>
-              </nav>
-              <Document file={file} onLoadSuccess={this.onResumeLoad}>
-                <Page pageNumber={pageNumber} />
-              </Document>
-              <p>
-                Page {pageNumber} of {numPages}
-              </p>
+              No resume file yet
+              <div>
+                <UploadResume />
+              </div>
             </div>
           )}
-        </div>
-        <div className="optionsBar">
-          <ViewResume />
-          <UploadResume />
-        </div>
       </div>
     )
   }
 }
 
 Resume.propTypes = {
+  studentProfile: PropTypes.object,
   file: PropTypes.string,
 }
 
 function mapStateToProps(state) {
   return {
     file: state.student.resume.file,
+    studentProfile: state.student.profile.profile,
   }
 }
 
