@@ -21,6 +21,17 @@
 .viewResume .field button {
   width: 100%;
 }
+.viewButton{
+  font-family: Neutrifpro-regular;
+  width: 100%;
+  margin: 0;
+  padding: 0.5rem 1.4rem;
+  border: none;
+  cursor: pointer;
+  color:black;
+  background-color: white;
+}
+
 .uploadResume {
   width: 30%;
   height: 100%;
