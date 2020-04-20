@@ -17,7 +17,7 @@ import {
 export const fetchStudentProfile = (profileType) => {
   return (dispatch) => {
     dispatch({ type: FETCH_USER_PROFILE_REQUEST })
-    const profileTypeURL = addQueryParams('/api/v1/profile', {
+    const profileTypeURL = addQueryParams('/api/v1/profile/', {
       type: profileType,
     })
     FetchApi('GET', profileTypeURL, null, getToken(TOKEN_TYPE))
