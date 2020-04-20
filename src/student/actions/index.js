@@ -204,15 +204,15 @@ export function createPostFailure(bool) {
 }
 
 // Internship
-export function createPostInternship() {
+export function createPostInternship(post) {
   const data = {
-    jobPosition,
-    typeOfWork,
-    workDescription,
-    durationOfIntern,
-    stipend,
-    requiredSkills,
-    postExpiryDate,
+    jobPosition: post.jobPosition,
+    typeOfWork: post.typeOfWork,
+    workDescription: post.workDescription,
+    durationOfIntern: post.durationOfIntern,
+    stipend: post.stipend,
+    requiredSkills: post.requiredSkills,
+    postExpiryDate: post.postExpiryDate,
   }
 
   return (dispatch) => {
