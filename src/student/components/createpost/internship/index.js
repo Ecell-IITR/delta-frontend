@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { Form } from 'semantic-ui-react'
-import CreatePost from '.'
-import InputField from '../../../../coreContainers/input'
-import Dropdown from '../../../../coreContainers/dropdown'
-import { SubmitButton } from '../../../../coreContainers'
+// import CreatePost from '.'
+import InputField from 'coreContainers/input'
+import Dropdown from 'coreContainers/dropdown'
+import { SubmitButton } from 'coreContainers'
 import { createPostInternship } from '../../../actions'
 
 class Internship extends Component {
@@ -18,7 +18,6 @@ class Internship extends Component {
     this.stipendHandler = this.stipendHandler.bind(this)
     this.requiredSkillsHandler = this.requiredSkillsHandler.bind(this)
     this.postExpiryDateHandler = this.postExpiryDateHandler.bind(this)
-
 
     this.state = {
       optionsWork: [
@@ -40,45 +39,49 @@ class Internship extends Component {
     }
   }
 
+  jobPositionHandler = (e) => {
+    this.setState = {
+      jobPosition: e.target.value,
+    }
+  }
 
-  jobPositionHandler = e =>{
+  typeOfWorkHandler = (e) => {
     this.setState = {
-      jobPosition: e.target.value
+      typeOfWork: e.target.value,
     }
   }
-  typeOfWorkHandler = e =>{
+
+  workDescriptionHandler = (e) => {
     this.setState = {
-      typeOfWork: e.target.value
+      workDescription: e.target.value,
     }
   }
-  workDescriptionHandler = e =>{
+
+  durationOfInternHandler = (e) => {
     this.setState = {
-      workDescription: e.target.value
+      durationOfIntern: e.target.value,
     }
   }
-  durationOfInternHandler = e =>{
+
+  stipendHandler = (e) => {
     this.setState = {
-      durationOfIntern: e.target.value
+      stipend: e.target.value,
     }
   }
-  stipendHandler = e =>{
-    this.setState = {
-      stipend: e.target.value
-    }
-  }
+
   // requiredSkillsHandler = e =>{
   //   this.setState = {
   //     requiredSkills: e.target.value
   //   }
   // }
-  postExpiryDateHandler = e =>{
+  postExpiryDateHandler = (e) => {
     this.setState = {
-      postExpiryDate: e.target.value
+      postExpiryDate: e.target.value,
     }
   }
 
   onSubmit(e) {
-    e.preventDefault();
+    e.preventDefault()
 
     const data = {
       jobPosition: this.state.jobPosition,
@@ -93,14 +96,16 @@ class Internship extends Component {
     createPostInternship(data)
   }
 
-
-
   render() {
     return (
       <div className="internship-container">
         <div>
           <Form.Group onSubmit={this.onSubmit} widths="equal">
-            <InputField label="Job Position" onChange={this.jobPositionHandler} placeholder="Enter job position" />
+            <InputField
+              label="Job Position"
+              onChange={this.jobPositionHandler}
+              placeholder="Enter job position"
+            />
             <Dropdown options={this.state.optionsWork} />
             <InputField
               label="Work description"
@@ -112,7 +117,11 @@ class Internship extends Component {
               onChange={this.durationOfInternHandler}
               placeholder="Enter duration of intern"
             />
-            <InputField label="Stipend" onChange={this.stipendHandler} placeholder="Enter stipend" />
+            <InputField
+              label="Stipend"
+              onChange={this.stipendHandler}
+              placeholder="Enter stipend"
+            />
             <Dropdown options={this.state.optionsSkill} isMulti={true} />
             <InputField
               label="Post expiry date"
@@ -120,7 +129,7 @@ class Internship extends Component {
               placeholder="Select post expiry date"
               type="date"
             />
-            <SubmitButton type='submit' buttonContent="Save" />
+            <SubmitButton type="submit" buttonContent="Save" />
             <SubmitButton buttonContent="Publish" color="blue" />
           </Form.Group>
         </div>

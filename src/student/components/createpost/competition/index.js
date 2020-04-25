@@ -18,7 +18,6 @@ class Competition extends Component {
     this.postExpiryDateHandler = this.postExpiryDateHandler.bind(this)
     this.linkHandler = this.linkHandler.bind(this)
 
-
     this.state = {
       optionsSkill: [
         { value: 'photoshop', label: 'Photoshop' },
@@ -37,39 +36,39 @@ class Competition extends Component {
     }
   }
 
-  titleHandler = e =>{
+  titleHandler = (e) => {
     this.setState = {
-      title: e.target.value
+      title: e.target.value,
     }
   }
-  typeOfCompetitionHandler = e =>{
+  typeOfCompetitionHandler = (e) => {
     this.setState = {
-      typeOfCompetition: e.target.value
+      typeOfCompetition: e.target.value,
     }
   }
-  competitionDescriptionHandler = e =>{
+  competitionDescriptionHandler = (e) => {
     this.setState = {
-      competitionDescription: e.target.value
+      competitionDescription: e.target.value,
     }
   }
-  posterHandler = e =>{
+  posterHandler = (e) => {
     this.setState = {
-      postExpiryDate: e.target.file
+      postExpiryDate: e.target.file,
     }
   }
-  dateOfCompetitionHandler = e =>{
+  dateOfCompetitionHandler = (e) => {
     this.setState = {
-      dateOfCompetition: e.target.value
+      dateOfCompetition: e.target.value,
     }
   }
-  postExpiryDateHandler = e =>{
+  postExpiryDateHandler = (e) => {
     this.setState = {
-      postExpiryDate: e.target.value
+      postExpiryDate: e.target.value,
     }
   }
-  linkHandler = e =>{
+  linkHandler = (e) => {
     this.setState = {
-      link: e.target.value
+      link: e.target.value,
     }
   }
 
@@ -84,7 +83,7 @@ class Competition extends Component {
   //   }
   // }
   onSubmit(e) {
-    e.preventDefault();
+    e.preventDefault()
 
     const data = {
       title: this.state.title,
@@ -101,47 +100,45 @@ class Competition extends Component {
     createPostCompetition(data)
   }
 
-
-
   render() {
     return (
       <div>
         <Form.Group onSubmit={this.onSubmit}>
-          <InputField 
-            label="Title" 
-            placeholder="Enter title of project" 
-            onChange = {this.titleHandler}
+          <InputField
+            label="Title"
+            placeholder="Enter title of project"
+            onChange={this.titleHandler}
           />
           <InputField
             label="Type of competition"
             placeholder="Select type of competition"
-            onChange = {this.typeOfCompetitionHandler}
+            onChange={this.typeOfCompetitionHandler}
           />
           <InputField
             label="Competition description"
             placeholder="Enter competition description"
-            onChange = {this.competitionDescriptionHandler}
+            onChange={this.competitionDescriptionHandler}
           />
           <InputField label="Poster" placeholder="Add file" type="file" />
           <InputField
             label="Date of Competition"
             placeholder="Select date of competition"
-            onChange = {this.dateOfCompetitionHandler}
+            onChange={this.dateOfCompetitionHandler}
             type="date"
           />
           <InputField
             label="Post expiry date"
             placeholder="Select post expiry date"
-            onChange = {this.postExpiryDateHandler}
+            onChange={this.postExpiryDateHandler}
             type="date"
           />
           <InputField
             label="Link to apply for Competition"
             placeholder="Enter URL"
-            onChange = {this.linkHandler}
+            onChange={this.linkHandler}
           />
           <Dropdown options={this.state.optionsSkill} />
-          <SubmitButton type='submit' buttonContent="Save" />
+          <SubmitButton type="submit" buttonContent="Save" />
           <SubmitButton buttonContent="Publish" color="blue" />
         </Form.Group>
       </div>

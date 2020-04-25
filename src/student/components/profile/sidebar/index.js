@@ -8,11 +8,17 @@ class ProfileSidebar extends Component {
     return (
       <div className={styles.profilesidebar}>
         <SideBarRow Icon="th list" Title="Posts" />
-        <NavLink to={'/user/' + this.props.User + '/skills'} activeClassName={styles.active}>
+        <NavLink
+          to={'/user/' + this.props.User + '/skills'}
+          activeClassName={styles.active}
+        >
           <SideBarRow Icon="id card outline" Title="Skills" />
         </NavLink>
         <SideBarRow Icon="trophy" Title="Achievements" />
-        <NavLink to={'/user/' + this.props.User + '/resume'} activeClassName={styles.active}>
+        <NavLink
+          to={'/user/' + this.props.User + '/resume'}
+          activeClassName={styles.active}
+        >
           <SideBarRow Icon="file alternate" Title="Resume" />
         </NavLink>
       </div>

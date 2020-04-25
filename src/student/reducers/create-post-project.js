@@ -34,7 +34,7 @@ const createPostProjectReducer = (state = initialState, action) => {
           projectFile: action.payload.projectFile,
           approxDuration: action.payload.approxDuration,
           requiredSkills: action.payload.requiredSkills,
-          postExipryDate: action.payload.postExipryDate
+          postExipryDate: action.payload.postExipryDate,
         },
       }
 

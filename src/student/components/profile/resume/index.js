@@ -19,12 +19,11 @@ import PropTypes from 'prop-types'
 class Resume extends Component {
   constructor(props) {
     super(props)
-    this.state = {
-    }
+    this.state = {}
   }
 
   render() {
-    const { studentProfile } = this.props;
+    const { studentProfile } = this.props
     return (
       <div className={styles.resume}>
         <div className={styles.content}>
@@ -34,9 +33,7 @@ class Resume extends Component {
               width="100%"
               height="100%"
             ></iframe>
-          ) : (
-              null
-            )}
+          ) : null}
         </div>
         {studentProfile.resume ? (
           <div className={styles.optionsBar}>
@@ -56,7 +53,9 @@ class Resume extends Component {
               {/*<UploadResume />*/}
             </div>
           </div>
-        ) : (<UploadResume />)}
+        ) : (
+          <UploadResume />
+        )}
       </div>
     )
   }

@@ -4,12 +4,17 @@ import {
   HANDLE_SKILLS,
   REMOVE_SKILL,
   REMOVE_ALL,
+  FETCH_SKILLS_FAILURE,
+  FETCH_SKILLS_REQUEST,
+  FETCH_SKILLS_SUCCESS,
+  SET_ADDED_SKILLS,
 } from '../constants/index'
 
 const initialState = {
   skills: [],
   addedSkills: [],
-  skillsLoading: false,
+  skillsLoading: true,
+  errors: '',
 }
 
 function insertItem(array, action) {
@@ -32,11 +37,32 @@ const skill = (state = initialState, action) => {
   const newArray1 = state.skills
   const newArray2 = state.addedSkills
   switch (action.type) {
+    case FETCH_SKILLS_REQUEST:
+      return {
+        ...state,
+        skillsLoading: true,
+      }
+    case FETCH_SKILLS_SUCCESS:
+      return {
+        ...state,
+        skillsLoading: false,
+        skills: action.payload,
+      }
+    case FETCH_SKILLS_FAILURE:
+      return {
+        ...state,
+        skillsLoading: false,
+        errors: action.payload,
+      }
+    case SET_ADDED_SKILLS:
+      return {
+        ...state,
+        addedSkills: action.payload,
+      }
     case SHOW_SKILLS:
       return {
         ...state,
       }
-
     case ADD_SKILL:
       return {
         ...newState,

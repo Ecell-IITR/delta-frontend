@@ -9,7 +9,7 @@ import { createPostProject } from '../../../actions'
 class Project extends Component {
   constructor(prop) {
     super(prop)
-    this.onSubmit = this.onSubmit.bind(this);
+    this.onSubmit = this.onSubmit.bind(this)
     this.titleHandler = this.titleHandler.bind(this)
     this.stipendHandler = this.stipendHandler.bind(this)
     this.workDescriptionHandler = this.workDescriptionHandler.bind(this)
@@ -17,7 +17,6 @@ class Project extends Component {
     this.approxDurationHandler = this.approxDurationHandler.bind(this)
     this.requiredSkillsHandler = this.requiredSkillsHandler.bind(this)
     this.postExipryDateHandler = this.postExipryDateHandler.bind(this)
-
 
     this.state = {
       optionsSkill: [
@@ -35,29 +34,29 @@ class Project extends Component {
     }
   }
 
-  titleHandler = e =>{
+  titleHandler = (e) => {
     this.setState = {
-      title: e.target.value
+      title: e.target.value,
     }
   }
-  stipendHandler = e =>{
+  stipendHandler = (e) => {
     this.setState = {
-      stipend: e.target.value
+      stipend: e.target.value,
     }
   }
-  workDescriptionHandler = e =>{
+  workDescriptionHandler = (e) => {
     this.setState = {
-      workDescription: e.target.value
+      workDescription: e.target.value,
     }
   }
-  projectHandler = e =>{
+  projectHandler = (e) => {
     this.setState = {
-      projectFile: e.target.file
+      projectFile: e.target.file,
     }
   }
-  approxDurationHandler = e =>{
+  approxDurationHandler = (e) => {
     this.setState = {
-      approxDuration: e.target.value
+      approxDuration: e.target.value,
     }
   }
   // titleHandler = e =>{
@@ -65,13 +64,13 @@ class Project extends Component {
   //     title: e.target.value
   //   }
   // }
-  postExipryDateHandler = e =>{
+  postExipryDateHandler = (e) => {
     this.setState = {
-      postExipryDate: e.target.value
+      postExipryDate: e.target.value,
     }
   }
   onSubmit(e) {
-    e.preventDefault();
+    e.preventDefault()
 
     const data = {
       title: this.state.title,
@@ -92,13 +91,13 @@ class Project extends Component {
         <Form.Group onSubmit={this.onSubmit}>
           <InputField
             label="Title"
-            onChange={ this.titleHandler }
+            onChange={this.titleHandler}
             placeholder="Enter title of project"
           />
-          <InputField 
-            label="Stipend" 
-            onChange={this.stipendHandler}          
-            placeholder="Enter Stipend" 
+          <InputField
+            label="Stipend"
+            onChange={this.stipendHandler}
+            placeholder="Enter Stipend"
           />
           <InputField
             label="Work description"
@@ -119,8 +118,8 @@ class Project extends Component {
             type="date"
           />
 
-        <SubmitButton type="submit" buttonContent="Save" />
-        <SubmitButton buttonContent="Publish" color="blue" />
+          <SubmitButton type="submit" buttonContent="Save" />
+          <SubmitButton buttonContent="Publish" color="blue" />
         </Form.Group>
       </div>
     )

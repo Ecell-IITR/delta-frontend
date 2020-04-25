@@ -10,32 +10,28 @@ import {
   removeSkill,
   handleSkills,
   removeAll,
+  fetchSkills,
+  setAddedSkills,
 } from '../../../actions'
 
 import styles from './index.css'
 
-const constantList = [
-  'web developer',
-  'Competitive coder',
-  'blockchain developer',
-  'machine learning',
-  'designer',
-  'deep learning',
-  'finance',
-  'quant',
-]
-
 class Skill extends Component {
   componentDidMount = () => {
-    const { showSkillsComponent } = this.props
-    showSkillsComponent()
+    const {
+      studentSkills,
+      setAddedSkillsComponent,
+      fetchSkillsComponent,
+    } = this.props
+    fetchSkillsComponent()
+    setAddedSkillsComponent(studentSkills)
   }
 
   handleChange = (e) => {
-    const { addedSkills, handleSkillsComponent } = this.props
+    const { skills, addedSkills, handleSkillsComponent } = this.props
     const toRemove = addedSkills
     let newList = []
-    const currentList = constantList.filter((item) => {
+    const currentList = skills.filter((item) => {
       return toRemove.indexOf(item) < 0
     })
     if (e.target.value !== '') {
@@ -55,91 +51,115 @@ class Skill extends Component {
       removeAllComponent,
       removeSkillComponent,
       addedSkills,
+      skillsLoading,
     } = this.props
     return (
-      <div className={styles['skills-container']}>
-        <div className={styles.filterSkills}>
-          <div className={styles.searchBox}>
-            <Input
-              className={styles.searchBoxinput}
-              icon="search"
-              placeholder="Add Skills..."
-              onChange={this.handleChange}
-            />
-          </div>
-          <div className={styles.skills}>
-            {skills.map((skill, index) => (
-              <div key={index}>
-                {skill}
-                <span
-                  onClick={() => {
-                    addSkillComponent(skill, index)
-                  }}
-                >
-                  <Icon name="add" />
-                </span>
+      <>
+        {skillsLoading ? (
+          <div>Loading...</div>
+        ) : (
+          <div className={styles['skills-container']}>
+            <div className={styles.filterSkills}>
+              <div className={styles.searchBox}>
+                <Input
+                  className={styles.searchBoxinput}
+                  icon="search"
+                  placeholder="Add Skills..."
+                  onChange={this.handleChange}
+                />
               </div>
-            ))}
-          </div>
-        </div>
-
-        <div className={styles.addedSkills}>
-          <div className={styles.selected}>
-            <div>
-              <p> Selected skills</p>
+              <div className={styles.skills}>
+                {skills.map((skill, index) => (
+                  <div key={index}>
+                    {skill}
+                    <button
+                      type="button"
+                      onClick={() => {
+                        addSkillComponent(skill, index)
+                      }}
+                    >
+                      <Icon name="add" />
+                    </button>
+                  </div>
+                ))}
+              </div>
             </div>
-            <span
-              onClick={() => {
-                removeAllComponent()
-              }}
-            >
-              <p>Clear All</p>
-              <Icon
-                size="large"
-                color="red"
-                // className={skills.removeAll}
-                name="remove circle"
-              />
-            </span>
-          </div>
-          <div className={styles.skills}>
-            {addedSkills.map((skill, index) => (
-              <div key={index}>
-                {skill}
-                <span
+
+            <div className={styles.addedSkills}>
+              <div className={styles.selected}>
+                <div className={styles['selected-skills-title']}>
+                  Selected skills
+                </div>
+                <button
+                  type="button"
+                  className={styles['clear-button']}
                   onClick={() => {
-                    removeSkillComponent(skill, index)
+                    removeAllComponent()
                   }}
                 >
-                  <Icon name="remove circle" />
-                </span>
+                  <div className={styles['clear-all-text']}>Clear All</div>
+                  <div>
+                    <Icon
+                      size="large"
+                      color="red"
+                      // className={skills.removeAll}
+                      name="remove circle"
+                    />
+                  </div>
+                </button>
               </div>
-            ))}
+              <div className={styles.skills}>
+                {addedSkills.length > 0 &&
+                  addedSkills.map((skill, index) => (
+                    <div key={index}>
+                      {skill}
+                      <button
+                        type="button"
+                        onClick={() => {
+                          removeSkillComponent(skill, index)
+                        }}
+                      >
+                        <Icon name="remove circle" />
+                      </button>
+                    </div>
+                  ))}
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
+        )}
+      </>
     )
   }
 }
 Skill.propTypes = {
-  showSkillsComponent: PropTypes.func.isRequired,
-  addedSkills: PropTypes.array.isRequired,
+  addedSkills: PropTypes.array,
   handleSkillsComponent: PropTypes.func.isRequired,
   skills: PropTypes.array.isRequired,
   addSkillComponent: PropTypes.func.isRequired,
   removeSkillComponent: PropTypes.func.isRequired,
   removeAllComponent: PropTypes.func,
+  fetchSkillsComponent: PropTypes.func,
+  skillsLoading: PropTypes.bool,
+  setAddedSkillsComponent: PropTypes.func,
 }
 
 const mapStateToProps = (state) => {
   return {
+    skillsLoading: state.student.skill.skillsLoading,
     skills: state.student.skill.skills,
+    studentSkills: state.student.profile.profile.skills,
     addedSkills: state.student.skill.addedSkills,
   }
 }
 
 const mapActionToProps = (dispatch) => {
   return {
+    fetchSkillsComponent: () => {
+      return dispatch(fetchSkills())
+    },
+    setAddedSkillsComponent: (studentSkills) => {
+      return dispatch(setAddedSkills(studentSkills))
+    },
     showSkillsComponent: () => {
       return dispatch(showSkills())
     },

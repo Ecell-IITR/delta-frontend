@@ -29,29 +29,29 @@ class StudentProfile extends Component {
         {studentProfileLoading ? (
           <div>Loading....</div>
         ) : (
-            <div className={styles.info}>
-              <StudentInfoSection studentProfile={studentProfile} />
-              <div className={stylesNew.profile2}>
-                <div className={stylesNew.sidebar}>
-                  <Sidebar User={user.username} />
-                </div>
-                <div className={stylesNew.contentBox}>
-                  <Switch>
-                    <Route
-                      exact
-                      path={`${match.path}/skills`}
-                      component={React.lazy(() => import('./skills'))}
-                    />
-                    <Route
-                      exact
-                      path={`${match.path}/resume`}
-                      component={React.lazy(() => import('./resume'))}
-                    />
-                  </Switch>
-                </div>
+          <div className={styles.info}>
+            <StudentInfoSection studentProfile={studentProfile} />
+            <div className={stylesNew.profile2}>
+              <div className={stylesNew.sidebar}>
+                <Sidebar User={user.username} />
+              </div>
+              <div className={stylesNew.contentBox}>
+                <Switch>
+                  <Route
+                    exact
+                    path={`${match.path}/skills`}
+                    component={React.lazy(() => import('./skills'))}
+                  />
+                  <Route
+                    exact
+                    path={`${match.path}/resume`}
+                    component={React.lazy(() => import('./resume'))}
+                  />
+                </Switch>
               </div>
             </div>
-          )}
+          </div>
+        )}
       </>
     )
   }

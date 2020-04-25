@@ -1,6 +1,6 @@
-module.exports = function(api) {
-  const babelEnv = api.env();
-  api.cache(true);
+module.exports = function (api) {
+  const babelEnv = api.env()
+  api.cache(true)
 
   const presets = [
     [
@@ -14,7 +14,7 @@ module.exports = function(api) {
       },
     ],
     '@babel/preset-react',
-  ];
+  ]
   const plugins = [
     '@babel/transform-react-constant-elements',
     'transform-react-remove-prop-types',
@@ -34,14 +34,14 @@ module.exports = function(api) {
     '@babel/plugin-syntax-import-meta',
     ['@babel/plugin-proposal-class-properties', { loose: true }],
     '@babel/plugin-proposal-json-strings',
-  ];
+  ]
 
   if (babelEnv === 'production') {
-    plugins.push(['@babel/plugin-transform-react-inline-elements']);
+    plugins.push(['@babel/plugin-transform-react-inline-elements'])
   }
 
   return {
     presets,
     plugins,
-  };
-};
+  }
+}
