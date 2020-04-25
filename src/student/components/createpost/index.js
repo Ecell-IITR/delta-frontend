@@ -1,34 +1,39 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
-import SideBarRow from 'coreContainers/sideBarRow'
-import styles from './createPost.module.css'
+import CreatePostSidebar from './sidebar'
+import { Switch, Route } from 'react-router-dom'
+import Internship from './internship'
 
-class CreatePost extends Component {
-  render() {
-    return (
-      <div>
-        <div className={styles.container}>
-          <Link className={styles.eachrow} to="/student/createPost/internship">
-            <SideBarRow
-              className={styles.eachrow}
-              Icon="briefcase"
-              Title="Internship"
-            />
-          </Link>
-          <Link className={styles.eachrow} to="/student/createPost/project">
-            <SideBarRow
-              className={styles.eachrow}
-              Icon="lightbulb outline"
-              Title="Project"
-            />
-          </Link>
-          <Link className={styles.eachrow} to="/student/createPost/competition">
-            <SideBarRow Icon="trophy" Title="Competition" />
-          </Link>
-        </div>
-      </div>
-    )
-  }
+export class CreatePost extends Component {
+    render() {
+        return (
+            <>
+                <h1>CreatePOst</h1>
+                <div>
+                <CreatePostSidebar />
+                </div>
+                <Switch>
+                  <Route
+                    exact
+                    path={`${match.path}/internship`}
+                    component={React.lazy(() => import('./internship'))}
+                  />
+                  <Route
+                    exact
+                    path={`${match.path}/project`}
+                    component={React.lazy(() => import('./project'))}
+                  />
+                  <Route
+                    exact
+                    path={`${match.path}/competition`}
+                    component={React.lazy(() => import('./competition'))}
+                  />
+                </Switch>
+                <div>
+                    <Internship />
+                </div>
+            </>
+        )
+    }
 }
 
 export default CreatePost

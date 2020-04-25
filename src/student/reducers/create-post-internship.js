@@ -6,13 +6,13 @@ import {
 
 const initialState = {
   data: {
-    job_position: '',
-    type_of_work: '',
-    work_description: '',
-    duration_of_intern: '',
+    jobPosition: '',
+    typeOfWork: '',
+    workDescription: '',
+    durationOfIntern: '',
     stipend: '',
-    required_skills: '',
-    post_expiry_date: '',
+    requiredSkills: '',
+    postExpiryDate: '',
   },
 }
 
@@ -28,13 +28,13 @@ const createPostInternshipReducer = (state = initialState, action) => {
       return {
         ...state,
         data: {
-          job_position: action.payload.job_position,
-          type_of_work: action.payload.type_of_work,
-          work_description: action.payload.work_description,
-          duration_of_intern: action.payload.duration_of_intern,
+          jobPosition: action.payload.jobPosition,
+          typeOfWork: action.payload.typeOfWork,
+          workDescription: action.payload.workDescription,
+          durationOfIntern: action.payload.durationOfIntern,
           stipend: action.payload.stipend,
-          required_skills: action.payload.required_skills,
-          post_expiry_date: action.payload.post_expiry_date,
+          requiredSkills: action.payload.requiredSkills,
+          postExpiryDate: action.payload.postExpiryDate,
         },
       }
 
