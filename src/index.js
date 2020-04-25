@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
-import { store } from './utils/helpers/configStore'
+import { store } from 'utils/configStore'
 import './index.css'
 import 'semantic-ui-css/semantic.min.css'
 import App from './App'

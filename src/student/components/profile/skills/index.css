@@ -1,4 +1,4 @@
-.skills_container {
+.skills-container {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
@@ -21,7 +21,7 @@ span:hover {
   width: 100%;
   border-radius: 5px;
   background-color: #ffffff;
-  font-family: NeutrifPro;
+  font-family: Neutrifpro-regular !important;
   font-size: 130%;
   font-weight: 500;
   font-style: normal;
@@ -33,7 +33,7 @@ span:hover {
   border: none !important;
 }
 .searchBox .ui.input > input::placeholder {
-  color: black;
+  color: black !important;
 }
 
 .skills {
@@ -46,7 +46,7 @@ span:hover {
   justify-content: space-between;
   width: 100%;
   border-bottom: 1px rgba(0, 0, 0, 0.1) solid;
-  font-family: NeutrifPro;
+  font-family: Neutrifpro-regular;
   font-size: 120%;
   font-weight: normal;
   font-style: normal;
@@ -72,7 +72,7 @@ span:hover {
 .addedSkills .selected > div {
   display: block;
   padding: 0 0 0 5%;
-  font-family: NeutrifPro;
+  font-family: Neutrifpro-regular;
   font-weight: 500;
   font-style: normal;
   font-stretch: normal;

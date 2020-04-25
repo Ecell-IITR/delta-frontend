@@ -1,3 +1,4 @@
+/* eslint-disable react/forbid-prop-types */
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
@@ -14,6 +15,7 @@ class Navbar extends React.PureComponent {
     const { fetchUserComponent } = this.props
     fetchUserComponent()
   }
+
   render() {
     const { user } = this.props
     return (
@@ -27,7 +29,7 @@ class Navbar extends React.PureComponent {
         <div className={styles.subnavbar}>
           <ul>
             <li>
-              <Link to={'/user/'+ user.username}>Profile</Link>
+              <Link to={`/user/${user.username}`}>Profile</Link>
             </li>
             <li>
               <Link to="/opportunities">Opportunities</Link>
@@ -60,6 +62,7 @@ class Navbar extends React.PureComponent {
 
 Navbar.propTypes = {
   user: PropTypes.object,
+  fetchUserComponent: PropTypes.func,
 }
 
 const mapActionToProps = (dispatch) => {

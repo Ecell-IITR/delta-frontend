@@ -11,17 +11,16 @@ class StudentApp extends Component {
   }
 
   render() {
-    const { match,user } = this.props
+    const { match } = this.props
     return (
       <>
-        
         <Route
           exact
           path={`${match.path}`}
           component={React.lazy(() => import('./dashboard'))}
         />
         <Route
-          path={`${match.path}user/${user.username}`}
+          path={`${match.path}user/:username`}
           component={React.lazy(() => import('./profile'))}
         />
         <Route
@@ -42,7 +41,6 @@ class StudentApp extends Component {
 StudentApp.propTypes = {
   match: PropTypes.object,
   fetchUserComponent: PropTypes.func,
-  user: PropTypes.object,
 }
 
 const mapActionToProps = (dispatch) => {
@@ -53,11 +51,4 @@ const mapActionToProps = (dispatch) => {
   }
 }
 
-function mapStateToProps(state) {
-  return {
-    user: state.student.user.user,
-  
-  }
-}
-
-export default connect(mapStateToProps, mapActionToProps)(StudentApp)
+export default connect(null, mapActionToProps)(StudentApp)

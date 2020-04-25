@@ -1,3 +1,4 @@
+/* eslint-disable react/forbid-prop-types */
 /* eslint-disable react/prop-types */
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
@@ -9,9 +10,9 @@ import {
   removeSkill,
   handleSkills,
   removeAll,
-} from '../../../actions/index'
+} from '../../../actions'
 
-import skills from './index.css'
+import styles from './index.css'
 
 const constantList = [
   'web developer',
@@ -25,19 +26,16 @@ const constantList = [
 ]
 
 class Skill extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {}
-  }
-
   componentDidMount = () => {
-    this.props.showSkills()
+    const { showSkillsComponent } = this.props
+    showSkillsComponent()
   }
 
   handleChange = (e) => {
-    const toRemove = this.props.addedSkills
+    const { addedSkills, handleSkillsComponent } = this.props
+    const toRemove = addedSkills
     let newList = []
-    const currentList = constantList.filter(function (item) {
+    const currentList = constantList.filter((item) => {
       return toRemove.indexOf(item) < 0
     })
     if (e.target.value !== '') {
@@ -47,29 +45,35 @@ class Skill extends Component {
         return lc.includes(filter)
       })
     } else newList = currentList
-    this.props.handleSkills(newList)
+    handleSkillsComponent(newList)
   }
 
   render() {
-    console.log(this.props)
+    const {
+      skills,
+      addSkillComponent,
+      removeAllComponent,
+      removeSkillComponent,
+      addedSkills,
+    } = this.props
     return (
-      <div className={skills.skills_container}>
-        <div className={skills.filterSkills}>
-          <div className={skills.searchBox}>
+      <div className={styles['skills-container']}>
+        <div className={styles.filterSkills}>
+          <div className={styles.searchBox}>
             <Input
-              className={skills.searchBoxinput}
+              className={styles.searchBoxinput}
               icon="search"
               placeholder="Add Skills..."
               onChange={this.handleChange}
             />
           </div>
-          <div className={skills.skills}>
-            {this.props.skills.map((skill, index) => (
+          <div className={styles.skills}>
+            {skills.map((skill, index) => (
               <div key={index}>
                 {skill}
                 <span
                   onClick={() => {
-                    this.props.addSkill(skill, index)
+                    addSkillComponent(skill, index)
                   }}
                 >
                   <Icon name="add" />
@@ -79,14 +83,14 @@ class Skill extends Component {
           </div>
         </div>
 
-        <div className={skills.addedSkills}>
-          <div className={skills.selected}>
+        <div className={styles.addedSkills}>
+          <div className={styles.selected}>
             <div>
               <p> Selected skills</p>
             </div>
             <span
               onClick={() => {
-                this.props.removeAll()
+                removeAllComponent()
               }}
             >
               <p>Clear All</p>
@@ -98,13 +102,13 @@ class Skill extends Component {
               />
             </span>
           </div>
-          <div className={skills.skills}>
-            {this.props.addedSkills.map((skill, index) => (
+          <div className={styles.skills}>
+            {addedSkills.map((skill, index) => (
               <div key={index}>
                 {skill}
                 <span
                   onClick={() => {
-                    this.props.removeSkill(skill, index)
+                    removeSkillComponent(skill, index)
                   }}
                 >
                   <Icon name="remove circle" />
@@ -118,12 +122,13 @@ class Skill extends Component {
   }
 }
 Skill.propTypes = {
-  showSkills: PropTypes.func.isRequired,
+  showSkillsComponent: PropTypes.func.isRequired,
   addedSkills: PropTypes.array.isRequired,
-  handleSkills: PropTypes.func.isRequired,
+  handleSkillsComponent: PropTypes.func.isRequired,
   skills: PropTypes.array.isRequired,
-  addSkills: PropTypes.func.isRequired,
-  removeSkill: PropTypes.func.isRequired,
+  addSkillComponent: PropTypes.func.isRequired,
+  removeSkillComponent: PropTypes.func.isRequired,
+  removeAllComponent: PropTypes.func,
 }
 
 const mapStateToProps = (state) => {
@@ -135,19 +140,19 @@ const mapStateToProps = (state) => {
 
 const mapActionToProps = (dispatch) => {
   return {
-    showSkills: () => {
+    showSkillsComponent: () => {
       return dispatch(showSkills())
     },
-    addSkill: (skill) => {
+    addSkillComponent: (skill) => {
       return dispatch(addSkill(skill))
     },
-    removeSkill: (skill) => {
+    removeSkillComponent: (skill) => {
       return dispatch(removeSkill(skill))
     },
-    handleSkills: (newArray) => {
+    handleSkillsComponent: (newArray) => {
       return dispatch(handleSkills(newArray))
     },
-    removeAll: () => {
+    removeAllComponent: () => {
       return dispatch(removeAll())
     },
   }

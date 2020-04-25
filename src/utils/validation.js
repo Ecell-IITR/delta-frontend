@@ -4,7 +4,7 @@ import {
   isLengthBetween,
   isEmail,
   isMobilePhone,
-} from '../helpers/helpers'
+} from './helpers'
 
 export default function validateInput(data, thisCase) {
   const errors = {}
