@@ -3,6 +3,7 @@ import {
   BAD_REQUEST,
   UNAUTHORIZED,
   FORBIDDEN,
+  NOT_FOUND,
 } from 'globalConstants'
 
 export const getErrorMsg = (error) => {
@@ -16,7 +17,7 @@ export const getErrorMsg = (error) => {
       case 403:
         return FORBIDDEN
       case 404:
-        return BAD_REQUEST
+        return NOT_FOUND
       default:
         return SERVER_ERROR
     }

@@ -1,9 +1,14 @@
+/* eslint-disable no-case-declarations */
+import { find, findIndex, filter } from 'lodash'
 import {
   SHOW_SKILLS,
-  ADD_SKILL,
-  HANDLE_SKILLS,
-  REMOVE_SKILL,
-  REMOVE_ALL,
+  ADD_SKILL_SUCCESS,
+  ADD_SKILL_FAILURE,
+  SEARCH_SKILLS,
+  REMOVE_SKILL_FAILURE,
+  REMOVE_SKILL_SUCCESS,
+  REMOVE_ALL_SKILLS_SUCCESS,
+  REMOVE_ALL_SKILLS_FAILURE,
   FETCH_SKILLS_FAILURE,
   FETCH_SKILLS_REQUEST,
   FETCH_SKILLS_SUCCESS,
@@ -13,29 +18,29 @@ import {
 const initialState = {
   skills: [],
   addedSkills: [],
-  skillsLoading: true,
+  renderSearchedSkills: [],
+  skillsLoading: false,
   errors: '',
 }
 
-function insertItem(array, action) {
-  const newArray = array.slice()
-  newArray.unshift(action.skill)
-  return newArray
+function insertItem(array, slug) {
+  const toInsertObj = find(array, (item) => item.slug === slug)
+  array.push(toInsertObj)
+  return array
 }
+
 function insertArray(array1, array2) {
   const newArray = array1.concat(array2)
   return newArray
 }
-function removeItem(array, action) {
-  const newArray = array.slice()
-  const i = newArray.indexOf(action.skill)
-  newArray.splice(i, 1)
-  return newArray
+
+function removeItem(array, slug) {
+  const i = findIndex(array, (item) => item.slug === slug)
+  array.splice(i, 1)
+  return array
 }
+
 const skill = (state = initialState, action) => {
-  const newState = state
-  const newArray1 = state.skills
-  const newArray2 = state.addedSkills
   switch (action.type) {
     case FETCH_SKILLS_REQUEST:
       return {
@@ -45,8 +50,8 @@ const skill = (state = initialState, action) => {
     case FETCH_SKILLS_SUCCESS:
       return {
         ...state,
-        skillsLoading: false,
         skills: action.payload,
+        skillsLoading: false,
       }
     case FETCH_SKILLS_FAILURE:
       return {
@@ -63,35 +68,54 @@ const skill = (state = initialState, action) => {
       return {
         ...state,
       }
-    case ADD_SKILL:
-      return {
-        ...newState,
-        skills: removeItem(newArray1, action),
-        addedSkills: insertItem(newArray2, action),
-      }
-
-    case REMOVE_SKILL:
-      return {
-        ...newState,
-        skills: insertItem(newArray1, action),
-        addedSkills: removeItem(newArray2, action),
-      }
-    case HANDLE_SKILLS:
-      return {
-        ...newState,
-        skills: action.newArray,
-      }
-    case REMOVE_ALL:
-      return {
-        ...newState,
-        skills: insertArray(newArray1, newArray2),
-        addedSkills: [],
-      }
-
-    default:
+    case ADD_SKILL_SUCCESS:
       return {
         ...state,
+        skills: removeItem(state.skills, action.payload),
+        addedSkills: insertItem(state.addedSkills, action.payload),
       }
+    case ADD_SKILL_FAILURE:
+      return {
+        ...state,
+        errors: action.payload,
+      }
+    case REMOVE_SKILL_SUCCESS:
+      return {
+        ...state,
+        skills: insertItem(state.skills, action.payload),
+        addedSkills: removeItem(state.addedSkills, action.payload),
+      }
+    case REMOVE_SKILL_FAILURE:
+      return {
+        ...state,
+        errors: action.payload,
+      }
+    case SEARCH_SKILLS:
+      let tmpSkillsList = []
+      if (action.payload === '') {
+        tmpSkillsList = []
+      } else {
+        tmpSkillsList = filter(state.skills, (skillsObj) =>
+          skillsObj.name.toLowerCase().includes(action.payload.toLowerCase()),
+        )
+      }
+      return {
+        ...state,
+        renderSearchedSkills: tmpSkillsList,
+      }
+    case REMOVE_ALL_SKILLS_SUCCESS:
+      return {
+        ...state,
+        skills: insertArray(state.skills, state.addedSkills),
+        addedSkills: [],
+      }
+    case REMOVE_ALL_SKILLS_FAILURE:
+      return {
+        ...state,
+        errors: action.payload,
+      }
+    default:
+      return state
   }
 }
 

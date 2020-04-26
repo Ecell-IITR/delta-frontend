@@ -12,12 +12,19 @@ import {
   FETCH_SKILLS_FAILURE,
   FETCH_SKILLS_SUCCESS,
   SET_ADDED_SKILLS,
+  REMOVE_SKILL_FAILURE,
+  REMOVE_SKILL_SUCCESS,
+  ADD_SKILL_FAILURE,
+  ADD_SKILL_SUCCESS,
+  REMOVE_ALL_SKILLS_FAILURE,
+  REMOVE_ALL_SKILLS_SUCCESS,
+  SEARCH_SKILLS,
 } from '../constants/index'
 
 export const fetchSkills = () => {
   return (dispatch) => {
     dispatch({ type: FETCH_SKILLS_REQUEST })
-    FetchApi('GET', '/api/v1/utilities/skills', null, getToken(TOKEN_TYPE))
+    FetchApi('GET', '/api/v1/utilities/skills/', null, getToken(TOKEN_TYPE))
       .then((res) => {
         if (res.data) {
           dispatch({ type: FETCH_SKILLS_SUCCESS, payload: res.data })
@@ -38,5 +45,68 @@ export const setAddedSkills = (studentSkills) => {
   return {
     type: SET_ADDED_SKILLS,
     payload: studentSkills,
+  }
+}
+
+export const removeSkill = (slug) => {
+  return (dispatch) => {
+    FetchApi(
+      'POST',
+      `/api/v1/skills/remove/${slug}/`,
+      null,
+      getToken(TOKEN_TYPE),
+    )
+      .then(() => {
+        dispatch({ type: REMOVE_SKILL_SUCCESS, payload: slug })
+      })
+      .catch((error) => {
+        const errorMsg = getErrorMsg(error)
+        notify.show(errorMsg, NOTIF_ERROR_TYPE, NOTIF_MID_RANGE_TIMEOUT)
+        dispatch({
+          type: REMOVE_SKILL_FAILURE,
+          error: errorMsg,
+        })
+      })
+  }
+}
+
+export const addSkill = (slug) => {
+  return (dispatch) => {
+    FetchApi('POST', `/api/v1/skills/add/${slug}/`, null, getToken(TOKEN_TYPE))
+      .then(() => {
+        dispatch({ type: ADD_SKILL_SUCCESS, payload: slug })
+      })
+      .catch((error) => {
+        const errorMsg = getErrorMsg(error)
+        notify.show(errorMsg, NOTIF_ERROR_TYPE, NOTIF_MID_RANGE_TIMEOUT)
+        dispatch({
+          type: ADD_SKILL_FAILURE,
+          error: errorMsg,
+        })
+      })
+  }
+}
+
+export const removeAll = () => {
+  return (dispatch) => {
+    FetchApi('POST', `/api/v1/skills/remove/`, null, getToken(TOKEN_TYPE))
+      .then(() => {
+        dispatch({ type: REMOVE_ALL_SKILLS_SUCCESS })
+      })
+      .catch((error) => {
+        const errorMsg = getErrorMsg(error)
+        notify.show(errorMsg, NOTIF_ERROR_TYPE, NOTIF_MID_RANGE_TIMEOUT)
+        dispatch({
+          type: REMOVE_ALL_SKILLS_FAILURE,
+          error: errorMsg,
+        })
+      })
+  }
+}
+
+export const searchSkills = (query) => {
+  return {
+    type: SEARCH_SKILLS,
+    payload: query,
   }
 }

@@ -79,32 +79,6 @@ export const ShowInfo = () => {
 export const showSkills = () => {
   return { type: 'SHOW_SKILLS' }
 }
-export const removeSkill = (skill, index) => {
-  return {
-    type: 'REMOVE_SKILL',
-    index,
-    skill,
-  }
-}
-
-export const addSkill = (skill, index) => {
-  return {
-    type: 'ADD_SKILL',
-    index,
-    skill,
-  }
-}
-export const handleSkills = (newArray) => {
-  return {
-    type: 'HANDLE_SKILLS',
-    newArray,
-  }
-}
-export const removeAll = () => {
-  return {
-    type: 'REMOVE_ALL',
-  }
-}
 
 // Searchbar actions
 

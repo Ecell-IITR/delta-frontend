@@ -17,13 +17,6 @@ export default class App extends Component {
               component={React.lazy(() => import('coreContainers/navbar'))}
             />
             <Switch>
-              {/* <Route
-              exact
-              path="/register"
-              component={React.lazy(() =>
-                import('./student/components/onboarding'),
-              )}
-            /> */}
               <FreeRoute
                 exact
                 path="/login"
