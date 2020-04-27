@@ -52,7 +52,7 @@ export const removeSkill = (slug) => {
   return (dispatch) => {
     FetchApi(
       'POST',
-      `/api/v1/skills/remove/${slug}/`,
+      `/api/v1/utilities/skills/remove/${slug}/`,
       null,
       getToken(TOKEN_TYPE),
     )
@@ -72,7 +72,12 @@ export const removeSkill = (slug) => {
 
 export const addSkill = (slug) => {
   return (dispatch) => {
-    FetchApi('POST', `/api/v1/skills/add/${slug}/`, null, getToken(TOKEN_TYPE))
+    FetchApi(
+      'POST',
+      `/api/v1/utilities/skills/add/${slug}/`,
+      null,
+      getToken(TOKEN_TYPE),
+    )
       .then(() => {
         dispatch({ type: ADD_SKILL_SUCCESS, payload: slug })
       })
@@ -89,7 +94,12 @@ export const addSkill = (slug) => {
 
 export const removeAll = () => {
   return (dispatch) => {
-    FetchApi('POST', `/api/v1/skills/remove/`, null, getToken(TOKEN_TYPE))
+    FetchApi(
+      'POST',
+      `/api/v1/utilities/skills/remove-all/`,
+      null,
+      getToken(TOKEN_TYPE),
+    )
       .then(() => {
         dispatch({ type: REMOVE_ALL_SKILLS_SUCCESS })
       })

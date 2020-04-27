@@ -1,7 +1,6 @@
 /* eslint-disable no-case-declarations */
 import { find, findIndex, filter } from 'lodash'
 import {
-  SHOW_SKILLS,
   ADD_SKILL_SUCCESS,
   ADD_SKILL_FAILURE,
   SEARCH_SKILLS,
@@ -23,9 +22,11 @@ const initialState = {
   errors: '',
 }
 
-function insertItem(array, slug) {
-  const toInsertObj = find(array, (item) => item.slug === slug)
-  array.push(toInsertObj)
+function insertItem(array, checkArray, slug) {
+  const toInsertObj = find(checkArray, (item) => item.slug === slug)
+  if (toInsertObj) {
+    array.push(toInsertObj)
+  }
   return array
 }
 
@@ -64,15 +65,15 @@ const skill = (state = initialState, action) => {
         ...state,
         addedSkills: action.payload,
       }
-    case SHOW_SKILLS:
-      return {
-        ...state,
-      }
     case ADD_SKILL_SUCCESS:
       return {
         ...state,
         skills: removeItem(state.skills, action.payload),
-        addedSkills: insertItem(state.addedSkills, action.payload),
+        addedSkills: insertItem(
+          state.addedSkills,
+          state.skills,
+          action.payload,
+        ),
       }
     case ADD_SKILL_FAILURE:
       return {
@@ -82,7 +83,7 @@ const skill = (state = initialState, action) => {
     case REMOVE_SKILL_SUCCESS:
       return {
         ...state,
-        skills: insertItem(state.skills, action.payload),
+        skills: insertItem(state.skills, state.addedSkills, action.payload),
         addedSkills: removeItem(state.addedSkills, action.payload),
       }
     case REMOVE_SKILL_FAILURE:
