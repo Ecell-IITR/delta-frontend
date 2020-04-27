@@ -30,7 +30,7 @@ class StudentProfile extends Component {
           <div>Loading....</div>
         ) : (
           <div className={styles.info}>
-            <StudentInfoSection studentProfile={studentProfile} />
+            <StudentInfoSection user={user} studentProfile={studentProfile} />
             <div className={stylesNew.profile2}>
               <div className={stylesNew.sidebar}>
                 <Sidebar User={user.username} />

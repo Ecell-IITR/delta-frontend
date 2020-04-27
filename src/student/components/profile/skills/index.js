@@ -23,8 +23,8 @@ class Skill extends Component {
       setAddedSkillsComponent,
       fetchSkillsComponent,
     } = this.props
-    fetchSkillsComponent()
     setAddedSkillsComponent(studentSkills)
+    fetchSkillsComponent()
   }
 
   handleChange = (e) => {
