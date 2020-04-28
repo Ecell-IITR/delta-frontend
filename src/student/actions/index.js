@@ -9,6 +9,9 @@ import {
   CREATE_USER_PROFILE_REQUEST,
   CREATE_USER_PROFILE_SUCCESS,
   CREATE_USER_PROFILE_FAILURE,
+  FETCH_ORGANISATIONS_REQUEST,
+  FETCH_ORGANISATIONS_SUCCESS,
+  FETCH_ORGANISATIONS_FAILURE,
   ITEMS_HAS_ERRORED,
   ITEMS_IS_LOADING,
   ITEMS_FETCH_DATA_SUCCESS,
@@ -67,6 +70,27 @@ export const register = (username, email, password1, password2) => {
       })
   }
 }
+
+export const fetchOrganisations = () => {
+  return (dispatch) => {
+    dispatch({ type: FETCH_ORGANISATIONS_REQUEST })
+    FetchApi('GET', '/api/v1/organization-list/?list_type=all', null, getToken(TOKEN_TYPE))
+      .then((res) => {
+        if (res.data) {
+          dispatch({ type: FETCH_ORGANISATIONS_SUCCESS, payload: res.data })
+        }
+      })
+      .catch((error) => {
+        const errorMsg = getErrorMsg(error)
+        notify.show(errorMsg, NOTIF_ERROR_TYPE, NOTIF_MID_RANGE_TIMEOUT)
+        dispatch({
+          type: FETCH_ORGANISATIONS_FAILURE,
+          error: errorMsg,
+        })
+      })
+  }
+}
+
 export const ShowInfo = () => {
   const action = {
     type: 'RENDER_INFO',
