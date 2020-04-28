@@ -37,6 +37,11 @@ class StudentApp extends Component {
           path={`${match.path}create-post`}
           component={React.lazy(() => import('./createpost'))}
         />
+        <Route
+          exact
+          path={`${match.path}more/organisations`}
+          component={React.lazy(() => import('./organisation/index'))}
+        />
       </>
     )
   }
