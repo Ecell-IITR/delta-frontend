@@ -1,0 +1,80 @@
+.flexcontainer {
+    width: 50em;
+    height: 50em;
+    background-color: #ffffff;
+    display: flex;
+    flex-wrap: wrap;
+    margin: auto auto;
+    flex-direction: column;
+    border-radius: 8px;
+    box-shadow: 5px 5px 16px 0 rgba(0, 0, 0, 0.18);
+}
+
+.mydialog>.modal-content {
+    width: 50em;
+    height: 50em;
+    background-color: #ffffff;
+    display: flex;
+    flex-wrap: wrap;
+    margin: auto auto;
+    flex-direction: column;
+    border-radius: 8px;
+    box-shadow: 5px 5px 16px 0 rgba(0, 0, 0, 0.18);
+}
+
+.formcontainer {
+    width: 90%;
+    height: 90%;
+    margin: auto;
+}
+
+.formchilds {
+    margin-top: 2.2em;
+}
+
+div>label {
+    margin-bottom: 10px !important;
+    height: 1.3em;
+    width: 15em;
+    font-size: 1.12em !important;
+    letter-spacing: 1.1px !important;
+    font-family: Neutrifpro-regular !important;
+    font-weight: normal !important;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    color: #5a5c74 !important;
+}
+
+.linkStyles {
+    width: 109px;
+    height: 23px;
+    font-family: Neutrifpro-regular;
+    font-size: 16px;
+    font-weight: 600;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: 1.25px;
+    color: #5a5c74;
+    text-decoration: underline;
+}
+
+.editDiv {
+    padding-left: 33px;
+    padding-top: 33px;
+    width: 50px;
+    height: 32px;
+    font-family: NeutrifPro-regular !important;
+    font-size: 20px !important;
+    font-weight: 600 !important;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: 1.43px;
+    color: #434660;
+}
+
+.save {
+    float: right;
+}
