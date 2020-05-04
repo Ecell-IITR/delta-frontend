@@ -1,61 +1,74 @@
 import React, { Component } from 'react'
-import { Container, Header, Checkbox, Divider } from 'semantic-ui-react'
 import PropTypes from 'prop-types'
-import styles from './post.module.css'
-import ImageIndex from '../image'
+import { Accordion } from 'react-bootstrap'
+import { STUDENT_ROLE, COMPANY_ROLE } from 'globalConstants'
+import {
+  INTERNSHIP_POST_TYPE_KEY,
+  COMPETITION_POST_TYPE_KEY,
+  PROJECT_POST_TYPE_KEY,
+} from '../../student/constants'
 
-export default class Post extends Component {
+import styles from './index.css'
+
+class PostComponent extends Component {
+  getUserSection = (profile) => {
+    const { person } = profile
+    switch (person.roleType) {
+      case STUDENT_ROLE:
+        return (
+          <div>
+            <div>
+              <div>{person.username}</div>
+              <div>{person.roleType}</div>
+            </div>
+            <div>Profile Pic</div>
+          </div>
+        )
+      case COMPANY_ROLE:
+        return (
+          <div>
+            <div>
+              <div>{person.username}</div>
+              <div>{person.companyDomain}</div>
+            </div>
+            <div>Profile Pic</div>
+          </div>
+        )
+    }
+  }
+
+  getPostUpperSection = () => {
+    const { opportunity } = this.props
+    switch (opportunity.postType) {
+      case INTERNSHIP_POST_TYPE_KEY:
+        const { title, stipend, workType, userMinProfile } = opportunity
+        return (
+          <div className={styles['post-upper-section']}>
+            <div className={styles['post-basic-info-wrapper']}>
+              <div className={styles['post-title']}>{title}</div>
+              <div className={styles['post-sti-work']}>
+                {`${stipend} . ${workType}`}
+              </div>
+            </div>
+            <div className={styles['post-user-section']}>
+              {this.getUserSection(userMinProfile)}
+            </div>
+          </div>
+        )
+    }
+  }
   render() {
-    const { designation, stipend, duration } = this.props
-    const info = ['9 Applicants', 'Bangalore', '2 weeks', '2 months']
+    const { opportunity } = this.props
     return (
       <div className={styles.post}>
-        <Container>
-          <div className={styles.div1}>
-            <div className={styles.div1 - 1}>
-              <Header className={styles.header1} as="h1">
-                {designation + ' '}
-              </Header>
-              <Header className={styles.header2} as="h1">
-                {stipend + '.' + duration}
-              </Header>
-            </div>
-            <div className={styles.div1 - 2}>
-              <ImageIndex />
-            </div>
-          </div>
-          <div className={styles.div2}>
-            <ul>
-              {info.map((a, index) => (
-                <li key={index}>
-                  <Checkbox className={styles.checkbox} label={a} />
-                </li>
-              ))}
-            </ul>
-          </div>
-          <Divider />
-
-          <div className={styles.div3 - 2}>
-            <div className={styles.viewMoreContainer}>
-              <input type="checkbox" />
-              <span className={styles.viewMore}>
-                <i className={`angle down icon ${styles.arrowDown}`}></i> View
-                More
-              </span>
-              <span className={styles.viewMoreDescription}>
-                Test Description
-              </span>
-            </div>
-          </div>
-        </Container>
+        <div>{this.getPostUpperSection()}</div>
       </div>
     )
   }
 }
-Post.propTypes = {
-  post: PropTypes.string,
-  designation: PropTypes.string.isRequired,
-  stipend: PropTypes.number.isRequired,
-  duration: PropTypes.string.isRequired,
-  imginfo: PropTypes.string,
+
+PostComponent.propTypes = {
+  opportunity: PropTypes.object,
 }
+
+export default PostComponent

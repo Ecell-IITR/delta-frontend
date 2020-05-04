@@ -6,6 +6,7 @@ import skill from './skill'
 import resume from './resume'
 import search from './search'
 import organisations from './organisations'
+import opportunities from './opportunities'
 
 const studentReducer = combineReducers({
   registration,
@@ -15,6 +16,7 @@ const studentReducer = combineReducers({
   resume,
   search,
   organisations,
+  opportunities,
 })
 
 export default studentReducer

@@ -26,14 +26,17 @@ class StudentProfile extends Component {
     const { user, match, studentProfile, studentProfileLoading } = this.props
     return (
       <>
-        {studentProfileLoading ? (
+        {!user || studentProfileLoading ? (
           <div>Loading....</div>
         ) : (
           <div className={styles.info}>
-            <StudentInfoSection user={user} studentProfile={studentProfile} />
+            <StudentInfoSection
+              user={user.username}
+              studentProfile={studentProfile}
+            />
             <div className={stylesNew.profile2}>
               <div className={stylesNew.sidebar}>
-                <Sidebar User={user.username} />
+                <Sidebar user={user} />
               </div>
               <div className={stylesNew.contentBox}>
                 <Switch>

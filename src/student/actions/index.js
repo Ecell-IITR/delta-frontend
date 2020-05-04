@@ -23,6 +23,7 @@ import {
 export * from './fetch-user'
 export * from './fetch-student-profile'
 export * from './skills-event'
+export * from './fetch-opportunities'
 
 const token = getToken(TOKEN_TYPE)
 
@@ -74,7 +75,12 @@ export const register = (username, email, password1, password2) => {
 export const fetchOrganisations = () => {
   return (dispatch) => {
     dispatch({ type: FETCH_ORGANISATIONS_REQUEST })
-    FetchApi('GET', '/api/v1/organization-list/?list_type=all', null, getToken(TOKEN_TYPE))
+    FetchApi(
+      'GET',
+      '/api/v1/organization-list/?list_type=all',
+      null,
+      getToken(TOKEN_TYPE),
+    )
       .then((res) => {
         if (res.data) {
           dispatch({ type: FETCH_ORGANISATIONS_SUCCESS, payload: res.data })

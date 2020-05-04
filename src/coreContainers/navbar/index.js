@@ -1,24 +1,21 @@
 /* eslint-disable react/forbid-prop-types */
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { Route } from 'react-router-dom'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
-import { fetchUser } from '../../student/actions/fetch-user'
 // import { Icon } from 'semantic-ui-react'
+import { TOKEN_TYPE } from 'globalConstants'
 import Searchbar from '../searchbar/index'
 import ImageIndex from '../image/index'
 
 import styles from './navbar.css'
 // import PropTypes from 'prop-types'
 class Navbar extends React.PureComponent {
-  componentDidMount() {
-    const { fetchUserComponent } = this.props
-    fetchUserComponent()
-  }
-
   render() {
     const { user } = this.props
-    return (
+    const isLoggedIn = localStorage.getItem(TOKEN_TYPE)
+    return isLoggedIn ? (
       <div className={styles.navbar}>
         <div className={styles.startnav}>
           <div className={styles.title}>Delta</div>
@@ -29,7 +26,11 @@ class Navbar extends React.PureComponent {
         <div className={styles.subnavbar}>
           <ul>
             <li>
-              <Link to={`/user/${user.username}`}>Profile</Link>
+              {user && user.username ? (
+                <Link to={`/user/${user.username}`}>Profile</Link>
+              ) : (
+                <></>
+              )}
             </li>
             <li>
               <Link to="/opportunities">Opportunities</Link>
@@ -56,21 +57,14 @@ class Navbar extends React.PureComponent {
           </ul>
         </div>
       </div>
+    ) : (
+      <></>
     )
   }
 }
 
 Navbar.propTypes = {
   user: PropTypes.object,
-  fetchUserComponent: PropTypes.func,
-}
-
-const mapActionToProps = (dispatch) => {
-  return {
-    fetchUserComponent: () => {
-      return dispatch(fetchUser())
-    },
-  }
 }
 
 function mapStateToProps(state) {
@@ -79,4 +73,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps, mapActionToProps)(Navbar)
+export default connect(mapStateToProps, null)(Navbar)

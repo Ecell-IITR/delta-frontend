@@ -14,6 +14,14 @@
   width: 15%;
 }
 
+.student-profile-image {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  border-radius: 50%;
+  height: 5vh;
+}
+
 .student-info {
   width: 65%;
   padding: 0 0.5rem;
@@ -72,6 +80,7 @@
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
+  position: relative;
 }
 
 .profile-percent {
@@ -88,8 +97,38 @@
   color: #3b3a3a;
 }
 
+.icons {
+  margin-top: 1rem;
+}
+
 .website-icon-image {
   border-radius: 50%;
   height: auto;
   width: 35px;
+  margin-right: 1rem;
+}
+
+.label {
+  position: absolute;
+  bottom: 0;
+}
+
+.availability {
+  margin: 0.5rem 0;
+  font-family: Neutrifpro-regular;
+  font-size: 1.2rem;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: 0.71px;
+  color: #434660;
+}
+
+.check-true-icon {
+  color: green;
+}
+
+.check-false-icon {
+  color: red;
 }

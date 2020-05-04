@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import styles from './sidebarRow.module.css'
 import { Icon } from 'semantic-ui-react'
+import styles from './sidebarRow.module.css'
 
 export default class SideBarRow extends Component {
   constructor(props) {

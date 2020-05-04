@@ -1,4 +1,4 @@
-.org{
+.org {
   height: 120vh;
   padding: 2% 5% 1% 5%;
   display: flex;
@@ -46,9 +46,8 @@
 }
 
 .tabActive {
-    color: #2964ee!important;
-    border-bottom: 2px solid #2964ee;
-
+  color: #2964ee !important;
+  border-bottom: 2px solid #2964ee;
 }
 
 .cardsCol {
@@ -56,7 +55,6 @@
   width: 50%;
   padding: 0 10px;
   margin-bottom: 20px;
-  
 }
 .card {
   height: 160px;
@@ -64,19 +62,16 @@
   border-radius: 3px;
   box-shadow: 5px 5px 15px 0 rgba(0, 0, 0, 0.08);
   background-color: #ffffff;
-  
 }
 .cardImg {
-    float: left;
-    width: 80px;
-    height: 80px;
-    padding: 0 10px;
-
-    
+  float: left;
+  width: 80px;
+  height: 80px;
+  padding: 0 10px;
 }
 .cardImg img {
-    width: 100%;
-    height: 100%;
+  width: 100%;
+  height: 100%;
 }
 .cardDetails {
   padding: 2px 0px;

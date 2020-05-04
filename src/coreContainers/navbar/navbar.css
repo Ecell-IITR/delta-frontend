@@ -24,12 +24,8 @@
   justify-content: space-around;
   padding: 0 0 0 3em;
   font-family: Neutrifpro-bold;
-  font-size: 21px;
+  font-size: 1.6rem;
   font-weight: bold;
-  font-style: normal;
-  font-stretch: normal;
-  line-height: normal;
-  letter-spacing: normal;
   text-transform: uppercase;
   color: #ffffff;
 }
@@ -50,11 +46,8 @@
   flex-direction: column;
   justify-content: space-around;
   font-family: Neutrifpro-semibold;
-  font-size: 18px;
   font-weight: 600;
-  font-style: normal;
-  font-stretch: normal;
-  line-height: normal;
+  font-size: 1.2rem;
   letter-spacing: 1.1px;
 }
 

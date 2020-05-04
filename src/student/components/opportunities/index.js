@@ -1,10 +1,14 @@
 import React, { Component } from 'react'
-import '../css/opportunities.css'
-import Post from '../../../coreContainers/post/index'
-import Input from '../../../coreContainers/input/index'
-import FilterLabel from '../../../coreContainers/filterLabel/index'
+import { connect } from 'react-redux'
+import PostComponent from 'coreContainers/post'
+import Input from 'coreContainers/input'
+import FilterLabel from 'coreContainers/filterLabel'
+import Loader from 'coreContainers/loading'
+import { fetchStudentOpportunities } from '../../actions'
 
-export default class Opportunites extends Component {
+import './index.css'
+
+export class Opportunities extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -16,7 +20,17 @@ export default class Opportunites extends Component {
     }
   }
 
+  componentDidMount() {
+    const { fetchStudentOpportunitiesComponent } = this.props
+    const filterObj = {
+      post_type: 1,
+    }
+    fetchStudentOpportunitiesComponent(filterObj)
+  }
+
   render() {
+    const { isLoading, opportunitiesList } = this.props.opportunitiesObj
+    console.log(opportunitiesList)
     return (
       <div className="opportunities-container">
         <div className="filter-container">
@@ -32,14 +46,43 @@ export default class Opportunites extends Component {
           <div></div>
           <div className="filter-searchLocation"></div>
         </div>
-        <div className="list-post-container">
-          <Post />
-          <Post />
-          <Post />
-          <Post />
-          <Post />
-        </div>
+        {isLoading ? (
+          <Loader />
+        ) : (
+          <>
+            {opportunitiesList && opportunitiesList.length === 0 ? (
+              <div>Opportunities list is empty!</div>
+            ) : (
+              <>
+                {opportunitiesList &&
+                  opportunitiesList.map((opportunity) => (
+                    <PostComponent opportunity={opportunity} />
+                  ))}
+              </>
+            )}
+          </>
+        )}
       </div>
     )
   }
 }
+
+Opportunities.propTypes = {
+  fetchStudentOpportunitiesComponent: PropTypes.func,
+}
+
+const mapActionToProps = (dispatch) => {
+  return {
+    fetchStudentOpportunitiesComponent: (filterObj) => {
+      dispatch(fetchStudentOpportunities(filterObj))
+    },
+  }
+}
+
+const mapStateToProps = (state) => {
+  return {
+    opportunitiesObj: state.student.opportunities,
+  }
+}
+
+export default connect(mapStateToProps, mapActionToProps)(Opportunities)

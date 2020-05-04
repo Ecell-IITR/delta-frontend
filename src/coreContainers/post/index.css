@@ -1,0 +1,31 @@
+.post {
+  border-radius: 5px;
+  background-color: #ffffff;
+  padding: 1rem;
+  margin: 1rem 0;
+  border: 1px solid black;
+  font-family: Neutrifpro-regular;
+}
+
+.post-upper-section {
+  display: flex;
+}
+
+.post-basic-info-wrapper {
+  width: 80%;
+}
+
+.post-user-section {
+  width: 20%;
+}
+
+.post-title {
+  font-size: 1.4rem;
+  font-family: Neutrifpro-bold;
+  letter-spacing: 1.43px;
+}
+
+.post-sti-work {
+  font-size: 1.2rem;
+  padding: 0.5rem 0;
+}

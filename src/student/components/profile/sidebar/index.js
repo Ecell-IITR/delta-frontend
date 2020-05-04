@@ -1,22 +1,27 @@
+/* eslint-disable react/forbid-prop-types */
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { NavLink } from 'react-router-dom'
 import SideBarRow from '../../../../coreContainers/sideBarRow'
 import styles from './index.css'
 
 class ProfileSidebar extends Component {
   render() {
+    const { user } = this.props
     return (
       <div className={styles.profilesidebar}>
-        <SideBarRow Icon="th list" Title="Posts" />
+        <NavLink to={`/user/${user.username}/`} activeClassName={styles.active}>
+          <SideBarRow Icon="th list" Title="Posts" />
+        </NavLink>
         <NavLink
-          to={'/user/' + this.props.User + '/skills'}
+          to={`/user/${user.username}/skills`}
           activeClassName={styles.active}
         >
           <SideBarRow Icon="id card outline" Title="Skills" />
         </NavLink>
         <SideBarRow Icon="trophy" Title="Achievements" />
         <NavLink
-          to={'/user/' + this.props.User + '/resume'}
+          to={`/user/${user.username}/resume`}
           activeClassName={styles.active}
         >
           <SideBarRow Icon="file alternate" Title="Resume" />
@@ -24,6 +29,10 @@ class ProfileSidebar extends Component {
       </div>
     )
   }
+}
+
+ProfileSidebar.propTypes = {
+  user: PropTypes.object,
 }
 
 export default ProfileSidebar

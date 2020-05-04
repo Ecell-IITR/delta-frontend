@@ -3,15 +3,14 @@ import React, { Component } from 'react'
 import { Route } from 'react-router-dom'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
-// import { fetchUser } from '../actions/fetch-user'
+import { fetchUser } from '../actions/fetch-user'
 
 class StudentApp extends Component {
   componentDidMount() {
-    // const { fetchUserComponent, user } = this.props
-    // console.log(user, 'user')
-    // if (Object.keys(user).length === 0) {
-    //   fetchUserComponent()
-    // }
+    const { fetchUserComponent, user } = this.props
+    if (Object.keys(user).length === 0) {
+      fetchUserComponent()
+    }
   }
 
   render() {
@@ -49,21 +48,21 @@ class StudentApp extends Component {
 
 StudentApp.propTypes = {
   match: PropTypes.object,
-  // fetchUserComponent: PropTypes.func,
-  // user: PropTypes.object,
+  fetchUserComponent: PropTypes.func,
+  user: PropTypes.object,
 }
 
-// const mapActionToProps = (dispatch) => {
-//   return {
-//     // fetchUserComponent: () => {
-//     //   return dispatch(fetchUser())
-//     // },
-//   }
-// }
+const mapActionToProps = (dispatch) => {
+  return {
+    fetchUserComponent: () => {
+      return dispatch(fetchUser())
+    },
+  }
+}
 
 const mapStateToProps = (state) => {
   return {
     user: state.student.user.user,
   }
 }
-export default connect(mapStateToProps, null)(StudentApp)
+export default connect(mapStateToProps, mapActionToProps)(StudentApp)

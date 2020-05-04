@@ -1,6 +1,9 @@
 /* eslint-disable react/forbid-prop-types */
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCheckCircle, faTimesCircle } from '@fortawesome/free-solid-svg-icons'
+import { getImageURL } from 'utils/getImageURL'
 
 import styles from './index.css'
 
@@ -10,18 +13,19 @@ class StudentInfoSection extends Component {
     return (
       <div className={styles.profile}>
         <div className={styles['student-img']}>
-          {/* <Image
-            className={styles.image}
-            src={student.img_src}
-            size={student.img_size}
-          /> */}
+          <div
+            className={styles['student-profile-image']}
+            style={{
+              backgroundImage: `url(${getImageURL(user.profileImage)})`,
+            }}
+          ></div>
         </div>
         <div className={styles['student-info']}>
           <div className={styles['student-personal-info']}>
             <div className={styles['student-details-wrapper']}>
               <div className={styles['margin-half']}>
                 <span className={styles['student-name']}>
-                  {`${user.firstName} ${user.lastName}`}
+                  {`${studentProfile.firstName} ${studentProfile.lastName}`}
                 </span>
               </div>
               <div className={styles['margin-half']}>
@@ -52,7 +56,7 @@ class StudentInfoSection extends Component {
                 >
                   <img
                     className={styles['website-icon-image']}
-                    src={'http://localhost:8000' + link.website.websiteLogo}
+                    src={getImageURL(link.website.websiteLogo)}
                     alt={link.website.name}
                   />
                 </a>
@@ -77,8 +81,21 @@ class StudentInfoSection extends Component {
               )}
             </div>
             <div className={styles.availability}>
-              {studentProfile.availabilityStatus ? (
-                <span>Available {studentProfile.availabilityStatus}</span>
+              {'availabilityStatus' in studentProfile ? (
+                <span>
+                  Available{' '}
+                  {studentProfile.availabilityStatus ? (
+                    <FontAwesomeIcon
+                      className={styles['check-true-icon']}
+                      icon={faCheckCircle}
+                    />
+                  ) : (
+                    <FontAwesomeIcon
+                      className={styles['check-false-icon']}
+                      icon={faTimesCircle}
+                    />
+                  )}
+                </span>
               ) : (
                 <></>
               )}
