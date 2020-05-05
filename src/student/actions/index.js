@@ -12,6 +12,15 @@ import {
   FETCH_ORGANISATIONS_REQUEST,
   FETCH_ORGANISATIONS_SUCCESS,
   FETCH_ORGANISATIONS_FAILURE,
+  FETCH_FOLLOWING_LIST_REQUEST,
+  FETCH_FOLLOWING_LIST_SUCCESS,
+  FETCH_FOLLOWING_LIST_FAILURE,
+  FOLLOW_USER_REQUEST,
+  FOLLOW_USER_SUCCESS,
+  FOLLOW_USER_FAILURE,
+  UNFOLLOW_USER_REQUEST,
+  UNFOLLOW_USER_SUCCESS,
+  UNFOLLOW_USER_FAILURE,
   ITEMS_HAS_ERRORED,
   ITEMS_IS_LOADING,
   ITEMS_FETCH_DATA_SUCCESS,
@@ -96,6 +105,78 @@ export const fetchOrganisations = () => {
       })
   }
 }
+
+export const fetchFollowingList = () => {
+  return (dispatch) => {
+    dispatch({ type: FETCH_FOLLOWING_LIST_REQUEST })
+    FetchApi(
+      'GET',
+      '/api/v1/following-list/',
+      null,
+      getToken(TOKEN_TYPE),
+    )
+      .then((res) => {
+        if (res.data) {
+          dispatch({ type: FETCH_FOLLOWING_LIST_SUCCESS, payload: res.data })
+        }
+      })
+      .catch((error) => {
+        const errorMsg = getErrorMsg(error)
+        notify.show(errorMsg, NOTIF_ERROR_TYPE, NOTIF_MID_RANGE_TIMEOUT)
+        dispatch({
+          type: FETCH_FOLLOWING_LIST_FAILURE,
+          error: errorMsg,
+        })
+      })
+  }
+}
+
+export const followUser = (slug) => {
+  return (dispatch) => {
+    dispatch({ type: FOLLOW_USER_REQUEST })
+    FetchApi(
+      'POST',
+      `/api/v1/action/1/${slug}/`,
+      null,
+      getToken(TOKEN_TYPE),
+    )
+      .then(() => {
+        dispatch({ type: FOLLOW_USER_SUCCESS, payload: slug })
+      })
+      .catch((error) => {
+        const errorMsg = getErrorMsg(error)
+        notify.show(errorMsg, NOTIF_ERROR_TYPE, NOTIF_MID_RANGE_TIMEOUT)
+        dispatch({
+          type: FOLLOW_USER_FAILURE,
+          error: errorMsg,
+        })
+      })
+  }
+}
+
+export const unfollowUser = (slug) => {
+  return (dispatch) => {
+    dispatch({ type: UNFOLLOW_USER_REQUEST })
+    FetchApi(
+      'POST',
+      `/api/v1/action/2/${slug}/`,
+      null,
+      getToken(TOKEN_TYPE),
+    )
+      .then(() => {
+        dispatch({ type: UNFOLLOW_USER_SUCCESS, payload: slug })
+      })
+      .catch((error) => {
+        const errorMsg = getErrorMsg(error)
+        notify.show(errorMsg, NOTIF_ERROR_TYPE, NOTIF_MID_RANGE_TIMEOUT)
+        dispatch({
+          type: FOLLOW_USER_FAILURE,
+          error: errorMsg,
+        })
+      })
+  }
+}
+
 
 export const ShowInfo = () => {
   const action = {

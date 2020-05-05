@@ -2,15 +2,17 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import styles from './index.css'
 import PropTypes from 'prop-types'
-import { fetchOrganisations } from '../../actions/index'
+import { fetchOrganisations, fetchFollowingList } from '../../actions/index'
+import Allcompany from './allcompany'
 class Organisation extends Component {
   componentDidMount = () => {
-    const { fetchOrganisations } = this.props
+    const { fetchOrganisations, fetchFollowingList } = this.props
     fetchOrganisations()
+    fetchFollowingList()
   }
 
   render() {
-    let { organisations } = this.props
+    let { organisations,followinglist,match } = this.props
     return (
       <div className={styles.org}>
         <div className={styles.sidebar}>Sidebar</div>
@@ -24,32 +26,11 @@ class Organisation extends Component {
                 <p>All</p>
               </div>
             </div>
+            
             <div className="allCards">
-              {organisations && organisations[0] ? (
+              {organisations && organisations[0] && followinglist  ? (
                 <div>
-                  {organisations.map((org, index) => (
-                    <div key={index}>
-                      <div className={styles.cardsCol}>
-                        <div className={styles.card}>
-                          <div className={styles.cardDetails}>
-                            <div className={styles.cardImg}>
-                              <img src={org.person.profileImage} alt="" />
-                            </div>
-                            <h4>{org.companyDomain}</h4>
-                            <p>
-                              {org.categoryOfCompany} <br />
-                              <b>X</b> Followers
-                            </p>
-                          </div>
-                          <hr />
-                          <a href="" className={styles.follow}>
-                            {' '}
-                            Follow
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
+                    <Allcompany />
                 </div>
               ) : null}
             </div>
@@ -62,11 +43,14 @@ class Organisation extends Component {
 Organisation.propTypes = {
   fetchOrganisations: PropTypes.func.isRequired,
   organisations: PropTypes.array.isRequired,
+  fetchFollowingList: PropTypes.func.isRequired,
+  followinglist: PropTypes.array.isRequired,
 }
 
 const mapStateToProps = (state) => {
   return {
     organisations: state.student.organisations.organisations.results,
+    followinglist: state.student.followinglist.followinglist,
   }
 }
 
@@ -74,6 +58,9 @@ const mapActionToProps = (dispatch) => {
   return {
     fetchOrganisations: () => {
       return dispatch(fetchOrganisations())
+    },
+    fetchFollowingList: () => {
+      return dispatch(fetchFollowingList())
     },
   }
 }
