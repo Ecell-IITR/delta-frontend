@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
+import { Route, Switch, Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import styles from './index.css'
 import PropTypes from 'prop-types'
 import { fetchOrganisations, fetchFollowingList } from '../../actions/index'
 import Allcompany from './allcompany'
+import Followingcompany from './followingcompany'
 class Organisation extends Component {
   componentDidMount = () => {
     const { fetchOrganisations, fetchFollowingList } = this.props
@@ -19,18 +21,32 @@ class Organisation extends Component {
         <div className={styles.contentBox}>
           <div className={styles.tabs}>
             <div className={styles.tabsCol}>
-              <div>
-                <p>Following</p>
+              <div
+                className={
+                  match.path == '/more/organisations/following'
+                    ? `${styles.tabActive}`
+                    : null
+                }
+              >
+                <a href="/more/organisations/following">Following</a>
               </div>
-              <div className={styles.tabActive}>
-                <p>All</p>
+              <div
+                className={
+                  match.path == '/more/organisations'
+                    ? `${styles.tabActive}`
+                    : null
+                }
+              >
+                <a href="/more/organisations">All</a>
               </div>
             </div>
-            
             <div className="allCards">
-              {organisations && organisations[0] && followinglist  ? (
+              {organisations && organisations[0] && followinglist ? (
                 <div>
-                    <Allcompany />
+                  {match.path == '/more/organisations' ? <Allcompany /> : null}
+                  {match.path == '/more/organisations/following' ? (
+                    <Followingcompany />
+                  ) : null}
                 </div>
               ) : null}
             </div>
@@ -45,6 +61,8 @@ Organisation.propTypes = {
   organisations: PropTypes.array.isRequired,
   fetchFollowingList: PropTypes.func.isRequired,
   followinglist: PropTypes.array.isRequired,
+  match: PropTypes.object.isRequired,
+
 }
 
 const mapStateToProps = (state) => {

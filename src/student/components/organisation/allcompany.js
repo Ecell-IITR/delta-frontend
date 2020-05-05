@@ -13,9 +13,7 @@ class allcompany extends Component {
         const { unfollowUser } = this.props
         unfollowUser(user)
     }
-
     renderFollowUnfollow = (org,f) => {
- 
         for (let i = 0; i < f.length; i++) {
             if (f[i].person.username == org.person.username) {
                 return (
@@ -28,23 +26,18 @@ class allcompany extends Component {
                     </div>
                 )
             }
-
         }
         return (
             <div>
                 <a href="#" onClick={ () => {this.followUser(org.person.username)}} className={styles.follow}>
                     {' '}
                             Follow
-                            
-                            
                         </a>
             </div>
         )
     }
-
     render() {
         let { organisations, followinglist, match } = this.props
-
         
         return <div>
             {organisations.map((org, index) => (
