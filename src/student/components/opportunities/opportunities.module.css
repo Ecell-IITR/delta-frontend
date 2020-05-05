@@ -1,0 +1,121 @@
+body {
+    background-color: #f1f2f7;
+}
+.opportunities-container{
+    background-color: black;
+    margin: 3% 10%;
+}
+.side-container{
+    float: left;
+    width: 23%;
+}
+
+.sidebar-row{
+    width: auto !important;
+    padding-left: 75px !important;
+}
+
+
+.filter-container{
+    background-color: white;
+    border-radius: 5px;
+    margin-top: 18%;
+    padding: 8%;
+    /* float: left; */
+    /* width: 23%; */
+    box-shadow: 5px 0 30px 0 rgba(0, 0, 0, 0.08);
+}
+
+h2.filter-container {
+    width: 82px;
+    height: 33px;
+    font-family: NeutrifPro;
+    font-size: 25px;
+    font-weight: 600;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: 1.49px;
+    color: #000000;
+}
+
+.opportunities-sidebar{
+    background-color: white;
+    border-radius: 8px;
+    border: 1px solid white;
+    box-shadow: 5px 0 30px 0 rgba(0, 0, 0, 0.1);
+    width: 100%;
+}
+.div3{
+    width: 344px;
+    height: 45px;
+    font-family: NeutrifPro;
+    font-size: 35px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: 1.11px;
+    color: #434660;
+    margin-bottom: 0;
+}
+
+.post-container{
+    float: left;
+    margin-left: 2%;
+}
+/* .profilesidebar {
+    background-color: white;
+    border-radius: 5px;
+    border: 1px solid white;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.1);
+    width: 270px;
+} */
+.active div {
+    background-color: #2964ee;
+  }
+.active i {
+    color: white;
+  }
+.active span {
+    color: white;
+  }
+  
+.date{
+    width: 100%;
+}
+.tag{
+    margin: 20px;
+}
+
+.sidebar1 {
+    text-align: center;
+}
+/* p.filter-container {
+    width: 71px;
+    height: 20px;
+    font-family: NeutrifPro;
+    font-size: 16px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: 1.11px;
+    color: #5a5c74;
+  } */
+
+.slider{
+    width: 2px;
+}
+
+
+span{
+    margin-bottom: 8px;
+}
+
+.filter-element{
+    margin: 10px 0px;
+}
+.input-element{
+    width: 100%;
+}

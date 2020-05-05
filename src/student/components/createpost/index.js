@@ -7,10 +7,8 @@ export class CreatePost extends Component {
     render() {
         return (
             <>
-                <h1>CreatePOst</h1>
                 <div>
                 <CreatePostSidebar />
-                </div>
                 <Switch>
                   <Route
                     exact
@@ -28,6 +26,7 @@ export class CreatePost extends Component {
                     component={React.lazy(() => import('./competition'))}
                   />
                 </Switch>
+                </div>
                 <div>
                     <Internship />
                 </div>

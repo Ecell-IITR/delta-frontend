@@ -15,6 +15,9 @@ import {
   CREATE_POST_SUCCESS,
   CREATE_POST_LOADING,
   CREATE_POST_FAILURE,
+  POST_FETCH_ERRORED,
+  POST_FETCH_LOADING,
+  POST_FETCH_SUCCESS,
 } from '../constants/index'
 import FetchApi from '../../utils/FetchAPI'
 import { getToken } from '../../utils/tokenFunc'
@@ -316,7 +319,7 @@ export function postFetchSuccess(post) {
 export function postFetchData() {
   return (dispatch) => {
     dispatch(postFetchLoading(true))
-    FetchApi('GET', '/api/v1/post/', null)
+    FetchApi('GET', '/api/v1/post', null)
       .then((response) => {
         if (!response.ok) {
           throw Error(response.statusText)
@@ -324,8 +327,44 @@ export function postFetchData() {
         dispatch(postFetchLoading(false))
         return response
       })
-      .then((response) => response.json())
       .then((post) => dispatch(postFetchSuccess(post)))
       .catch(() => dispatch(postFetchFailure(true)))
+  }
+}
+//Bookmarks
+
+export function bookmarkFailure(bool) {
+  return {
+    type: BOOKMARK_FAILURE,
+    hasErrored: bool,
+  }
+}
+
+export function bookmarkLoading(bool) {
+  return {
+    type: BOOKMARK_REQUEST,
+    isLoading: bool,
+  }
+}
+
+export function bookmarkSuccess() {
+  return {
+    type: BOOKMARK_SUCCESS,
+  }
+}
+
+export function bookmarkData() {
+  return (dispatch) => {
+    dispatch(bookmarkLoading(true))
+    FetchApi('PATCH', 'api', null)
+      .then((response) => {
+        if (!response.ok) {
+          throw Error(response.statusText)
+        }
+        dispatch(bookmarkLoading(false))
+        return response
+      })
+      .then(() => dispatch(bookmarkSuccess()))
+      .catch(() => dispatch(bookmarkFailure(true)))
   }
 }

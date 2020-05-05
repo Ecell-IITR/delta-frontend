@@ -3,7 +3,7 @@ import { Form } from 'semantic-ui-react'
 import CreatePost from '.'
 import InputField from '../../../../coreContainers/input'
 import Dropdown from '../../../../coreContainers/dropdown'
-import { SubmitButton } from '../../../../coreContainers'
+import { Button } from '../../../../coreContainers'
 
 class Competition extends Component {
   constructor(prop) {
@@ -73,16 +73,16 @@ class Competition extends Component {
     }
   }
 
-  // prizeHandler = e =>{
-  //   this.setState = {
-  //     postExpiryDate: e.target.value
-  //   }
-  // }
-  // requiredSkillsHandler = e =>{
-  //   this.setState = {
-  //     postExpiryDate: e.target.value
-  //   }
-  // }
+  prizeHandler = e =>{
+    this.setState = {
+      postExpiryDate: e.target.value
+    }
+  }
+  requiredSkillsHandler = e =>{
+    this.setState = {
+      postExpiryDate: e.target.value
+    }
+  }
   onSubmit(e) {
     e.preventDefault();
 
@@ -141,8 +141,8 @@ class Competition extends Component {
             onChange = {this.linkHandler}
           />
           <Dropdown options={this.state.optionsSkill} />
-          <SubmitButton type='submit' buttonContent="Save" />
-          <SubmitButton buttonContent="Publish" color="blue" />
+          <Button type='submit' buttonContent="Save" />
+          <Button buttonContent="Publish" color="blue" />
         </Form.Group>
       </div>
     )

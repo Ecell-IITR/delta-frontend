@@ -66,11 +66,11 @@ class Internship extends Component {
       stipend: e.target.value
     }
   }
-  // requiredSkillsHandler = e =>{
-  //   this.setState = {
-  //     requiredSkills: e.target.value
-  //   }
-  // }
+  requiredSkillsHandler = e =>{
+    this.setState = {
+      requiredSkills: e.target.value
+    }
+  }
   postExpiryDateHandler = e =>{
     this.setState = {
       postExpiryDate: e.target.value

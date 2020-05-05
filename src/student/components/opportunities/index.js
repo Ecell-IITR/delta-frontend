@@ -1,45 +1,48 @@
 import React, { Component } from 'react'
-import '../css/opportunities.css'
-import Post from '../../../coreContainers/post/index'
-import Input from '../../../coreContainers/input/index'
 import FilterLabel from '../../../coreContainers/filterLabel/index'
+import styles from "./opportunities.module.css"
+import SideBarRow from '../../../coreContainers/sideBarRow'
+import { DateInput } from  'semantic-ui-calendar-react'
+import Slider from '@material-ui/core/Slider';
+import { Label,Icon, Input } from 'semantic-ui-react'
+import { Switch, Route, NavLink } from 'react-router-dom'
+import PropTypes from 'prop-types'
+import FilterOpportunities from './filter'
+// import { KeyboardDatePicker, DatePicker } from "@material-ui/pickers";
 
 export default class Opportunites extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      options: [
-        { label: 'ecell', value: 'rocks' },
-        { label: 'delta', value: 'also rocks' },
-        { label: 'edc', value: ' rocks' },
-      ],
-    }
-  }
 
   render() {
+    const { match } = this.props
     return (
-      <div className="opportunities-container">
-        <div className="filter-container">
-          <h2 className="filter-heading">Filters</h2>
-          <hr />
-          <Input
-            className="opportunities-filter-search"
-            placeholder="Add keyword"
-          />
-          <div className="filter-opportunityType">
-            <FilterLabel options={this.state.options} />
+      <div className={styles['opportunities-container']}>
+        <div className={styles['side-container']}>
+          <div className={styles['opportunities-sidebar']}>
+            <NavLink to={"/opportunities/applied-post"} activeClassName={styles.active}>
+              <SideBarRow Icon="check circle" Title="Applied Post" />
+            </NavLink>
+            <NavLink to={"/opportunities/bookmark"} activeClassName={styles.active}>
+              <SideBarRow Icon="bookmark" Title="Bookmarks" />
+            </NavLink>
+            <NavLink to={"/opportunities/companies"} activeClassName={styles.active}>
+              <SideBarRow Icon="building" Title="Companies" />
+            </NavLink>
           </div>
-          <div></div>
-          <div className="filter-searchLocation"></div>
-        </div>
-        <div className="list-post-container">
-          <Post />
-          <Post />
-          <Post />
-          <Post />
-          <Post />
-        </div>
+          <FilterOpportunities/>
+          <Switch>
+            <Route
+              exact
+              // path={`${match.path}/applied-posts`}
+              component={React.lazy(() => import('./posts'))}
+            />
+          </Switch>
+        
       </div>
+    </div>
     )
   }
+}
+
+Opportunites.propTypes = {
+  match: PropTypes.object
 }

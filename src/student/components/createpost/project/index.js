@@ -60,11 +60,11 @@ class Project extends Component {
       approxDuration: e.target.value
     }
   }
-  // titleHandler = e =>{
-  //   this.setState = {
-  //     title: e.target.value
-  //   }
-  // }
+  requiredSkillsHandler = e =>{
+    this.setState = {
+      title: e.target.value
+    }
+  }
   postExipryDateHandler = e =>{
     this.setState = {
       postExipryDate: e.target.value
@@ -111,7 +111,10 @@ class Project extends Component {
             onChange={this.approxDurationHandler}
             placeholder="Enter approx duration"
           />
-          <Dropdown options={this.state.optionsSkill} />
+          <Dropdown 
+            options={this.state.optionsSkill} 
+            onChange={ this.requiredSkillsHandler}
+          />
           <InputField
             label="Post expiry date"
             onChange={this.postExipryDateHandler}
