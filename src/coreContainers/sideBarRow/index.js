@@ -21,7 +21,7 @@ export default class SideBarRow extends Component {
     const { mouseOver } = this.state
     return (
       <div
-        className={styles.eachrow}
+        className={`${styles.eachrow} ${this.props.customClassName}`}
         onMouseOver={this.handleHover}
         onMouseOut={this.handleHover}
         style={mouseOver ? { backgroundColor: '#2964ee' } : null}
@@ -30,11 +30,11 @@ export default class SideBarRow extends Component {
           name={this.props.Icon}
           size="big"
           className={styles.iconstyle}
-          style={mouseOver ? { color: 'white' } : null}
+          style={mouseOver ? { color: '#f5f6f9' } : null}
         />
         <span
-          className={styles.nameeachrow}
-          style={mouseOver ? { color: 'white' } : null}
+          className={`${styles.nameeachrow} ${this.props.titleClass}`}
+          style={mouseOver ? { color: '#f5f6f9' } : null}
         >
           {this.props.Title}
         </span>
@@ -45,4 +45,6 @@ export default class SideBarRow extends Component {
 SideBarRow.propTypes = {
   Icon: PropTypes.string,
   Title: PropTypes.string,
+  customClassName: PropTypes.string,
+  titleClass: PropTypes.string
 }

@@ -1,30 +1,37 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import SideBarRow from 'coreContainers/sideBarRow'
 import styles from './index.css'
 
 class CreatePostSidebar extends Component {
   render() {
     return (
-      <div>
+      <div className={styles.sideContainer}>
         <div className={styles.container}>
-          <Link className={styles.eachrow} to="/create-post/internship">
+          <NavLink to="/create-post/internship">
             <SideBarRow
-              className={styles.eachrow}
+              customClassName={styles.row}
+              titleClass={styles.titlerow}
               Icon="briefcase"
               Title="Internship"
             />
-          </Link>
-          <Link className={styles.eachrow} to="/create-post/project">
+          </NavLink>
+          <NavLink to="/create-post/project">
             <SideBarRow
-              className={styles.eachrow}
+              customClassName={styles.row}
+              titleClass={styles.titlerow}
               Icon="lightbulb outline"
               Title="Project"
             />
-          </Link>
-          <Link className={styles.eachrow} to="/create-post/competition">
-            <SideBarRow Icon="trophy" Title="Competition" />
-          </Link>
+          </NavLink>
+          <NavLink to="/create-post/competition">
+            <SideBarRow
+              customClassName={styles.row}
+              titleClass={styles.titlerow}
+              Icon="trophy"
+              Title="Competition"
+            />
+          </NavLink>
         </div>
       </div>
     )

@@ -29,7 +29,7 @@ class Dropdown extends React.Component {
 
   render() {
     const { options } = this.state
-    const { name, isMulti, placeholder } = this.props
+    const { name, isMulti, placeholder, className } = this.props
     return (
       <>
         {options ? (
@@ -40,6 +40,7 @@ class Dropdown extends React.Component {
             options={options}
             isMulti={isMulti}
             placeholder={placeholder}
+            className={className}
           />
         ) : null}
       </>
@@ -54,5 +55,6 @@ Dropdown.propTypes = {
   isMulti: PropTypes.bool,
   refresh: PropTypes.func,
   placeholder: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
 }
 export default Dropdown

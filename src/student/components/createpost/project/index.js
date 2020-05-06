@@ -3,8 +3,9 @@ import { Form } from 'semantic-ui-react'
 import CreatePost from '.'
 import InputField from '../../../../coreContainers/input'
 import Dropdown from '../../../../coreContainers/dropdown'
-import { SubmitButton } from '../../../../coreContainers'
+import Button from '../../../../coreContainers/button'
 import { createPostProject } from '../../../actions'
+import styles from './index.css'
 
 class Project extends Component {
   constructor(prop) {
@@ -34,42 +35,42 @@ class Project extends Component {
     }
   }
 
-  titleHandler = (e) => {
+  titleHandler = e => {
     this.setState = {
       title: e.target.value,
     }
   }
-  stipendHandler = (e) => {
+  stipendHandler = e => {
     this.setState = {
       stipend: e.target.value,
     }
   }
-  workDescriptionHandler = (e) => {
+  workDescriptionHandler = e => {
     this.setState = {
       workDescription: e.target.value,
     }
   }
-  projectHandler = (e) => {
+  projectHandler = e => {
     this.setState = {
       projectFile: e.target.file,
     }
   }
-  approxDurationHandler = (e) => {
+  approxDurationHandler = e => {
     this.setState = {
       approxDuration: e.target.value,
     }
   }
-  // titleHandler = e =>{
-  //   this.setState = {
-  //     title: e.target.value
-  //   }
-  // }
-  postExipryDateHandler = (e) => {
+  requiredSkillsHandler = e =>{
+    this.setState = {
+      title: e.target.value
+    }
+  }
+  postExipryDateHandler = e => {
     this.setState = {
       postExipryDate: e.target.value,
     }
   }
-  onSubmit(e) {
+  onSubmit = e => {
     e.preventDefault()
 
     const data = {
@@ -88,39 +89,55 @@ class Project extends Component {
   render() {
     return (
       <div>
-        <Form.Group onSubmit={this.onSubmit}>
-          <InputField
-            label="Title"
-            onChange={this.titleHandler}
-            placeholder="Enter title of project"
-          />
-          <InputField
-            label="Stipend"
-            onChange={this.stipendHandler}
-            placeholder="Enter Stipend"
-          />
-          <InputField
-            label="Work description"
-            onChange={this.workDescriptionHandler}
-            placeholder="Enter work description"
-          />
-          <InputField label="Project file" placeholder="Add file" type="file" />
-          <InputField
-            label="Approx Duration"
-            onChange={this.approxDurationHandler}
-            placeholder="Enter approx duration"
-          />
-          <Dropdown options={this.state.optionsSkill} />
-          <InputField
-            label="Post expiry date"
-            onChange={this.postExipryDateHandler}
-            placeholder="Enter post expiry date"
-            type="date"
-          />
-
-          <SubmitButton type="submit" buttonContent="Save" />
-          <SubmitButton buttonContent="Publish" color="blue" />
+        <Form.Group className={styles.container} onSubmit={this.onSubmit}>
+          <div className={styles.element1}>
+            <label>Title</label>
+            <InputField
+              onChange={this.titleHandler}
+              placeholder="Enter title of project"
+            />
+          </div>
+          <div className={styles.element1}>
+            <label>Stipend</label>
+            <InputField
+              onChange={this.stipendHandler}
+              placeholder="Enter Stipend"
+            />
+          </div>
+          <div className={styles.element2}>
+            <label>Work description</label>
+            <textarea
+              className={styles.textarea}
+              onChange={this.workDescriptionHandler}
+              placeholder="Enter work description"
+            />
+          </div>
+          <div className={styles.element1}>
+            <label>Project file</label>
+            <InputField placeholder="Add file" type="file" />
+          </div>
+          <div className={styles.element1}>
+            <label>Approx Duration</label>
+            <InputField
+              onChange={this.approxDurationHandler}
+              placeholder="Enter approx duration"
+            />
+          </div>
+          <div className={styles.element1}>
+            <label>Required skill-set</label>
+            <Dropdown options={this.state.optionsSkill} />
+          </div>
+          <div className={styles.element1}>
+            <label>Post expiry date</label>
+            <InputField
+              onChange={this.postExipryDateHandler}
+              placeholder="Enter post expiry date"
+              type="date"
+            />
+          </div>
         </Form.Group>
+        <Button customClassName={styles.button1} type="submit" buttonContent="Save" />
+        <Button customClassName={styles.button2} buttonContent="Publish" color="blue" />
       </div>
     )
   }

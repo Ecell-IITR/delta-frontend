@@ -3,7 +3,8 @@ import { Form } from 'semantic-ui-react'
 import CreatePost from '.'
 import InputField from '../../../../coreContainers/input'
 import Dropdown from '../../../../coreContainers/dropdown'
-import { SubmitButton } from '../../../../coreContainers'
+import Button from '../../../../coreContainers/button'
+import styles from './index.css'
 
 class Competition extends Component {
   constructor(prop) {
@@ -12,7 +13,7 @@ class Competition extends Component {
     this.onSubmit = this.onSubmit.bind(this)
     this.titleHandler = this.titleHandler.bind(this)
     this.typeOfCompetitionHandler = this.typeOfCompetitionHandler.bind(this)
-    this.competitionDescription = this.competitionDescription.bind(this)
+    this.competitionDescriptionHandler = this.competitionDescriptionHandler.bind(this)
     this.posterHandler = this.posterHandler.bind(this)
     this.dateOfCompetitionHandler = this.dateOfCompetitionHandler.bind(this)
     this.postExpiryDateHandler = this.postExpiryDateHandler.bind(this)
@@ -72,16 +73,16 @@ class Competition extends Component {
     }
   }
 
-  // prizeHandler = e =>{
-  //   this.setState = {
-  //     postExpiryDate: e.target.value
-  //   }
-  // }
-  // requiredSkillsHandler = e =>{
-  //   this.setState = {
-  //     postExpiryDate: e.target.value
-  //   }
-  // }
+  prizeHandler = e =>{
+    this.setState = {
+      postExpiryDate: e.target.value
+    }
+  }
+  requiredSkillsHandler = e =>{
+    this.setState = {
+      postExpiryDate: e.target.value
+    }
+  }
   onSubmit(e) {
     e.preventDefault()
 
@@ -103,44 +104,67 @@ class Competition extends Component {
   render() {
     return (
       <div>
-        <Form.Group onSubmit={this.onSubmit}>
-          <InputField
-            label="Title"
-            placeholder="Enter title of project"
-            onChange={this.titleHandler}
-          />
-          <InputField
-            label="Type of competition"
-            placeholder="Select type of competition"
-            onChange={this.typeOfCompetitionHandler}
-          />
-          <InputField
-            label="Competition description"
-            placeholder="Enter competition description"
-            onChange={this.competitionDescriptionHandler}
-          />
-          <InputField label="Poster" placeholder="Add file" type="file" />
-          <InputField
-            label="Date of Competition"
-            placeholder="Select date of competition"
-            onChange={this.dateOfCompetitionHandler}
-            type="date"
-          />
-          <InputField
-            label="Post expiry date"
-            placeholder="Select post expiry date"
-            onChange={this.postExpiryDateHandler}
-            type="date"
-          />
-          <InputField
-            label="Link to apply for Competition"
-            placeholder="Enter URL"
-            onChange={this.linkHandler}
-          />
-          <Dropdown options={this.state.optionsSkill} />
-          <SubmitButton type="submit" buttonContent="Save" />
-          <SubmitButton buttonContent="Publish" color="blue" />
+        <Form.Group className={styles.container} onSubmit={this.onSubmit}>
+          <div className={styles.element1}>
+            <label>Title</label>
+            <InputField
+              placeholder="Enter title of project"
+              onChange={this.titleHandler}
+            />
+          </div>
+          <div className={styles.element1}>
+            <label>Type of competition</label>
+            <InputField
+              placeholder="Select type of competition"
+              onChange={this.typeOfCompetitionHandler}
+            />
+          </div>
+          <div className={styles.element2}>
+            <label>Competition Description</label>
+            <textarea
+              className={styles.textarea}
+              placeholder="Enter competition description"
+              onChange={this.competitionDescriptionHandler}
+            />
+          </div>
+          <div className={styles.element1}>
+            <label>Poster</label>
+            <InputField
+              placeholder="Add file"
+              type="file"
+            />
+          </div>
+          <div className={styles.element1}>
+            <label>Date of Competition</label>
+            <InputField
+              placeholder="Select date of competition"
+              onChange={this.dateOfCompetitionHandler}
+              type="date"
+            />
+          </div>
+          <div className={styles.element1}>
+            <label>Post expiry date</label>
+            <InputField
+              placeholder="Select post expiry date"
+              onChange={this.postExpiryDateHandler}
+              type="date"
+            />
+          </div>
+          <div className={styles.element1}>
+            <label>Link to apply for Competition</label>
+            <InputField
+              type="link"
+              placeholder="Enter URL"
+              onChange={this.linkHandler}
+            />
+          </div>
+          <div className={styles.element1}>
+            <label>Required skill-set</label>
+            <Dropdown options={this.state.optionsSkill} />
+          </div>
         </Form.Group>
+        <Button customClassName={styles.button1} type="submit" buttonContent="Save" />
+        <Button customClassName={styles.button2} buttonContent="Publish" color="blue" />
       </div>
     )
   }

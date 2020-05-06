@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import { Form } from 'semantic-ui-react'
-// import CreatePost from '.'
-import InputField from 'coreContainers/input'
+import InputField from '../../../../coreContainers/input'
 import Dropdown from 'coreContainers/dropdown'
-import { SubmitButton } from 'coreContainers'
 import { createPostInternship } from '../../../actions'
+import styles from './index.css'
+import { Button } from '../../../../coreContainers'
 
 class Internship extends Component {
   constructor(props) {
@@ -69,11 +69,11 @@ class Internship extends Component {
     }
   }
 
-  // requiredSkillsHandler = e =>{
-  //   this.setState = {
-  //     requiredSkills: e.target.value
-  //   }
-  // }
+  requiredSkillsHandler = e =>{
+    this.setState = {
+      requiredSkills: e.target.value
+    }
+  }
   postExpiryDateHandler = (e) => {
     this.setState = {
       postExpiryDate: e.target.value,
@@ -98,41 +98,61 @@ class Internship extends Component {
 
   render() {
     return (
-      <div className="internship-container">
-        <div>
-          <Form.Group onSubmit={this.onSubmit} widths="equal">
+      <div>
+        <Form.Group className={styles.container} onSubmit={this.onSubmit}>
+          <div className={styles.element1}>
+            <label for="job">Job Position</label>
             <InputField
-              label="Job Position"
+              name="job"
               onChange={this.jobPositionHandler}
               placeholder="Enter job position"
             />
-            <Dropdown options={this.state.optionsWork} />
-            <InputField
-              label="Work description"
+          </div>
+          <div className={styles.element1}>
+            <label for="drop">Type of work</label>
+            <Dropdown name="drop" options={this.state.optionsWork} />
+          </div>
+          <div className={styles.element2}>
+            <label for="work">Work Description</label>
+            <textarea
+              name="work"
+              className={styles.textarea}
               onChange={this.workDescriptionHandler}
               placeholder="Enter work description"
             />
+          </div>
+          <div className={styles.element1}>
+            <label for="duration">Duration of Intern</label>
             <InputField
-              label="Duration of Intern"
+              name="duration"
               onChange={this.durationOfInternHandler}
               placeholder="Enter duration of intern"
             />
+          </div>
+          <div className={styles.element1}>
+            <label for="stipend">Stipend</label>
             <InputField
-              label="Stipend"
+              name="stipend"
               onChange={this.stipendHandler}
               placeholder="Enter stipend"
             />
+          </div>
+          <div className={styles.element1}>
+            <label for="work">Required skill-set</label>
             <Dropdown options={this.state.optionsSkill} isMulti={true} />
+          </div>
+          <div className={styles.element1}>
+            <label for="work">Post expiry date</label>
             <InputField
-              label="Post expiry date"
+              name="Post expiry date"
               onChange={this.postExpiryDateHandler}
               placeholder="Select post expiry date"
               type="date"
             />
-            <SubmitButton type="submit" buttonContent="Save" />
-            <SubmitButton buttonContent="Publish" color="blue" />
-          </Form.Group>
-        </div>
+          </div>
+          <Button customClassName={styles.button1} type="submit" buttonContent="Save" />
+          <Button customClassName={styles.button2} buttonContent="Publish" color="blue" />
+        </Form.Group>
       </div>
     )
   }
