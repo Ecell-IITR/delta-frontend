@@ -1,13 +1,14 @@
 .post {
   border-radius: 5px;
   background-color: #ffffff;
-  padding: 1rem;
+  padding: 1.25rem 2.75rem;
   margin: 1rem 0;
   border: 1px solid black;
   font-family: Neutrifpro-regular;
+  color: #5a5c74;
 }
 
-.post-upper-section {
+.post-uppermost-info-sec {
   display: flex;
 }
 
@@ -17,15 +18,131 @@
 
 .post-user-section {
   width: 20%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .post-title {
   font-size: 1.4rem;
-  font-family: Neutrifpro-bold;
-  letter-spacing: 1.43px;
+  font-family: Neutrifpro-semibold;
+  color: #2964ee;
 }
 
 .post-sti-work {
   font-size: 1.2rem;
   padding: 0.5rem 0;
+}
+
+.accordion-card {
+  border: none;
+}
+
+.accordion-collapse {
+  border-top: 1px solid #5a5c74;
+  border-bottom: 1px solid #5a5c74;
+  margin: 1rem 0;
+}
+
+.accordion-card-body {
+  padding: 1rem 0;
+}
+
+.post-lower-section {
+  padding: 1rem 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+.view-more-button {
+  margin: 0 1rem;
+  display: flex;
+  align-items: center;
+}
+
+.view-more-button span {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #2964ee;
+  margin: 0 0.5rem;
+  cursor: pointer;
+}
+
+.accordion-arrow-btn {
+  color: #2964ee;
+  cursor: pointer;
+}
+
+.active-bookmark-button {
+  color: #ffe11d;
+  cursor: pointer;
+  margin-top: auto;
+  margin-bottom: auto;
+  margin: 0 0 0 2rem;
+}
+
+.bookmark-button {
+  background-color: #ffffff;
+  cursor: pointer;
+  margin: auto 0 auto 2rem;
+}
+
+.apply-now-button {
+  border-radius: 4px;
+  background-color: #2964ee;
+  padding: 10px 25px;
+  border: none;
+  cursor: pointer;
+  color: white;
+  font-family: Neutrifpro-regular;
+}
+
+.bookmark-view-wrapper {
+  display: flex;
+  margin: 0 1rem;
+}
+
+.work-description-header {
+  font-size: 1.2rem;
+  font-family: Neutrifpro-semibold;
+  margin: 0 0 0.5rem 0;
+}
+
+.skill-required {
+  margin: 1rem 0;
+}
+
+.skill-required-header {
+  font-size: 1.2rem;
+  font-family: Neutrifpro-semibold;
+  margin: 0 0 0.5rem 0;
+}
+
+.user-section-wrapper {
+  display: flex;
+  width: max-content;
+  margin-left: auto;
+}
+
+.user-image {
+  padding: 0 0.5rem;
+  margin: auto 0;
+}
+
+.user-image img {
+  height: 35px;
+}
+
+.post-some-info-section {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0.5rem 0;
+}
+
+.post-some-info-section div {
+  margin-right: 2rem;
+}
+
+.post-some-info-section > div > span {
+  margin: 0 0.5rem;
 }

@@ -30,7 +30,6 @@ export class Opportunities extends Component {
 
   render() {
     const { isLoading, opportunitiesList } = this.props.opportunitiesObj
-    console.log(opportunitiesList)
     return (
       <div className="opportunities-container">
         <div className="filter-container">
@@ -49,19 +48,19 @@ export class Opportunities extends Component {
         {isLoading ? (
           <Loader />
         ) : (
-          <>
-            {opportunitiesList && opportunitiesList.length === 0 ? (
-              <div>Opportunities list is empty!</div>
-            ) : (
-              <>
-                {opportunitiesList &&
-                  opportunitiesList.map((opportunity) => (
-                    <PostComponent opportunity={opportunity} />
-                  ))}
-              </>
-            )}
-          </>
-        )}
+            <>
+              {opportunitiesList && opportunitiesList.length === 0 ? (
+                <div>Opportunities list is empty!</div>
+              ) : (
+                  <>
+                    {opportunitiesList &&
+                      opportunitiesList.map((opportunity) => (
+                        <PostComponent opportunity={opportunity} />
+                      ))}
+                  </>
+                )}
+            </>
+          )}
       </div>
     )
   }
