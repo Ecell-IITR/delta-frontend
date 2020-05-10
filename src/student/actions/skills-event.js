@@ -12,10 +12,13 @@ import {
   FETCH_SKILLS_FAILURE,
   FETCH_SKILLS_SUCCESS,
   SET_ADDED_SKILLS,
+  REMOVE_SKILL_REQUEST,
   REMOVE_SKILL_FAILURE,
   REMOVE_SKILL_SUCCESS,
+  ADD_SKILL_REQUEST,
   ADD_SKILL_FAILURE,
   ADD_SKILL_SUCCESS,
+  REMOVE_ALL_SKILLS_REQUEST,
   REMOVE_ALL_SKILLS_FAILURE,
   REMOVE_ALL_SKILLS_SUCCESS,
   SEARCH_SKILLS,
@@ -50,6 +53,10 @@ export const setAddedSkills = (studentSkills) => {
 
 export const removeSkill = (slug) => {
   return (dispatch) => {
+    dispatch({
+      type: REMOVE_SKILL_REQUEST,
+      payload: slug,
+    })
     FetchApi(
       'POST',
       `/api/v1/utilities/skills/remove/${slug}/`,
@@ -72,6 +79,10 @@ export const removeSkill = (slug) => {
 
 export const addSkill = (slug) => {
   return (dispatch) => {
+    dispatch({
+      type: ADD_SKILL_REQUEST,
+      payload: slug,
+    })
     FetchApi(
       'POST',
       `/api/v1/utilities/skills/add/${slug}/`,
@@ -94,6 +105,9 @@ export const addSkill = (slug) => {
 
 export const removeAll = () => {
   return (dispatch) => {
+    dispatch({
+      type: REMOVE_ALL_SKILLS_REQUEST,
+    })
     FetchApi(
       'POST',
       `/api/v1/utilities/skills/remove-all/`,

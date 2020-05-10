@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Switch, Route } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import CreatePostSidebar from './sidebar'
-import styles from "./createpost.css"
+import styles from './createpost.css'
 
 export class CreatePost extends Component {
   render() {

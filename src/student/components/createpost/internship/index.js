@@ -69,9 +69,9 @@ class Internship extends Component {
     }
   }
 
-  requiredSkillsHandler = e =>{
+  requiredSkillsHandler = (e) => {
     this.setState = {
-      requiredSkills: e.target.value
+      requiredSkills: e.target.value,
     }
   }
   postExpiryDateHandler = (e) => {
@@ -150,8 +150,16 @@ class Internship extends Component {
               type="date"
             />
           </div>
-          <Button customClassName={styles.button1} type="submit" buttonContent="Save" />
-          <Button customClassName={styles.button2} buttonContent="Publish" color="blue" />
+          <Button
+            customClassName={styles.button1}
+            type="submit"
+            buttonContent="Save"
+          />
+          <Button
+            customClassName={styles.button2}
+            buttonContent="Publish"
+            color="blue"
+          />
         </Form.Group>
       </div>
     )

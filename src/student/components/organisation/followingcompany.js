@@ -55,9 +55,7 @@ class followingcompany extends Component {
     return (
       <div>
         {organisations.map((org, index) => (
-        <div key={index}>
-            {this.renderFollowUnfollow(org,followinglist)}
-        </div>
+          <div key={index}>{this.renderFollowUnfollow(org, followinglist)}</div>
         ))}
       </div>
     )

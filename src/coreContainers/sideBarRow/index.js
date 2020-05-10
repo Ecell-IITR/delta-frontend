@@ -46,5 +46,5 @@ SideBarRow.propTypes = {
   Icon: PropTypes.string,
   Title: PropTypes.string,
   customClassName: PropTypes.string,
-  titleClass: PropTypes.string
+  titleClass: PropTypes.string,
 }

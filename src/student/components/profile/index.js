@@ -24,9 +24,10 @@ class StudentProfile extends Component {
 
   render() {
     const { user, match, studentProfile, studentProfileLoading } = this.props
+    console.log(user)
     return (
       <>
-        {!user || studentProfileLoading ? (
+        {Object.keys(user).length === 0 || studentProfileLoading ? (
           <div>Loading....</div>
         ) : (
           <div className={styles.info}>

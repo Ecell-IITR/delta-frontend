@@ -13,7 +13,9 @@ class Competition extends Component {
     this.onSubmit = this.onSubmit.bind(this)
     this.titleHandler = this.titleHandler.bind(this)
     this.typeOfCompetitionHandler = this.typeOfCompetitionHandler.bind(this)
-    this.competitionDescriptionHandler = this.competitionDescriptionHandler.bind(this)
+    this.competitionDescriptionHandler = this.competitionDescriptionHandler.bind(
+      this,
+    )
     this.posterHandler = this.posterHandler.bind(this)
     this.dateOfCompetitionHandler = this.dateOfCompetitionHandler.bind(this)
     this.postExpiryDateHandler = this.postExpiryDateHandler.bind(this)
@@ -73,14 +75,14 @@ class Competition extends Component {
     }
   }
 
-  prizeHandler = e =>{
+  prizeHandler = (e) => {
     this.setState = {
-      postExpiryDate: e.target.value
+      postExpiryDate: e.target.value,
     }
   }
-  requiredSkillsHandler = e =>{
+  requiredSkillsHandler = (e) => {
     this.setState = {
-      postExpiryDate: e.target.value
+      postExpiryDate: e.target.value,
     }
   }
   onSubmit(e) {
@@ -129,10 +131,7 @@ class Competition extends Component {
           </div>
           <div className={styles.element1}>
             <label>Poster</label>
-            <InputField
-              placeholder="Add file"
-              type="file"
-            />
+            <InputField placeholder="Add file" type="file" />
           </div>
           <div className={styles.element1}>
             <label>Date of Competition</label>
@@ -163,8 +162,16 @@ class Competition extends Component {
             <Dropdown options={this.state.optionsSkill} />
           </div>
         </Form.Group>
-        <Button customClassName={styles.button1} type="submit" buttonContent="Save" />
-        <Button customClassName={styles.button2} buttonContent="Publish" color="blue" />
+        <Button
+          customClassName={styles.button1}
+          type="submit"
+          buttonContent="Save"
+        />
+        <Button
+          customClassName={styles.button2}
+          buttonContent="Publish"
+          color="blue"
+        />
       </div>
     )
   }

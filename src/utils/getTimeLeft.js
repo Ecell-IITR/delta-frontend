@@ -1,5 +1,3 @@
-
-
 export const getTimeLeft = (date) => {
   const dateObj = new Date(date)
   let timeBetweenType = 'week'
@@ -8,5 +6,9 @@ export const getTimeLeft = (date) => {
     timeBetween *= 7
     timeBetweenType = 'day'
   }
-  return `${Math.round(timeBetween) > 1 ? `${Math.round(timeBetween)} ${timeBetweenType}s` : `${Math.round(timeBetween)} ${timeBetweenType}`}`
+  return `${
+    Math.round(timeBetween) > 1
+      ? `${Math.round(timeBetween)} ${timeBetweenType}s`
+      : `${Math.round(timeBetween)} ${timeBetweenType}`
+  }`
 }

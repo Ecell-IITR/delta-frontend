@@ -35,42 +35,42 @@ class Project extends Component {
     }
   }
 
-  titleHandler = e => {
+  titleHandler = (e) => {
     this.setState = {
       title: e.target.value,
     }
   }
-  stipendHandler = e => {
+  stipendHandler = (e) => {
     this.setState = {
       stipend: e.target.value,
     }
   }
-  workDescriptionHandler = e => {
+  workDescriptionHandler = (e) => {
     this.setState = {
       workDescription: e.target.value,
     }
   }
-  projectHandler = e => {
+  projectHandler = (e) => {
     this.setState = {
       projectFile: e.target.file,
     }
   }
-  approxDurationHandler = e => {
+  approxDurationHandler = (e) => {
     this.setState = {
       approxDuration: e.target.value,
     }
   }
-  requiredSkillsHandler = e =>{
+  requiredSkillsHandler = (e) => {
     this.setState = {
-      title: e.target.value
+      title: e.target.value,
     }
   }
-  postExipryDateHandler = e => {
+  postExipryDateHandler = (e) => {
     this.setState = {
       postExipryDate: e.target.value,
     }
   }
-  onSubmit = e => {
+  onSubmit = (e) => {
     e.preventDefault()
 
     const data = {
@@ -136,8 +136,16 @@ class Project extends Component {
             />
           </div>
         </Form.Group>
-        <Button customClassName={styles.button1} type="submit" buttonContent="Save" />
-        <Button customClassName={styles.button2} buttonContent="Publish" color="blue" />
+        <Button
+          customClassName={styles.button1}
+          type="submit"
+          buttonContent="Save"
+        />
+        <Button
+          customClassName={styles.button2}
+          buttonContent="Publish"
+          color="blue"
+        />
       </div>
     )
   }

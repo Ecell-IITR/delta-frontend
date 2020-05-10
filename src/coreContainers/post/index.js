@@ -11,7 +11,7 @@ import {
   faBookmark,
   faUser,
   faCalendar,
-  faClock
+  faClock,
 } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { STUDENT_ROLE, COMPANY_ROLE } from 'globalConstants'
@@ -97,7 +97,14 @@ export default class PostComponent extends Component {
 
     switch (opportunity.postType) {
       case INTERNSHIP_POST_TYPE_KEY:
-        const { title, stipend, workType, userMinProfile, applicantsCount, postExpiryDate } = opportunity
+        const {
+          title,
+          stipend,
+          workType,
+          userMinProfile,
+          applicantsCount,
+          postExpiryDate,
+        } = opportunity
         return (
           <div className={styles['post-upper-section']}>
             <div className={styles['post-uppermost-info-sec']}>
@@ -113,21 +120,15 @@ export default class PostComponent extends Component {
             </div>
             <div className={styles['post-some-info-section']}>
               <div>
-                <FontAwesomeIcon
-                  icon={faUser}
-                />
+                <FontAwesomeIcon icon={faUser} />
                 <span>{opportunity.applicantsCount} Applicants</span>
               </div>
               <div>
-                <FontAwesomeIcon
-                  icon={faCalendar}
-                />
+                <FontAwesomeIcon icon={faCalendar} />
                 <span>{opportunity.duration}</span>
               </div>
               <div>
-                <FontAwesomeIcon
-                  icon={faClock}
-                />
+                <FontAwesomeIcon icon={faClock} />
                 <span>{getTimeLeft(opportunity.postExpiryDate)} left</span>
               </div>
             </div>
@@ -156,8 +157,8 @@ export default class PostComponent extends Component {
                 </div>
               </div>
             ) : (
-                <></>
-              )}
+              <></>
+            )}
             {requiredSkill ? (
               <div className={styles['skill-required']}>
                 <div className={styles['skill-required-header']}>
@@ -168,8 +169,8 @@ export default class PostComponent extends Component {
                 </div>
               </div>
             ) : (
-                <></>
-              )}
+              <></>
+            )}
           </div>
         )
       default:

@@ -17,6 +17,10 @@ import {
 import styles from './index.css'
 
 class Skill extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {}
+  }
   componentDidMount = () => {
     const {
       studentSkills,
@@ -33,7 +37,7 @@ class Skill extends Component {
   }
 
   renderSkills = (skillsList) => {
-    const { addSkillComponent } = this.props
+    const { addSkillComponent, isSkillLoading, skillSlug } = this.props
     return (
       <>
         {skillsList.map((skill) => (
@@ -46,7 +50,11 @@ class Skill extends Component {
                 addSkillComponent(skill.slug)
               }}
             >
-              <Icon name="add" />
+              {isSkillLoading && skillSlug === skill.slug ? (
+                <div class="spinner-border text-primary" role="status"></div>
+              ) : (
+                <Icon name="add" />
+              )}
             </button>
           </div>
         ))}
@@ -62,6 +70,9 @@ class Skill extends Component {
       addedSkills,
       skillsLoading,
       renderSearchedSkills,
+      isSkillLoading,
+      skillSlug,
+      removeAllLoading,
     } = this.props
     return (
       <>
@@ -98,12 +109,19 @@ class Skill extends Component {
                   >
                     <div className={styles['clear-all-text']}>Clear All</div>
                     <div>
-                      <Icon
-                        size="large"
-                        color="red"
-                        // className={skills.removeAll}
-                        name="remove circle"
-                      />
+                      {removeAllLoading ? (
+                        <div
+                          class="spinner-border text-primary"
+                          role="status"
+                        ></div>
+                      ) : (
+                        <Icon
+                          size="large"
+                          color="red"
+                          // className={skills.removeAll}
+                          name="remove circle"
+                        />
+                      )}
                     </div>
                   </button>
                 ) : (
@@ -122,7 +140,14 @@ class Skill extends Component {
                           removeSkillComponent(skill.slug)
                         }}
                       >
-                        <Icon name="remove circle" />
+                        {isSkillLoading && skillSlug === skill.slug ? (
+                          <div
+                            class="spinner-border text-primary"
+                            role="status"
+                          ></div>
+                        ) : (
+                          <Icon name="remove circle" />
+                        )}
                       </button>
                     </div>
                   ))}
@@ -159,6 +184,9 @@ const mapStateToProps = (state) => {
     studentSkills: state.student.profile.profile.skills,
     addedSkills: state.student.skill.addedSkills,
     renderSearchedSkills: state.student.skill.renderSearchedSkills,
+    isSkillLoading: state.student.skill.isSkillLoading,
+    skillSlug: state.student.skill.skillSlug,
+    removeAllLoading: state.student.skill.removeAllLoading,
   }
 }
 

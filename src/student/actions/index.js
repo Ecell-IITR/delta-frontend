@@ -109,12 +109,7 @@ export const fetchOrganisations = () => {
 export const fetchFollowingList = () => {
   return (dispatch) => {
     dispatch({ type: FETCH_FOLLOWING_LIST_REQUEST })
-    FetchApi(
-      'GET',
-      '/api/v1/following-list/',
-      null,
-      getToken(TOKEN_TYPE),
-    )
+    FetchApi('GET', '/api/v1/following-list/', null, getToken(TOKEN_TYPE))
       .then((res) => {
         if (res.data) {
           dispatch({ type: FETCH_FOLLOWING_LIST_SUCCESS, payload: res.data })
@@ -134,12 +129,7 @@ export const fetchFollowingList = () => {
 export const followUser = (slug) => {
   return (dispatch) => {
     dispatch({ type: FOLLOW_USER_REQUEST })
-    FetchApi(
-      'POST',
-      `/api/v1/action/1/${slug}/`,
-      null,
-      getToken(TOKEN_TYPE),
-    )
+    FetchApi('POST', `/api/v1/action/1/${slug}/`, null, getToken(TOKEN_TYPE))
       .then(() => {
         dispatch({ type: FOLLOW_USER_SUCCESS, payload: slug })
       })
@@ -157,12 +147,7 @@ export const followUser = (slug) => {
 export const unfollowUser = (slug) => {
   return (dispatch) => {
     dispatch({ type: UNFOLLOW_USER_REQUEST })
-    FetchApi(
-      'POST',
-      `/api/v1/action/2/${slug}/`,
-      null,
-      getToken(TOKEN_TYPE),
-    )
+    FetchApi('POST', `/api/v1/action/2/${slug}/`, null, getToken(TOKEN_TYPE))
       .then(() => {
         dispatch({ type: UNFOLLOW_USER_SUCCESS, payload: slug })
       })
@@ -176,7 +161,6 @@ export const unfollowUser = (slug) => {
       })
   }
 }
-
 
 export const ShowInfo = () => {
   const action = {

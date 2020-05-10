@@ -1,11 +1,14 @@
 /* eslint-disable no-case-declarations */
 import { find, findIndex, filter } from 'lodash'
 import {
+  ADD_SKILL_REQUEST,
   ADD_SKILL_SUCCESS,
   ADD_SKILL_FAILURE,
   SEARCH_SKILLS,
+  REMOVE_SKILL_REQUEST,
   REMOVE_SKILL_FAILURE,
   REMOVE_SKILL_SUCCESS,
+  REMOVE_ALL_SKILLS_REQUEST,
   REMOVE_ALL_SKILLS_SUCCESS,
   REMOVE_ALL_SKILLS_FAILURE,
   FETCH_SKILLS_FAILURE,
@@ -20,6 +23,9 @@ const initialState = {
   renderSearchedSkills: [],
   skillsLoading: false,
   errors: '',
+  isSkillLoading: false,
+  skillSlug: '',
+  removeAllLoading: false,
 }
 
 function insertItem(array, checkArray, slug) {
@@ -65,30 +71,46 @@ const skill = (state = initialState, action) => {
         ...state,
         addedSkills: action.payload,
       }
+    case ADD_SKILL_REQUEST:
+      return {
+        ...state,
+        isSkillLoading: true,
+        skillSlug: action.payload,
+      }
     case ADD_SKILL_SUCCESS:
       return {
         ...state,
-        skills: removeItem(state.skills, action.payload),
+        isSkillLoading: false,
         addedSkills: insertItem(
           state.addedSkills,
           state.skills,
           action.payload,
         ),
+        skills: removeItem(state.skills, action.payload),
       }
     case ADD_SKILL_FAILURE:
       return {
         ...state,
+        isSkillLoading: false,
         errors: action.payload,
+      }
+    case REMOVE_SKILL_REQUEST:
+      return {
+        ...state,
+        isSkillLoading: true,
+        skillSlug: action.payload,
       }
     case REMOVE_SKILL_SUCCESS:
       return {
         ...state,
+        isSkillLoading: false,
         skills: insertItem(state.skills, state.addedSkills, action.payload),
         addedSkills: removeItem(state.addedSkills, action.payload),
       }
     case REMOVE_SKILL_FAILURE:
       return {
         ...state,
+        isSkillLoading: false,
         errors: action.payload,
       }
     case SEARCH_SKILLS:
@@ -104,15 +126,22 @@ const skill = (state = initialState, action) => {
         ...state,
         renderSearchedSkills: tmpSkillsList,
       }
+    case REMOVE_ALL_SKILLS_REQUEST:
+      return {
+        ...state,
+        removeAllLoading: true,
+      }
     case REMOVE_ALL_SKILLS_SUCCESS:
       return {
         ...state,
+        removeAllLoading: false,
         skills: insertArray(state.skills, state.addedSkills),
         addedSkills: [],
       }
     case REMOVE_ALL_SKILLS_FAILURE:
       return {
         ...state,
+        removeAllLoading: false,
         errors: action.payload,
       }
     default:

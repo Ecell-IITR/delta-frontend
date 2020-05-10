@@ -14,7 +14,7 @@ class Organisation extends Component {
   }
 
   render() {
-    let { organisations,followinglist,match } = this.props
+    let { organisations, followinglist, match } = this.props
     return (
       <div className={styles.org}>
         <div className={styles.sidebar}>Sidebar</div>
@@ -62,7 +62,6 @@ Organisation.propTypes = {
   fetchFollowingList: PropTypes.func.isRequired,
   followinglist: PropTypes.array.isRequired,
   match: PropTypes.object.isRequired,
-
 }
 
 const mapStateToProps = (state) => {
