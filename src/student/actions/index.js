@@ -33,6 +33,7 @@ export * from './fetch-user'
 export * from './fetch-student-profile'
 export * from './skills-event'
 export * from './fetch-opportunities'
+export * from './filters'
 
 const token = getToken(TOKEN_TYPE)
 

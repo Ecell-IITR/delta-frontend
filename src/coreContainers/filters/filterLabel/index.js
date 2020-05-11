@@ -4,7 +4,7 @@ import { Icon } from 'semantic-ui-react'
 import './filterLabel.css'
 import PropTypes from 'prop-types'
 
-export default class FilterLabel extends Component {
+export class FilterLabel extends Component {
   constructor(props) {
     super(props)
     this.state = {

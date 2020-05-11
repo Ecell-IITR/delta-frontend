@@ -10,6 +10,7 @@ import opportunities from './opportunities'
 import followinglist from './followinglist'
 import unfollowuser from './unfollowuser'
 import followuser from './followuser'
+import filters from './filters'
 
 const studentReducer = combineReducers({
   registration,
@@ -23,6 +24,7 @@ const studentReducer = combineReducers({
   followinglist,
   followuser,
   unfollowuser,
+  filters
 })
 
 export default studentReducer

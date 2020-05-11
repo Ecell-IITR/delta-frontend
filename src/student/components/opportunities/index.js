@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import PostComponent from 'coreContainers/post'
-import Input from 'coreContainers/input'
-import FilterLabel from 'coreContainers/filterLabel'
+import { SelectFilter } from 'coreContainers/filters'
 import Loader from 'coreContainers/loading'
-import { fetchStudentOpportunities } from '../../actions'
+import { INTERNSHIP_POST_TYPE_KEY } from '../../constants'
+import { fetchStudentOpportunities, fetchLocations } from '../../actions'
 
-import './index.css'
+import styles from './index.css'
 
 export class Opportunities extends Component {
   constructor(props) {
@@ -21,46 +21,60 @@ export class Opportunities extends Component {
   }
 
   componentDidMount() {
-    const { fetchStudentOpportunitiesComponent } = this.props
+    const { fetchStudentOpportunitiesComponent, fetchLocationsComponent } = this.props
     const filterObj = {
-      post_type: 1,
+      post_type: INTERNSHIP_POST_TYPE_KEY,
     }
     fetchStudentOpportunitiesComponent(filterObj)
+    fetchLocationsComponent()
+  }
+
+  handleLocationChange = (value, action) => {
+    console.log(value, action)
+  }
+
+  getLocationOptions = (locationsList) => {
+    const resultArr = []
+    locationsList.forEach(location => resultArr.push({ value: location.slug, label: location.name }))
+    return resultArr
   }
 
   render() {
-    const { isLoading, opportunitiesList } = this.props.opportunitiesObj
+    const { opportunitiesObj, locations, locationsLoading } = this.props
+    const { isLoading, opportunitiesList } = opportunitiesObj
+
     return (
-      <div className="opportunities-container">
-        <div className="filter-container">
-          <h2 className="filter-heading">Filters</h2>
-          <hr />
-          <Input
-            className="opportunities-filter-search"
-            placeholder="Add keyword"
-          />
-          <div className="filter-opportunityType">
+      <div className={styles["opportunities-container"]}>
+        <div className={styles["filter-container"]}>
+          <div className={styles["filter-heading"]}>Filters</div>
+          {/* <div className={styles["filter-opportunityType"]}>
             <FilterLabel options={this.state.options} />
+          </div> */}
+          <div className={styles["filter-main-container"]}>
+            <div className={styles["location-filter"]}>
+              <div className={styles["filter-label"]}>Select location</div>
+              <SelectFilter options={this.getLocationOptions(locations)} loading={locationsLoading} placeholder="Select location" handleChange={this.handleLocationChange} />
+            </div>
           </div>
-          <div></div>
-          <div className="filter-searchLocation"></div>
         </div>
-        {isLoading ? (
-          <Loader />
-        ) : (
-          <>
-            {opportunitiesList && opportunitiesList.length === 0 ? (
-              <div>Opportunities list is empty!</div>
-            ) : (
+        <div className={styles['opportunities-main-container']}>
+          {isLoading ? (
+            <Loader />
+          ) : (
               <>
-                {opportunitiesList &&
-                  opportunitiesList.map((opportunity) => (
-                    <PostComponent opportunity={opportunity} />
-                  ))}
+                {opportunitiesList && opportunitiesList.length === 0 ? (
+                  <div>Opportunities list is empty!</div>
+                ) : (
+                    <>
+                      {opportunitiesList &&
+                        opportunitiesList.map((opportunity) => (
+                          <PostComponent opportunity={opportunity} />
+                        ))}
+                    </>
+                  )}
               </>
             )}
-          </>
-        )}
+        </div>
       </div>
     )
   }
@@ -68,6 +82,7 @@ export class Opportunities extends Component {
 
 Opportunities.propTypes = {
   fetchStudentOpportunitiesComponent: PropTypes.func,
+  fetchLocationsComponent: PropTypes.func
 }
 
 const mapActionToProps = (dispatch) => {
@@ -75,12 +90,17 @@ const mapActionToProps = (dispatch) => {
     fetchStudentOpportunitiesComponent: (filterObj) => {
       dispatch(fetchStudentOpportunities(filterObj))
     },
+    fetchLocationsComponent: () => {
+      dispatch(fetchLocations())
+    },
   }
 }
 
 const mapStateToProps = (state) => {
   return {
     opportunitiesObj: state.student.opportunities,
+    locations: state.student.filters.locations,
+    locationsLoading: state.student.filters.locationsLoading
   }
 }
 

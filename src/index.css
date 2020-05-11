@@ -1,48 +1,46 @@
 /*  Normal fonts fonts */
-@font-face{
-  font-family: "Neutrifpro-regular";
+@font-face {
+  font-family: 'Neutrifpro-regular';
   src: url('./fonts/neutrifpro-regular-webfont.ttf') format('truetype');
 }
-@font-face{
-  font-family: "Neutrifpro-bold";
+@font-face {
+  font-family: 'Neutrifpro-bold';
   src: url('./fonts/neutrifpro-bold-webfont.ttf') format('truetype');
 }
-@font-face{
-  font-family: "Neutrifpro-semibold";
+@font-face {
+  font-family: 'Neutrifpro-semibold';
   src: url('./fonts/neutrifpro-semibold-webfont.ttf') format('truetype');
 }
-@font-face{
-  font-family: "Neutrifpro-light";
+@font-face {
+  font-family: 'Neutrifpro-light';
   src: url('./fonts/neutrifpro-light-webfont.ttf') format('truetype');
 }
-@font-face{
-  font-family: "Neutrifpro-medium";
+@font-face {
+  font-family: 'Neutrifpro-medium';
   src: url('./fonts/neutrifpro-medium-webfont.ttf') format('truetype');
 }
 
 /*  Italic fonts */
-@font-face{
-  font-family: "Neutrifpro-regular-italic";
+@font-face {
+  font-family: 'Neutrifpro-regular-italic';
   src: url('./fonts/neutrifpro-regularitalic-webfont.ttf') format('truetype');
 }
-@font-face{
-  font-family: "Neutrifpro-bold-italic";
+@font-face {
+  font-family: 'Neutrifpro-bold-italic';
   src: url('./fonts/neutrifpro-bolditalic-webfont.ttf') format('truetype');
 }
-@font-face{
-  font-family: "Neutrifpro-semibold-italic";
+@font-face {
+  font-family: 'Neutrifpro-semibold-italic';
   src: url('./fonts/neutrifpro-semibolditalic-webfont.ttf') format('truetype');
 }
-@font-face{
-  font-family: "Neutrifpro-light-italic";
+@font-face {
+  font-family: 'Neutrifpro-light-italic';
   src: url('./fonts/neutrifpro-lightitalic-webfont.ttf') format('truetype');
 }
-@font-face{
-  font-family: "Neutrifpro-medium-italic";
+@font-face {
+  font-family: 'Neutrifpro-medium-italic';
   src: url('./fonts/neutrifpro-mediumitalic-webfont.ttf') format('truetype');
 }
-
-
 
 body {
   margin: 0;
@@ -50,4 +48,5 @@ body {
   font-family: Neutrifpro-regular;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #f1f2f7;
 }

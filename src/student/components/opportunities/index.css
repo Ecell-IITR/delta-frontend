@@ -1,0 +1,27 @@
+.opportunities-container {
+  display: flex;
+  justify-content: space-between;
+  width: 90%;
+  margin: 0 auto;
+}
+
+.filter-container {
+  width: 25%;
+  padding: 1rem 1rem;
+  margin: 1rem 0;
+  background: white;
+}
+
+.filter-heading {
+  font-family: Neutrifpro-regular;
+  font-size: 1.2rem;
+  font-weight: 600;
+  line-height: normal;
+  color: #000000;
+}
+
+.opportunities-main-container {
+  width: 70%;
+  padding: 0 0.5rem;
+  margin: 1rem 0;
+}

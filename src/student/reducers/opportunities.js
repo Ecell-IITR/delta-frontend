@@ -8,6 +8,11 @@ const initialState = {
   isLoading: true,
   opportunitiesList: [],
   error: '',
+  filtersApplied: [],
+  skills: [],
+  skillsLoading: false,
+  locations: [],
+  locationsLoading: false
 }
 
 const opportunitiesReducer = (state = initialState, action) => {
