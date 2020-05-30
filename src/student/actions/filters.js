@@ -10,7 +10,8 @@ import {
 import {
   FETCH_LOCATIONS_FAILURE,
   FETCH_LOCATIONS_SUCCESS,
-  FETCH_LOCATIONS_REQUEST
+  FETCH_LOCATIONS_REQUEST,
+  SET_OPPORTUNITY_FILTER
 } from '../constants'
 
 export const fetchLocations = () => {
@@ -30,5 +31,12 @@ export const fetchLocations = () => {
           error: errorMsg,
         })
       })
+  }
+}
+
+export const setOpportunityFilter = (filter) => {
+  return {
+    type: SET_OPPORTUNITY_FILTER,
+    payload: filter
   }
 }

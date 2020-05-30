@@ -2,13 +2,18 @@ import {
   FETCH_USER_OPPORTUNITIES_FAILURE,
   FETCH_USER_OPPORTUNITIES_REQUEST,
   FETCH_USER_OPPORTUNITIES_SUCCESS,
+  SET_OPPORTUNITY_FILTER
 } from '../constants/index'
 
 const initialState = {
   isLoading: true,
   opportunitiesList: [],
   error: '',
-  filtersApplied: [],
+  filtersApplied: {
+    duration: [0, 3],
+    stipend: [0, 8000],
+    employeesCount: [0, 500]
+  },
   skills: [],
   skillsLoading: false,
   locations: [],
@@ -33,6 +38,11 @@ const opportunitiesReducer = (state = initialState, action) => {
         ...state,
         isLoading: false,
         error: action.payload,
+      }
+    case SET_OPPORTUNITY_FILTER:
+      return {
+        ...state,
+        filtersApplied: Object.assign(state.filtersApplied, action.payload)
       }
     default:
       return state

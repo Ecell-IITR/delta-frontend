@@ -77,7 +77,7 @@
   cursor: pointer;
   margin-top: auto;
   margin-bottom: auto;
-  margin: 0 0 0 2rem;
+  margin: auto 0 auto 2rem;
 }
 
 .bookmark-button {
