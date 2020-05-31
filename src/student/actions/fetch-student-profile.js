@@ -12,6 +12,7 @@ import {
   FETCH_USER_PROFILE_REQUEST,
   FETCH_USER_PROFILE_SUCCESS,
   FETCH_USER_PROFILE_FAILURE,
+  SET_CURRENT_TAB
 } from '../constants/index'
 
 export const fetchStudentProfile = (profileType) => {
@@ -34,5 +35,13 @@ export const fetchStudentProfile = (profileType) => {
           error: errorMsg,
         })
       })
+  }
+}
+
+
+export const setCurrentTab = (value) => {
+  return {
+    type: SET_CURRENT_TAB,
+    payload: value
   }
 }

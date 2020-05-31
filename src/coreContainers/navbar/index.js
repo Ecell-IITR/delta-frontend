@@ -19,9 +19,9 @@ class Navbar extends React.PureComponent {
       <div className={styles.navbar}>
         <div className={styles.startnav}>
           <div className={styles.title}>Delta</div>
-          <div className={styles.searchBar}>
+          {/* <div className={styles.searchBar}>
             <Searchbar />
-          </div>
+          </div> */}
         </div>
         <div className={styles.subnavbar}>
           <ul>
@@ -29,8 +29,8 @@ class Navbar extends React.PureComponent {
               {user && user.username ? (
                 <Link to={`/user/${user.username}`}>Profile</Link>
               ) : (
-                <></>
-              )}
+                  <></>
+                )}
             </li>
             <li>
               <Link to="/opportunities">Opportunities</Link>
@@ -58,8 +58,8 @@ class Navbar extends React.PureComponent {
         </div>
       </div>
     ) : (
-      <></>
-    )
+        <></>
+      )
   }
 }
 

@@ -11,20 +11,19 @@
 }
 
 .student-img {
-  width: 15%;
+  width: 14%;
+  padding: 1rem;
 }
 
 .student-profile-image {
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: contain;
   border-radius: 50%;
-  height: 5vh;
+  height: auto;
+  width: 100%;
 }
 
 .student-info {
   width: 65%;
-  padding: 0 0.5rem;
+  padding: 0 1.5rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
