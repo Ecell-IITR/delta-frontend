@@ -1,19 +1,19 @@
 /* eslint-disable react/forbid-prop-types */
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { Route } from 'react-router-dom'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 // import { Icon } from 'semantic-ui-react'
 import { TOKEN_TYPE } from 'globalConstants'
-import Searchbar from '../searchbar/index'
-import ImageIndex from '../image/index'
+// import Searchbar from '../searchbar/index'
 
 import styles from './navbar.css'
 // import PropTypes from 'prop-types'
 class Navbar extends React.PureComponent {
+
   render() {
-    const { user } = this.props
+    const { user, location } = this.props
+    const activeRoute = location.pathname
     const isLoggedIn = localStorage.getItem(TOKEN_TYPE)
     return isLoggedIn ? (
       <div className={styles.navbar}>
@@ -25,34 +25,29 @@ class Navbar extends React.PureComponent {
         </div>
         <div className={styles.subnavbar}>
           <ul>
-            <li>
+            <li className={activeRoute.includes('/user') ? styles['active-nav-link'] : styles['nav-link']}>
               {user && user.username ? (
                 <Link to={`/user/${user.username}`}>Profile</Link>
               ) : (
                   <></>
                 )}
             </li>
-            <li>
+            <li className={activeRoute.includes('/opportunities') ? styles['active-nav-link'] : styles['nav-link']}>
               <Link to="/opportunities">Opportunities</Link>
             </li>
-            <li>
+            <li className={activeRoute.includes('/create-post') ? styles['active-nav-link'] : styles['nav-link']}>
               <Link to="/create-post">Create Post</Link>
             </li>
-            <li>
+            {/* <li>
               <Link to="/">More</Link>
-            </li>
+            </li> */}
             {/* <li>
               <Link to="/">
                 <Icon name="bell" />
               </Link>
             </li> */}
             <li>
-              <ImageIndex
-                image="https://3.bp.blogspot.com/-iRUC5QuV8Bc/XM8aQxSkntI/AAAAAAAAB64/k4Dcl-z0GhYjP7oHUUPO5XsSw3tWeyNlgCEwYBhgL/s1600/summer_of_code_15yrs_square_PS_400px_RGB.png"
-                size="mini"
-                shape="circular"
-                className={styles.profilepic}
-              />
+              <img src={user.profileImage} className={styles['profile-pic']} alt="profile-image" />
             </li>
           </ul>
         </div>

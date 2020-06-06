@@ -61,7 +61,7 @@ class LoginIndex extends Component {
       loginComponent(data, (status) => {
         if (status === 200) {
           notify.show('Successfully logged in!', NOTIF_SUCCESS_TYPE, 1000)
-          history.push('/')
+          history.push('/opportunities')
         } else {
           notify.show('Something went wrong!', NOTIF_ERROR_TYPE, 3000)
         }

@@ -111,7 +111,7 @@ export default class PostComponent extends Component {
               <div className={styles['post-basic-info-wrapper']}>
                 <div className={styles['post-title']}>{title}</div>
                 <div className={styles['post-sti-work']}>
-                  {`${stipend} . ${workType}`}
+                  {`${stipend}`}
                 </div>
               </div>
               <div className={styles['post-user-section']}>
@@ -157,8 +157,8 @@ export default class PostComponent extends Component {
                 </div>
               </div>
             ) : (
-              <></>
-            )}
+                <></>
+              )}
             {requiredSkill ? (
               <div className={styles['skill-required']}>
                 <div className={styles['skill-required-header']}>
@@ -169,8 +169,8 @@ export default class PostComponent extends Component {
                 </div>
               </div>
             ) : (
-              <></>
-            )}
+                <></>
+              )}
           </div>
         )
       default:

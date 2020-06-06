@@ -1,12 +1,9 @@
 /* eslint-disable react/forbid-prop-types */
 import React, { Component } from 'react'
-import { Switch, Route } from 'react-router-dom'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { fetchStudentProfile, setCurrentTab } from '../../actions'
 import { SELF_PROFILE, PUBLIC_PROFILE } from '../../constants'
-import styles from '../css/profile.module.css'
-// import Sidebar from './sidebar'
 import {
   faTable, faLightbulb, faFile, faTrophy
 } from '@fortawesome/free-solid-svg-icons'
@@ -15,7 +12,7 @@ import StudentInfoSection from './student-info-section'
 import SkillsComponent from './skills'
 import ResumeComponent from './resume'
 
-import stylesNew from '../css/profile2.module.css'
+import styles from './index.css'
 
 class StudentProfile extends Component {
   componentDidMount() {
@@ -42,7 +39,7 @@ class StudentProfile extends Component {
   }
 
   render() {
-    const { user, match, studentProfile, studentProfileLoading, currentTab } = this.props
+    const { user, studentProfile, studentProfileLoading, currentTab } = this.props
     const sidebarProps = {
       rowItems: [
         { slug: 'post', title: 'Post', icon: faTable },
@@ -59,16 +56,18 @@ class StudentProfile extends Component {
         {Object.keys(user).length === 0 || studentProfileLoading ? (
           <div>Loading....</div>
         ) : (
-            <div className={styles.info}>
-              <StudentInfoSection
-                user={user}
-                studentProfile={studentProfile}
-              />
-              <div className={stylesNew.profile2}>
-                <div className={stylesNew.sidebar}>
+            <div>
+              <div className={styles.info}>
+                <StudentInfoSection
+                  user={user}
+                  studentProfile={studentProfile}
+                />
+              </div>
+              <div className={styles['main-container']}>
+                <div className={styles.sidebar}>
                   <SidebarMenu {...sidebarProps} />
                 </div>
-                <div className={stylesNew.contentBox}>
+                <div className={styles.contentBox}>
                   {currentTab === 'skills' ? <SkillsComponent /> : <></>}
                   {currentTab === 'resume' ? <ResumeComponent /> : <></>}
                 </div>

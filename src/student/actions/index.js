@@ -3,12 +3,6 @@ import FetchApi from 'utils/FetchAPI'
 import { getToken } from 'utils/tokenFunc'
 import { TOKEN_TYPE } from 'globalConstants'
 import {
-  REGISTER_FAILURE,
-  REGISTER_SUCCESS,
-  REGISTER_REQUEST,
-  CREATE_USER_PROFILE_REQUEST,
-  CREATE_USER_PROFILE_SUCCESS,
-  CREATE_USER_PROFILE_FAILURE,
   FETCH_ORGANISATIONS_REQUEST,
   FETCH_ORGANISATIONS_SUCCESS,
   FETCH_ORGANISATIONS_FAILURE,
@@ -34,53 +28,13 @@ export * from './fetch-student-profile'
 export * from './skills-event'
 export * from './fetch-opportunities'
 export * from './filters'
+export * from './post'
 
 const token = getToken(TOKEN_TYPE)
-
-export const createProfile = (profile) => {
-  return (dispatch) => {
-    const data = {
-      skills: profile.skills,
-      social_links: profile.social_links,
-      resume_file: profile.resume_file,
-    }
-    dispatch({ type: CREATE_USER_PROFILE_REQUEST })
-    FetchApi('POST', '/api/v1/create/profile/', data, null)
-      .then((res) => {
-        if (res.data) {
-          dispatch({ type: CREATE_USER_PROFILE_SUCCESS, payload: res.data })
-        }
-      })
-      .catch((error) => {
-        dispatch({ type: CREATE_USER_PROFILE_FAILURE, error })
-      })
-  }
-}
 
 // export const showInfo = () => {
 //   return (dispatch) => { }
 // }
-
-export const register = (username, email, password1, password2) => {
-  const data = {
-    username,
-    email,
-    password: password1,
-    password2,
-  }
-  return (dispatch) => {
-    dispatch({ type: REGISTER_REQUEST })
-    FetchApi('POST', '/api/v1/auth/register', data, null)
-      .then((res) => {
-        if (res.data) {
-          dispatch({ type: REGISTER_SUCCESS, payload: res.data })
-        }
-      })
-      .catch((error) => {
-        dispatch({ type: REGISTER_FAILURE, payload: error })
-      })
-  }
-}
 
 export const fetchOrganisations = () => {
   return (dispatch) => {

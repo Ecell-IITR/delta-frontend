@@ -1,0 +1,17 @@
+.create-post-container {
+  display: flex;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 2rem;
+}
+
+.sidebar {
+  width: 25%;
+  padding: 1rem;
+}
+
+.contentBox {
+  width: 75%;
+  padding: 1rem;
+}

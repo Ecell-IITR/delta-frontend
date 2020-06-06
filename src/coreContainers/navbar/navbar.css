@@ -4,6 +4,7 @@
   background-color: #2964ee;
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-between;
 }
 
 .startnav {
@@ -32,7 +33,8 @@
 
 .subnavbar {
   display: flex;
-  width: 50%;
+  width: 40%;
+  align-items: center;
 }
 .subnavbar ul {
   width: 100%;
@@ -40,27 +42,53 @@
   list-style: none;
   justify-content: space-evenly;
   flex-wrap: wrap;
+  height: 65%;
+  margin: 0;
+  margin-top: auto;
+  margin-bottom: 2px;
+  align-items: baseline;
 }
-.subnavbar ul li {
+
+.profile-pic {
+  width: 30px;
+  border-radius: 50%;
+  height: auto;
+}
+
+.active-nav-link {
   display: flex;
+  height: 100%;
   flex-direction: column;
-  justify-content: space-around;
   font-family: Neutrifpro-semibold;
-  font-weight: 600;
   font-size: 1.2rem;
-  letter-spacing: 1.1px;
+  letter-spacing: 0.75px;
+  border-bottom: 3px solid white;
 }
 
-.subnavbar ul li a {
+.active-nav-link a {
   text-decoration: none;
-  color: #ffffff;
+  color: white;
 }
 
-.profilepic {
-  position: absolute;
-  margin-left: 1830px;
-  margin-top: 25px;
-  width: 46px;
-  height: 46px;
-  background-color: #666666;
+.nav-link {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  font-family: Neutrifpro-semibold;
+  font-size: 1.2rem;
+  letter-spacing: 0.75px;
+}
+
+.nav-link a {
+  text-decoration: none;
+  color: #8cabf7;
+}
+
+.active-nav-link a:hover {
+  color: white;
+}
+
+.nav-link a:hover {
+  text-decoration: none;
+  color: white;
 }

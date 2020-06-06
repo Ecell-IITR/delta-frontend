@@ -3,6 +3,7 @@ import registration from './register'
 import profile from './profile'
 import user from './user'
 import skill from './skill'
+import createPost from './create-post'
 import resume from './resume'
 import search from './search'
 import organisations from './organisations'
@@ -18,6 +19,7 @@ const studentReducer = combineReducers({
   user,
   skill,
   resume,
+  createPost,
   search,
   organisations,
   opportunities,
