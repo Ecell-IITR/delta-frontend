@@ -1,13 +1,13 @@
 import {
   FETCH_LOCATIONS_REQUEST,
   FETCH_LOCATIONS_SUCCESS,
-  FETCH_LOCATIONS_FAILURE
+  FETCH_LOCATIONS_FAILURE,
 } from '../constants/index'
 
 const initialState = {
   error: '',
   locations: [],
-  locationsLoading: false
+  locationsLoading: false,
 }
 
 const filtersReducer = (state = initialState, action) => {
@@ -23,8 +23,7 @@ const filtersReducer = (state = initialState, action) => {
         locationsLoading: false,
         locations: action.payload,
       }
-    case FETCH_LOCATIONS_FAILURE
-      :
+    case FETCH_LOCATIONS_FAILURE:
       return {
         ...state,
         locationsLoading: false,

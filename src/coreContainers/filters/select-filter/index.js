@@ -6,7 +6,14 @@ import styles from './index.css'
 
 export class SelectFilter extends Component {
   render() {
-    const { value, handleChange, options, isMulti, loading, placeholder } = this.props
+    const {
+      value,
+      handleChange,
+      options,
+      isMulti,
+      loading,
+      placeholder,
+    } = this.props
     return (
       <Select
         value={value}
@@ -27,5 +34,5 @@ SelectFilter.propTypes = {
   isMulti: PropTypes.bool,
   options: PropTypes.array,
   handleChange: PropTypes.func,
-  value: PropTypes.string
+  value: PropTypes.string,
 }

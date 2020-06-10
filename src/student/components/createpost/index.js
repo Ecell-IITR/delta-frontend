@@ -2,10 +2,12 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import {
-  faLightbulb, faTrophy, faBriefcase
+  faLightbulb,
+  faTrophy,
+  faBriefcase,
 } from '@fortawesome/free-solid-svg-icons'
 import { setCreatePostTab } from '../../actions'
-import SidebarMenu from "coreContainers/sidebar-menu"
+import SidebarMenu from 'coreContainers/sidebar-menu'
 import InternshipComponent from './internship'
 import ProjectComponent from './project'
 import CompetitionComponent from './competition'
@@ -26,7 +28,7 @@ export class CreatePost extends Component {
     const { history, setCreatePostTabComponent, location } = this.props
     history.push({
       pathname: location.pathname,
-      search: `?tab=${value}`
+      search: `?tab=${value}`,
     })
     setCreatePostTabComponent(value)
   }
@@ -38,10 +40,9 @@ export class CreatePost extends Component {
         { slug: 'internship', title: 'Internship', icon: faBriefcase },
         { slug: 'project', title: 'Project', icon: faLightbulb },
         { slug: 'competition', title: 'Competition', icon: faTrophy },
-
       ],
       currentTab: currentTab,
-      handleClick: this.setActiveTab
+      handleClick: this.setActiveTab,
     }
     return (
       <div className={styles['create-post-container']}>
@@ -60,21 +61,20 @@ export class CreatePost extends Component {
 
 CreatePost.propTypes = {
   match: PropTypes.object,
-  setCreatePostComponent: PropTypes.func
+  setCreatePostComponent: PropTypes.func,
 }
-
 
 function mapDispatchToProps(dispatch) {
   return {
     setCreatePostTabComponent: (value) => {
       dispatch(setCreatePostTab(value))
-    }
+    },
   }
 }
 
 function mapStateToProps(state) {
   return {
-    currentTab: state.student.createPost.currentTab
+    currentTab: state.student.createPost.currentTab,
   }
 }
 

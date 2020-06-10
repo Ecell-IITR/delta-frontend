@@ -13,9 +13,15 @@ class StudentInfoSection extends Component {
     return (
       <div className={styles.profile}>
         <div className={styles['student-img']}>
-          {user ?
-            <img className={styles['student-profile-image']} src={user.profileImage} alt="profile-img" />
-            : <></>}
+          {user ? (
+            <img
+              className={styles['student-profile-image']}
+              src={user.profileImage}
+              alt="profile-img"
+            />
+          ) : (
+            <></>
+          )}
         </div>
         <div className={styles['student-info']}>
           <div className={styles['student-personal-info']}>
@@ -29,7 +35,7 @@ class StudentInfoSection extends Component {
                 <span className={styles['student-branch']}>
                   {`${studentProfile.branch && studentProfile.branch.name} . ${
                     studentProfile.year
-                    }`}
+                  }`}
                 </span>
               </div>
               <div>
@@ -74,8 +80,8 @@ class StudentInfoSection extends Component {
               {studentProfile.followingCount ? (
                 <span>Following {studentProfile.followingCount}</span>
               ) : (
-                  <></>
-                )}
+                <></>
+              )}
             </div>
             <div className={styles.availability}>
               {'availabilityStatus' in studentProfile ? (
@@ -87,15 +93,15 @@ class StudentInfoSection extends Component {
                       icon={faCheckCircle}
                     />
                   ) : (
-                      <FontAwesomeIcon
-                        className={styles['check-false-icon']}
-                        icon={faTimesCircle}
-                      />
-                    )}
+                    <FontAwesomeIcon
+                      className={styles['check-false-icon']}
+                      icon={faTimesCircle}
+                    />
+                  )}
                 </span>
               ) : (
-                  <></>
-                )}
+                <></>
+              )}
             </div>
           </div>
         </div>

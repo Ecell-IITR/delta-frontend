@@ -7,26 +7,29 @@ export default class SidebarMenu extends Component {
   render() {
     const { rowItems, currentTab, handleClick } = this.props
     return (
-      <div className={styles["menu-container"]}>
-        {rowItems.map(item => (
+      <div className={styles['menu-container']}>
+        {rowItems.map((item) => (
           <div
-            className={styles["row-container"]}
+            className={styles['row-container']}
             onClick={() => handleClick(item.slug)}
-            style={currentTab === item.slug ? { background: "#2964ee" } : null}
+            style={currentTab === item.slug ? { background: '#2964ee' } : null}
           >
             <FontAwesomeIcon
               icon={item.icon}
-              className={currentTab === item.slug ? styles["row-active-icon"] : styles["row-icon"]}
+              className={
+                currentTab === item.slug
+                  ? styles['row-active-icon']
+                  : styles['row-icon']
+              }
             />
             <span
-              className={styles["row-title"]}
+              className={styles['row-title']}
               style={currentTab === item.slug ? { color: '#f5f6f9' } : null}
             >
               {item.title}
             </span>
           </div>
-        ))
-        }
+        ))}
       </div>
     )
   }
@@ -34,5 +37,5 @@ export default class SidebarMenu extends Component {
 SidebarMenu.propTypes = {
   rowItems: PropTypes.array,
   currentTab: PropTypes.string,
-  handleClick: PropTypes.func
+  handleClick: PropTypes.func,
 }

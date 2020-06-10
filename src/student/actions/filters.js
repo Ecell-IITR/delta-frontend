@@ -11,13 +11,18 @@ import {
   FETCH_LOCATIONS_FAILURE,
   FETCH_LOCATIONS_SUCCESS,
   FETCH_LOCATIONS_REQUEST,
-  SET_OPPORTUNITY_FILTER
+  SET_OPPORTUNITY_FILTER,
 } from '../constants'
 
 export const fetchLocations = () => {
   return (dispatch) => {
     dispatch({ type: FETCH_LOCATIONS_REQUEST })
-    FetchApi('GET', '/api/v1/utilities/locations_list/', null, getToken(TOKEN_TYPE))
+    FetchApi(
+      'GET',
+      '/api/v1/utilities/locations_list/',
+      null,
+      getToken(TOKEN_TYPE),
+    )
       .then((res) => {
         if (res.data) {
           dispatch({ type: FETCH_LOCATIONS_SUCCESS, payload: res.data })
@@ -37,6 +42,6 @@ export const fetchLocations = () => {
 export const setOpportunityFilter = (filter) => {
   return {
     type: SET_OPPORTUNITY_FILTER,
-    payload: filter
+    payload: filter,
   }
 }

@@ -2,7 +2,7 @@ import {
   FETCH_USER_OPPORTUNITIES_FAILURE,
   FETCH_USER_OPPORTUNITIES_REQUEST,
   FETCH_USER_OPPORTUNITIES_SUCCESS,
-  SET_OPPORTUNITY_FILTER
+  SET_OPPORTUNITY_FILTER,
 } from '../constants/index'
 
 const initialState = {
@@ -12,12 +12,12 @@ const initialState = {
   filtersApplied: {
     duration: [0, 3],
     stipend: [0, 8000],
-    employeesCount: [0, 500]
+    employeesCount: [0, 500],
   },
   skills: [],
   skillsLoading: false,
   locations: [],
-  locationsLoading: false
+  locationsLoading: false,
 }
 
 const opportunitiesReducer = (state = initialState, action) => {
@@ -42,7 +42,7 @@ const opportunitiesReducer = (state = initialState, action) => {
     case SET_OPPORTUNITY_FILTER:
       return {
         ...state,
-        filtersApplied: Object.assign(state.filtersApplied, action.payload)
+        filtersApplied: Object.assign(state.filtersApplied, action.payload),
       }
     default:
       return state

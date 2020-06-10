@@ -40,7 +40,7 @@ module.exports = {
     port: 3000,
     proxy: {
       '/api': `http://localhost:${PROXY_PORT}`,
-      '/media': `http://localhost:${PROXY_PORT}`
+      '/media': `http://localhost:${PROXY_PORT}`,
     },
     stats: {
       colors: true,

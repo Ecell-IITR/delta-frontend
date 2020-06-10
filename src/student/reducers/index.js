@@ -26,7 +26,7 @@ const studentReducer = combineReducers({
   followinglist,
   followuser,
   unfollowuser,
-  filters
+  filters,
 })
 
 export default studentReducer

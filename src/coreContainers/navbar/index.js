@@ -10,7 +10,6 @@ import { TOKEN_TYPE } from 'globalConstants'
 import styles from './navbar.css'
 // import PropTypes from 'prop-types'
 class Navbar extends React.PureComponent {
-
   render() {
     const { user, location } = this.props
     const activeRoute = location.pathname
@@ -25,17 +24,35 @@ class Navbar extends React.PureComponent {
         </div>
         <div className={styles.subnavbar}>
           <ul>
-            <li className={activeRoute.includes('/user') ? styles['active-nav-link'] : styles['nav-link']}>
+            <li
+              className={
+                activeRoute.includes('/user')
+                  ? styles['active-nav-link']
+                  : styles['nav-link']
+              }
+            >
               {user && user.username ? (
                 <Link to={`/user/${user.username}`}>Profile</Link>
               ) : (
-                  <></>
-                )}
+                <></>
+              )}
             </li>
-            <li className={activeRoute.includes('/opportunities') ? styles['active-nav-link'] : styles['nav-link']}>
+            <li
+              className={
+                activeRoute.includes('/opportunities')
+                  ? styles['active-nav-link']
+                  : styles['nav-link']
+              }
+            >
               <Link to="/opportunities">Opportunities</Link>
             </li>
-            <li className={activeRoute.includes('/create-post') ? styles['active-nav-link'] : styles['nav-link']}>
+            <li
+              className={
+                activeRoute.includes('/create-post')
+                  ? styles['active-nav-link']
+                  : styles['nav-link']
+              }
+            >
               <Link to="/create-post">Create Post</Link>
             </li>
             {/* <li>
@@ -47,14 +64,18 @@ class Navbar extends React.PureComponent {
               </Link>
             </li> */}
             <li>
-              <img src={user.profileImage} className={styles['profile-pic']} alt="profile-image" />
+              <img
+                src={user.profileImage}
+                className={styles['profile-pic']}
+                alt="profile-image"
+              />
             </li>
           </ul>
         </div>
       </div>
     ) : (
-        <></>
-      )
+      <></>
+    )
   }
 }
 

@@ -11,8 +11,8 @@ const FreeRoute = ({ component: Component, ...rest }) => (
       !localStorage.getItem(TOKEN_TYPE) ? (
         <Component {...props} />
       ) : (
-          <Redirect to="/opportunities" />
-        )
+        <Redirect to="/opportunities" />
+      )
     }
   />
 )

@@ -1,14 +1,14 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import Slider from '@material-ui/core/Slider';
-import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import Slider from '@material-ui/core/Slider'
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles'
 
 const THEME = createMuiTheme({
   typography: {
-    'fontSize': '0.8rem',
-    'fontFamily': 'Neutrifpro-regular',
-  }
-});
+    fontSize: '0.8rem',
+    fontFamily: 'Neutrifpro-regular',
+  },
+})
 
 export class RangeFilter extends Component {
   valueText = (value) => `${value}`
@@ -28,14 +28,14 @@ export class RangeFilter extends Component {
         label: `${maxValue / 2}`,
       },
       {
-        value: 3 * maxValue / 4,
-        label: `${3 * maxValue / 4}`,
+        value: (3 * maxValue) / 4,
+        label: `${(3 * maxValue) / 4}`,
       },
       {
         value: maxValue,
         label: `${maxValue}`,
       },
-    ];
+    ]
     return (
       <MuiThemeProvider theme={THEME}>
         <Slider
@@ -57,5 +57,5 @@ RangeFilter.propTypes = {
   minValue: PropTypes.number,
   maxValue: PropTypes.number,
   handleChange: PropTypes.func,
-  value: PropTypes.string
+  value: PropTypes.string,
 }

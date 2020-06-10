@@ -20,3 +20,11 @@ export const BAD_REQUEST = 'Bad request :('
 // USER_ROLE
 export const STUDENT_ROLE = 'Student'
 export const COMPANY_ROLE = 'Company'
+
+// DURATION_UNIT
+export const DAY_UNIT = 1
+export const WEEK_UNIT = 2
+export const MONTH_UNIT = 3
+export const DAY_UNIT_TEXT = 'day'
+export const WEEK_UNIT_TEXT = 'week'
+export const MONTH_UNIT_TEXT = 'month'

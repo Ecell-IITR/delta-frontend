@@ -12,16 +12,18 @@ import {
   faUser,
   faCalendar,
   faClock,
+  faCheckCircle,
 } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { STUDENT_ROLE, COMPANY_ROLE } from 'globalConstants'
-import {
-  INTERNSHIP_POST_TYPE_KEY,
-  COMPETITION_POST_TYPE_KEY,
-  PROJECT_POST_TYPE_KEY,
-} from '../../student/constants'
 import { getImageURL } from 'utils/getImageURL'
 import { getTimeLeft } from 'utils/getTimeLeft'
+import { getDurationUnit } from 'utils/getDuration'
+import {
+  INTERNSHIP_POST_TYPE_KEY,
+  // COMPETITION_POST_TYPE_KEY,
+  // PROJECT_POST_TYPE_KEY,
+} from '../../student/constants'
 
 import styles from './index.css'
 
@@ -110,9 +112,7 @@ export default class PostComponent extends Component {
             <div className={styles['post-uppermost-info-sec']}>
               <div className={styles['post-basic-info-wrapper']}>
                 <div className={styles['post-title']}>{title}</div>
-                <div className={styles['post-sti-work']}>
-                  {`${stipend}`}
-                </div>
+                <div className={styles['post-sti-work']}>{`${stipend}`}</div>
               </div>
               <div className={styles['post-user-section']}>
                 {this.getUserSection(userMinProfile)}
@@ -125,7 +125,10 @@ export default class PostComponent extends Component {
               </div>
               <div>
                 <FontAwesomeIcon icon={faCalendar} />
-                <span>{opportunity.duration}</span>
+                <span>
+                  {opportunity.durationValue}{' '}
+                  {getDurationUnit(opportunity.durationUnit)}
+                </span>
               </div>
               <div>
                 <FontAwesomeIcon icon={faClock} />
@@ -184,6 +187,7 @@ export default class PostComponent extends Component {
 
   render() {
     const { isBookmark } = this.state
+    const { opportunity } = this.props
     return (
       <div className={styles.post}>
         <div>{this.getPostUpperSection()}</div>
@@ -199,13 +203,21 @@ export default class PostComponent extends Component {
                 </Card.Body>
               </Accordion.Collapse>
               <div className={styles['post-lower-section']}>
-                <button
-                  className={styles['apply-now-button']}
-                  type="button"
-                  onClick={this.handleApplyNow}
-                >
-                  Apply Now
-                </button>
+                {opportunity.isApplied ? (
+                  <button className={styles['applied-button']} type="button">
+                    <FontAwesomeIcon icon={faCheckCircle} />
+                    <span className={styles['button-text']}>Applied</span>
+                  </button>
+                ) : (
+                    <button
+                      className={styles['apply-now-button']}
+                      type="button"
+                      onClick={this.handleApplyNow}
+                    >
+                      Apply Now
+                    </button>
+                  )}
+
                 <div className={styles['bookmark-view-wrapper']}>
                   <CustomToggle eventKey="1" />
                   <FontAwesomeIcon

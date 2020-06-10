@@ -2,12 +2,15 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
+import {
+  faTable,
+  faLightbulb,
+  faFile,
+  faTrophy,
+} from '@fortawesome/free-solid-svg-icons'
+import SidebarMenu from 'coreContainers/sidebar-menu'
 import { fetchStudentProfile, setCurrentTab } from '../../actions'
 import { SELF_PROFILE, PUBLIC_PROFILE } from '../../constants'
-import {
-  faTable, faLightbulb, faFile, faTrophy
-} from '@fortawesome/free-solid-svg-icons'
-import SidebarMenu from "coreContainers/sidebar-menu"
 import StudentInfoSection from './student-info-section'
 import SkillsComponent from './skills'
 import ResumeComponent from './resume'
@@ -16,7 +19,13 @@ import styles from './index.css'
 
 class StudentProfile extends Component {
   componentDidMount() {
-    const { fetchStudentProfileComponent, match, user, location, setCurrentTabComponent } = this.props
+    const {
+      fetchStudentProfileComponent,
+      match,
+      user,
+      location,
+      setCurrentTabComponent,
+    } = this.props
     const { params } = match
     const searchParams = new URLSearchParams(location.search)
     if (Object.keys(user).length > 0 && user.username) {
@@ -33,23 +42,27 @@ class StudentProfile extends Component {
     const { history, setCurrentTabComponent, location } = this.props
     history.push({
       pathname: location.pathname,
-      search: `?tab=${value}`
+      search: `?tab=${value}`,
     })
     setCurrentTabComponent(value)
   }
 
   render() {
-    const { user, studentProfile, studentProfileLoading, currentTab } = this.props
+    const {
+      user,
+      studentProfile,
+      studentProfileLoading,
+      currentTab,
+    } = this.props
     const sidebarProps = {
       rowItems: [
         { slug: 'post', title: 'Post', icon: faTable },
         { slug: 'skills', title: 'Skills', icon: faLightbulb },
         { slug: 'achievements', title: 'Achievements', icon: faTrophy },
         { slug: 'resume', title: 'Resume', icon: faFile },
-
       ],
-      currentTab: currentTab,
-      handleClick: this.setActiveTab
+      currentTab,
+      handleClick: this.setActiveTab,
     }
     return (
       <>
@@ -58,10 +71,7 @@ class StudentProfile extends Component {
         ) : (
             <div>
               <div className={styles.info}>
-                <StudentInfoSection
-                  user={user}
-                  studentProfile={studentProfile}
-                />
+                <StudentInfoSection user={user} studentProfile={studentProfile} />
               </div>
               <div className={styles['main-container']}>
                 <div className={styles.sidebar}>
@@ -80,6 +90,8 @@ class StudentProfile extends Component {
 }
 
 StudentProfile.propTypes = {
+  location: PropTypes.object,
+  history: PropTypes.object,
   studentProfile: PropTypes.object,
   user: PropTypes.object,
   match: PropTypes.object.isRequired,
@@ -87,7 +99,7 @@ StudentProfile.propTypes = {
   params: PropTypes.object,
   studentProfileLoading: PropTypes.bool,
   currentTab: PropTypes.string,
-  setCurrentTabComponent: PropTypes.func
+  setCurrentTabComponent: PropTypes.func,
 }
 
 function mapDispatchToProps(dispatch) {
@@ -97,7 +109,7 @@ function mapDispatchToProps(dispatch) {
     },
     setCurrentTabComponent: (value) => {
       dispatch(setCurrentTab(value))
-    }
+    },
   }
 }
 
@@ -106,7 +118,7 @@ function mapStateToProps(state) {
     user: state.student.user.user,
     studentProfileLoading: state.student.profile.isLoading,
     studentProfile: state.student.profile.profile,
-    currentTab: state.student.profile.currentTab
+    currentTab: state.student.profile.currentTab,
   }
 }
 

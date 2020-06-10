@@ -96,6 +96,23 @@
   font-family: Neutrifpro-regular;
 }
 
+.applied-button {
+  color: green;
+  background: transparent;
+  padding: 10px 25px;
+  border: none;
+  cursor: none;
+  border-radius: 4px;
+  border: 1px solid green;
+  font-family: Neutrifpro-regular;
+  align-items: center;
+  display: flex;
+}
+
+.button-text {
+  margin: 0 5px;
+}
+
 .bookmark-view-wrapper {
   display: flex;
   margin: 0 1rem;

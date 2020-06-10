@@ -2,14 +2,14 @@ import {
   FETCH_USER_PROFILE_REQUEST,
   FETCH_USER_PROFILE_SUCCESS,
   FETCH_USER_PROFILE_FAILURE,
-  SET_CURRENT_TAB
+  SET_CURRENT_TAB,
 } from '../constants/index'
 
 const initialState = {
   isLoading: false,
   error: '',
   profile: {},
-  currentTab: 'post'
+  currentTab: 'post',
 }
 
 const profile = (state = initialState, action) => {
@@ -34,7 +34,7 @@ const profile = (state = initialState, action) => {
     case SET_CURRENT_TAB:
       return {
         ...state,
-        currentTab: action.payload
+        currentTab: action.payload,
       }
     case 'ADD_PROFILE_SKILLS':
       return {

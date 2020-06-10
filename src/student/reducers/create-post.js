@@ -1,9 +1,7 @@
-import {
-  SET_CREATE_POST_TAB
-} from '../constants'
+import { SET_CREATE_POST_TAB } from '../constants'
 
 const initialState = {
-  currentTab: 'internship'
+  currentTab: 'internship',
 }
 
 const createPostReducer = (state = initialState, action) => {
@@ -11,7 +9,7 @@ const createPostReducer = (state = initialState, action) => {
     case SET_CREATE_POST_TAB:
       return {
         ...state,
-        currentTab: action.payload
+        currentTab: action.payload,
       }
     default:
       return state
