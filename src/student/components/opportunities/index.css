@@ -5,8 +5,12 @@
   margin: 0 auto;
 }
 
-.filter-container {
+.side-container {
   width: 25%;
+  padding: 1rem 1rem;
+}
+
+.filter-container {
   padding: 1rem 1rem;
   margin: 1rem 0;
   background: white;

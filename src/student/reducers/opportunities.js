@@ -3,6 +3,7 @@ import {
   FETCH_USER_OPPORTUNITIES_REQUEST,
   FETCH_USER_OPPORTUNITIES_SUCCESS,
   SET_OPPORTUNITY_FILTER,
+  SET_OPPORTUNITY_FILTER_TAB,
 } from '../constants/index'
 
 const initialState = {
@@ -18,6 +19,7 @@ const initialState = {
   skillsLoading: false,
   locations: [],
   locationsLoading: false,
+  currentFilterTab: '',
 }
 
 const opportunitiesReducer = (state = initialState, action) => {
@@ -43,6 +45,11 @@ const opportunitiesReducer = (state = initialState, action) => {
       return {
         ...state,
         filtersApplied: Object.assign(state.filtersApplied, action.payload),
+      }
+    case SET_OPPORTUNITY_FILTER_TAB:
+      return {
+        ...state,
+        currentFilterTab: action.payload,
       }
     default:
       return state

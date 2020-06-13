@@ -63,11 +63,14 @@ class Navbar extends React.PureComponent {
                 <Icon name="bell" />
               </Link>
             </li> */}
+            <li className={styles['nav-link']}>
+              <Link to="/logout">Logout</Link>
+            </li>
             <li>
               <img
                 src={user.profileImage}
                 className={styles['profile-pic']}
-                alt="profile-image"
+                alt="profile"
               />
             </li>
           </ul>
@@ -81,6 +84,7 @@ class Navbar extends React.PureComponent {
 
 Navbar.propTypes = {
   user: PropTypes.object,
+  location: PropTypes.object,
 }
 
 function mapStateToProps(state) {

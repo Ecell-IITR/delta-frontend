@@ -1,5 +1,5 @@
 /* eslint-disable react/forbid-prop-types */
-import React, { Component } from 'react'
+import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import {
@@ -17,15 +17,18 @@ import ResumeComponent from './resume'
 
 import styles from './index.css'
 
-class StudentProfile extends Component {
-  componentDidMount() {
-    const {
-      fetchStudentProfileComponent,
-      match,
-      user,
-      location,
-      setCurrentTabComponent,
-    } = this.props
+export function StudentProfile({
+  fetchStudentProfileComponent,
+  match,
+  user,
+  location,
+  setCurrentTabComponent,
+  currentTab,
+  studentProfile,
+  studentProfileLoading,
+  history,
+}) {
+  useEffect(() => {
     const { params } = match
     const searchParams = new URLSearchParams(location.search)
     if (Object.keys(user).length > 0 && user.username) {
@@ -36,10 +39,9 @@ class StudentProfile extends Component {
     if (searchParams && searchParams.get('tab')) {
       setCurrentTabComponent(searchParams.get('tab'))
     }
-  }
+  }, [])
 
-  setActiveTab = (value) => {
-    const { history, setCurrentTabComponent, location } = this.props
+  const setActiveTab = (value) => {
     history.push({
       pathname: location.pathname,
       search: `?tab=${value}`,
@@ -47,46 +49,53 @@ class StudentProfile extends Component {
     setCurrentTabComponent(value)
   }
 
-  render() {
-    const {
-      user,
-      studentProfile,
-      studentProfileLoading,
-      currentTab,
-    } = this.props
-    const sidebarProps = {
-      rowItems: [
-        { slug: 'post', title: 'Post', icon: faTable },
-        { slug: 'skills', title: 'Skills', icon: faLightbulb },
-        { slug: 'achievements', title: 'Achievements', icon: faTrophy },
-        { slug: 'resume', title: 'Resume', icon: faFile },
-      ],
-      currentTab,
-      handleClick: this.setActiveTab,
-    }
-    return (
-      <>
-        {Object.keys(user).length === 0 || studentProfileLoading ? (
-          <div>Loading....</div>
-        ) : (
-            <div>
-              <div className={styles.info}>
-                <StudentInfoSection user={user} studentProfile={studentProfile} />
-              </div>
-              <div className={styles['main-container']}>
-                <div className={styles.sidebar}>
-                  <SidebarMenu {...sidebarProps} />
-                </div>
-                <div className={styles.contentBox}>
-                  {currentTab === 'skills' ? <SkillsComponent /> : <></>}
-                  {currentTab === 'resume' ? <ResumeComponent /> : <></>}
-                </div>
-              </div>
-            </div>
-          )}
-      </>
-    )
+  const sidebarProps = {
+    rowItems: [
+      { slug: 'post', title: 'Post', icon: faTable },
+      { slug: 'skills', title: 'Skills', icon: faLightbulb },
+      { slug: 'achievements', title: 'Achievements', icon: faTrophy },
+      { slug: 'resume', title: 'Resume', icon: faFile },
+    ],
+    currentTab,
+    handleClick: setActiveTab,
   }
+
+  return (
+    <>
+      {user && Object.keys(user).length === 0 ? (
+        <div>Loading....</div>
+      ) : (
+        <div>
+          {studentProfileLoading ? (
+            <div> Loading..... </div>
+          ) : (
+            <>
+              {studentProfile ? (
+                <div className={styles.info}>
+                  <StudentInfoSection
+                    user={user}
+                    studentProfile={studentProfile}
+                  />
+                </div>
+              ) : (
+                <></>
+              )}
+            </>
+          )}
+
+          <div className={styles['main-container']}>
+            <div className={styles.sidebar}>
+              <SidebarMenu {...sidebarProps} />
+            </div>
+            <div className={styles.contentBox}>
+              {currentTab === 'skills' ? <SkillsComponent /> : <></>}
+              {currentTab === 'resume' ? <ResumeComponent /> : <></>}
+            </div>
+          </div>
+        </div>
+      )}
+    </>
+  )
 }
 
 StudentProfile.propTypes = {

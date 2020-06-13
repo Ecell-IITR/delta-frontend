@@ -12,6 +12,7 @@ import {
   FETCH_USER_OPPORTUNITIES_REQUEST,
   FETCH_USER_OPPORTUNITIES_SUCCESS,
   FETCH_USER_OPPORTUNITIES_FAILURE,
+  SET_OPPORTUNITY_FILTER_TAB,
 } from '../constants/index'
 
 export const fetchStudentOpportunities = (filtersObj) => {
@@ -37,5 +38,12 @@ export const fetchStudentOpportunities = (filtersObj) => {
           error: errorMsg,
         })
       })
+  }
+}
+
+export const setOpportunityFilterTab = (value) => {
+  return {
+    type: SET_OPPORTUNITY_FILTER_TAB,
+    payload: value,
   }
 }

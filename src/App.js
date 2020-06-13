@@ -8,7 +8,7 @@ import './App.css'
 export default class App extends Component {
   render() {
     return (
-      <React.Fragment>
+      <>
         <Route path="/" component={Navbar} />
         <Switch>
           <FreeRoute
@@ -30,7 +30,7 @@ export default class App extends Component {
               component={React.lazy(() => import('./company'))}
             /> */}
         </Switch>
-      </React.Fragment>
+      </>
     )
   }
 }

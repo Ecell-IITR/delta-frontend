@@ -160,8 +160,8 @@ export default class PostComponent extends Component {
                 </div>
               </div>
             ) : (
-                <></>
-              )}
+              <></>
+            )}
             {requiredSkill ? (
               <div className={styles['skill-required']}>
                 <div className={styles['skill-required-header']}>
@@ -172,8 +172,8 @@ export default class PostComponent extends Component {
                 </div>
               </div>
             ) : (
-                <></>
-              )}
+              <></>
+            )}
           </div>
         )
       default:
@@ -209,14 +209,14 @@ export default class PostComponent extends Component {
                     <span className={styles['button-text']}>Applied</span>
                   </button>
                 ) : (
-                    <button
-                      className={styles['apply-now-button']}
-                      type="button"
-                      onClick={this.handleApplyNow}
-                    >
-                      Apply Now
-                    </button>
-                  )}
+                  <button
+                    className={styles['apply-now-button']}
+                    type="button"
+                    onClick={this.handleApplyNow}
+                  >
+                    Apply Now
+                  </button>
+                )}
 
                 <div className={styles['bookmark-view-wrapper']}>
                   <CustomToggle eventKey="1" />
