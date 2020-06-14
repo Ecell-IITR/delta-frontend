@@ -3,6 +3,9 @@ import {
   FETCH_USER_PROFILE_SUCCESS,
   FETCH_USER_PROFILE_FAILURE,
   SET_CURRENT_TAB,
+  FETCH_PROFILE_POST_SUCCESS,
+  FETCH_PROFILE_POST_REQUEST,
+  FETCH_PROFILE_POST_FAILURE,
 } from '../constants/index'
 
 const initialState = {
@@ -10,6 +13,9 @@ const initialState = {
   error: '',
   profile: {},
   currentTab: 'post',
+  postList: [],
+  postListLoading: false,
+  postListError: '',
 }
 
 const profile = (state = initialState, action) => {
@@ -35,6 +41,23 @@ const profile = (state = initialState, action) => {
       return {
         ...state,
         currentTab: action.payload,
+      }
+    case FETCH_PROFILE_POST_REQUEST:
+      return {
+        ...state,
+        postListLoading: true,
+      }
+    case FETCH_PROFILE_POST_SUCCESS:
+      return {
+        ...state,
+        postListLoading: false,
+        postList: action.payload,
+      }
+    case FETCH_PROFILE_POST_FAILURE:
+      return {
+        ...state,
+        postListLoading: false,
+        postListError: action.payload,
       }
     case 'ADD_PROFILE_SKILLS':
       return {

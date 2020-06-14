@@ -50,3 +50,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background-color: #f1f2f7;
 }
+
+*:focus {
+  outline: 0 !important;
+}

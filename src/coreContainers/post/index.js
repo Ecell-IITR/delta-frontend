@@ -52,6 +52,8 @@ export default class PostComponent extends Component {
     super(props)
     this.state = {
       isBookmark: props.opportunity.isBookmark,
+      applyPostLoader: false,
+      applyPostState: 'steady',
     }
   }
 
@@ -102,10 +104,10 @@ export default class PostComponent extends Component {
         const {
           title,
           stipend,
-          workType,
+          // workType,
           userMinProfile,
-          applicantsCount,
-          postExpiryDate,
+          // applicantsCount,
+          // postExpiryDate,
         } = opportunity
         return (
           <div className={styles['post-upper-section']}>
@@ -160,8 +162,8 @@ export default class PostComponent extends Component {
                 </div>
               </div>
             ) : (
-              <></>
-            )}
+                <></>
+              )}
             {requiredSkill ? (
               <div className={styles['skill-required']}>
                 <div className={styles['skill-required-header']}>
@@ -172,8 +174,8 @@ export default class PostComponent extends Component {
                 </div>
               </div>
             ) : (
-              <></>
-            )}
+                <></>
+              )}
           </div>
         )
       default:
@@ -181,12 +183,31 @@ export default class PostComponent extends Component {
     }
   }
 
-  handleApplyNow = (e) => {
-    e.preventDefault()
+  handleApplyNow = (postSlug) => {
+    const { applyPost } = this.props
+    this.setState({
+      applyPostLoader: true,
+    })
+    applyPost(postSlug, this.handleApplyPostCallback)
+  }
+
+  handleApplyPostCallback = (callbackType, callbackMsg) => {
+    if (callbackType === 'success') {
+      this.setState({
+        applyPostLoader: false,
+        applyPostState: 'success',
+      })
+    }
+    if (callbackType === 'error') {
+      this.setState({
+        applyPostLoader: false,
+        applyPostState: 'error',
+      })
+    }
   }
 
   render() {
-    const { isBookmark } = this.state
+    const { isBookmark, applyPostState, applyPostLoader } = this.state
     const { opportunity } = this.props
     return (
       <div className={styles.post}>
@@ -203,20 +224,60 @@ export default class PostComponent extends Component {
                 </Card.Body>
               </Accordion.Collapse>
               <div className={styles['post-lower-section']}>
-                {opportunity.isApplied ? (
-                  <button className={styles['applied-button']} type="button">
-                    <FontAwesomeIcon icon={faCheckCircle} />
-                    <span className={styles['button-text']}>Applied</span>
-                  </button>
+                {applyPostState === 'steady' && !applyPostLoader ? (
+                  <>
+                    {opportunity.isApplied ? (
+                      <button
+                        className={styles['applied-button']}
+                        type="button"
+                      >
+                        <FontAwesomeIcon icon={faCheckCircle} />
+                        <span className={styles['button-text']}>Applied</span>
+                      </button>
+                    ) : (
+                        <button
+                          className={styles['apply-now-button']}
+                          type="button"
+                          onClick={() => this.handleApplyNow(opportunity.slug)}
+                        >
+                          Apply Now
+                        </button>
+                      )}
+                  </>
                 ) : (
-                  <button
-                    className={styles['apply-now-button']}
-                    type="button"
-                    onClick={this.handleApplyNow}
-                  >
-                    Apply Now
-                  </button>
-                )}
+                    <>
+                      {applyPostLoader ? (
+                        <div
+                          className="spinner-border text-primary"
+                          role="status"
+                        ></div>
+                      ) : (
+                          <>
+                            {applyPostState === 'success' ? (
+                              <button
+                                className={styles['applied-button']}
+                                type="button"
+                              >
+                                <FontAwesomeIcon icon={faCheckCircle} />
+                                <span className={styles['button-text']}>
+                                  Applied
+                            </span>
+                              </button>
+                            ) : (
+                                <button
+                                  className={styles['apply-now-button']}
+                                  type="button"
+                                  onClick={() =>
+                                    this.handleApplyNow(opportunity.slug)
+                                  }
+                                >
+                                  Apply Now
+                                </button>
+                              )}
+                          </>
+                        )}
+                    </>
+                  )}
 
                 <div className={styles['bookmark-view-wrapper']}>
                   <CustomToggle eventKey="1" />
@@ -241,4 +302,5 @@ export default class PostComponent extends Component {
 
 PostComponent.propTypes = {
   opportunity: PropTypes.object,
+  applyPost: PropTypes.func,
 }

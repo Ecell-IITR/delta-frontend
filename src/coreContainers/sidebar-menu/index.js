@@ -1,3 +1,6 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable react/forbid-prop-types */
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -13,6 +16,7 @@ export default class SidebarMenu extends Component {
             className={styles['row-container']}
             onClick={() => handleClick(item.slug)}
             style={currentTab === item.slug ? { background: '#2964ee' } : null}
+            key={item.slug}
           >
             <FontAwesomeIcon
               icon={item.icon}

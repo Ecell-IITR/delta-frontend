@@ -18,6 +18,7 @@ import {
   fetchSkills,
   setOpportunityFilter,
   setOpportunityFilterTab,
+  applyPost,
 } from '../../actions'
 
 import styles from './index.css'
@@ -36,6 +37,7 @@ export function Opportunities({
   setOpportunityFilterComponent,
   skillsLoading,
   skills,
+  applyPostComponent,
 }) {
   useEffect(() => {
     const filterObj = {
@@ -158,30 +160,33 @@ export function Opportunities({
         {isLoading ? (
           <Loader />
         ) : (
-          <>
-            {opportunitiesList && opportunitiesList.length === 0 ? (
-              <div>Opportunities list is empty!</div>
-            ) : (
-              <>
-                <div>
-                  {opportunitiesList ? (
-                    <div className={styles['interns-found']}>
-                      {`${opportunitiesList.length} interns found`}
+            <>
+              {opportunitiesList && opportunitiesList.length === 0 ? (
+                <div>Opportunities list is empty!</div>
+              ) : (
+                  <>
+                    <div>
+                      {opportunitiesList ? (
+                        <div className={styles['interns-found']}>
+                          {`${opportunitiesList.length} interns found`}
+                        </div>
+                      ) : (
+                          <></>
+                        )}
                     </div>
-                  ) : (
-                    <></>
-                  )}
-                </div>
-                <div>
-                  {opportunitiesList &&
-                    opportunitiesList.map((opportunity) => (
-                      <PostComponent opportunity={opportunity} />
-                    ))}
-                </div>
-              </>
-            )}
-          </>
-        )}
+                    <div>
+                      {opportunitiesList &&
+                        opportunitiesList.map((opportunity) => (
+                          <PostComponent
+                            opportunity={opportunity}
+                            applyPost={applyPostComponent}
+                          />
+                        ))}
+                    </div>
+                  </>
+                )}
+            </>
+          )}
       </div>
     </div>
   )
@@ -209,6 +214,7 @@ Opportunities.propTypes = {
   locationsLoading: PropTypes.bool,
   skills: PropTypes.array,
   skillsLoading: PropTypes.bool,
+  applyPostComponent: PropTypes.func,
 }
 
 const mapActionToProps = (dispatch) => {
@@ -227,6 +233,9 @@ const mapActionToProps = (dispatch) => {
     },
     setCurrentTabComponent: (value) => {
       return dispatch(setOpportunityFilterTab(value))
+    },
+    applyPostComponent: (postSlug, callback) => {
+      return dispatch(applyPost(postSlug, callback))
     },
   }
 }

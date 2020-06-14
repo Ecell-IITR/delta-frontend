@@ -3,11 +3,13 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import styles from './index.css'
 import { followUser, unfollowUser } from '../../actions/index'
+
 class followingcompany extends Component {
   followUser(user) {
     const { followUser } = this.props
     followUser(user)
   }
+
   unfollowUser(user) {
     const { unfollowUser } = this.props
     unfollowUser(user)
@@ -50,7 +52,7 @@ class followingcompany extends Component {
   }
 
   render() {
-    let { organisations, followinglist, match } = this.props
+    const { organisations, followinglist, match } = this.props
 
     return (
       <div>

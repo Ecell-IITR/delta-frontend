@@ -4,7 +4,7 @@ import {
   FETCH_USER_OPPORTUNITIES_SUCCESS,
   SET_OPPORTUNITY_FILTER,
   SET_OPPORTUNITY_FILTER_TAB,
-} from '../constants/index'
+} from '../constants'
 
 const initialState = {
   isLoading: true,

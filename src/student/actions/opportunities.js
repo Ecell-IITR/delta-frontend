@@ -13,12 +13,12 @@ import {
   FETCH_USER_OPPORTUNITIES_SUCCESS,
   FETCH_USER_OPPORTUNITIES_FAILURE,
   SET_OPPORTUNITY_FILTER_TAB,
-} from '../constants/index'
+} from '../constants'
 
 export const fetchStudentOpportunities = (filtersObj) => {
   return (dispatch) => {
     dispatch({ type: FETCH_USER_OPPORTUNITIES_REQUEST })
-    const opportunitiesURL = addQueryParams('api/v1/post/', {
+    const opportunitiesURL = addQueryParams('/api/v1/post/', {
       ...filtersObj,
     })
     FetchApi('GET', opportunitiesURL, null, getToken(TOKEN_TYPE))
@@ -37,6 +37,19 @@ export const fetchStudentOpportunities = (filtersObj) => {
           type: FETCH_USER_OPPORTUNITIES_FAILURE,
           error: errorMsg,
         })
+      })
+  }
+}
+
+export const applyPost = (postSlug, callback) => {
+  return () => {
+    const applyPostURL = '/api/v1/post/apply/' + postSlug + '/'
+    FetchApi('POST', applyPostURL, null, getToken(TOKEN_TYPE))
+      .then(() => callback('success'))
+      .catch((error) => {
+        const errorMsg = getErrorMsg(error)
+        notify.show(errorMsg, NOTIF_ERROR_TYPE, NOTIF_MID_RANGE_TIMEOUT)
+        callback('error', errorMsg)
       })
   }
 }

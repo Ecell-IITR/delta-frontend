@@ -96,6 +96,18 @@
   font-family: Neutrifpro-regular;
 }
 
+.general-button {
+  background: transparent;
+  padding: 10px 25px;
+  border: none;
+  cursor: none;
+  border-radius: 4px;
+  border: 1px solid #2964ee;
+  font-family: Neutrifpro-regular;
+  align-items: center;
+  display: flex;
+}
+
 .applied-button {
   color: green;
   background: transparent;
@@ -147,6 +159,7 @@
 
 .user-image img {
   height: 35px;
+  border-radius: 50%;
 }
 
 .post-some-info-section {

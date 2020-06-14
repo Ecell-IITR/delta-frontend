@@ -3,15 +3,18 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import styles from './index.css'
 import { followUser, unfollowUser } from '../../actions/index'
+
 class allcompany extends Component {
   followUser(user) {
     const { followUser } = this.props
     followUser(user)
   }
+
   unfollowUser(user) {
     const { unfollowUser } = this.props
     unfollowUser(user)
   }
+
   renderFollowUnfollow = (org, f) => {
     for (let i = 0; i < f.length; i++) {
       if (f[i].person.username == org.person.username) {
@@ -46,8 +49,9 @@ class allcompany extends Component {
       </div>
     )
   }
+
   render() {
-    let { organisations, followinglist, match } = this.props
+    const { organisations, followinglist, match } = this.props
 
     return (
       <div>

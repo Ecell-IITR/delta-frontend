@@ -24,9 +24,9 @@ import {
 } from '../constants/index'
 
 export * from './fetch-user'
-export * from './fetch-student-profile'
+export * from './student-profile'
 export * from './skills-event'
-export * from './fetch-opportunities'
+export * from './opportunities'
 export * from './filters'
 export * from './post'
 
