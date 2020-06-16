@@ -3,8 +3,8 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
-// import { Icon } from 'semantic-ui-react'
 import { TOKEN_TYPE } from 'globalConstants'
+// import logo from '../../images/logo.svg'
 // import Searchbar from '../searchbar/index'
 
 import styles from './navbar.css'
@@ -18,6 +18,9 @@ class Navbar extends React.PureComponent {
       <div className={styles.navbar}>
         <div className={styles.startnav}>
           <div className={styles.title}>Delta</div>
+          {/* <div>
+            <img src={logo} alt="logo" />
+          </div> */}
           {/* <div className={styles.searchBar}>
             <Searchbar />
           </div> */}

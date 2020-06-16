@@ -19,9 +19,26 @@ import {
   setOpportunityFilter,
   setOpportunityFilterTab,
   applyPost,
+  bookmarkPost,
 } from '../../actions'
 
 import styles from './index.css'
+
+export const modifyFilterObj = (filterObj) => {
+  let finalData = filterObj
+  if (filterObj.hasOwnProperty('duration')) {
+    finalData['duration_value_ll'] = filterObj.duration[0]
+    finalData['duration_value_ul'] = filterObj.duration[1]
+    delete finalData['duration']
+  }
+  if (filterObj.hasOwnProperty('stipend')) {
+    finalData['stipend_ll'] = filterObj.stipend[0]
+    finalData['stipend_ul'] = filterObj.stipend[1]
+    delete finalData['stipend']
+  }
+
+  return finalData
+}
 
 export function Opportunities({
   fetchSkillsComponent,
@@ -38,20 +55,38 @@ export function Opportunities({
   skillsLoading,
   skills,
   applyPostComponent,
+  bookmarkPostComponent,
+  isAppliedLoading,
+  appliedLoadingSlug,
+  filtersApplied
 }) {
+  const filterObj = {
+    post_type: INTERNSHIP_POST_TYPE_KEY,
+  }
   useEffect(() => {
-    const filterObj = {
-      post_type: INTERNSHIP_POST_TYPE_KEY,
-    }
     fetchLocationsComponent()
     fetchSkillsComponent()
-    fetchStudentOpportunitiesComponent(filterObj)
+    fetchStudentOpportunitiesComponent(modifyFilterObj(Object.assign(filterObj, filtersApplied)))
   }, [])
 
   const handleFilterChange = (filterKey, value) => {
     const data = {}
-    data[filterKey] = value
+    if (filterKey === 'skill_slug') {
+      let tempArr = []
+      if (value) {
+        value.forEach(obj => tempArr.push(obj.value))
+        data[filterKey] = tempArr
+      }
+      else {
+        data[filterKey] = []
+      }
+    }
+    else {
+      data[filterKey] = value
+    }
+
     setOpportunityFilterComponent(data)
+    fetchStudentOpportunitiesComponent(modifyFilterObj(Object.assign(filterObj, filtersApplied)))
   }
 
   const getFilterOptions = (filterList) => {
@@ -84,7 +119,7 @@ export function Opportunities({
     handleClick: setActiveTab,
   }
 
-  const { opportunitiesList, isLoading, filtersApplied } = opportunitiesObj
+  const { opportunitiesList, isLoading } = opportunitiesObj
 
   return (
     <div className={styles['opportunities-container']}>
@@ -101,19 +136,22 @@ export function Opportunities({
             <div className={styles['location-filter']}>
               <div className={styles['filter-label']}>Select location</div>
               <SelectFilter
-                options={getFilterOptions(locations)}
+                options={locations ? getFilterOptions(locations) : []}
                 loading={locationsLoading}
                 placeholder="Select location"
-                handleChange={handleFilterChange}
+                handleChange={(loc) =>
+                  handleFilterChange('location', loc ? loc.value : '')
+                }
               />
             </div>
             <div className={styles['location-filter']}>
               <div className={styles['filter-label']}>Select skills</div>
               <SelectFilter
-                options={getFilterOptions(skills)}
+                options={skills ? getFilterOptions(skills) : []}
                 loading={skillsLoading}
                 placeholder="Select skills"
-                handleChange={handleFilterChange}
+                isMulti={true}
+                handleChange={(valueArr) => handleFilterChange('skill_slug', valueArr)}
               />
             </div>
             <div className={styles['range-filter']}>
@@ -125,7 +163,7 @@ export function Opportunities({
                   }
                   value={filtersApplied.duration}
                   minValue={0}
-                  maxValue={5}
+                  maxValue={100}
                 />
               </div>
             </div>
@@ -140,7 +178,7 @@ export function Opportunities({
                 />
               </div>
             </div>
-            <div className={styles['range-filter']}>
+            {/* <div className={styles['range-filter']}>
               <div className={styles['filter-label']}>No. of Employees</div>
               <div className={styles['range-filter-slider']}>
                 <RangeFilter
@@ -152,7 +190,7 @@ export function Opportunities({
                   maxValue={500}
                 />
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
@@ -178,8 +216,12 @@ export function Opportunities({
                       {opportunitiesList &&
                         opportunitiesList.map((opportunity) => (
                           <PostComponent
+                            key={opportunity.slug}
                             opportunity={opportunity}
                             applyPost={applyPostComponent}
+                            bookmarkPost={bookmarkPostComponent}
+                            isAppliedLoading={isAppliedLoading}
+                            appliedLoadingSlug={appliedLoadingSlug}
                           />
                         ))}
                     </div>
@@ -215,6 +257,9 @@ Opportunities.propTypes = {
   skills: PropTypes.array,
   skillsLoading: PropTypes.bool,
   applyPostComponent: PropTypes.func,
+  bookmarkPostComponent: PropTypes.func,
+  isAppliedLoading: PropTypes.bool,
+  appliedLoadingSlug: PropTypes.string,
 }
 
 const mapActionToProps = (dispatch) => {
@@ -234,8 +279,11 @@ const mapActionToProps = (dispatch) => {
     setCurrentTabComponent: (value) => {
       return dispatch(setOpportunityFilterTab(value))
     },
-    applyPostComponent: (postSlug, callback) => {
-      return dispatch(applyPost(postSlug, callback))
+    applyPostComponent: (postSlug, value) => {
+      return dispatch(applyPost(postSlug, value))
+    },
+    bookmarkPostComponent: (postSlug, value) => {
+      return dispatch(bookmarkPost(postSlug, value))
     },
   }
 }
@@ -248,6 +296,9 @@ const mapStateToProps = (state) => {
     skillsLoading: state.student.skill.skillsLoading,
     skills: state.student.skill.skills,
     currentTab: state.student.opportunities.currentFilterTab,
+    isAppliedLoading: state.student.opportunities.isAppliedLoading,
+    appliedLoadingSlug: state.student.opportunities.appliedLoadingSlug,
+    filtersApplied: state.student.filters.filtersApplied
   }
 }
 

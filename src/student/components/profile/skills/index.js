@@ -53,8 +53,8 @@ class Skill extends Component {
               {isSkillLoading && skillSlug === skill.slug ? (
                 <div class="spinner-border text-primary" role="status"></div>
               ) : (
-                <Icon name="add" />
-              )}
+                  <Icon name="add" />
+                )}
             </button>
           </div>
         ))}
@@ -79,87 +79,87 @@ class Skill extends Component {
         {skillsLoading ? (
           <div>Loading...</div>
         ) : (
-          <div className={styles['skills-container']}>
-            <div className={styles.filterSkills}>
-              <div className={styles.searchBox}>
-                <Input
-                  className={styles.searchBoxinput}
-                  icon="search"
-                  placeholder="Search Skills..."
-                  onChange={this.handleChange}
-                />
-              </div>
-              <div className={styles.skills}>
-                {renderSearchedSkills && renderSearchedSkills.length
-                  ? this.renderSkills(renderSearchedSkills)
-                  : this.renderSkills(skills)}
-              </div>
-            </div>
-
-            <div className={styles.addedSkills}>
-              <div className={styles.selected}>
-                <div className={styles['selected-skills-title']}>
-                  Selected Skills
+            <div className={styles['skills-container']}>
+              <div className={styles.filterSkills}>
+                <div className={styles.searchBox}>
+                  <Input
+                    className={styles.searchBoxinput}
+                    icon="search"
+                    placeholder="Search Skills..."
+                    onChange={this.handleChange}
+                  />
                 </div>
-                {addedSkills && addedSkills.length ? (
-                  <button
-                    type="button"
-                    className={styles['clear-button']}
-                    onClick={removeAllComponent}
-                  >
-                    <div className={styles['clear-all-text']}>Clear All</div>
-                    <div>
-                      {removeAllLoading ? (
-                        <div
-                          class="spinner-border text-primary"
-                          role="status"
-                        ></div>
-                      ) : (
-                        <Icon
-                          size="large"
-                          color="red"
-                          // className={skills.removeAll}
-                          name="remove circle"
-                        />
-                      )}
-                    </div>
-                  </button>
-                ) : (
-                  <></>
-                )}
+                <div className={styles.skills}>
+                  {renderSearchedSkills && renderSearchedSkills.length
+                    ? this.renderSkills(renderSearchedSkills)
+                    : this.renderSkills(skills)}
+                </div>
               </div>
-              <div className={styles.skills}>
-                {addedSkills &&
-                  addedSkills.map((skill) => (
-                    <div key={skill.slug}>
-                      {skill.name}
-                      <button
-                        type="button"
-                        className={styles['remove-button']}
-                        onClick={() => {
-                          removeSkillComponent(skill.slug)
-                        }}
-                      >
-                        {isSkillLoading && skillSlug === skill.slug ? (
+
+              <div className={styles.addedSkills}>
+                <div className={styles.selected}>
+                  <div className={styles['selected-skills-title']}>
+                    Selected Skills
+                </div>
+                  {addedSkills && addedSkills.length ? (
+                    <button
+                      type="button"
+                      className={styles['clear-button']}
+                      onClick={removeAllComponent}
+                    >
+                      <div className={styles['clear-all-text']}>Clear All</div>
+                      <div>
+                        {removeAllLoading ? (
                           <div
                             class="spinner-border text-primary"
                             role="status"
                           ></div>
                         ) : (
-                          <Icon name="remove circle" />
-                        )}
-                      </button>
-                    </div>
-                  ))}
-                {addedSkills && addedSkills.length === 0 ? (
-                  <div>No added skills</div>
-                ) : (
-                  <></>
-                )}
+                            <Icon
+                              size="large"
+                              color="red"
+                              // className={skills.removeAll}
+                              name="remove circle"
+                            />
+                          )}
+                      </div>
+                    </button>
+                  ) : (
+                      <></>
+                    )}
+                </div>
+                <div className={styles.skills}>
+                  {addedSkills &&
+                    addedSkills.map((skill) => (
+                      <div key={skill.slug}>
+                        {skill.name}
+                        <button
+                          type="button"
+                          className={styles['remove-button']}
+                          onClick={() => {
+                            removeSkillComponent(skill.slug)
+                          }}
+                        >
+                          {isSkillLoading && skillSlug === skill.slug ? (
+                            <div
+                              class="spinner-border text-primary"
+                              role="status"
+                            ></div>
+                          ) : (
+                              <Icon name="remove circle" />
+                            )}
+                        </button>
+                      </div>
+                    ))}
+                  {addedSkills && addedSkills.length === 0 ? (
+                    <div>No added skills</div>
+                  ) : (
+                      <></>
+                    )}
+                </div>
               </div>
             </div>
-          </div>
-        )}
+          )}
       </>
     )
   }

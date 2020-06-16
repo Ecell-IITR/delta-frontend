@@ -96,6 +96,16 @@
   font-family: Neutrifpro-regular;
 }
 
+.edit-repost-button {
+  border-radius: 4px;
+  background-color: transparent;
+  padding: 10px 25px;
+  border: 1px solid #2964ee;
+  cursor: pointer;
+  color: #2964ee;
+  font-family: Neutrifpro-regular;
+}
+
 .general-button {
   background: transparent;
   padding: 10px 25px;
@@ -174,4 +184,10 @@
 
 .post-some-info-section > div > span {
   margin: 0 0.5rem;
+}
+
+.dustbin-icon {
+  cursor: pointer;
+  color: red;
+  margin: auto 0 auto 2rem;
 }

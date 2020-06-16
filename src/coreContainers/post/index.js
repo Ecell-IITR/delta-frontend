@@ -1,3 +1,4 @@
+/* eslint-disable react/forbid-prop-types */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable no-case-declarations */
 import React, { Component, useState } from 'react'
@@ -13,12 +14,14 @@ import {
   faCalendar,
   faClock,
   faCheckCircle,
+  faTrash,
 } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { STUDENT_ROLE, COMPANY_ROLE } from 'globalConstants'
 import { getImageURL } from 'utils/getImageURL'
 import { getTimeLeft } from 'utils/getTimeLeft'
 import { getDurationUnit } from 'utils/getDuration'
+import { kFormatter } from 'utils/numberFormatter'
 import {
   INTERNSHIP_POST_TYPE_KEY,
   // COMPETITION_POST_TYPE_KEY,
@@ -48,22 +51,6 @@ function CustomToggle({ eventKey }) {
 }
 
 export default class PostComponent extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      isBookmark: props.opportunity.isBookmark,
-      applyPostLoader: false,
-      applyPostState: 'steady',
-    }
-  }
-
-  handleBookmarkClick = () => {
-    const { isBookmark } = this.state
-    this.setState({
-      isBookmark: !isBookmark,
-    })
-  }
-
   getUserSection = (profile) => {
     const { person, companyDomain } = profile
     switch (person.roleType) {
@@ -114,7 +101,9 @@ export default class PostComponent extends Component {
             <div className={styles['post-uppermost-info-sec']}>
               <div className={styles['post-basic-info-wrapper']}>
                 <div className={styles['post-title']}>{title}</div>
-                <div className={styles['post-sti-work']}>{`${stipend}`}</div>
+                <div className={styles['post-sti-work']}>{`${kFormatter(
+                  stipend,
+                )}`}</div>
               </div>
               <div className={styles['post-user-section']}>
                 {this.getUserSection(userMinProfile)}
@@ -183,32 +172,17 @@ export default class PostComponent extends Component {
     }
   }
 
-  handleApplyNow = (postSlug) => {
-    const { applyPost } = this.props
-    this.setState({
-      applyPostLoader: true,
-    })
-    applyPost(postSlug, this.handleApplyPostCallback)
-  }
-
-  handleApplyPostCallback = (callbackType, callbackMsg) => {
-    if (callbackType === 'success') {
-      this.setState({
-        applyPostLoader: false,
-        applyPostState: 'success',
-      })
-    }
-    if (callbackType === 'error') {
-      this.setState({
-        applyPostLoader: false,
-        applyPostState: 'error',
-      })
-    }
-  }
-
   render() {
-    const { isBookmark, applyPostState, applyPostLoader } = this.state
-    const { opportunity } = this.props
+    const {
+      opportunity,
+      username,
+      bookmarkPost,
+      appliedLoadingSlug,
+      isAppliedLoading,
+      applyPost,
+    } = this.props
+    const ownUser = opportunity.userMinProfile.person.username === username
+
     return (
       <div className={styles.post}>
         <div>{this.getPostUpperSection()}</div>
@@ -224,36 +198,24 @@ export default class PostComponent extends Component {
                 </Card.Body>
               </Accordion.Collapse>
               <div className={styles['post-lower-section']}>
-                {applyPostState === 'steady' && !applyPostLoader ? (
-                  <>
-                    {opportunity.isApplied ? (
-                      <button
-                        className={styles['applied-button']}
-                        type="button"
-                      >
-                        <FontAwesomeIcon icon={faCheckCircle} />
-                        <span className={styles['button-text']}>Applied</span>
-                      </button>
-                    ) : (
-                        <button
-                          className={styles['apply-now-button']}
-                          type="button"
-                          onClick={() => this.handleApplyNow(opportunity.slug)}
-                        >
-                          Apply Now
-                        </button>
-                      )}
-                  </>
+                {ownUser ? (
+                  <button
+                    className={styles['edit-repost-button']}
+                    type="button"
+                  >
+                    Edit and Repost
+                  </button>
                 ) : (
                     <>
-                      {applyPostLoader ? (
-                        <div
-                          className="spinner-border text-primary"
-                          role="status"
-                        ></div>
-                      ) : (
+                      {isAppliedLoading &&
+                        appliedLoadingSlug === opportunity.slug ? (
+                          <div
+                            className="spinner-border text-primary"
+                            role="status"
+                          ></div>
+                        ) : (
                           <>
-                            {applyPostState === 'success' ? (
+                            {opportunity.isApplied ? (
                               <button
                                 className={styles['applied-button']}
                                 type="button"
@@ -268,7 +230,10 @@ export default class PostComponent extends Component {
                                   className={styles['apply-now-button']}
                                   type="button"
                                   onClick={() =>
-                                    this.handleApplyNow(opportunity.slug)
+                                    applyPost(
+                                      opportunity.slug,
+                                      !opportunity.isApplied,
+                                    )
                                   }
                                 >
                                   Apply Now
@@ -281,15 +246,24 @@ export default class PostComponent extends Component {
 
                 <div className={styles['bookmark-view-wrapper']}>
                   <CustomToggle eventKey="1" />
-                  <FontAwesomeIcon
-                    icon={faBookmark}
-                    className={
-                      isBookmark
-                        ? styles['active-bookmark-button']
-                        : styles['bookmark-button']
-                    }
-                    onClick={this.handleBookmarkClick}
-                  />
+                  {ownUser ? (
+                    <FontAwesomeIcon
+                      className={styles['dustbin-icon']}
+                      icon={faTrash}
+                    />
+                  ) : (
+                      <FontAwesomeIcon
+                        icon={faBookmark}
+                        className={
+                          opportunity.isBookmark
+                            ? styles['active-bookmark-button']
+                            : styles['bookmark-button']
+                        }
+                        onClick={() =>
+                          bookmarkPost(opportunity.slug, !opportunity.isBookmark)
+                        }
+                      />
+                    )}
                 </div>
               </div>
             </Card>
@@ -303,4 +277,8 @@ export default class PostComponent extends Component {
 PostComponent.propTypes = {
   opportunity: PropTypes.object,
   applyPost: PropTypes.func,
+  username: PropTypes.string,
+  bookmarkPost: PropTypes.func,
+  appliedLoadingSlug: PropTypes.string,
+  isAppliedLoading: PropTypes.bool,
 }

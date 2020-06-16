@@ -1,13 +1,24 @@
 import {
+  SET_OPPORTUNITY_FILTER,
   FETCH_LOCATIONS_REQUEST,
   FETCH_LOCATIONS_SUCCESS,
   FETCH_LOCATIONS_FAILURE,
-} from '../constants/index'
+} from '../constants'
 
 const initialState = {
-  error: '',
+  filtersApplied: {
+    duration: [0, 75],
+    stipend: [0, 8000],
+    skill_slug: [],
+    location: '',
+    duration_unit: 1,
+  },
   locations: [],
   locationsLoading: false,
+}
+
+export const handleFilters = (filtersApplied, payload) => {
+  return Object.assign(filtersApplied, payload)
 }
 
 const filtersReducer = (state = initialState, action) => {
@@ -28,6 +39,11 @@ const filtersReducer = (state = initialState, action) => {
         ...state,
         locationsLoading: false,
         error: action.payload,
+      }
+    case SET_OPPORTUNITY_FILTER:
+      return {
+        ...state,
+        filtersApplied: handleFilters(state.filtersApplied, action.payload),
       }
     default:
       return state

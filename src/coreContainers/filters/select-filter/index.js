@@ -1,3 +1,4 @@
+/* eslint-disable react/forbid-prop-types */
 import React, { Component } from 'react'
 import Select from 'react-select'
 import PropTypes from 'prop-types'

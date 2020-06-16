@@ -1,25 +1,30 @@
+/* eslint-disable no-param-reassign */
+import { findIndex } from 'lodash'
 import {
   FETCH_USER_OPPORTUNITIES_FAILURE,
   FETCH_USER_OPPORTUNITIES_REQUEST,
   FETCH_USER_OPPORTUNITIES_SUCCESS,
-  SET_OPPORTUNITY_FILTER,
   SET_OPPORTUNITY_FILTER_TAB,
+  BOOKMARK_POST_SUCCESS,
+  BOOKMARK_POST_FAILURE,
+  APPLY_POST_FAILURE,
+  APPLY_POST_SUCCESS,
+  APPLY_POST_REQUEST,
 } from '../constants'
 
 const initialState = {
   isLoading: true,
   opportunitiesList: [],
   error: '',
-  filtersApplied: {
-    duration: [0, 3],
-    stipend: [0, 8000],
-    employeesCount: [0, 500],
-  },
-  skills: [],
-  skillsLoading: false,
-  locations: [],
-  locationsLoading: false,
+  isAppliedLoading: false,
+  appliedLoadingSlug: '',
   currentFilterTab: '',
+}
+
+export const modifyPostWithSlug = (postList, payload, key) => {
+  const i = findIndex(postList, (item) => item.slug === payload.slug)
+  postList[i][key] = payload.value
+  return postList
 }
 
 const opportunitiesReducer = (state = initialState, action) => {
@@ -41,15 +46,44 @@ const opportunitiesReducer = (state = initialState, action) => {
         isLoading: false,
         error: action.payload,
       }
-    case SET_OPPORTUNITY_FILTER:
-      return {
-        ...state,
-        filtersApplied: Object.assign(state.filtersApplied, action.payload),
-      }
     case SET_OPPORTUNITY_FILTER_TAB:
       return {
         ...state,
         currentFilterTab: action.payload,
+      }
+    case APPLY_POST_REQUEST:
+      return {
+        ...state,
+        isAppliedLoading: true,
+        appliedLoadingSlug: action.payload,
+      }
+    case APPLY_POST_SUCCESS:
+      return {
+        ...state,
+        isAppliedLoading: false,
+        opportunitiesList: modifyPostWithSlug(
+          state.opportunitiesList,
+          action.payload,
+          'isApplied',
+        ),
+      }
+    case APPLY_POST_FAILURE:
+      return {
+        ...state,
+        isAppliedLoading: false,
+      }
+    case BOOKMARK_POST_SUCCESS:
+      return {
+        ...state,
+        opportunitiesList: modifyPostWithSlug(
+          state.opportunitiesList,
+          action.payload,
+          'isBookmark',
+        ),
+      }
+    case BOOKMARK_POST_FAILURE:
+      return {
+        ...state,
       }
     default:
       return state

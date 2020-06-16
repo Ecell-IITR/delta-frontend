@@ -18,6 +18,7 @@ export function PostComponent({
   fetchStudentPostComponent,
   postList,
   postListLoading,
+  user,
 }) {
   const [currentTab, setCurrentTab] = useState('your-post')
   const [postType, setPostType] = useState(INTERNSHIP_POST_TYPE_KEY)
@@ -82,7 +83,13 @@ export function PostComponent({
                   <>
                     <div>
                       {postList &&
-                        postList.map((post) => <Post opportunity={post} />)}
+                        postList.map((post) => (
+                          <Post
+                            key={post.slug}
+                            opportunity={post}
+                            username={user.username}
+                          />
+                        ))}
                     </div>
                   </>
                 )}
@@ -97,6 +104,7 @@ PostComponent.propTypes = {
   fetchStudentPostComponent: PropTypes.func,
   postList: PropTypes.array,
   postListLoading: PropTypes.bool,
+  user: PropTypes.object,
 }
 
 function mapDispatchToProps(dispatch) {
@@ -111,6 +119,7 @@ function mapStateToProps(state) {
   return {
     postList: state.student.profile.postList,
     postListLoading: state.student.profile.postListLoading,
+    user: state.student.user.user,
   }
 }
 

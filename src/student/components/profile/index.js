@@ -71,27 +71,20 @@ export function StudentProfile({
 
   return (
     <>
-      {user && Object.keys(user).length === 0 ? (
+      {user && Object.keys(user).length === 0 || studentProfileLoading ? (
         <div>Loading....</div>
       ) : (
           <div>
-            {studentProfileLoading ? (
-              <div> Loading..... </div>
+            {studentProfile ? (
+              <div className={styles.info}>
+                <StudentInfoSection
+                  user={user}
+                  studentProfile={studentProfile}
+                />
+              </div>
             ) : (
-                <>
-                  {studentProfile ? (
-                    <div className={styles.info}>
-                      <StudentInfoSection
-                        user={user}
-                        studentProfile={studentProfile}
-                      />
-                    </div>
-                  ) : (
-                      <></>
-                    )}
-                </>
+                <></>
               )}
-
             <div className={styles['main-container']}>
               <div className={styles.sidebar}>
                 <SidebarMenu {...sidebarProps} />

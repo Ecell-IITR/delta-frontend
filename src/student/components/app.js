@@ -1,6 +1,6 @@
 /* eslint-disable react/forbid-prop-types */
 import React, { useEffect } from 'react'
-import { Route } from 'react-router-dom'
+import { Route, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { fetchUser } from '../actions/fetch-user'
@@ -17,7 +17,7 @@ export function StudentApp({ fetchUserComponent, user, match }) {
       <Route
         exact
         path={`${match.path}`}
-        component={React.lazy(() => import('./dashboard'))}
+        component={() => <Redirect to='/opportunities' />}
       />
       <Route
         path={`${match.path}user/:username`}
