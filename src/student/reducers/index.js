@@ -6,9 +6,8 @@ import skill from './skill'
 import createPost from './create-post'
 import resume from './resume'
 import search from './search'
-import organisations from './organisations'
+import organizations from './organizations'
 import opportunities from './opportunities'
-import followinglist from './followinglist'
 import unfollowuser from './unfollowuser'
 import followuser from './followuser'
 import filters from './filters'
@@ -21,9 +20,8 @@ const studentReducer = combineReducers({
   resume,
   createPost,
   search,
-  organisations,
+  organizations,
   opportunities,
-  followinglist,
   followuser,
   unfollowuser,
   filters,

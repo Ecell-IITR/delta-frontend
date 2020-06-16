@@ -14,11 +14,11 @@ export function StudentApp({ fetchUserComponent, user, match }) {
 
   return (
     <>
-      <Route
+      {/* <Route
         exact
         path={`${match.path}`}
         component={() => <Redirect to='/opportunities' />}
-      />
+      /> */}
       <Route
         path={`${match.path}user/:username`}
         component={React.lazy(() => import('./profile'))}

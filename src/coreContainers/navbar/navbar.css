@@ -92,3 +92,8 @@
   text-decoration: none;
   color: white;
 }
+
+.logo {
+  height: 75px;
+  width: auto;
+}

@@ -15,6 +15,8 @@ import {
   faClock,
   faCheckCircle,
   faTrash,
+  faMarker,
+  faMapMarker,
 } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { STUDENT_ROLE, COMPANY_ROLE } from 'globalConstants'
@@ -113,6 +115,10 @@ export default class PostComponent extends Component {
               <div>
                 <FontAwesomeIcon icon={faUser} />
                 <span>{opportunity.applicantsCount} Applicants</span>
+              </div>
+              <div>
+                <FontAwesomeIcon icon={faMapMarker} />
+                <span>{opportunity.location.name}</span>
               </div>
               <div>
                 <FontAwesomeIcon icon={faCalendar} />

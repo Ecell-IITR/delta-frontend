@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="60px" height="51px" viewBox="0 0 60 51" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 53 (72520) - https://sketchapp.com -->
+    <title>Group 29</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-1">
+            <stop stop-color="#00FFC2" offset="0%"></stop>
+            <stop stop-color="#00D1F5" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-2">
+            <stop stop-color="#00FFC2" offset="0%"></stop>
+            <stop stop-color="#00D1F5" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-3">
+            <stop stop-color="#00FFC2" offset="0%"></stop>
+            <stop stop-color="#00D1F5" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Group-29" transform="translate(0.500000, 0.000000)">
+            <path d="M40.7019328,41.5754697 L57.1579328,49.4011274 C57.7636265,49.6881184 57.5582932,50.5966589 56.8883833,50.5966589 L2.11036528,50.5966589 C1.44204095,50.5966589 1.23591483,49.6912895 1.83843735,49.4019202 L18.0264734,41.6222445 C25.1893563,38.1799382 33.5247797,38.1624967 40.7019328,41.5754697" id="Fill-1" fill="url(#linearGradient-1)"></path>
+            <path d="M15.9937527,38.2479598 L0.988563474,48.5867706 C0.437572483,48.9665184 -0.246607697,48.3354553 0.0887436546,47.7543382 L27.4765635,0.315203054 C27.811122,-0.262742892 28.6982572,0.0107706214 28.6483112,0.676716567 L27.29105,18.5866985 C26.6909058,26.5114553 22.5382572,33.7393472 15.9937527,38.2479598" id="Fill-3" fill="url(#linearGradient-2)"></path>
+            <path d="M43.1376301,38.2479598 L58.1428193,48.5867706 C58.6938103,48.9665184 59.3779905,48.3354553 59.0426392,47.7543382 L31.6548193,0.315203054 C31.3202608,-0.262742892 30.4331256,0.0107706214 30.4838644,0.676716567 L31.8403328,18.5866985 C32.440477,26.5114553 36.5931256,33.7393472 43.1376301,38.2479598" id="Fill-5" fill="url(#linearGradient-3)"></path>
+        </g>
+    </g>
+</svg>

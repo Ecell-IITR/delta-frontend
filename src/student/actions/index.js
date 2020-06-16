@@ -3,12 +3,9 @@ import FetchApi from 'utils/FetchAPI'
 import { getToken } from 'utils/tokenFunc'
 import { TOKEN_TYPE } from 'globalConstants'
 import {
-  FETCH_ORGANISATIONS_REQUEST,
-  FETCH_ORGANISATIONS_SUCCESS,
-  FETCH_ORGANISATIONS_FAILURE,
-  FETCH_FOLLOWING_LIST_REQUEST,
-  FETCH_FOLLOWING_LIST_SUCCESS,
-  FETCH_FOLLOWING_LIST_FAILURE,
+  FETCH_ORGANIZATIONS_LIST_REQUEST,
+  FETCH_ORGANIZATIONS_LIST_SUCCESS,
+  FETCH_ORGANIZATIONS_LIST_FAILURE,
   FOLLOW_USER_REQUEST,
   FOLLOW_USER_SUCCESS,
   FOLLOW_USER_FAILURE,
@@ -29,57 +26,13 @@ export * from './skills-event'
 export * from './opportunities'
 export * from './filters'
 export * from './post'
+export * from './organization'
 
 const token = getToken(TOKEN_TYPE)
 
 // export const showInfo = () => {
 //   return (dispatch) => { }
 // }
-
-export const fetchOrganisations = () => {
-  return (dispatch) => {
-    dispatch({ type: FETCH_ORGANISATIONS_REQUEST })
-    FetchApi(
-      'GET',
-      '/api/v1/organization-list/?list_type=all',
-      null,
-      getToken(TOKEN_TYPE),
-    )
-      .then((res) => {
-        if (res.data) {
-          dispatch({ type: FETCH_ORGANISATIONS_SUCCESS, payload: res.data })
-        }
-      })
-      .catch((error) => {
-        const errorMsg = getErrorMsg(error)
-        notify.show(errorMsg, NOTIF_ERROR_TYPE, NOTIF_MID_RANGE_TIMEOUT)
-        dispatch({
-          type: FETCH_ORGANISATIONS_FAILURE,
-          error: errorMsg,
-        })
-      })
-  }
-}
-
-export const fetchFollowingList = () => {
-  return (dispatch) => {
-    dispatch({ type: FETCH_FOLLOWING_LIST_REQUEST })
-    FetchApi('GET', '/api/v1/following-list/', null, getToken(TOKEN_TYPE))
-      .then((res) => {
-        if (res.data) {
-          dispatch({ type: FETCH_FOLLOWING_LIST_SUCCESS, payload: res.data })
-        }
-      })
-      .catch((error) => {
-        const errorMsg = getErrorMsg(error)
-        notify.show(errorMsg, NOTIF_ERROR_TYPE, NOTIF_MID_RANGE_TIMEOUT)
-        dispatch({
-          type: FETCH_FOLLOWING_LIST_FAILURE,
-          error: errorMsg,
-        })
-      })
-  }
-}
 
 export const followUser = (slug) => {
   return (dispatch) => {

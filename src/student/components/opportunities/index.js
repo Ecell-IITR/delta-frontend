@@ -21,6 +21,7 @@ import {
   applyPost,
   bookmarkPost,
 } from '../../actions'
+import OrganizationListComponent from '../organisation'
 
 import styles from './index.css'
 
@@ -127,58 +128,59 @@ export function Opportunities({
         <div>
           <SidebarMenu {...sidebarProps} />
         </div>
-        <div className={styles['filter-container']}>
-          <div className={styles['filter-heading']}>Filters</div>
-          {/* <div className={styles["filter-opportunityType"]}>
+        {currentTab !== 'companies' ?
+          <div className={styles['filter-container']}>
+            <div className={styles['filter-heading']}>Filters</div>
+            {/* <div className={styles["filter-opportunityType"]}>
           <FilterLabel options={this.state.options} />
         </div> */}
-          <div className={styles['filter-main-container']}>
-            <div className={styles['location-filter']}>
-              <div className={styles['filter-label']}>Select location</div>
-              <SelectFilter
-                options={locations ? getFilterOptions(locations) : []}
-                loading={locationsLoading}
-                placeholder="Select location"
-                handleChange={(loc) =>
-                  handleFilterChange('location', loc ? loc.value : '')
-                }
-              />
-            </div>
-            <div className={styles['location-filter']}>
-              <div className={styles['filter-label']}>Select skills</div>
-              <SelectFilter
-                options={skills ? getFilterOptions(skills) : []}
-                loading={skillsLoading}
-                placeholder="Select skills"
-                isMulti={true}
-                handleChange={(valueArr) => handleFilterChange('skill_slug', valueArr)}
-              />
-            </div>
-            <div className={styles['range-filter']}>
-              <div className={styles['filter-label']}>Duration</div>
-              <div className={styles['range-filter-slider']}>
-                <RangeFilter
-                  handleChange={(value) =>
-                    handleFilterChange('duration', value)
+            <div className={styles['filter-main-container']}>
+              <div className={styles['location-filter']}>
+                <div className={styles['filter-label']}>Select location</div>
+                <SelectFilter
+                  options={locations ? getFilterOptions(locations) : []}
+                  loading={locationsLoading}
+                  placeholder="Select location"
+                  handleChange={(loc) =>
+                    handleFilterChange('location', loc ? loc.value : '')
                   }
-                  value={filtersApplied.duration}
-                  minValue={0}
-                  maxValue={100}
                 />
               </div>
-            </div>
-            <div className={styles['range-filter']}>
-              <div className={styles['filter-label']}>Stipend</div>
-              <div className={styles['range-filter-slider']}>
-                <RangeFilter
-                  handleChange={(value) => handleFilterChange('stipend', value)}
-                  value={filtersApplied.stipend}
-                  minValue={0}
-                  maxValue={8000}
+              <div className={styles['location-filter']}>
+                <div className={styles['filter-label']}>Select skills</div>
+                <SelectFilter
+                  options={skills ? getFilterOptions(skills) : []}
+                  loading={skillsLoading}
+                  placeholder="Select skills"
+                  isMulti={true}
+                  handleChange={(valueArr) => handleFilterChange('skill_slug', valueArr)}
                 />
               </div>
-            </div>
-            {/* <div className={styles['range-filter']}>
+              <div className={styles['range-filter']}>
+                <div className={styles['filter-label']}>Duration</div>
+                <div className={styles['range-filter-slider']}>
+                  <RangeFilter
+                    handleChange={(value) =>
+                      handleFilterChange('duration', value)
+                    }
+                    value={filtersApplied.duration}
+                    minValue={0}
+                    maxValue={100}
+                  />
+                </div>
+              </div>
+              <div className={styles['range-filter']}>
+                <div className={styles['filter-label']}>Stipend</div>
+                <div className={styles['range-filter-slider']}>
+                  <RangeFilter
+                    handleChange={(value) => handleFilterChange('stipend', value)}
+                    value={filtersApplied.stipend}
+                    minValue={0}
+                    maxValue={8000}
+                  />
+                </div>
+              </div>
+              {/* <div className={styles['range-filter']}>
               <div className={styles['filter-label']}>No. of Employees</div>
               <div className={styles['range-filter-slider']}>
                 <RangeFilter
@@ -191,44 +193,48 @@ export function Opportunities({
                 />
               </div>
             </div> */}
+            </div>
           </div>
-        </div>
+          : <></>}
       </div>
       <div className={styles['opportunities-main-container']}>
-        {isLoading ? (
-          <Loader />
-        ) : (
-            <>
-              {opportunitiesList && opportunitiesList.length === 0 ? (
-                <div>Opportunities list is empty!</div>
-              ) : (
-                  <>
-                    <div>
-                      {opportunitiesList ? (
-                        <div className={styles['interns-found']}>
-                          {`${opportunitiesList.length} interns found`}
+        {currentTab === 'companies' ? <OrganizationListComponent /> :
+          <>
+            {isLoading ? (
+              <Loader />
+            ) : (
+                <>
+                  {opportunitiesList && opportunitiesList.length === 0 ? (
+                    <div>Opportunities list is empty!</div>
+                  ) : (
+                      <>
+                        <div>
+                          {opportunitiesList ? (
+                            <div className={styles['interns-found']}>
+                              {`${opportunitiesList.length} interns found`}
+                            </div>
+                          ) : (
+                              <></>
+                            )}
                         </div>
-                      ) : (
-                          <></>
-                        )}
-                    </div>
-                    <div>
-                      {opportunitiesList &&
-                        opportunitiesList.map((opportunity) => (
-                          <PostComponent
-                            key={opportunity.slug}
-                            opportunity={opportunity}
-                            applyPost={applyPostComponent}
-                            bookmarkPost={bookmarkPostComponent}
-                            isAppliedLoading={isAppliedLoading}
-                            appliedLoadingSlug={appliedLoadingSlug}
-                          />
-                        ))}
-                    </div>
-                  </>
-                )}
-            </>
-          )}
+                        <div>
+                          {opportunitiesList &&
+                            opportunitiesList.map((opportunity) => (
+                              <PostComponent
+                                key={opportunity.slug}
+                                opportunity={opportunity}
+                                applyPost={applyPostComponent}
+                                bookmarkPost={bookmarkPostComponent}
+                                isAppliedLoading={isAppliedLoading}
+                                appliedLoadingSlug={appliedLoadingSlug}
+                              />
+                            ))}
+                        </div>
+                      </>
+                    )}
+                </>
+              )}
+          </>}
       </div>
     </div>
   )
