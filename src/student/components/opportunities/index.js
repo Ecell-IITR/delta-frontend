@@ -25,22 +25,6 @@ import OrganizationListComponent from '../organisation'
 
 import styles from './index.css'
 
-export const modifyFilterObj = (filterObj) => {
-  let finalData = filterObj
-  if (filterObj.hasOwnProperty('duration')) {
-    finalData['duration_value_ll'] = filterObj.duration[0]
-    finalData['duration_value_ul'] = filterObj.duration[1]
-    delete finalData['duration']
-  }
-  if (filterObj.hasOwnProperty('stipend')) {
-    finalData['stipend_ll'] = filterObj.stipend[0]
-    finalData['stipend_ul'] = filterObj.stipend[1]
-    delete finalData['stipend']
-  }
-
-  return finalData
-}
-
 export function Opportunities({
   fetchSkillsComponent,
   fetchLocationsComponent,
@@ -61,13 +45,39 @@ export function Opportunities({
   appliedLoadingSlug,
   filtersApplied
 }) {
-  const filterObj = {
-    post_type: INTERNSHIP_POST_TYPE_KEY,
+  const getFilterObject = (tabValue = '') => {
+    const data = {}
+    data['post_type'] = INTERNSHIP_POST_TYPE_KEY
+    const tab = tabValue ? tabValue : currentTab
+    if (tab === 'applied-posts') {
+      data['applied_posts'] = true
+    }
+    if (tab === 'bookmarks') {
+      data['bookmark'] = true
+    }
+    if (filtersApplied.hasOwnProperty('duration')) {
+      data['duration_value_ll'] = filtersApplied.duration[0]
+      data['duration_value_ul'] = filtersApplied.duration[1]
+    }
+    if (filtersApplied.hasOwnProperty('stipend')) {
+      data['stipend_ll'] = filtersApplied.stipend[0]
+      data['stipend_ul'] = filtersApplied.stipend[1]
+    }
+    data['duration_unit'] = filtersApplied.duration_unit
+    return data
   }
+
   useEffect(() => {
+    const searchParams = new URLSearchParams(location.search)
+    if (searchParams && searchParams.get('tab')) {
+      setCurrentTabComponent(searchParams.get('tab'))
+    }
     fetchLocationsComponent()
     fetchSkillsComponent()
-    fetchStudentOpportunitiesComponent(modifyFilterObj(Object.assign(filterObj, filtersApplied)))
+    fetchStudentOpportunitiesComponent(getFilterObject(searchParams.get('tab')))
+    return function cleanup() {
+      setCurrentTabComponent('')
+    }
   }, [])
 
   const handleFilterChange = (filterKey, value) => {
@@ -85,9 +95,8 @@ export function Opportunities({
     else {
       data[filterKey] = value
     }
-
     setOpportunityFilterComponent(data)
-    fetchStudentOpportunitiesComponent(modifyFilterObj(Object.assign(filterObj, filtersApplied)))
+    fetchStudentOpportunitiesComponent(getFilterObject())
   }
 
   const getFilterOptions = (filterList) => {

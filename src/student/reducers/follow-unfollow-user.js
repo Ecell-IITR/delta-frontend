@@ -10,7 +10,7 @@ const initialState = {
   followuser: {},
 }
 
-const followuser = (state = initialState, action) => {
+const followUnfollowUserReducer = (state = initialState, action) => {
   switch (action.type) {
     case FOLLOW_USER_REQUEST:
       return {
@@ -34,4 +34,4 @@ const followuser = (state = initialState, action) => {
   }
 }
 
-export default followuser
+export default followUnfollowUserReducer

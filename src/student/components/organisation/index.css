@@ -1,5 +1,6 @@
 .organization-container {
   background-color: #f1f2f7;
+  width: 80%;
 }
 
 .organization-tabs {
@@ -29,10 +30,9 @@
 }
 
 .card-title {
-  padding: 0 0 0.5rem 0;
+  padding: 0 0 0.25rem 0;
   font-family: Neutrifpro-semibold;
   font-size: 1.2rem;
-  letter-spacing: 0.8px;
   color: #434660;
 }
 
@@ -49,9 +49,12 @@
   padding: 0 0 0 0.75rem;
 }
 
-.card-profile-image img {
-  height: 9vh;
-  width: auto;
+.card-profile-image {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  width: 25%;
+  border-radius: 2px;
 }
 
 .card-lower-section {

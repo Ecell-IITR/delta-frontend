@@ -9,7 +9,9 @@ const initialState = {
   organizationsList: [],
   organizationsListLoading: false,
   organizationsListPagination: {
-
+    count: 0,
+    perPage: 10,
+    current: 0,
   }
 }
 

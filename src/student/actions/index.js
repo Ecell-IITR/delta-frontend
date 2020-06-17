@@ -3,15 +3,9 @@ import FetchApi from 'utils/FetchAPI'
 import { getToken } from 'utils/tokenFunc'
 import { TOKEN_TYPE } from 'globalConstants'
 import {
-  FETCH_ORGANIZATIONS_LIST_REQUEST,
-  FETCH_ORGANIZATIONS_LIST_SUCCESS,
-  FETCH_ORGANIZATIONS_LIST_FAILURE,
-  FOLLOW_USER_REQUEST,
-  FOLLOW_USER_SUCCESS,
-  FOLLOW_USER_FAILURE,
-  UNFOLLOW_USER_REQUEST,
-  UNFOLLOW_USER_SUCCESS,
-  UNFOLLOW_USER_FAILURE,
+  FOLLOW_UNFOLLOW_USER_REQUEST,
+  FOLLOW_UNFOLLOW_USER_SUCCESS,
+  FOLLOW_UNFOLLOW_USER_FAILURE,
   ITEMS_HAS_ERRORED,
   ITEMS_IS_LOADING,
   ITEMS_FETCH_DATA_SUCCESS,
@@ -34,36 +28,18 @@ const token = getToken(TOKEN_TYPE)
 //   return (dispatch) => { }
 // }
 
-export const followUser = (slug) => {
+export const followUnfollowUser = (username, value) => {
   return (dispatch) => {
-    dispatch({ type: FOLLOW_USER_REQUEST })
-    FetchApi('POST', `/api/v1/action/1/${slug}/`, null, getToken(TOKEN_TYPE))
+    dispatch({ type: FOLLOW_UNFOLLOW_USER_REQUEST })
+    FetchApi('POST', `/api/v1/action/${value}/${username}/`, null, getToken(TOKEN_TYPE))
       .then(() => {
-        dispatch({ type: FOLLOW_USER_SUCCESS, payload: slug })
+        dispatch({ type: FOLLOW_UNFOLLOW_USER_SUCCESS, payload: username })
       })
       .catch((error) => {
         const errorMsg = getErrorMsg(error)
         notify.show(errorMsg, NOTIF_ERROR_TYPE, NOTIF_MID_RANGE_TIMEOUT)
         dispatch({
-          type: FOLLOW_USER_FAILURE,
-          error: errorMsg,
-        })
-      })
-  }
-}
-
-export const unfollowUser = (slug) => {
-  return (dispatch) => {
-    dispatch({ type: UNFOLLOW_USER_REQUEST })
-    FetchApi('POST', `/api/v1/action/2/${slug}/`, null, getToken(TOKEN_TYPE))
-      .then(() => {
-        dispatch({ type: UNFOLLOW_USER_SUCCESS, payload: slug })
-      })
-      .catch((error) => {
-        const errorMsg = getErrorMsg(error)
-        notify.show(errorMsg, NOTIF_ERROR_TYPE, NOTIF_MID_RANGE_TIMEOUT)
-        dispatch({
-          type: FOLLOW_USER_FAILURE,
+          type: FOLLOW_UNFOLLOW_USER_FAILURE,
           error: errorMsg,
         })
       })

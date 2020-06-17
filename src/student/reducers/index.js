@@ -9,7 +9,6 @@ import search from './search'
 import organizations from './organizations'
 import opportunities from './opportunities'
 import unfollowuser from './unfollowuser'
-import followuser from './followuser'
 import filters from './filters'
 
 const studentReducer = combineReducers({
@@ -22,7 +21,6 @@ const studentReducer = combineReducers({
   search,
   organizations,
   opportunities,
-  followuser,
   unfollowuser,
   filters,
 })

@@ -39,15 +39,19 @@ export function OrganizationList({
                 {organizations && organizations.map(organization => (
                   <div className={styles['organization-card']}>
                     <div className={styles['card-info']}>
-                      <div className={styles['card-profile-image']}>
-                        <img src={organization.person.profileImage} alt="profile" />
+                      <div className={styles['card-profile-image']} style={{
+                        backgroundImage: `url(${organization.person.profileImage})`
+                      }}>
                       </div>
                       <div className={styles['card-info-desc']}>
                         <div className={styles['card-title']}>
                           {organization.companyName}
                         </div>
                         <div className={styles['card-text']}>
-                          {organization.followersCount} Followers
+                          {organization.companyDomain}
+                        </div>
+                        <div className={styles['card-text']}>
+                          <span className={styles['card-title']}>{organization.followersCount}</span>{` Follower${organization.followersCount > 1 ? 's' : ''}`}
                         </div>
                       </div>
                     </div>
