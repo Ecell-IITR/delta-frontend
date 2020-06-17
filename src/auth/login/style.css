@@ -2,6 +2,7 @@
   font-family: Neutrifpro-regular;
   display: flex;
   height: 100vh;
+  background: white;
 }
 
 .loginInput {

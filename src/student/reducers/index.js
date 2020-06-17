@@ -8,7 +8,6 @@ import resume from './resume'
 import search from './search'
 import organizations from './organizations'
 import opportunities from './opportunities'
-import unfollowuser from './unfollowuser'
 import filters from './filters'
 
 const studentReducer = combineReducers({
@@ -21,7 +20,6 @@ const studentReducer = combineReducers({
   search,
   organizations,
   opportunities,
-  unfollowuser,
   filters,
 })
 

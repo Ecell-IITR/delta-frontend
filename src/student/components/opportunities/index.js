@@ -11,7 +11,7 @@ import {
   faBuilding,
   faCheckCircle,
 } from '@fortawesome/free-solid-svg-icons'
-import { INTERNSHIP_POST_TYPE_KEY } from '../../constants'
+import { INTERNSHIP_POST_TYPE_KEY, COMPETITION_POST_TYPE_KEY, PROJECT_POST_TYPE_KEY } from '../../constants'
 import {
   fetchStudentOpportunities,
   fetchLocations,
@@ -22,6 +22,8 @@ import {
   bookmarkPost,
 } from '../../actions'
 import OrganizationListComponent from '../organisation'
+import ButtonGroup from 'coreContainers/button-group'
+import EmptyScreen from 'coreContainers/empty-screen'
 
 import styles from './index.css'
 
@@ -47,7 +49,7 @@ export function Opportunities({
 }) {
   const getFilterObject = (tabValue = '') => {
     const data = {}
-    data['post_type'] = INTERNSHIP_POST_TYPE_KEY
+    data['post_type'] = filtersApplied.postType
     const tab = tabValue ? tabValue : currentTab
     if (tab === 'applied-posts') {
       data['applied_posts'] = true
@@ -64,6 +66,8 @@ export function Opportunities({
       data['stipend_ul'] = filtersApplied.stipend[1]
     }
     data['duration_unit'] = filtersApplied.duration_unit
+    data['location'] = filtersApplied.location
+    data['skill_slug'] = filtersApplied.skill_slug
     return data
   }
 
@@ -115,6 +119,16 @@ export function Opportunities({
     setCurrentTabComponent(value)
   }
 
+  const buttonGroupProps = {
+    buttons: [
+      { key: INTERNSHIP_POST_TYPE_KEY, title: 'Intern' },
+      { key: COMPETITION_POST_TYPE_KEY, title: 'Competition' },
+      { key: PROJECT_POST_TYPE_KEY, title: 'Project' },
+    ],
+    currentButton: filtersApplied.postType,
+    handleClick: (value) => handleFilterChange('postType', value),
+  }
+
   const sidebarProps = {
     rowItems: [
       {
@@ -144,6 +158,9 @@ export function Opportunities({
           <FilterLabel options={this.state.options} />
         </div> */}
             <div className={styles['filter-main-container']}>
+              <div className={styles['filter-button-group']}>
+                <ButtonGroup {...buttonGroupProps} />
+              </div>
               <div className={styles['location-filter']}>
                 <div className={styles['filter-label']}>Select location</div>
                 <SelectFilter
@@ -214,7 +231,7 @@ export function Opportunities({
             ) : (
                 <>
                   {opportunitiesList && opportunitiesList.length === 0 ? (
-                    <div>Opportunities list is empty!</div>
+                    <EmptyScreen text="Opportunities not found" />
                   ) : (
                       <>
                         <div>

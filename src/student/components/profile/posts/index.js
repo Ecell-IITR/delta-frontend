@@ -11,6 +11,7 @@ import {
   COMPETITION_POST_TYPE_KEY,
   PROJECT_POST_TYPE_KEY,
 } from '../../../constants'
+import EmptyScreen from 'coreContainers/empty-screen'
 
 import styles from './index.css'
 
@@ -78,7 +79,7 @@ export function PostComponent({
         ) : (
             <>
               {postList && postList.length === 0 ? (
-                <div>Post list is empty!</div>
+                <EmptyScreen />
               ) : (
                   <>
                     <div>

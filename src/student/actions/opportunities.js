@@ -73,7 +73,6 @@ export const applyPost = (postSlug, value) => {
 
 export const bookmarkPost = (postSlug, value) => {
   return (dispatch) => {
-    // dispatch({ type: BOOKMARK_POST_REQUEST })
     const bookmarkURL = '/api/v1/post/bookmark/' + postSlug + '/'
     const body = {
       keyword: value ? 'star' : 'unstar',

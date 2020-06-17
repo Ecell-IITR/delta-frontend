@@ -1,15 +1,17 @@
 import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
-import { fetchOrganizationsList } from '../../actions'
+import { fetchOrganizationsList, followUnfollowUser } from '../../actions'
 import TabMenu from 'coreContainers/tab-menu'
+import EmptyScreen from 'coreContainers/empty-screen'
 
 import styles from './index.css'
 
 export function OrganizationList({
   fetchOrganizationsComponent,
   organizations,
-  organizationsListLoading
+  organizationsListLoading,
+  followUnfollowUserComponent
 }) {
   const [currentTab, setCurrentTab] = useState('all')
 
@@ -25,7 +27,6 @@ export function OrganizationList({
     currentTab,
     handleClick: setCurrentTab,
   }
-
   return (
     <div className={styles['organization-container']}>
       <div className={styles['organization-tabs']}>
@@ -34,7 +35,7 @@ export function OrganizationList({
       <div className={styles['organization-main']}>
         {organizationsListLoading ? <div>Loading.....</div> :
           <>
-            {organizations && organizations.length === 0 ? <div>Organizations list is empty!</div> :
+            {organizations && organizations.length === 0 ? <EmptyScreen /> :
               <div className={styles['organization-cards-container']}>
                 {organizations && organizations.map(organization => (
                   <div className={styles['organization-card']}>
@@ -56,7 +57,11 @@ export function OrganizationList({
                       </div>
                     </div>
                     <div className={styles['card-lower-section']}>
-                      <button type='button' className={styles['action-button']}>
+                      <button type='button' className={styles['action-button']}
+                        onClick={() => {
+                          followUnfollowUserComponent(organization.person.username, organization.isFollow ? 2 : 1)
+                        }}
+                      >
                         {organization.isFollow ? 'Unfollow' : 'Follow'}
                       </button>
                     </div>
@@ -73,7 +78,8 @@ export function OrganizationList({
 OrganizationList.propTypes = {
   fetchOrganizationsComponent: PropTypes.func.isRequired,
   organizations: PropTypes.array.isRequired,
-  organizationsListLoading: PropTypes.bool
+  organizationsListLoading: PropTypes.bool,
+  followUnfollowUserComponent: PropTypes.func
 }
 
 const mapStateToProps = (state) => {
@@ -86,8 +92,11 @@ const mapStateToProps = (state) => {
 const mapActionToProps = (dispatch) => {
   return {
     fetchOrganizationsComponent: (filterValue) => {
-      return dispatch(fetchOrganizationsList(filterValue))
+      dispatch(fetchOrganizationsList(filterValue))
     },
+    followUnfollowUserComponent: (username, value) => {
+      dispatch(followUnfollowUser(username, value))
+    }
   }
 }
 

@@ -3,9 +3,6 @@ import FetchApi from 'utils/FetchAPI'
 import { getToken } from 'utils/tokenFunc'
 import { TOKEN_TYPE } from 'globalConstants'
 import {
-  FOLLOW_UNFOLLOW_USER_REQUEST,
-  FOLLOW_UNFOLLOW_USER_SUCCESS,
-  FOLLOW_UNFOLLOW_USER_FAILURE,
   ITEMS_HAS_ERRORED,
   ITEMS_IS_LOADING,
   ITEMS_FETCH_DATA_SUCCESS,
@@ -28,23 +25,7 @@ const token = getToken(TOKEN_TYPE)
 //   return (dispatch) => { }
 // }
 
-export const followUnfollowUser = (username, value) => {
-  return (dispatch) => {
-    dispatch({ type: FOLLOW_UNFOLLOW_USER_REQUEST })
-    FetchApi('POST', `/api/v1/action/${value}/${username}/`, null, getToken(TOKEN_TYPE))
-      .then(() => {
-        dispatch({ type: FOLLOW_UNFOLLOW_USER_SUCCESS, payload: username })
-      })
-      .catch((error) => {
-        const errorMsg = getErrorMsg(error)
-        notify.show(errorMsg, NOTIF_ERROR_TYPE, NOTIF_MID_RANGE_TIMEOUT)
-        dispatch({
-          type: FOLLOW_UNFOLLOW_USER_FAILURE,
-          error: errorMsg,
-        })
-      })
-  }
-}
+
 
 export const ShowInfo = () => {
   const action = {
