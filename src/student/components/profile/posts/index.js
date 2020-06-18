@@ -5,13 +5,14 @@ import { connect } from 'react-redux'
 import TabMenu from 'coreContainers/tab-menu'
 import ButtonGroup from 'coreContainers/button-group'
 import Post from 'coreContainers/post'
-import { fetchStudentPost } from '../../../actions'
+import { fetchStudentPost, deleteStudentPost } from '../../../actions'
 import {
   INTERNSHIP_POST_TYPE_KEY,
   COMPETITION_POST_TYPE_KEY,
   PROJECT_POST_TYPE_KEY,
 } from '../../../constants'
 import EmptyScreen from 'coreContainers/empty-screen'
+import PostLoading from 'coreContainers/post/loading'
 
 import styles from './index.css'
 
@@ -20,6 +21,7 @@ export function PostComponent({
   postList,
   postListLoading,
   user,
+  deleteStudentPostComponent,
 }) {
   const [currentTab, setCurrentTab] = useState('your-post')
   const [postType, setPostType] = useState(INTERNSHIP_POST_TYPE_KEY)
@@ -75,27 +77,28 @@ export function PostComponent({
       </div>
       <div className={styles['post-container']}>
         {postListLoading ? (
-          <div> Loading..... </div>
+          <PostLoading count={2} />
         ) : (
-            <>
-              {postList && postList.length === 0 ? (
-                <EmptyScreen />
-              ) : (
-                  <>
-                    <div>
-                      {postList &&
-                        postList.map((post) => (
-                          <Post
-                            key={post.slug}
-                            opportunity={post}
-                            username={user.username}
-                          />
-                        ))}
-                    </div>
-                  </>
-                )}
-            </>
-          )}
+          <>
+            {postList && postList.length === 0 ? (
+              <EmptyScreen />
+            ) : (
+              <>
+                <div>
+                  {postList &&
+                    postList.map((post) => (
+                      <Post
+                        key={post.slug}
+                        opportunity={post}
+                        username={user.username}
+                        deletePost={deleteStudentPostComponent}
+                      />
+                    ))}
+                </div>
+              </>
+            )}
+          </>
+        )}
       </div>
     </div>
   )
@@ -106,12 +109,16 @@ PostComponent.propTypes = {
   postList: PropTypes.array,
   postListLoading: PropTypes.bool,
   user: PropTypes.object,
+  deleteStudentPostComponent: PropTypes.func,
 }
 
 function mapDispatchToProps(dispatch) {
   return {
     fetchStudentPostComponent: (filterObj) => {
       dispatch(fetchStudentPost(filterObj))
+    },
+    deleteStudentPostComponent: (postSlug) => {
+      dispatch(deleteStudentPost(postSlug))
     },
   }
 }

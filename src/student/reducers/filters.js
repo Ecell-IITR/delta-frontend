@@ -3,17 +3,17 @@ import {
   FETCH_LOCATIONS_REQUEST,
   FETCH_LOCATIONS_SUCCESS,
   FETCH_LOCATIONS_FAILURE,
-  INTERNSHIP_POST_TYPE_KEY
+  INTERNSHIP_POST_TYPE_KEY,
 } from '../constants'
 
 const initialState = {
   filtersApplied: {
     postType: INTERNSHIP_POST_TYPE_KEY,
-    duration: [0, 75],
+    duration: [0, 30],
     stipend: [0, 8000],
     skill_slug: [],
     location: '',
-    duration_unit: 1,
+    durationUnit: 1,
   },
   locations: [],
   locationsLoading: false,

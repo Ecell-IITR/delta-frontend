@@ -7,6 +7,7 @@ import { NOTIF_SUCCESS_TYPE, NOTIF_ERROR_TYPE } from 'globalConstants'
 import validateInput from 'utils/validation'
 import { Input, Button } from 'coreContainers'
 import { loginAction } from '../actions'
+import ChanneliOauthButton from 'coreContainers/oauth/channeli'
 
 import styles from './style.css'
 
@@ -80,6 +81,10 @@ class LoginIndex extends Component {
                 An online opportunity portal for students of IIT-R
               </div>
             </div>
+            <div>
+              <ChanneliOauthButton />
+            </div>
+            <div className={styles['divider-text']}>OR</div>
             <form className={styles.loginForm} onSubmit={this.handleSubmit}>
               <div className={styles['login-error-text']}>{errors}</div>
               <Input

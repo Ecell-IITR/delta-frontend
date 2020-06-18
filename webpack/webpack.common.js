@@ -5,6 +5,7 @@ const convert = require('koa-connect')
 const history = require('connect-history-api-fallback')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin')
+const Dotenv = require('dotenv-webpack')
 const commonPaths = require('./paths')
 
 const context = commonPaths.appIndexJs
@@ -98,6 +99,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       inject: true,
       template: commonPaths.appHtml,
+      favicon: commonPaths.appFavicon,
       ...(isEnvProduction
         ? {
             minify: {
@@ -118,5 +120,6 @@ module.exports = {
     new ScriptExtHtmlWebpackPlugin({
       defaultAttribute: 'async',
     }),
+    new Dotenv(),
   ],
 }

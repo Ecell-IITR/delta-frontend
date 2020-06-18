@@ -1,3 +1,4 @@
+import { findIndex } from 'lodash'
 import {
   FETCH_USER_PROFILE_REQUEST,
   FETCH_USER_PROFILE_SUCCESS,
@@ -6,16 +7,24 @@ import {
   FETCH_PROFILE_POST_SUCCESS,
   FETCH_PROFILE_POST_REQUEST,
   FETCH_PROFILE_POST_FAILURE,
-} from '../constants/index'
+  DELETE_POST_FAILURE,
+  DELETE_POST_SUCCESS,
+} from '../constants'
 
 const initialState = {
-  isLoading: false,
+  isLoading: true,
   error: '',
   profile: {},
-  currentTab: 'post',
+  currentTab: '',
   postList: [],
-  postListLoading: false,
+  postListLoading: true,
   postListError: '',
+}
+
+const deletePostFromList = (postList, postSlug) => {
+  const i = findIndex(postList, (item) => item.slug === postSlug)
+  postList.splice(i, 1)
+  return postList
 }
 
 const profile = (state = initialState, action) => {
@@ -59,26 +68,14 @@ const profile = (state = initialState, action) => {
         postListLoading: false,
         postListError: action.payload,
       }
-    case 'ADD_PROFILE_SKILLS':
+    case DELETE_POST_SUCCESS:
       return {
         ...state,
-        info: {
-          skills: action.payload,
-        },
+        postList: deletePostFromList(state.postList, action.payload),
       }
-    case 'ADD_PROFILE_SOCIAL_LINKS':
+    case DELETE_POST_FAILURE:
       return {
         ...state,
-        info: {
-          social_links: action.payload,
-        },
-      }
-    case 'ADD_PROFILE_RESUME_FILE':
-      return {
-        ...state,
-        info: {
-          resume_file: action.payload,
-        },
       }
     default:
       return state

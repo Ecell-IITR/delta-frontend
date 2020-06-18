@@ -16,6 +16,8 @@ import {
   FETCH_PROFILE_POST_FAILURE,
   FETCH_PROFILE_POST_REQUEST,
   FETCH_PROFILE_POST_SUCCESS,
+  DELETE_POST_FAILURE,
+  DELETE_POST_SUCCESS,
 } from '../constants/index'
 
 export const fetchStudentProfile = (profileType) => {
@@ -61,6 +63,27 @@ export const fetchStudentPost = (filtersObj) => {
         notify.show(errorMsg, NOTIF_ERROR_TYPE, NOTIF_MID_RANGE_TIMEOUT)
         dispatch({
           type: FETCH_PROFILE_POST_FAILURE,
+          error: errorMsg,
+        })
+      })
+  }
+}
+
+export const deleteStudentPost = (postSlug) => {
+  return (dispatch) => {
+    const deletePostURL = '/api/v1/post/' + postSlug
+    FetchApi('DELETE', deletePostURL, '', getToken(TOKEN_TYPE))
+      .then((res) => {
+        dispatch({
+          type: DELETE_POST_SUCCESS,
+          payload: postSlug,
+        })
+      })
+      .catch((error) => {
+        const errorMsg = getErrorMsg(error)
+        notify.show(errorMsg, NOTIF_ERROR_TYPE, NOTIF_MID_RANGE_TIMEOUT)
+        dispatch({
+          type: DELETE_POST_FAILURE,
           error: errorMsg,
         })
       })

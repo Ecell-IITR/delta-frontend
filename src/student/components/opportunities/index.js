@@ -1,17 +1,21 @@
 /* eslint-disable react/forbid-prop-types */
 import React, { useEffect } from 'react'
+import { find } from 'lodash'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import PostComponent from 'coreContainers/post'
 import SidebarMenu from 'coreContainers/sidebar-menu'
 import { SelectFilter, RangeFilter } from 'coreContainers/filters'
-import Loader from 'coreContainers/loading'
 import {
   faBookmark,
   faBuilding,
   faCheckCircle,
 } from '@fortawesome/free-solid-svg-icons'
-import { INTERNSHIP_POST_TYPE_KEY, COMPETITION_POST_TYPE_KEY, PROJECT_POST_TYPE_KEY } from '../../constants'
+import {
+  INTERNSHIP_POST_TYPE_KEY,
+  COMPETITION_POST_TYPE_KEY,
+  PROJECT_POST_TYPE_KEY,
+} from '../../constants'
 import {
   fetchStudentOpportunities,
   fetchLocations,
@@ -24,6 +28,7 @@ import {
 import OrganizationListComponent from '../organisation'
 import ButtonGroup from 'coreContainers/button-group'
 import EmptyScreen from 'coreContainers/empty-screen'
+import PostLoadingComponent from 'coreContainers/post/loading'
 
 import styles from './index.css'
 
@@ -45,7 +50,7 @@ export function Opportunities({
   bookmarkPostComponent,
   isAppliedLoading,
   appliedLoadingSlug,
-  filtersApplied
+  filtersApplied,
 }) {
   const getFilterObject = (tabValue = '') => {
     const data = {}
@@ -65,7 +70,7 @@ export function Opportunities({
       data['stipend_ll'] = filtersApplied.stipend[0]
       data['stipend_ul'] = filtersApplied.stipend[1]
     }
-    data['duration_unit'] = filtersApplied.duration_unit
+    data['duration_unit'] = filtersApplied.durationUnit
     data['location'] = filtersApplied.location
     data['skill_slug'] = filtersApplied.skill_slug
     return data
@@ -89,14 +94,18 @@ export function Opportunities({
     if (filterKey === 'skill_slug') {
       let tempArr = []
       if (value) {
-        value.forEach(obj => tempArr.push(obj.value))
+        value.forEach((obj) => tempArr.push(obj.value))
         data[filterKey] = tempArr
-      }
-      else {
+      } else {
         data[filterKey] = []
       }
-    }
-    else {
+    } else if (filterKey === 'durationUnit') {
+      data['duration'] = [
+        durationUnitOptions[value - 1].minValue,
+        durationUnitOptions[value - 1].maxValue,
+      ]
+      data[filterKey] = value
+    } else {
       data[filterKey] = value
     }
     setOpportunityFilterComponent(data)
@@ -121,9 +130,13 @@ export function Opportunities({
 
   const buttonGroupProps = {
     buttons: [
-      { key: INTERNSHIP_POST_TYPE_KEY, title: 'Intern' },
-      { key: COMPETITION_POST_TYPE_KEY, title: 'Competition' },
-      { key: PROJECT_POST_TYPE_KEY, title: 'Project' },
+      { key: INTERNSHIP_POST_TYPE_KEY, title: 'Intern', label: 'intern' },
+      {
+        key: COMPETITION_POST_TYPE_KEY,
+        title: 'Competition',
+        label: 'competition',
+      },
+      { key: PROJECT_POST_TYPE_KEY, title: 'Project', label: 'project' },
     ],
     currentButton: filtersApplied.postType,
     handleClick: (value) => handleFilterChange('postType', value),
@@ -143,7 +156,22 @@ export function Opportunities({
     handleClick: setActiveTab,
   }
 
+  const durationUnitOptions = [
+    { value: 1, label: 'Day', maxValue: 30, minValue: 0, sliderLabel: 'd' },
+    { value: 2, label: 'Week', maxValue: 6, minValue: 0, sliderLabel: 'w' },
+    { value: 3, label: 'Month', maxValue: 6, minValue: 0, sliderLabel: 'm' },
+  ]
+
   const { opportunitiesList, isLoading } = opportunitiesObj
+  const { durationUnit } = filtersApplied
+
+  const getLabel = () => {
+    const buttonObj = find(
+      buttonGroupProps.buttons,
+      (button) => button.key === filtersApplied.postType,
+    )
+    return buttonObj.label
+  }
 
   return (
     <div className={styles['opportunities-container']}>
@@ -151,7 +179,7 @@ export function Opportunities({
         <div>
           <SidebarMenu {...sidebarProps} />
         </div>
-        {currentTab !== 'companies' ?
+        {currentTab !== 'companies' ? (
           <div className={styles['filter-container']}>
             <div className={styles['filter-heading']}>Filters</div>
             {/* <div className={styles["filter-opportunityType"]}>
@@ -179,19 +207,40 @@ export function Opportunities({
                   loading={skillsLoading}
                   placeholder="Select skills"
                   isMulti={true}
-                  handleChange={(valueArr) => handleFilterChange('skill_slug', valueArr)}
+                  handleChange={(valueArr) =>
+                    handleFilterChange('skill_slug', valueArr)
+                  }
                 />
               </div>
               <div className={styles['range-filter']}>
-                <div className={styles['filter-label']}>Duration</div>
+                <div className={styles['filter-label-parent']}>
+                  <div className={styles['filter-label']}>Duration</div>
+                  <div>
+                    <select
+                      className={styles['filter-unit-select']}
+                      value={durationUnit}
+                      onChange={(e) =>
+                        handleFilterChange('durationUnit', e.target.value)
+                      }
+                    >
+                      {durationUnitOptions.map((option) => (
+                        <option value={option.value}>{option.label}</option>
+                      ))}
+                    </select>
+                  </div>
+                </div>
                 <div className={styles['range-filter-slider']}>
                   <RangeFilter
                     handleChange={(value) =>
                       handleFilterChange('duration', value)
                     }
                     value={filtersApplied.duration}
-                    minValue={0}
-                    maxValue={100}
+                    minValue={durationUnitOptions[durationUnit - 1].minValue}
+                    maxValue={durationUnitOptions[durationUnit - 1].maxValue}
+                    partitionCount={3}
+                    sliderLabel={
+                      durationUnitOptions[durationUnit - 1].sliderLabel
+                    }
                   />
                 </div>
               </div>
@@ -199,10 +248,14 @@ export function Opportunities({
                 <div className={styles['filter-label']}>Stipend</div>
                 <div className={styles['range-filter-slider']}>
                   <RangeFilter
-                    handleChange={(value) => handleFilterChange('stipend', value)}
+                    handleChange={(value) =>
+                      handleFilterChange('stipend', value)
+                    }
                     value={filtersApplied.stipend}
                     minValue={0}
                     maxValue={8000}
+                    kFormatterBool={true}
+                    partitionCount={4}
                   />
                 </div>
               </div>
@@ -221,46 +274,53 @@ export function Opportunities({
             </div> */}
             </div>
           </div>
-          : <></>}
+        ) : (
+          <></>
+        )}
       </div>
       <div className={styles['opportunities-main-container']}>
-        {currentTab === 'companies' ? <OrganizationListComponent /> :
+        {currentTab === 'companies' ? (
+          <OrganizationListComponent />
+        ) : (
           <>
             {isLoading ? (
-              <Loader />
+              <PostLoadingComponent count={2} />
             ) : (
-                <>
-                  {opportunitiesList && opportunitiesList.length === 0 ? (
-                    <EmptyScreen text="Opportunities not found" />
-                  ) : (
-                      <>
-                        <div>
-                          {opportunitiesList ? (
-                            <div className={styles['interns-found']}>
-                              {`${opportunitiesList.length} interns found`}
-                            </div>
-                          ) : (
-                              <></>
-                            )}
+              <>
+                {opportunitiesList && opportunitiesList.length === 0 ? (
+                  <EmptyScreen text="Opportunities not found" />
+                ) : (
+                  <>
+                    <div>
+                      {opportunitiesList ? (
+                        <div className={styles['interns-found']}>
+                          {`${opportunitiesList.length} ${getLabel()}${
+                            opportunitiesList.length > 1 ? 's' : ''
+                          } found`}
                         </div>
-                        <div>
-                          {opportunitiesList &&
-                            opportunitiesList.map((opportunity) => (
-                              <PostComponent
-                                key={opportunity.slug}
-                                opportunity={opportunity}
-                                applyPost={applyPostComponent}
-                                bookmarkPost={bookmarkPostComponent}
-                                isAppliedLoading={isAppliedLoading}
-                                appliedLoadingSlug={appliedLoadingSlug}
-                              />
-                            ))}
-                        </div>
-                      </>
-                    )}
-                </>
-              )}
-          </>}
+                      ) : (
+                        <></>
+                      )}
+                    </div>
+                    <div>
+                      {opportunitiesList &&
+                        opportunitiesList.map((opportunity) => (
+                          <PostComponent
+                            key={opportunity.slug}
+                            opportunity={opportunity}
+                            applyPost={applyPostComponent}
+                            bookmarkPost={bookmarkPostComponent}
+                            isAppliedLoading={isAppliedLoading}
+                            appliedLoadingSlug={appliedLoadingSlug}
+                          />
+                        ))}
+                    </div>
+                  </>
+                )}
+              </>
+            )}
+          </>
+        )}
       </div>
     </div>
   )
@@ -330,7 +390,7 @@ const mapStateToProps = (state) => {
     currentTab: state.student.opportunities.currentFilterTab,
     isAppliedLoading: state.student.opportunities.isAppliedLoading,
     appliedLoadingSlug: state.student.opportunities.appliedLoadingSlug,
-    filtersApplied: state.student.filters.filtersApplied
+    filtersApplied: state.student.filters.filtersApplied,
   }
 }
 

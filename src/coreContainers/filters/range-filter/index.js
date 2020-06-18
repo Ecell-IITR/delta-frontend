@@ -26,32 +26,34 @@ const THEME = createMuiTheme({
 })
 
 export class RangeFilter extends Component {
-  valueText = (value) => `${kFormatter(value)}`
+  valueText = (value) => `${value}`
 
   render() {
-    const { value, handleChange, minValue, maxValue } = this.props
-    const marks = [
-      {
-        value: minValue,
-        label: `${kFormatter(minValue)}`,
-      },
-      {
-        value: maxValue / 4,
-        label: `${kFormatter(maxValue / 4)}`,
-      },
-      {
-        value: maxValue / 2,
-        label: `${kFormatter(maxValue / 2)}`,
-      },
-      {
-        value: (3 * maxValue) / 4,
-        label: `${kFormatter((3 * maxValue) / 4)}`,
-      },
-      {
-        value: maxValue,
-        label: `${kFormatter(maxValue)}`,
-      },
-    ]
+    const {
+      value,
+      handleChange,
+      maxValue,
+      minValue,
+      sliderLabel,
+      kFormatterBool,
+      partitionCount,
+    } = this.props
+    let marks = []
+    marks.push({
+      value: minValue,
+      label: kFormatterBool
+        ? `${kFormatter(minValue)}`
+        : `${minValue}${minValue === 0 ? '' : sliderLabel}`,
+    })
+    for (let i = 0; i < partitionCount; i++) {
+      const calcValue = ((i + 1) * maxValue) / partitionCount
+      marks.push({
+        value: calcValue,
+        label: kFormatterBool
+          ? `${kFormatter(calcValue)}`
+          : `${calcValue}${sliderLabel}`,
+      })
+    }
     return (
       <MuiThemeProvider theme={THEME}>
         <Slider
@@ -74,4 +76,6 @@ RangeFilter.propTypes = {
   maxValue: PropTypes.number,
   handleChange: PropTypes.func,
   value: PropTypes.string,
+  kFormatterBool: PropTypes.bool,
+  sliderLabel: PropTypes.string,
 }

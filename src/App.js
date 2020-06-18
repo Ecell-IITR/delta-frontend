@@ -13,6 +13,11 @@ export default class App extends Component {
         <Switch>
           <FreeRoute
             exact
+            path="/oauth/"
+            component={React.lazy(() => import('./auth/oauth/channeli'))}
+          />
+          <FreeRoute
+            exact
             path="/login"
             component={React.lazy(() => import('./auth/login'))}
           />

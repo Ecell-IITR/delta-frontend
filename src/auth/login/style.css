@@ -105,10 +105,33 @@
   height: 100%;
 }
 
+.divider-text {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin-top: 1rem;
+}
+.divider-text::before,
+.divider-text::after {
+  content: '';
+  flex: 1;
+  border-bottom: 1px solid #a8a9b5;
+}
+.divider-text::before {
+  margin-right: 0.25em;
+}
+.divider-text::after {
+  margin-left: 0.25em;
+}
+
 @media (max-width: 515px) {
   body {
     display: flex;
     justify-content: center;
+  }
+
+  .loginInnerInputWrapper {
+    margin: auto;
   }
 
   .login {
@@ -154,9 +177,9 @@
     font-size: 1rem;
   }
 
-  .loginOption {
+  /* .loginOption {
     width: 80vw;
-  }
+  } */
 
   .loginSubmit > button {
     width: 80vw;

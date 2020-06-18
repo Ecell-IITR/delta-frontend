@@ -8,7 +8,7 @@ import {
 } from '../constants/index'
 
 const initialState = {
-  isLoading: false,
+  isLoading: true,
   errors: '',
   user: {},
 }

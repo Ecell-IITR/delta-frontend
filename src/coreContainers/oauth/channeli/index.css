@@ -1,0 +1,20 @@
+.channeli-oauth-button {
+  font-size: 1.3rem;
+  font-weight: 500;
+  border-radius: 5px;
+  background: white;
+  box-shadow: 4px 7px 10px 1px rgba(0, 0, 0, 0.15);
+  border: solid 2px #2964ee;
+  color: #2964ee;
+  letter-spacing: 0.5px;
+  text-align: center;
+  font-family: Neutrifpro-regular;
+  padding: 0.8rem 1.4rem;
+  width: 100%;
+}
+
+.channeli-logo {
+  height: 32px;
+  width: auto;
+  margin: 0 0.5rem;
+}

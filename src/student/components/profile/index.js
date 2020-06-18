@@ -15,7 +15,7 @@ import StudentInfoSection from './student-info-section'
 import PostComponent from './posts'
 import SkillsComponent from './skills'
 import ResumeComponent from './resume'
-
+import StudentInfoLoading from './student-info-section/loading'
 import styles from './index.css'
 
 export function StudentProfile({
@@ -32,21 +32,18 @@ export function StudentProfile({
   useEffect(() => {
     const { params } = match
     const searchParams = new URLSearchParams(location.search)
-    if (Object.keys(user).length > 0 && user.username) {
-      fetchStudentProfileComponent(
-        user.username === params.username ? SELF_PROFILE : PUBLIC_PROFILE,
-      )
-    }
     if (searchParams && searchParams.get('tab')) {
       setCurrentTabComponent(searchParams.get('tab'))
+      if (Object.keys(user).length > 0 && user.username) {
+        fetchStudentProfileComponent(
+          user.username === params.username ? SELF_PROFILE : PUBLIC_PROFILE,
+        )
+      }
     } else {
       history.push({
         pathname: location.pathname,
         search: `?tab=post`,
       })
-    }
-    return function cleanup() {
-      setCurrentTabComponent('post')
     }
   }, [])
 
@@ -68,35 +65,31 @@ export function StudentProfile({
     currentTab,
     handleClick: setActiveTab,
   }
-
   return (
     <>
-      {user && Object.keys(user).length === 0 || studentProfileLoading ? (
-        <div>Loading....</div>
+      {studentProfileLoading ? (
+        <StudentInfoLoading />
       ) : (
-          <div>
-            {studentProfile ? (
-              <div className={styles.info}>
-                <StudentInfoSection
-                  user={user}
-                  studentProfile={studentProfile}
-                />
-              </div>
-            ) : (
-                <></>
-              )}
-            <div className={styles['main-container']}>
-              <div className={styles.sidebar}>
-                <SidebarMenu {...sidebarProps} />
-              </div>
-              <div className={styles.contentBox}>
-                {currentTab === 'post' ? <PostComponent /> : <></>}
-                {currentTab === 'skills' ? <SkillsComponent /> : <></>}
-                {currentTab === 'resume' ? <ResumeComponent /> : <></>}
-              </div>
+        <>
+          {studentProfile ? (
+            <div className={styles.info}>
+              <StudentInfoSection user={user} studentProfile={studentProfile} />
             </div>
-          </div>
-        )}
+          ) : (
+            <></>
+          )}
+        </>
+      )}
+      <div className={styles['main-container']}>
+        <div className={styles.sidebar}>
+          <SidebarMenu {...sidebarProps} />
+        </div>
+        <div className={styles.contentBox}>
+          {currentTab === 'post' ? <PostComponent /> : <></>}
+          {currentTab === 'skills' ? <SkillsComponent /> : <></>}
+          {currentTab === 'resume' ? <ResumeComponent /> : <></>}
+        </div>
+      </div>
     </>
   )
 }

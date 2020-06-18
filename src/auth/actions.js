@@ -1,4 +1,5 @@
 import { notify } from 'react-notify-toast'
+import axios from 'axios'
 import { setToken, logout } from 'utils/tokenFunc'
 import {
   NOTIF_ERROR_TYPE,
@@ -15,7 +16,11 @@ import {
   LOGIN_SUCCESS,
   LOGOUT_SUCCESS,
   LOGOUT_REQUEST,
+  OAUTH_LOGIN_FAILURE,
+  OAUTH_LOGIN_REQUEST,
+  OAUTH_LOGIN_SUCCESS,
 } from './constants'
+import { addQueryParams } from 'utils/queryParams'
 
 export const loginAction = (data, callback) => {
   return (dispatch) => {
@@ -49,5 +54,36 @@ export const logoutAction = (callback) => {
     dispatch({ type: LOGOUT_SUCCESS })
     notify.show(LOGOUT_SUCCESS_MSG, NOTIF_SUCCESS_TYPE, NOTIF_MID_RANGE_TIMEOUT)
     callback()
+  }
+}
+
+export const channeliOAuthLogin = (code) => {
+  return (dispatch) => {
+    dispatch({ type: OAUTH_LOGIN_REQUEST })
+    // const url = addQueryParams()
+    const params = {
+      client_id: process.env.REACT_APP_DELTA_CLIENT_ID,
+      client_secret: process.env.REACT_APP_DELTA_CLIENT_SECRET,
+      grant_type: 'authorization_code',
+      redirect_url: 'http://localhost:3000/oauth/channeli/',
+      code: code,
+    }
+    const headers = {
+      'content-type': 'application/x-www-form-urlencoded',
+      'cache-control': 'no-cache',
+    }
+    axios({
+      method: 'POST',
+      url: 'https://internet.channeli.in/open_auth/token/',
+      body: params,
+      headers,
+      responseType: 'json',
+    })
+      .then((res) => {
+        console.log(res)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
   }
 }
