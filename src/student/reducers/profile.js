@@ -9,6 +9,9 @@ import {
   FETCH_PROFILE_POST_FAILURE,
   DELETE_POST_FAILURE,
   DELETE_POST_SUCCESS,
+  EDIT_POST_FAILURE,
+  EDIT_POST_SUCCESS,
+  EDIT_POST_REQUEST,
 } from '../constants'
 
 const initialState = {
@@ -19,12 +22,21 @@ const initialState = {
   postList: [],
   postListLoading: true,
   postListError: '',
+  postEditingLoading: false,
+  postEditSlug: '',
 }
 
 const deletePostFromList = (postList, postSlug) => {
   let tempArr = postList.slice(0)
   const i = findIndex(tempArr, (item) => item.slug === postSlug)
   tempArr.splice(i, 1)
+  return tempArr
+}
+
+const modifyPostListWithSlug = (postList, payload) => {
+  let tempArr = postList.slice(0)
+  const i = findIndex(tempArr, (item) => item.slug === payload.slug)
+  tempArr[i] = payload.value
   return tempArr
 }
 
@@ -77,6 +89,17 @@ const profile = (state = initialState, action) => {
     case DELETE_POST_FAILURE:
       return {
         ...state,
+      }
+    case EDIT_POST_REQUEST:
+      return {
+        ...state,
+        postEditingLoading: true,
+        postEditSlug: action.payload,
+      }
+    case EDIT_POST_SUCCESS:
+      return {
+        ...state,
+        postList: modifyPostListWithSlug(state.postList, action.payload),
       }
     default:
       return state

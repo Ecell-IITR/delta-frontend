@@ -18,6 +18,9 @@ import {
   APPLY_POST_FAILURE,
   APPLY_POST_REQUEST,
   APPLY_POST_SUCCESS,
+  EDIT_POST_FAILURE,
+  EDIT_POST_REQUEST,
+  EDIT_POST_SUCCESS,
 } from '../constants'
 
 export const fetchStudentOpportunities = (filtersObj) => {
@@ -94,6 +97,33 @@ export const bookmarkPost = (postSlug, value) => {
         notify.show(errorMsg, NOTIF_ERROR_TYPE, NOTIF_MID_RANGE_TIMEOUT)
         dispatch({
           type: BOOKMARK_POST_FAILURE,
+          error: errorMsg,
+        })
+      })
+  }
+}
+
+export const editPost = (postSlug, body) => {
+  return (dispatch) => {
+    dispatch({ type: EDIT_POST_REQUEST, payload: postSlug })
+    const editUrl = '/api/v1/post/' + postSlug + '/'
+    FetchApi('PUT', editUrl, body, getToken(TOKEN_TYPE))
+      .then((res) => {
+        if (res.data) {
+          dispatch({
+            type: EDIT_POST_SUCCESS,
+            payload: {
+              slug: postSlug,
+              value: res.data,
+            },
+          })
+        }
+      })
+      .catch((error) => {
+        const errorMsg = getErrorMsg(error)
+        notify.show(errorMsg, NOTIF_ERROR_TYPE, NOTIF_MID_RANGE_TIMEOUT)
+        dispatch({
+          type: EDIT_POST_FAILURE,
           error: errorMsg,
         })
       })

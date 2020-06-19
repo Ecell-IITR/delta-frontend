@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import TabMenu from 'coreContainers/tab-menu'
 import ButtonGroup from 'coreContainers/button-group'
 import Post from 'coreContainers/post'
-import { fetchStudentPost, deleteStudentPost } from '../../../actions'
+import { fetchStudentPost, deleteStudentPost, editPost } from '../../../actions'
 import {
   INTERNSHIP_POST_TYPE_KEY,
   COMPETITION_POST_TYPE_KEY,
@@ -22,6 +22,7 @@ export function PostComponent({
   postListLoading,
   user,
   deleteStudentPostComponent,
+  editPostComponent,
 }) {
   const [currentTab, setCurrentTab] = useState('your-post')
   const [postType, setPostType] = useState(INTERNSHIP_POST_TYPE_KEY)
@@ -92,6 +93,7 @@ export function PostComponent({
                         opportunity={post}
                         username={user.username}
                         deletePost={deleteStudentPostComponent}
+                        editPostComponent={editPostComponent}
                       />
                     ))}
                 </div>
@@ -110,6 +112,7 @@ PostComponent.propTypes = {
   postListLoading: PropTypes.bool,
   user: PropTypes.object,
   deleteStudentPostComponent: PropTypes.func,
+  editPostComponent: PropTypes.func,
 }
 
 function mapDispatchToProps(dispatch) {
@@ -119,6 +122,9 @@ function mapDispatchToProps(dispatch) {
     },
     deleteStudentPostComponent: (postSlug) => {
       dispatch(deleteStudentPost(postSlug))
+    },
+    editPostComponent: (postSlug, body) => {
+      dispatch(editPost(postSlug, body))
     },
   }
 }

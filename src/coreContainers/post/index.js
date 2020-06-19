@@ -22,7 +22,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { STUDENT_ROLE, COMPANY_ROLE } from 'globalConstants'
 import { getImageURL } from 'utils/getImageURL'
 import { getTimeLeft } from 'utils/getTimeLeft'
-import { getDurationUnit } from 'utils/getDuration'
 import { kFormatter } from 'utils/numberFormatter'
 import {
   INTERNSHIP_POST_TYPE_KEY,
@@ -30,6 +29,7 @@ import {
   // PROJECT_POST_TYPE_KEY,
 } from '../../student/constants'
 import Popup from 'reactjs-popup'
+import EditPostModal from './edit-popup'
 
 import styles from './index.css'
 
@@ -117,17 +117,26 @@ export default class PostComponent extends Component {
                 <FontAwesomeIcon icon={faUser} />
                 <span>{opportunity.applicantsCount} Applicants</span>
               </div>
-              <div>
-                <FontAwesomeIcon icon={faMapMarker} />
-                <span>{opportunity.location.name}</span>
-              </div>
-              <div>
-                <FontAwesomeIcon icon={faCalendar} />
-                <span>
-                  {opportunity.durationValue}{' '}
-                  {getDurationUnit(opportunity.durationUnit)}
-                </span>
-              </div>
+              {opportunity.location ? (
+                <div>
+                  <FontAwesomeIcon icon={faMapMarker} />
+                  <span>{opportunity.location.name}</span>
+                </div>
+              ) : (
+                <></>
+              )}
+              {opportunity.durationValue ? (
+                <div>
+                  <FontAwesomeIcon icon={faCalendar} />
+                  <span>
+                    {`${opportunity.durationValue} day${
+                      opportunity.durationValue > 1 ? 's' : ''
+                    }`}
+                  </span>
+                </div>
+              ) : (
+                <></>
+              )}
               <div>
                 <FontAwesomeIcon icon={faClock} />
                 <span>{getTimeLeft(opportunity.postExpiryDate)} left</span>
@@ -153,9 +162,10 @@ export default class PostComponent extends Component {
                 <div className={styles['work-description-header']}>
                   Work Description
                 </div>
-                <div className={styles['work-description-body']}>
-                  {description}
-                </div>
+                <div
+                  className={styles['work-description-body']}
+                  dangerouslySetInnerHTML={{ __html: description }}
+                ></div>
               </div>
             ) : (
               <></>
@@ -204,6 +214,7 @@ export default class PostComponent extends Component {
       isAppliedLoading,
       applyPost,
       deletePost,
+      editPostComponent,
     } = this.props
     const ownUser = opportunity.userMinProfile.person.username === username
 
@@ -223,12 +234,18 @@ export default class PostComponent extends Component {
               </Accordion.Collapse>
               <div className={styles['post-lower-section']}>
                 {ownUser ? (
-                  <button
-                    className={styles['edit-repost-button']}
-                    type="button"
-                  >
-                    Edit and Repost
-                  </button>
+                  <EditPostModal
+                    triggerElement={
+                      <button
+                        className={styles['edit-repost-button']}
+                        type="button"
+                      >
+                        Edit and Repost
+                      </button>
+                    }
+                    post={opportunity}
+                    editPost={editPostComponent}
+                  />
                 ) : (
                   <>
                     {isAppliedLoading &&
@@ -337,4 +354,5 @@ PostComponent.propTypes = {
   appliedLoadingSlug: PropTypes.string,
   isAppliedLoading: PropTypes.bool,
   deletePost: PropTypes.func,
+  editPostComponent: PropTypes.func,
 }

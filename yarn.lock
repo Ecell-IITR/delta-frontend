@@ -1183,6 +1183,18 @@
   resolved "https://registry.yarnpkg.com/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz#75a2e8b51cb758a7553d6804a5932d7aace75c39"
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
+"@ckeditor/ckeditor5-build-inline@^19.0.2":
+  version "19.0.2"
+  resolved "https://registry.yarnpkg.com/@ckeditor/ckeditor5-build-inline/-/ckeditor5-build-inline-19.0.2.tgz#0a69521969d8dbe4ae02d08022c3aa683c592f99"
+  integrity sha512-YHwW7VeveNhrhY+BKzMy+Sh3fmO2/9nTaQuwCXwWOvQ6lLE7hPQkxLJ5SpoW3bXDBkL7JHggWaw0ptoMcfZpbA==
+
+"@ckeditor/ckeditor5-react@^2.1.0":
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/@ckeditor/ckeditor5-react/-/ckeditor5-react-2.1.0.tgz#f612546a5a328899a436d71b72ffd632600049e8"
+  integrity sha512-rlHjRKhwP9tNK0Yj2UJShL14mRfxLPgJ+Pv6zTv/Mvmd4wrwGnJf+5ybOAGK92S02hP1cXH+9km+PRO1b4V+ng==
+  dependencies:
+    prop-types "^15.6.1"
+
 "@cnakazawa/watch@^1.0.3":
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/@cnakazawa/watch/-/watch-1.0.4.tgz#f864ae85004d0fcab6f50be9141c4da368d1656a"
