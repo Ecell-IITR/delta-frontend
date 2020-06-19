@@ -12,23 +12,20 @@ import {
   FETCH_ORGANIZATIONS_LIST_SUCCESS,
   FETCH_ORGANIZATIONS_LIST_FAILURE,
   FOLLOW_UNFOLLOW_USER_FAILURE,
-  FOLLOW_UNFOLLOW_USER_SUCCESS
+  FOLLOW_UNFOLLOW_USER_SUCCESS,
 } from '../constants'
-
 
 export const fetchOrganizationsList = (filterValue) => {
   return (dispatch) => {
     dispatch({ type: FETCH_ORGANIZATIONS_LIST_REQUEST })
     const organizationListURL = `/api/v1/organization-list/?list_type=${filterValue}`
-    FetchApi(
-      'GET',
-      organizationListURL,
-      null,
-      getToken(TOKEN_TYPE),
-    )
+    FetchApi('GET', organizationListURL, null, getToken(TOKEN_TYPE))
       .then((res) => {
         if (res.data) {
-          dispatch({ type: FETCH_ORGANIZATIONS_LIST_SUCCESS, payload: res.data })
+          dispatch({
+            type: FETCH_ORGANIZATIONS_LIST_SUCCESS,
+            payload: res.data,
+          })
         }
       })
       .catch((error) => {
@@ -44,17 +41,20 @@ export const fetchOrganizationsList = (filterValue) => {
 
 export const followUnfollowUser = (username, value) => {
   return (dispatch) => {
-    FetchApi('POST', `/api/v1/action/${value}/${username}/`, null, getToken(TOKEN_TYPE))
+    FetchApi(
+      'POST',
+      `/api/v1/action/${value}/${username}/`,
+      null,
+      getToken(TOKEN_TYPE),
+    )
       .then((res) => {
-        if (res.data) {
-          dispatch({
-            type: FOLLOW_UNFOLLOW_USER_SUCCESS,
-            payload: {
-              username,
-              value: value === 1 ? true : false
-            }
-          })
-        }
+        dispatch({
+          type: FOLLOW_UNFOLLOW_USER_SUCCESS,
+          payload: {
+            username,
+            value: value === 1 ? true : false,
+          },
+        })
       })
       .catch((error) => {
         const errorMsg = getErrorMsg(error)

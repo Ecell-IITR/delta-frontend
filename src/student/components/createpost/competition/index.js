@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Form } from 'semantic-ui-react'
 import CreatePost from '.'
 import InputField from '../../../../coreContainers/input'
-import Dropdown from '../../../../coreContainers/dropdown'
+// import Dropdown from '../../../../coreContainers/dropdown'
 import Button from '../../../../coreContainers/button'
 import styles from './index.css'
 
@@ -159,7 +159,7 @@ class Competition extends Component {
           </div>
           <div className={styles.element1}>
             <label>Required skill-set</label>
-            <Dropdown options={this.state.optionsSkill} />
+            {/* <Dropdown options={this.state.optionsSkill} /> */}
           </div>
         </Form.Group>
         <Button

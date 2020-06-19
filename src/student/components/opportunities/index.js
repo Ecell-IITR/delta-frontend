@@ -62,11 +62,11 @@ export function Opportunities({
     if (tab === 'bookmarks') {
       data['bookmark'] = true
     }
-    if (filtersApplied.hasOwnProperty('duration')) {
+    if (filtersApplied['duration']) {
       data['duration_value_ll'] = filtersApplied.duration[0]
       data['duration_value_ul'] = filtersApplied.duration[1]
     }
-    if (filtersApplied.hasOwnProperty('stipend')) {
+    if (filtersApplied['stipend']) {
       data['stipend_ll'] = filtersApplied.stipend[0]
       data['stipend_ul'] = filtersApplied.stipend[1]
     }

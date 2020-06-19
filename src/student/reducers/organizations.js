@@ -4,7 +4,7 @@ import {
   FETCH_ORGANIZATIONS_LIST_SUCCESS,
   FETCH_ORGANIZATIONS_LIST_FAILURE,
   FOLLOW_UNFOLLOW_USER_FAILURE,
-  FOLLOW_UNFOLLOW_USER_SUCCESS
+  FOLLOW_UNFOLLOW_USER_SUCCESS,
 } from '../constants'
 
 const initialState = {
@@ -15,21 +15,8 @@ const initialState = {
     count: 0,
     perPage: 10,
     current: 0,
-  }
+  },
 }
-
-export const modifyOrganizationWithUsername = (orgList, payload) => {
-  const i = findIndex(orgList, (item) => item.person.username === payload.username)
-  orgList[i]['isFollow'] = payload.value
-  if (payload.value) {
-    orgList[i]['followersCount'] += 1;
-  }
-  else {
-    orgList[i]['followersCount'] -= 1;
-  }
-  return orgList
-}
-
 
 const organizationsReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -42,7 +29,9 @@ const organizationsReducer = (state = initialState, action) => {
       return {
         ...state,
         organizationsListLoading: false,
-        organizationsList: Array.isArray(action.payload) ? action.payload : action.payload.results,
+        organizationsList: Array.isArray(action.payload)
+          ? action.payload
+          : action.payload.results,
       }
     case FETCH_ORGANIZATIONS_LIST_FAILURE:
       return {
@@ -51,9 +40,20 @@ const organizationsReducer = (state = initialState, action) => {
         error: action.payload,
       }
     case FOLLOW_UNFOLLOW_USER_SUCCESS:
+      let tempArr = state.organizationsList.slice(0)
+      const i = findIndex(
+        tempArr,
+        (item) => item.person.username === action.payload.username,
+      )
+      tempArr[i]['isFollow'] = action.payload.value
+      if (action.payload.value) {
+        tempArr[i]['followersCount'] += 1
+      } else {
+        tempArr[i]['followersCount'] -= 1
+      }
       return {
         ...state,
-        organizationsList: modifyOrganizationWithUsername(state.organizationsList, action.payload)
+        organizationsList: tempArr,
       }
     case FOLLOW_UNFOLLOW_USER_FAILURE:
       return {

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Form } from 'semantic-ui-react'
 import InputField from '../../../../coreContainers/input'
-import Dropdown from 'coreContainers/dropdown'
+// import Dropdown from 'coreContainers/dropdown'
 import { createPostInternship } from '../../../actions'
 import styles from './index.css'
 import { Button } from '../../../../coreContainers'
@@ -139,7 +139,7 @@ class Internship extends Component {
           </div>
           <div className={styles.element1}>
             <label for="work">Required skill-set</label>
-            <Dropdown options={this.state.optionsSkill} isMulti={true} />
+            {/* <Dropdown options={this.state.optionsSkill} isMulti={true} /> */}
           </div>
           <div className={styles.element1}>
             <label for="work">Post expiry date</label>

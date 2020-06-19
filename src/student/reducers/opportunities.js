@@ -22,9 +22,10 @@ const initialState = {
 }
 
 export const modifyPostWithSlug = (postList, payload, key) => {
-  const i = findIndex(postList, (item) => item.slug === payload.slug)
-  postList[i][key] = payload.value
-  return postList
+  let tempArr = postList.slice(0)
+  const i = findIndex(tempArr, (item) => item.slug === payload.slug)
+  tempArr[i][key] = payload.value
+  return tempArr
 }
 
 const opportunitiesReducer = (state = initialState, action) => {

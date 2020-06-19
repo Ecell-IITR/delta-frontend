@@ -22,9 +22,10 @@ const initialState = {
 }
 
 const deletePostFromList = (postList, postSlug) => {
-  const i = findIndex(postList, (item) => item.slug === postSlug)
-  postList.splice(i, 1)
-  return postList
+  let tempArr = postList.slice(0)
+  const i = findIndex(tempArr, (item) => item.slug === postSlug)
+  tempArr.splice(i, 1)
+  return tempArr
 }
 
 const profile = (state = initialState, action) => {
