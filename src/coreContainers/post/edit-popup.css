@@ -33,7 +33,7 @@
   justify-content: space-between;
 }
 
-.edit-modal-field-group div {
+.edit-modal-field-group .edit-modal-field {
   width: 48%;
 }
 
@@ -85,4 +85,20 @@
   font-family: Neutrifpro-regular;
   box-shadow: 5px 0 16px 0 rgba(0, 0, 0, 0.21);
   background-color: #2964ee;
+}
+
+.edit-modal-filter-wrapper {
+  width: 100%;
+}
+
+.required-field {
+  color: red;
+}
+
+.error-display {
+  font-size: 1rem;
+  font-family: Neutrifpro-regular;
+  line-height: normal;
+  color: red;
+  margin: 0.5rem 0 0.5rem 0;
 }

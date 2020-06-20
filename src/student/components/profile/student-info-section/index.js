@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCheckCircle, faTimesCircle } from '@fortawesome/free-solid-svg-icons'
 import { getImageURL } from 'utils/getImageURL'
+import Switch from '@material-ui/core/Switch';
 
 import styles from './index.css'
 
@@ -20,8 +21,8 @@ class StudentInfoSection extends Component {
               alt="profile-img"
             />
           ) : (
-            <></>
-          )}
+              <></>
+            )}
         </div>
         <div className={styles['student-info']}>
           <div className={styles['student-personal-info']}>
@@ -35,7 +36,7 @@ class StudentInfoSection extends Component {
                 <span className={styles['student-branch']}>
                   {`${studentProfile.branch && studentProfile.branch.name} . ${
                     studentProfile.year
-                  }`}
+                    }`}
                 </span>
               </div>
               <div>
@@ -80,28 +81,23 @@ class StudentInfoSection extends Component {
               {studentProfile.followingCount ? (
                 <span>Following {studentProfile.followingCount}</span>
               ) : (
-                <></>
-              )}
+                  <></>
+                )}
             </div>
             <div className={styles.availability}>
               {'availabilityStatus' in studentProfile ? (
                 <span>
                   Available{' '}
-                  {studentProfile.availabilityStatus ? (
-                    <FontAwesomeIcon
-                      className={styles['check-true-icon']}
-                      icon={faCheckCircle}
-                    />
-                  ) : (
-                    <FontAwesomeIcon
-                      className={styles['check-false-icon']}
-                      icon={faTimesCircle}
-                    />
-                  )}
+                  <Switch
+                    checked={studentProfile.availabilityStatus}
+                    onChange={(value) => console.log(value)}
+                    name="available"
+                    inputProps={{ 'aria-label': 'primary checkbox' }}
+                  />
                 </span>
               ) : (
-                <></>
-              )}
+                  <></>
+                )}
             </div>
           </div>
         </div>

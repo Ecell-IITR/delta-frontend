@@ -4,6 +4,9 @@ import {
   FETCH_LOCATIONS_SUCCESS,
   FETCH_LOCATIONS_FAILURE,
   INTERNSHIP_POST_TYPE_KEY,
+  FETCH_TAGS_FAILURE,
+  FETCH_TAGS_SUCCESS,
+  FETCH_TAGS_REQUEST
 } from '../constants'
 
 const initialState = {
@@ -17,6 +20,8 @@ const initialState = {
   },
   locations: [],
   locationsLoading: false,
+  tags: [],
+  tagsLoading: false
 }
 
 export const handleFilters = (filtersApplied, payload) => {
@@ -40,6 +45,23 @@ const filtersReducer = (state = initialState, action) => {
       return {
         ...state,
         locationsLoading: false,
+        error: action.payload,
+      }
+    case FETCH_TAGS_REQUEST:
+      return {
+        ...state,
+        tagsLoading: true,
+      }
+    case FETCH_TAGS_SUCCESS:
+      return {
+        ...state,
+        tagsLoading: false,
+        tags: action.payload,
+      }
+    case FETCH_TAGS_FAILURE:
+      return {
+        ...state,
+        tagsLoading: false,
         error: action.payload,
       }
     case SET_OPPORTUNITY_FILTER:

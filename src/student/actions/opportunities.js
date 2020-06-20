@@ -103,7 +103,7 @@ export const bookmarkPost = (postSlug, value) => {
   }
 }
 
-export const editPost = (postSlug, body) => {
+export const editPost = (postSlug, body, callback) => {
   return (dispatch) => {
     dispatch({ type: EDIT_POST_REQUEST, payload: postSlug })
     const editUrl = '/api/v1/post/' + postSlug + '/'
@@ -117,6 +117,7 @@ export const editPost = (postSlug, body) => {
               value: res.data,
             },
           })
+          callback('success')
         }
       })
       .catch((error) => {
@@ -126,6 +127,7 @@ export const editPost = (postSlug, body) => {
           type: EDIT_POST_FAILURE,
           error: errorMsg,
         })
+        callback('error')
       })
   }
 }

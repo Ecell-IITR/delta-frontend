@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import TabMenu from 'coreContainers/tab-menu'
 import ButtonGroup from 'coreContainers/button-group'
 import Post from 'coreContainers/post'
-import { fetchStudentPost, deleteStudentPost, editPost } from '../../../actions'
+import { fetchStudentPost, deleteStudentPost, editPost, fetchLocations, fetchSkills } from '../../../actions'
 import {
   INTERNSHIP_POST_TYPE_KEY,
   COMPETITION_POST_TYPE_KEY,
@@ -80,27 +80,27 @@ export function PostComponent({
         {postListLoading ? (
           <PostLoading count={2} />
         ) : (
-          <>
-            {postList && postList.length === 0 ? (
-              <EmptyScreen />
-            ) : (
-              <>
-                <div>
-                  {postList &&
-                    postList.map((post) => (
-                      <Post
-                        key={post.slug}
-                        opportunity={post}
-                        username={user.username}
-                        deletePost={deleteStudentPostComponent}
-                        editPostComponent={editPostComponent}
-                      />
-                    ))}
-                </div>
-              </>
-            )}
-          </>
-        )}
+            <>
+              {postList && postList.length === 0 ? (
+                <EmptyScreen />
+              ) : (
+                  <>
+                    <div>
+                      {postList &&
+                        postList.map((post) => (
+                          <Post
+                            key={post.slug}
+                            opportunity={post}
+                            username={user.username}
+                            deletePost={deleteStudentPostComponent}
+                            editPostComponent={editPostComponent}
+                          />
+                        ))}
+                    </div>
+                  </>
+                )}
+            </>
+          )}
       </div>
     </div>
   )
@@ -123,8 +123,8 @@ function mapDispatchToProps(dispatch) {
     deleteStudentPostComponent: (postSlug) => {
       dispatch(deleteStudentPost(postSlug))
     },
-    editPostComponent: (postSlug, body) => {
-      dispatch(editPost(postSlug, body))
+    editPostComponent: (postSlug, body, callback) => {
+      dispatch(editPost(postSlug, body, callback))
     },
   }
 }

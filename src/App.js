@@ -3,6 +3,7 @@ import { Route, Switch } from 'react-router-dom'
 import Navbar from 'coreContainers/navbar'
 import PrivateRoute from './routeUtils/privateRoute'
 import FreeRoute from './routeUtils/freeRoute'
+
 import './App.css'
 
 export default class App extends Component {
