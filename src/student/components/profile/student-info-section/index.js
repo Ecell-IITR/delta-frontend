@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCheckCircle, faTimesCircle } from '@fortawesome/free-solid-svg-icons'
 import { getImageURL } from 'utils/getImageURL'
-import Switch from '@material-ui/core/Switch';
+import Switch from '@material-ui/core/Switch'
 
 import styles from './index.css'
 
@@ -21,8 +21,8 @@ class StudentInfoSection extends Component {
               alt="profile-img"
             />
           ) : (
-              <></>
-            )}
+            <></>
+          )}
         </div>
         <div className={styles['student-info']}>
           <div className={styles['student-personal-info']}>
@@ -36,7 +36,7 @@ class StudentInfoSection extends Component {
                 <span className={styles['student-branch']}>
                   {`${studentProfile.branch && studentProfile.branch.name} . ${
                     studentProfile.year
-                    }`}
+                  }`}
                 </span>
               </div>
               <div>
@@ -77,12 +77,29 @@ class StudentInfoSection extends Component {
             />
           </div> */}
           <div className={styles.label}>
-            <div className={styles.following}>
-              {studentProfile.followingCount ? (
-                <span>Following {studentProfile.followingCount}</span>
+            <div className={styles.availability}>
+              {'followersCount' in studentProfile ? (
+                <>
+                  <span className={styles['field-text']}>Followers</span>
+                  <span className={styles['field-count']}>
+                    {studentProfile.followersCount}
+                  </span>
+                </>
               ) : (
-                  <></>
-                )}
+                <></>
+              )}
+            </div>
+            <div className={styles.availability}>
+              {'followingCount' in studentProfile ? (
+                <>
+                  <span className={styles['field-text']}>Following</span>
+                  <span className={styles['field-count']}>
+                    {studentProfile.followingCount}
+                  </span>
+                </>
+              ) : (
+                <></>
+              )}
             </div>
             <div className={styles.availability}>
               {'availabilityStatus' in studentProfile ? (
@@ -96,8 +113,8 @@ class StudentInfoSection extends Component {
                   />
                 </span>
               ) : (
-                  <></>
-                )}
+                <></>
+              )}
             </div>
           </div>
         </div>
