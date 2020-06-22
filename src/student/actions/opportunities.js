@@ -82,15 +82,13 @@ export const bookmarkPost = (postSlug, value) => {
     }
     FetchApi('POST', bookmarkURL, body, getToken(TOKEN_TYPE))
       .then((res) => {
-        if (res.data) {
-          dispatch({
-            type: BOOKMARK_POST_SUCCESS,
-            payload: {
-              slug: postSlug,
-              value,
-            },
-          })
-        }
+        dispatch({
+          type: BOOKMARK_POST_SUCCESS,
+          payload: {
+            slug: postSlug,
+            value,
+          },
+        })
       })
       .catch((error) => {
         const errorMsg = getErrorMsg(error)
