@@ -5,12 +5,13 @@ import {
   UPLOAD_USER_IMAGE_FAILURE,
   UPLOAD_USER_IMAGE_REQUEST,
   UPLOAD_USER_IMAGE_SUCCESS,
-} from '../constants/index'
+} from '../constants'
 
 const initialState = {
   isLoading: true,
   errors: '',
   user: {},
+  profileImageLoading: false
 }
 
 const user = (state = initialState, action) => {
@@ -18,18 +19,19 @@ const user = (state = initialState, action) => {
     case UPLOAD_USER_IMAGE_REQUEST:
       return {
         ...state,
-        isLoading: true,
-      }
-    case UPLOAD_USER_IMAGE_FAILURE:
-      return {
-        ...state,
-        isLoading: false,
-        errors: 'Something went wrong!',
+        profileImageLoading: true
       }
     case UPLOAD_USER_IMAGE_SUCCESS:
       return {
         ...state,
-        isLoading: false,
+        profileImageLoading: false,
+        user: action.payload
+      }
+    case UPLOAD_USER_IMAGE_FAILURE:
+      return {
+        ...state,
+        profileImageLoading: false,
+        error: action.payload,
       }
     case FETCH_USER_REQUEST:
       return {

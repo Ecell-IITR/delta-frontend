@@ -9,12 +9,13 @@ import {
   faTrophy,
 } from '@fortawesome/free-solid-svg-icons'
 import SidebarMenu from 'coreContainers/sidebar-menu'
-import { fetchStudentProfile, setCurrentTab } from '../../actions'
+import { fetchStudentProfile, setCurrentTab, editStudentProfile, avatarUpload } from '../../actions'
 import { SELF_PROFILE, PUBLIC_PROFILE } from '../../constants'
 import StudentInfoSection from './student-info-section'
 import PostComponent from './posts'
 import SkillsComponent from './skills'
 import ResumeComponent from './resume'
+import AchievementsComponent from './achievements'
 import StudentInfoLoading from './student-info-section/loading'
 import styles from './index.css'
 
@@ -28,13 +29,17 @@ export function StudentProfile({
   studentProfile,
   studentProfileLoading,
   history,
+  editStudentProfileComponent,
+  avatarUploadComponent,
+  profileImageLoading
 }) {
   useEffect(() => {
     const { params } = match
     const searchParams = new URLSearchParams(location.search)
     if (searchParams && searchParams.get('tab')) {
       setCurrentTabComponent(searchParams.get('tab'))
-      if (Object.keys(user).length > 0 && user.username) {
+      if (Object.keys(user).length > 0 && user.username && Object.keys(studentProfile).length === 0) {
+        console.log('here')
         fetchStudentProfileComponent(
           user.username === params.username ? SELF_PROFILE : PUBLIC_PROFILE,
         )
@@ -60,7 +65,7 @@ export function StudentProfile({
       { slug: 'post', title: 'Post', icon: faTable },
       { slug: 'skills', title: 'Skills', icon: faLightbulb },
       { slug: 'achievements', title: 'Achievements', icon: faTrophy },
-      { slug: 'resume', title: 'Resume', icon: faFile },
+      // { slug: 'resume', title: 'Resume', icon: faFile },
     ],
     currentTab,
     handleClick: setActiveTab,
@@ -70,24 +75,61 @@ export function StudentProfile({
       {studentProfileLoading ? (
         <StudentInfoLoading />
       ) : (
-        <>
-          {studentProfile ? (
-            <div className={styles.info}>
-              <StudentInfoSection user={user} studentProfile={studentProfile} />
-            </div>
-          ) : (
-            <></>
-          )}
-        </>
-      )}
+          <>
+            {studentProfile ? (
+              <div className={styles.info}>
+                <StudentInfoSection
+                  user={user}
+                  studentProfile={studentProfile}
+                  editStudentProfile={editStudentProfileComponent}
+                  avatarUploadFunc={avatarUploadComponent}
+                />
+              </div>
+            ) : (
+                <></>
+              )}
+          </>
+        )}
       <div className={styles['main-container']}>
         <div className={styles.sidebar}>
           <SidebarMenu {...sidebarProps} />
         </div>
         <div className={styles.contentBox}>
           {currentTab === 'post' ? <PostComponent /> : <></>}
-          {currentTab === 'skills' ? <SkillsComponent /> : <></>}
+          {currentTab === 'skills' ?
+            <>
+              {studentProfileLoading ?
+                <div>Loading......</div> :
+                <>
+                  {studentProfile ?
+                    <SkillsComponent /> :
+                    <></>
+                  }
+                </>
+              }
+            </>
+            :
+            <></>
+          }
           {currentTab === 'resume' ? <ResumeComponent /> : <></>}
+          {currentTab === 'achievements' ?
+            <>
+              {studentProfileLoading ?
+                <div>Loading......</div> :
+                <>
+                  {studentProfile ?
+                    <AchievementsComponent
+                      editStudentProfile={editStudentProfileComponent}
+                      achievements={studentProfile.achievements}
+                    /> :
+                    <></>
+                  }
+                </>
+              }
+            </>
+            :
+            <></>
+          }
         </div>
       </div>
     </>
@@ -105,6 +147,9 @@ StudentProfile.propTypes = {
   studentProfileLoading: PropTypes.bool,
   currentTab: PropTypes.string,
   setCurrentTabComponent: PropTypes.func,
+  editStudentProfileComponent: PropTypes.func,
+  avatarUploadComponent: PropTypes.func,
+  profileImageLoading: PropTypes.bool
 }
 
 function mapDispatchToProps(dispatch) {
@@ -115,6 +160,12 @@ function mapDispatchToProps(dispatch) {
     setCurrentTabComponent: (value) => {
       dispatch(setCurrentTab(value))
     },
+    editStudentProfileComponent: (body, callback = () => { }) => {
+      dispatch(editStudentProfile(body, callback))
+    },
+    avatarUploadComponent: (image, callback) => {
+      dispatch(avatarUpload(image, callback))
+    }
   }
 }
 

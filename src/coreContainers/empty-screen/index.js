@@ -9,13 +9,13 @@ import styles from './index.css'
 
 export default class EmptyScreen extends Component {
   render() {
-    // const { text } = this.props
+    const { text } = this.props
     return (
       <div className={styles['empty-screen-container']}>
         <div className={styles['empty-screen-image']} style={{ backgroundImage: `url(${illustration})` }}></div>
         <div className={styles['empty-screen-text']}>
           Oops... It's empty here.<br />
-          Try editing other filter options.
+          {text ? text : 'Try editing other filter options.'}
         </div>
       </div>
     )

@@ -50,9 +50,9 @@
 }
 
 .profile-pic {
-  width: 30px;
+  width: 2em;
   border-radius: 50%;
-  height: auto;
+  height: 2em;
 }
 
 .active-nav-link {
@@ -63,6 +63,7 @@
   font-size: 1.2rem;
   letter-spacing: 0.75px;
   border-bottom: 3px solid white;
+  margin: 0 0.5rem;
 }
 
 .active-nav-link a {
@@ -77,6 +78,7 @@
   font-family: Neutrifpro-semibold;
   font-size: 1.2rem;
   letter-spacing: 0.75px;
+  margin: 0 0.5rem;
 }
 
 .nav-link a {

@@ -1,6 +1,6 @@
 /* eslint-disable react/forbid-prop-types */
 import React, { useEffect } from 'react'
-import { Route, Redirect } from 'react-router-dom'
+import { Route, Redirect, Switch } from 'react-router-dom'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { fetchUser } from '../actions/fetch-user'
@@ -20,38 +20,29 @@ export function StudentApp({ fetchUserComponent, user, match, userLoading }) {
       ) : Object.keys(user).length === 0 ? (
         <EmptyScreen />
       ) : (
-        <>
-          <Route
-            exact
-            path={`${match.path}`}
-            component={() => <Redirect to="/opportunities" />}
-          />
-          <Route
-            path={`${match.path}user/:username`}
-            component={React.lazy(() => import('./profile'))}
-          />
-          <Route
-            exact
-            path={`${match.path}opportunities`}
-            component={React.lazy(() => import('./opportunities'))}
-          />
-          <Route
-            exact
-            path={`${match.path}create-post`}
-            component={React.lazy(() => import('./createpost'))}
-          />
-          <Route
-            exact
-            path={`${match.path}more/organisations`}
-            component={React.lazy(() => import('./organisation/index'))}
-          />
-          <Route
-            exact
-            path={`${match.path}more/organisations/following`}
-            component={React.lazy(() => import('./organisation/index'))}
-          />
-        </>
-      )}
+            <Switch>
+              <Route
+                exact
+                path={`${match.path}`}
+                component={() => <Redirect to="/opportunities" />}
+              />
+              <Route
+                path={`${match.path}user/:username`}
+                component={React.lazy(() => import('./profile'))}
+              />
+              <Route
+                exact
+                path={`${match.path}opportunities`}
+                component={React.lazy(() => import('./opportunities'))}
+              />
+              <Route
+                exact
+                path={`${match.path}create-post`}
+                component={React.lazy(() => import('./createpost'))}
+              />
+              <Route component={() => <EmptyScreen text={'Try searching for another page!'} />} />
+            </Switch>
+          )}
     </>
   )
 }

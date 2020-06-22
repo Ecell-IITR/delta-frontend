@@ -2,7 +2,10 @@
 /* eslint-disable react/prop-types */
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Icon, Input } from 'semantic-ui-react'
+import { Icon } from 'semantic-ui-react'
+import { InputGroup, FormControl } from 'react-bootstrap'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import PropTypes from 'prop-types'
 import {
   showSkills,
@@ -82,14 +85,21 @@ class Skill extends Component {
             <div className={styles['skills-container']}>
               <div className={styles.filterSkills}>
                 <div className={styles.searchBox}>
-                  <Input
-                    className={styles.searchBoxinput}
-                    icon="search"
-                    placeholder="Search Skills..."
-                    onChange={this.handleChange}
-                  />
+                  <InputGroup className="mb-3">
+                    <InputGroup.Prepend>
+                      <InputGroup.Text id="basic-addon1">
+                        <FontAwesomeIcon icon={faSearch} />
+                      </InputGroup.Text>
+                    </InputGroup.Prepend>
+                    <FormControl
+                      className={styles['searchBoxInput']}
+                      placeholder="Search skills..."
+                      aria-describedby="basic-addon1"
+                      onChange={this.handleChange}
+                    />
+                  </InputGroup>
                 </div>
-                <div className={styles.skills}>
+                <div className={`${styles['rendered-skills']} ${styles['skills']}`}>
                   {renderSearchedSkills && renderSearchedSkills.length
                     ? this.renderSkills(renderSearchedSkills)
                     : this.renderSkills(skills)}
@@ -100,14 +110,14 @@ class Skill extends Component {
                 <div className={styles.selected}>
                   <div className={styles['selected-skills-title']}>
                     Selected Skills
-                </div>
+                  </div>
                   {addedSkills && addedSkills.length ? (
                     <button
                       type="button"
                       className={styles['clear-button']}
                       onClick={removeAllComponent}
                     >
-                      <div className={styles['clear-all-text']}>Clear All</div>
+                      <div className={styles['clear-all-text']}>Clear all</div>
                       <div>
                         {removeAllLoading ? (
                           <div
@@ -118,7 +128,6 @@ class Skill extends Component {
                             <Icon
                               size="large"
                               color="red"
-                              // className={skills.removeAll}
                               name="remove circle"
                             />
                           )}
@@ -128,7 +137,7 @@ class Skill extends Component {
                       <></>
                     )}
                 </div>
-                <div className={styles.skills}>
+                <div className={`${styles['added-skills']} ${styles['skills']}`}>
                   {addedSkills &&
                     addedSkills.map((skill) => (
                       <div key={skill.slug}>

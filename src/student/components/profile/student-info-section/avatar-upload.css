@@ -1,0 +1,54 @@
+.profile-upload-container {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 50%;
+}
+.profile-upload-container .profile-upload-input {
+  display: none;
+}
+.profile-upload-container .profile-upload-text {
+  margin: 0;
+  color: #fff;
+  visibility: hidden;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  bottom: 0;
+  background: rgba(25, 21, 14, 0.9);
+  opacity: 0;
+  width: 100%;
+  height: 50%;
+  font-size: 1.1rem;
+  font-family: Neutrifpro-regular;
+  transition: visibility 0s, opacity 0.1s linear;
+  cursor: pointer;
+}
+.profile-upload-container:hover > .profile-upload-text {
+  visibility: visible;
+  opacity: 1;
+}
+.profile-upload-container .avatar-crop-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+}
+.profile-upload-container .avatar-crop-container .submit-btn {
+  padding: 0.75rem 1.4rem;
+  border: none;
+  cursor: pointer;
+  width: fit-content;
+  color: white;
+  border-radius: 4px;
+  font-family: Neutrifpro-regular;
+  box-shadow: 5px 0 16px 0 rgba(0, 0, 0, 0.21);
+  background-color: #2964ee;
+  margin-top: 10px;
+}

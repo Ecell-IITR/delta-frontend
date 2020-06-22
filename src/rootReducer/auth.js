@@ -5,11 +5,14 @@ import {
   LOGOUT_REQUEST,
   LOGOUT_SUCCESS,
   SET_USER_AUTH,
+  OAUTH_LOGIN_FAILURE,
+  OAUTH_LOGIN_SUCCESS,
+  OAUTH_LOGIN_REQUEST
 } from '../auth/constants'
 
 const initialState = {
-  isauthenticating: false,
-  isauthenticated: false,
+  isAuthenticating: false,
+  isAuthenticated: false,
   error: '',
 }
 
@@ -18,34 +21,51 @@ const authReducer = (state = initialState, action) => {
     case LOGIN_REQUEST:
       return {
         ...state,
-        isauthenticating: true,
+        isAuthenticating: true,
       }
     case LOGIN_SUCCESS:
       return {
         ...state,
-        isauthenticating: false,
-        isauthenticated: true,
+        isAuthenticating: false,
+        isAuthenticated: true,
       }
     case LOGIN_FAILURE:
       return {
         ...state,
-        isauthenticating: false,
+        isAuthenticating: false,
         error: action.payload,
       }
     case SET_USER_AUTH:
       return {
         ...state,
-        isauthenticated: true,
+        isAuthenticated: true,
       }
     case LOGOUT_REQUEST:
       return {
         ...state,
-        isauthenticating: true,
+        isAuthenticating: true,
       }
     case LOGOUT_SUCCESS:
       return {
-        isauthenticating: false,
-        isauthenticated: false,
+        isAuthenticating: false,
+        isAuthenticated: false,
+      }
+    case OAUTH_LOGIN_REQUEST:
+      return {
+        ...state,
+        isAuthenticating: true,
+      }
+    case OAUTH_LOGIN_SUCCESS:
+      return {
+        ...state,
+        isAuthenticating: false,
+        isAuthenticated: true,
+      }
+    case OAUTH_LOGIN_FAILURE:
+      return {
+        ...state,
+        isAuthenticating: false,
+        error: action.payload,
       }
     default:
       return state

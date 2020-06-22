@@ -20,7 +20,6 @@ import {
   OAUTH_LOGIN_REQUEST,
   OAUTH_LOGIN_SUCCESS,
 } from './constants'
-import { addQueryParams } from 'utils/queryParams'
 
 export const loginAction = (data, callback) => {
   return (dispatch) => {
@@ -29,7 +28,7 @@ export const loginAction = (data, callback) => {
       .then((res) => {
         if (res.data && res.data.token) {
           setToken(TOKEN_TYPE, res.data.token)
-          dispatch({ type: LOGIN_SUCCESS, payload: res.data.token })
+          dispatch({ type: LOGIN_SUCCESS })
           callback(res.status)
         }
       })
@@ -43,6 +42,7 @@ export const loginAction = (data, callback) => {
           NOTIF_ERROR_TYPE,
           NOTIF_MID_RANGE_TIMEOUT,
         )
+        callback(err.response.status)
       })
   }
 }
@@ -57,33 +57,27 @@ export const logoutAction = (callback) => {
   }
 }
 
-export const channeliOAuthLogin = (code) => {
+export const channeliOAuthLogin = (code, callback) => {
   return (dispatch) => {
     dispatch({ type: OAUTH_LOGIN_REQUEST })
-    // const url = addQueryParams()
-    const params = {
-      client_id: process.env.REACT_APP_DELTA_CLIENT_ID,
-      client_secret: process.env.REACT_APP_DELTA_CLIENT_SECRET,
-      grant_type: 'authorization_code',
-      redirect_url: 'http://localhost:3000/oauth/channeli/',
-      code: code,
-    }
-    const headers = {
-      'content-type': 'application/x-www-form-urlencoded',
-      'cache-control': 'no-cache',
-    }
-    axios({
-      method: 'POST',
-      url: 'https://internet.channeli.in/open_auth/token/',
-      body: params,
-      headers,
-      responseType: 'json',
-    })
+    FetchApi('POST', '/api/v1/oauth/channeli/', { code })
       .then((res) => {
-        console.log(res)
+        if (res.data && res.data.token) {
+          setToken(TOKEN_TYPE, res.data.token)
+          dispatch({ type: OAUTH_LOGIN_SUCCESS })
+          callback(res.status)
+        }
       })
-      .catch((err) => {
-        console.log(err)
+      .catch((error) => {
+        dispatch({
+          type: OAUTH_LOGIN_FAILURE,
+          error: error.response && error.response.statusText,
+        })
+        notify.show(
+          getErrorMsg(error),
+          NOTIF_ERROR_TYPE,
+          NOTIF_MID_RANGE_TIMEOUT,
+        )
       })
   }
 }

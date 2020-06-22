@@ -9,9 +9,11 @@ import {
   FETCH_PROFILE_POST_FAILURE,
   DELETE_POST_FAILURE,
   DELETE_POST_SUCCESS,
-  EDIT_POST_FAILURE,
   EDIT_POST_SUCCESS,
   EDIT_POST_REQUEST,
+  EDIT_USER_PROFILE_FAILURE,
+  EDIT_USER_PROFILE_REQUEST,
+  EDIT_USER_PROFILE_SUCCESS,
 } from '../constants'
 
 const initialState = {
@@ -100,6 +102,20 @@ const profile = (state = initialState, action) => {
       return {
         ...state,
         postList: modifyPostListWithSlug(state.postList, action.payload),
+      }
+    case EDIT_USER_PROFILE_REQUEST:
+      return {
+        ...state,
+      }
+    case EDIT_USER_PROFILE_SUCCESS:
+      return {
+        ...state,
+        profile: action.payload,
+      }
+    case EDIT_USER_PROFILE_FAILURE:
+      return {
+        ...state,
+        error: action.payload,
       }
     default:
       return state

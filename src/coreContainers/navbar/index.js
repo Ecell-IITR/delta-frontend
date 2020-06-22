@@ -29,6 +29,15 @@ class Navbar extends React.PureComponent {
           <ul>
             <li
               className={
+                activeRoute.includes('/opportunities')
+                  ? styles['active-nav-link']
+                  : styles['nav-link']
+              }
+            >
+              <Link to="/opportunities">Opportunities</Link>
+            </li>
+            <li
+              className={
                 activeRoute.includes('/user')
                   ? styles['active-nav-link']
                   : styles['nav-link']
@@ -39,15 +48,6 @@ class Navbar extends React.PureComponent {
               ) : (
                   <></>
                 )}
-            </li>
-            <li
-              className={
-                activeRoute.includes('/opportunities')
-                  ? styles['active-nav-link']
-                  : styles['nav-link']
-              }
-            >
-              <Link to="/opportunities">Opportunities</Link>
             </li>
             <li
               className={

@@ -1,0 +1,50 @@
+.achievements-container {
+  margin: 0.5rem;
+}
+
+.editor-wrapper {
+  border-radius: 4px;
+  padding: 0.5rem 0.75rem;
+  min-height: 20vh;
+  background: white;
+}
+
+.required-field {
+  color: red;
+}
+
+.error-display {
+  font-size: 1rem;
+  font-family: Neutrifpro-regular;
+  line-height: normal;
+  color: red;
+  margin: 0.5rem 0 0.5rem 0;
+}
+
+.success-display {
+  font-size: 1rem;
+  font-family: Neutrifpro-regular;
+  line-height: normal;
+  color: green;
+  margin: 0.5rem 0 0.5rem 0;
+}
+
+.button-wrapper {
+  width: 100%;
+  display: flex;
+  margin-top: 1rem;
+  justify-content: flex-end;
+}
+
+.save-button {
+  margin: 0;
+  padding: 0.75rem 1.4rem;
+  border: none;
+  cursor: pointer;
+  width: fit-content;
+  color: white;
+  border-radius: 4px;
+  font-family: Neutrifpro-regular;
+  box-shadow: 5px 0 16px 0 rgba(0, 0, 0, 0.21);
+  background-color: #2964ee;
+}
