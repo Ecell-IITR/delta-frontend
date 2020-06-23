@@ -6,7 +6,7 @@ import {
   INTERNSHIP_POST_TYPE_KEY,
   FETCH_TAGS_FAILURE,
   FETCH_TAGS_SUCCESS,
-  FETCH_TAGS_REQUEST
+  FETCH_TAGS_REQUEST,
 } from '../constants'
 
 const initialState = {
@@ -21,7 +21,7 @@ const initialState = {
   locations: [],
   locationsLoading: false,
   tags: [],
-  tagsLoading: false
+  tagsLoading: false,
 }
 
 export const handleFilters = (filtersApplied, payload) => {

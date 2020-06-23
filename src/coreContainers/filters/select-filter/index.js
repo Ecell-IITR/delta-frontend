@@ -3,8 +3,6 @@ import React, { Component } from 'react'
 import Select from 'react-select'
 import PropTypes from 'prop-types'
 
-import styles from './index.css'
-
 export class SelectFilter extends Component {
   render() {
     const {

@@ -78,7 +78,7 @@ export const bookmarkPost = (postSlug, value) => {
       keyword: value ? 'star' : 'unstar',
     }
     FetchApi('POST', bookmarkURL, body, getToken(TOKEN_TYPE))
-      .then((res) => {
+      .then(() => {
         dispatch({
           type: BOOKMARK_POST_SUCCESS,
           payload: {

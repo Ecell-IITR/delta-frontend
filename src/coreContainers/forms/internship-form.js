@@ -1,6 +1,6 @@
+/* eslint-disable react/forbid-prop-types */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useEffect, useState } from 'react'
-import { findIndex } from 'lodash'
 import PropTypes from 'prop-types'
 import CKEditor from '@ckeditor/ckeditor5-react'
 import InlineEditor from '@ckeditor/ckeditor5-build-inline'
@@ -256,7 +256,7 @@ export function InternshipForm({
                   inline
                   required
                   dateFormat="YYYY-MM-DD"
-                  onChange={(event, { name, value }) =>
+                  onChange={(event, { value }) =>
                     setSelectedDate(new Date(value))
                   }
                 />
@@ -273,7 +273,7 @@ export function InternshipForm({
                   iconPosition="left"
                   required
                   dateFormat="YYYY-MM-DD"
-                  onChange={(event, { name, value }) =>
+                  onChange={(event, { value }) =>
                     setSelectedDate(new Date(value))
                   }
                 />
@@ -373,13 +373,15 @@ export function InternshipForm({
   )
 }
 
-InternshipForm.defaultProps = {
-  modalCloseFunc: () => {},
-}
+// InternshipForm.defaultProps = {
+//   modalCloseFunc: () => { },
+// }
 
 InternshipForm.propTypes = {
   fetchLocations: PropTypes.func,
   fetchSkills: PropTypes.func,
+  modalCloseFunc: PropTypes.func,
+  publishButton: PropTypes.bool,
   locations: PropTypes.array,
   locationsLoading: PropTypes.bool,
   skills: PropTypes.array,

@@ -19,15 +19,16 @@ class uploadResume extends Component {
 
   handleUpload = (e) => {
     e.preventDefault()
-    if (this.state.selectedFile !== null) {
+    const { selectedFile } = this.state
+    if (selectedFile !== null) {
       const data = new FormData()
-      data.append('file', this.state.selectedFile)
+      data.append('file', selectedFile)
       FetchAPI('POST', '/api/v1/upload_resume', data)
-        .then((res) => {
-          console.log(res)
+        .then(() => {
+          // console.log(res)
         })
-        .catch((error) => {
-          console.log(error)
+        .catch(() => {
+          // console.log(error)
         })
     }
   }

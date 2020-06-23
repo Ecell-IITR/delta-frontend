@@ -8,7 +8,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import PropTypes from 'prop-types'
 import {
-  showSkills,
   addSkill,
   removeSkill,
   searchSkills,
@@ -24,6 +23,7 @@ class Skill extends Component {
     super(props)
     this.state = {}
   }
+
   componentDidMount = () => {
     const {
       studentSkills,
@@ -54,10 +54,13 @@ class Skill extends Component {
               }}
             >
               {isSkillLoading && skillSlug === skill.slug ? (
-                <div class="spinner-border text-primary" role="status"></div>
+                <div
+                  className="spinner-border text-primary"
+                  role="status"
+                ></div>
               ) : (
-                  <Icon name="add" />
-                )}
+                <Icon name="add" />
+              )}
             </button>
           </div>
         ))}
@@ -82,93 +85,89 @@ class Skill extends Component {
         {skillsLoading ? (
           <div>Loading...</div>
         ) : (
-            <div className={styles['skills-container']}>
-              <div className={styles.filterSkills}>
-                <div className={styles.searchBox}>
-                  <InputGroup className="mb-3">
-                    <InputGroup.Prepend>
-                      <InputGroup.Text id="basic-addon1">
-                        <FontAwesomeIcon icon={faSearch} />
-                      </InputGroup.Text>
-                    </InputGroup.Prepend>
-                    <FormControl
-                      className={styles['searchBoxInput']}
-                      placeholder="Search skills..."
-                      aria-describedby="basic-addon1"
-                      onChange={this.handleChange}
-                    />
-                  </InputGroup>
-                </div>
-                <div className={`${styles['rendered-skills']} ${styles['skills']}`}>
-                  {renderSearchedSkills && renderSearchedSkills.length
-                    ? this.renderSkills(renderSearchedSkills)
-                    : this.renderSkills(skills)}
-                </div>
+          <div className={styles['skills-container']}>
+            <div className={styles.filterSkills}>
+              <div className={styles.searchBox}>
+                <InputGroup className="mb-3">
+                  <InputGroup.Prepend>
+                    <InputGroup.Text id="basic-addon1">
+                      <FontAwesomeIcon icon={faSearch} />
+                    </InputGroup.Text>
+                  </InputGroup.Prepend>
+                  <FormControl
+                    className={styles.searchBoxInput}
+                    placeholder="Search skills..."
+                    aria-describedby="basic-addon1"
+                    onChange={this.handleChange}
+                  />
+                </InputGroup>
               </div>
+              <div className={`${styles['rendered-skills']} ${styles.skills}`}>
+                {renderSearchedSkills && renderSearchedSkills.length
+                  ? this.renderSkills(renderSearchedSkills)
+                  : this.renderSkills(skills)}
+              </div>
+            </div>
 
-              <div className={styles.addedSkills}>
-                <div className={styles.selected}>
-                  <div className={styles['selected-skills-title']}>
-                    Selected Skills
-                  </div>
-                  {addedSkills && addedSkills.length ? (
-                    <button
-                      type="button"
-                      className={styles['clear-button']}
-                      onClick={removeAllComponent}
-                    >
-                      <div className={styles['clear-all-text']}>Clear all</div>
-                      <div>
-                        {removeAllLoading ? (
+            <div className={styles.addedSkills}>
+              <div className={styles.selected}>
+                <div className={styles['selected-skills-title']}>
+                  Selected Skills
+                </div>
+                {addedSkills && addedSkills.length ? (
+                  <button
+                    type="button"
+                    className={styles['clear-button']}
+                    onClick={removeAllComponent}
+                  >
+                    <div className={styles['clear-all-text']}>Clear all</div>
+                    <div>
+                      {removeAllLoading ? (
+                        <div
+                          className="spinner-border text-primary"
+                          role="status"
+                        ></div>
+                      ) : (
+                        <Icon size="large" color="red" name="remove circle" />
+                      )}
+                    </div>
+                  </button>
+                ) : (
+                  <></>
+                )}
+              </div>
+              <div className={`${styles['added-skills']} ${styles.skills}`}>
+                {addedSkills &&
+                  addedSkills.map((skill) => (
+                    <div key={skill.slug}>
+                      {skill.name}
+                      <button
+                        type="button"
+                        className={styles['remove-button']}
+                        onClick={() => {
+                          removeSkillComponent(skill.slug)
+                        }}
+                      >
+                        {isSkillLoading && skillSlug === skill.slug ? (
                           <div
-                            class="spinner-border text-primary"
+                            className="spinner-border text-primary"
                             role="status"
                           ></div>
                         ) : (
-                            <Icon
-                              size="large"
-                              color="red"
-                              name="remove circle"
-                            />
-                          )}
-                      </div>
-                    </button>
-                  ) : (
-                      <></>
-                    )}
-                </div>
-                <div className={`${styles['added-skills']} ${styles['skills']}`}>
-                  {addedSkills &&
-                    addedSkills.map((skill) => (
-                      <div key={skill.slug}>
-                        {skill.name}
-                        <button
-                          type="button"
-                          className={styles['remove-button']}
-                          onClick={() => {
-                            removeSkillComponent(skill.slug)
-                          }}
-                        >
-                          {isSkillLoading && skillSlug === skill.slug ? (
-                            <div
-                              class="spinner-border text-primary"
-                              role="status"
-                            ></div>
-                          ) : (
-                              <Icon name="remove circle" />
-                            )}
-                        </button>
-                      </div>
-                    ))}
-                  {addedSkills && addedSkills.length === 0 ? (
-                    <div>No added skills</div>
-                  ) : (
-                      <></>
-                    )}
-                </div>
+                          <Icon name="remove circle" />
+                        )}
+                      </button>
+                    </div>
+                  ))}
+                {addedSkills && addedSkills.length === 0 ? (
+                  <div>No added skills</div>
+                ) : (
+                  <></>
+                )}
               </div>
             </div>
-          )}
+          </div>
+        )}
       </>
     )
   }
@@ -206,9 +205,6 @@ const mapActionToProps = (dispatch) => {
     },
     setAddedSkillsComponent: (studentSkills) => {
       return dispatch(setAddedSkills(studentSkills))
-    },
-    showSkillsComponent: () => {
-      return dispatch(showSkills())
     },
     addSkillComponent: (slug) => {
       return dispatch(addSkill(slug))

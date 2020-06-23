@@ -1,3 +1,5 @@
+/* eslint-disable consistent-return */
+/* eslint-disable react/forbid-prop-types */
 import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import CKEditor from '@ckeditor/ckeditor5-react'
@@ -5,11 +7,8 @@ import InlineEditor from '@ckeditor/ckeditor5-build-inline'
 
 import styles from './index.css'
 
-export function AchievementsComponent({
-  editStudentProfile,
-  achievements
-}) {
-  const [stateAchievements, setAchievements] = useState(achievements ? achievements : '')
+export function Achievements({ editStudentProfile, achievements }) {
+  const [stateAchievements, setAchievements] = useState(achievements || '')
   const [errAchievements, setErrAchievements] = useState('')
   const [successAchievements, setSuccessAchievements] = useState('')
   const [loading, setLoading] = useState(false)
@@ -25,8 +24,7 @@ export function AchievementsComponent({
     setLoading(false)
     if (status === 'success') {
       setSuccessAchievements('Achievements updated successfully!')
-    }
-    else {
+    } else {
       setErrAchievements('Achievements unable to update.')
     }
   }
@@ -36,25 +34,23 @@ export function AchievementsComponent({
       return setErrAchievements('Achievements can not be empty!')
     }
     setLoading(true)
-    editStudentProfile({ 'achievements': stateAchievements }, (status) => callback(status))
+    editStudentProfile({ achievements: stateAchievements }, (status) =>
+      callback(status),
+    )
   }
 
   return (
     <div className={styles['achievements-container']}>
-      {errAchievements ?
-        <div className={styles['error-display']}>
-          {errAchievements}
-        </div>
-        :
+      {errAchievements ? (
+        <div className={styles['error-display']}>{errAchievements}</div>
+      ) : (
         <></>
-      }
-      {successAchievements ?
-        <div className={styles['success-display']}>
-          {successAchievements}
-        </div>
-        :
+      )}
+      {successAchievements ? (
+        <div className={styles['success-display']}>{successAchievements}</div>
+      ) : (
         <></>
-      }
+      )}
       <div className={styles['editor-wrapper']}>
         <CKEditor
           editor={InlineEditor}
@@ -66,27 +62,25 @@ export function AchievementsComponent({
         />
       </div>
       <div className={styles['button-wrapper']}>
-        {loading ?
-          <div
-            className="spinner-border text-primary"
-            role="status"
-          ></div> :
+        {loading ? (
+          <div className="spinner-border text-primary" role="status"></div>
+        ) : (
           <button
             type="button"
             onClick={() => handleSave()}
             className={styles['save-button']}
           >
             Save
-        </button>
-        }
+          </button>
+        )}
       </div>
     </div>
   )
 }
 
-AchievementsComponent.propTypes = {
+Achievements.propTypes = {
   editStudentProfile: PropTypes.func,
-  achievements: PropTypes.object
+  achievements: PropTypes.object,
 }
 
-export default AchievementsComponent
+export default Achievements

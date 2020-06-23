@@ -5,7 +5,6 @@ import PropTypes from 'prop-types'
 import {
   faTable,
   faLightbulb,
-  faFile,
   faTrophy,
 } from '@fortawesome/free-solid-svg-icons'
 import SidebarMenu from 'coreContainers/sidebar-menu'
@@ -36,7 +35,7 @@ export function StudentProfile({
   history,
   editStudentProfileComponent,
   avatarUploadComponent,
-  profileImageLoading,
+  // profileImageLoading,
 }) {
   useEffect(() => {
     const { params } = match
@@ -151,7 +150,7 @@ StudentProfile.propTypes = {
   setCurrentTabComponent: PropTypes.func,
   editStudentProfileComponent: PropTypes.func,
   avatarUploadComponent: PropTypes.func,
-  profileImageLoading: PropTypes.bool,
+  // profileImageLoading: PropTypes.bool,
 }
 
 function mapDispatchToProps(dispatch) {

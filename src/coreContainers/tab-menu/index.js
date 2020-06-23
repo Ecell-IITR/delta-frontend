@@ -17,13 +17,13 @@ export default class TabMenu extends Component {
             style={
               currentTab === item.slug
                 ? {
-                  borderBottom: '2px solid #2964ee',
-                  color: '#2964ee',
-                  width: `${100 / tabItems.length}%`,
-                }
+                    borderBottom: '2px solid #2964ee',
+                    color: '#2964ee',
+                    width: `${100 / tabItems.length}%`,
+                  }
                 : {
-                  width: `${100 / tabItems.length}%`,
-                }
+                    width: `${100 / tabItems.length}%`,
+                  }
             }
             key={item.slug}
           >

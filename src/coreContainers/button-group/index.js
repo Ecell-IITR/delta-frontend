@@ -19,10 +19,10 @@ export default class ButtonGroup extends Component {
             style={
               currentButton === button.key
                 ? {
-                  background: '#2964ee',
-                  border: 'none',
-                  color: 'white',
-                }
+                    background: '#2964ee',
+                    border: 'none',
+                    color: 'white',
+                  }
                 : null
             }
             key={button.key}

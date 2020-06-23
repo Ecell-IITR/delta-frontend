@@ -1,15 +1,16 @@
+/* eslint-disable react/forbid-prop-types */
 import React from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import InternshipForm from 'coreContainers/forms/internship-form'
+import { notify } from 'react-notify-toast'
+import { NOTIF_SUCCESS_TYPE } from 'globalConstants'
 import {
   fetchLocations,
   fetchSkills,
   fetchTags,
   createPost,
 } from '../../../actions'
-import { notify } from 'react-notify-toast'
-import { NOTIF_SUCCESS_TYPE } from 'globalConstants'
 
 import styles from './index.css'
 
@@ -52,7 +53,7 @@ export function CreateInternshipComponent({
         fetchTags={fetchTagsComponent}
         onAction={createPostWrapper}
         publishButton
-        action={'create'}
+        action="create"
       />
     </div>
   )
@@ -68,6 +69,7 @@ CreateInternshipComponent.propTypes = {
   tags: PropTypes.array,
   tagsLoading: PropTypes.bool,
   fetchTagsComponent: PropTypes.func,
+  createPostComponent: PropTypes.func,
 }
 
 function mapDispatchToProps(dispatch) {

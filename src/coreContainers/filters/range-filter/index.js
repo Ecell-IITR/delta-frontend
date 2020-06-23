@@ -38,14 +38,14 @@ export class RangeFilter extends Component {
       kFormatterBool,
       partitionCount,
     } = this.props
-    let marks = []
+    const marks = []
     marks.push({
       value: minValue,
       label: kFormatterBool
         ? `${kFormatter(minValue)}`
         : `${minValue}${minValue === 0 ? '' : sliderLabel}`,
     })
-    for (let i = 0; i < partitionCount; i++) {
+    for (let i = 0; i < partitionCount; i += 1) {
       const calcValue = ((i + 1) * maxValue) / partitionCount
       marks.push({
         value: calcValue,
@@ -58,7 +58,7 @@ export class RangeFilter extends Component {
       <MuiThemeProvider theme={THEME}>
         <Slider
           value={value}
-          onChange={(e, value) => handleChange(value)}
+          onChange={(e, val) => handleChange(val)}
           valueLabelDisplay="auto"
           aria-labelledby="range-slider"
           getAriaValueText={this.valueText}
@@ -78,4 +78,5 @@ RangeFilter.propTypes = {
   value: PropTypes.string,
   kFormatterBool: PropTypes.bool,
   sliderLabel: PropTypes.string,
+  partitionCount: PropTypes.number,
 }

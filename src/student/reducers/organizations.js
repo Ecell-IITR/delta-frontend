@@ -1,4 +1,6 @@
+/* eslint-disable no-case-declarations */
 import { findIndex } from 'lodash'
+import { makeArrayCopy } from 'utils/makeArrayCopy'
 import {
   FETCH_ORGANIZATIONS_LIST_REQUEST,
   FETCH_ORGANIZATIONS_LIST_SUCCESS,
@@ -6,7 +8,6 @@ import {
   FOLLOW_UNFOLLOW_USER_FAILURE,
   FOLLOW_UNFOLLOW_USER_SUCCESS,
 } from '../constants'
-import { makeArrayCopy } from 'utils/makeArrayCopy'
 
 const initialState = {
   error: '',
@@ -41,16 +42,16 @@ const organizationsReducer = (state = initialState, action) => {
         error: action.payload,
       }
     case FOLLOW_UNFOLLOW_USER_SUCCESS:
-      let tempArr = makeArrayCopy(state.organizationsList)
+      const tempArr = makeArrayCopy(state.organizationsList)
       const i = findIndex(
         tempArr,
         (item) => item.person.username === action.payload.username,
       )
-      tempArr[i]['isFollow'] = action.payload.value
+      tempArr[i].isFollow = action.payload.value
       if (action.payload.value) {
-        tempArr[i]['followersCount'] += 1
+        tempArr[i].followersCount += 1
       } else {
-        tempArr[i]['followersCount'] -= 1
+        tempArr[i].followersCount -= 1
       }
       return {
         ...state,

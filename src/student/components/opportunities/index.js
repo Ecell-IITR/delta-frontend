@@ -1,3 +1,4 @@
+/* eslint-disable prefer-destructuring */
 /* eslint-disable react/forbid-prop-types */
 import React, { useEffect } from 'react'
 import { find } from 'lodash'
@@ -75,6 +76,12 @@ export function Opportunities({
     data.skill_slug = filtersApplied.skill_slug
     return data
   }
+
+  const durationUnitOptions = [
+    { value: 1, label: 'Day', maxValue: 30, minValue: 0, sliderLabel: 'd' },
+    { value: 2, label: 'Week', maxValue: 6, minValue: 0, sliderLabel: 'w' },
+    { value: 3, label: 'Month', maxValue: 6, minValue: 0, sliderLabel: 'm' },
+  ]
 
   useEffect(() => {
     const searchParams = new URLSearchParams(location.search)
@@ -155,12 +162,6 @@ export function Opportunities({
     currentTab,
     handleClick: setActiveTab,
   }
-
-  const durationUnitOptions = [
-    { value: 1, label: 'Day', maxValue: 30, minValue: 0, sliderLabel: 'd' },
-    { value: 2, label: 'Week', maxValue: 6, minValue: 0, sliderLabel: 'w' },
-    { value: 3, label: 'Month', maxValue: 6, minValue: 0, sliderLabel: 'm' },
-  ]
 
   const { opportunitiesList, isLoading } = opportunitiesObj
   const { durationUnit } = filtersApplied
@@ -338,6 +339,7 @@ Opportunities.propTypes = {
       duration: PropTypes.array,
     }),
   }),
+  filtersApplied: PropTypes.object,
   fetchStudentOpportunitiesComponent: PropTypes.func,
   fetchLocationsComponent: PropTypes.func,
   fetchSkillsComponent: PropTypes.func,

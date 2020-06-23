@@ -1,5 +1,4 @@
 import { notify } from 'react-notify-toast'
-import axios from 'axios'
 import { setToken, logout } from 'utils/tokenFunc'
 import {
   NOTIF_ERROR_TYPE,
@@ -42,7 +41,7 @@ export const loginAction = (data, callback) => {
           NOTIF_ERROR_TYPE,
           NOTIF_MID_RANGE_TIMEOUT,
         )
-        callback(err.response.status)
+        callback(error.response.status)
       })
   }
 }

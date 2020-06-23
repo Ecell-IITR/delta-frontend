@@ -14,7 +14,7 @@ import {
   SET_OPPORTUNITY_FILTER,
   FETCH_TAGS_FAILURE,
   FETCH_TAGS_REQUEST,
-  FETCH_TAGS_SUCCESS
+  FETCH_TAGS_SUCCESS,
 } from '../constants'
 
 export const fetchLocations = () => {
@@ -45,12 +45,7 @@ export const fetchLocations = () => {
 export const fetchTags = () => {
   return (dispatch) => {
     dispatch({ type: FETCH_TAGS_REQUEST })
-    FetchApi(
-      'GET',
-      '/api/v1/utilities/tags_list/',
-      null,
-      getToken(TOKEN_TYPE),
-    )
+    FetchApi('GET', '/api/v1/utilities/tags_list/', null, getToken(TOKEN_TYPE))
       .then((res) => {
         if (res.data) {
           dispatch({ type: FETCH_TAGS_SUCCESS, payload: res.data })

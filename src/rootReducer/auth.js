@@ -7,7 +7,7 @@ import {
   SET_USER_AUTH,
   OAUTH_LOGIN_FAILURE,
   OAUTH_LOGIN_SUCCESS,
-  OAUTH_LOGIN_REQUEST
+  OAUTH_LOGIN_REQUEST,
 } from '../auth/constants'
 
 const initialState = {

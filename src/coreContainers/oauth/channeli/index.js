@@ -1,7 +1,8 @@
 /* eslint-disable react/button-has-type */
 import React from 'react'
-import channeliLogo from '../../../images/channeli-logo.svg'
 import { addQueryParams } from 'utils/queryParams'
+
+import channeliLogo from '../../../images/channeli-logo.svg'
 
 import styles from './index.css'
 
@@ -12,7 +13,7 @@ export function ChanneliOauthButton() {
     })
   }
   return (
-    <a target="_blank" href={getChanneliLink()}>
+    <a target="_blank" rel="noopener noreferrer" href={getChanneliLink()}>
       <button type="button" className={styles['channeli-oauth-button']}>
         <span>Login with</span>
         <span>

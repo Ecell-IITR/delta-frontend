@@ -12,10 +12,14 @@ export default class EmptyScreen extends Component {
     const { text } = this.props
     return (
       <div className={styles['empty-screen-container']}>
-        <div className={styles['empty-screen-image']} style={{ backgroundImage: `url(${illustration})` }}></div>
+        <div
+          className={styles['empty-screen-image']}
+          style={{ backgroundImage: `url(${illustration})` }}
+        ></div>
         <div className={styles['empty-screen-text']}>
-          Oops... It's empty here.<br />
-          {text ? text : 'Try editing other filter options.'}
+          Oops... It&apos;s empty here.
+          <br />
+          {text || 'Try editing other filter options.'}
         </div>
       </div>
     )
@@ -23,5 +27,5 @@ export default class EmptyScreen extends Component {
 }
 
 EmptyScreen.propTypes = {
-  text: PropTypes.string
+  text: PropTypes.string,
 }

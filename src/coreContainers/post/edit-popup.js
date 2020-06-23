@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react'
+/* eslint-disable react/forbid-prop-types */
+import React from 'react'
 import PropTypes from 'prop-types'
 import Popup from 'reactjs-popup'
 import { faTimesCircle } from '@fortawesome/free-solid-svg-icons'
@@ -6,8 +7,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import InternshipFormComponent from 'coreContainers/forms/internship-form'
 import {
   INTERNSHIP_POST_TYPE_KEY,
-  COMPETITION_POST_TYPE_KEY,
-  PROJECT_POST_TYPE_KEY,
+  // COMPETITION_POST_TYPE_KEY,
+  // PROJECT_POST_TYPE_KEY,
 } from '../../student/constants'
 
 import styles from './edit-popup.css'

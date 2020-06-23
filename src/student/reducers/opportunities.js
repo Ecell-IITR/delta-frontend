@@ -1,5 +1,6 @@
 /* eslint-disable no-param-reassign */
 import { findIndex } from 'lodash'
+import { makeArrayCopy } from 'utils/makeArrayCopy'
 import {
   FETCH_USER_OPPORTUNITIES_FAILURE,
   FETCH_USER_OPPORTUNITIES_REQUEST,
@@ -11,7 +12,6 @@ import {
   APPLY_POST_SUCCESS,
   APPLY_POST_REQUEST,
 } from '../constants'
-import { makeArrayCopy } from 'utils/makeArrayCopy'
 
 const initialState = {
   isLoading: true,
@@ -23,7 +23,7 @@ const initialState = {
 }
 
 export const modifyPostWithSlug = (postList, payload, key) => {
-  let tempArr = makeArrayCopy(postList)
+  const tempArr = makeArrayCopy(postList)
   const i = findIndex(tempArr, (item) => item.slug === payload.slug)
   tempArr[i][key] = payload.value
   return tempArr

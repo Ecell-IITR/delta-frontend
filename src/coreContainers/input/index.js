@@ -32,4 +32,5 @@ InputField.propTypes = {
   name: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
   customClassName: PropTypes.string,
+  label: PropTypes.string,
 }

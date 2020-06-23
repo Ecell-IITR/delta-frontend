@@ -16,7 +16,7 @@ import {
   faClock,
   faCheckCircle,
   faTrash,
-  faMarker,
+  // faMarker,
   faMapMarker,
 } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -24,13 +24,13 @@ import { STUDENT_ROLE, COMPANY_ROLE } from 'globalConstants'
 import { getImageURL } from 'utils/getImageURL'
 import { getTimeLeft } from 'utils/getTimeLeft'
 import { kFormatter } from 'utils/numberFormatter'
+import Popup from 'reactjs-popup'
 import {
   INTERNSHIP_POST_TYPE_KEY,
   // COMPETITION_POST_TYPE_KEY,
   // PROJECT_POST_TYPE_KEY,
 } from '../../student/constants'
-import Popup from 'reactjs-popup'
-import EditPostModal from './edit-popup'
+import EditPost from './edit-popup'
 import { fetchLocations, fetchSkills, fetchTags } from '../../student/actions'
 
 import styles from './index.css'
@@ -125,24 +125,26 @@ class PostComponent extends Component {
                   <span>{opportunity.location.name}</span>
                 </div>
               ) : (
-                  <></>
-                )}
+                <></>
+              )}
               {opportunity.durationValue ? (
                 <div>
                   <FontAwesomeIcon icon={faCalendar} />
                   <span>
                     {`${opportunity.durationValue} day${
                       opportunity.durationValue > 1 ? 's' : ''
-                      }`}
+                    }`}
                   </span>
                 </div>
               ) : (
-                  <></>
-                )}
+                <></>
+              )}
               <div>
                 <FontAwesomeIcon icon={faClock} />
                 <span>
-                  {new Date(opportunity.postExpiryDate) < Date.now() ? 'Expired' : `${getTimeLeft(opportunity.postExpiryDate)} left`}
+                  {new Date(opportunity.postExpiryDate) < Date.now()
+                    ? 'Expired'
+                    : `${getTimeLeft(opportunity.postExpiryDate)} left`}
                 </span>
               </div>
             </div>
@@ -172,8 +174,8 @@ class PostComponent extends Component {
                 ></div>
               </div>
             ) : (
-                <></>
-              )}
+              <></>
+            )}
             {requiredSkills && requiredSkills.length > 0 ? (
               <div className={styles['skill-required']}>
                 <div className={styles['skill-required-header']}>
@@ -186,22 +188,22 @@ class PostComponent extends Component {
                 </div>
               </div>
             ) : (
-                <></>
-              )}
+              <></>
+            )}
             {tags && tags.length > 0 ? (
               <div className={styles['skill-required']}>
                 <div className={styles['skill-required-header']}>Tags</div>
                 <div className={styles['tags-body']}>
                   {tags.map((tag) => (
-                    <div className={styles['tag']} key={tag.hash}>
+                    <div className={styles.tag} key={tag.hash}>
                       {tag.title}
                     </div>
                   ))}
                 </div>
               </div>
             ) : (
-                <></>
-              )}
+              <></>
+            )}
           </div>
         )
       default:
@@ -227,7 +229,7 @@ class PostComponent extends Component {
       fetchLocationsComponent,
       fetchTagsComponent,
       tags,
-      tagsLoading
+      tagsLoading,
     } = this.props
     const ownUser = opportunity.userMinProfile.person.username === username
 
@@ -247,7 +249,7 @@ class PostComponent extends Component {
               </Accordion.Collapse>
               <div className={styles['post-lower-section']}>
                 {ownUser ? (
-                  <EditPostModal
+                  <EditPost
                     triggerElement={
                       <button
                         className={styles['edit-repost-button']}
@@ -269,43 +271,43 @@ class PostComponent extends Component {
                     tagsLoading={tagsLoading}
                   />
                 ) : (
-                    <>
-                      {isAppliedLoading &&
-                        appliedLoadingSlug === opportunity.slug ? (
-                          <div
-                            className="spinner-border text-primary"
-                            role="status"
-                          ></div>
-                        ) : (
-                          <>
-                            {opportunity.isApplied ? (
-                              <button
-                                className={styles['applied-button']}
-                                type="button"
-                              >
-                                <FontAwesomeIcon icon={faCheckCircle} />
-                                <span className={styles['button-text']}>
-                                  Applied
+                  <>
+                    {isAppliedLoading &&
+                    appliedLoadingSlug === opportunity.slug ? (
+                      <div
+                        className="spinner-border text-primary"
+                        role="status"
+                      ></div>
+                    ) : (
+                      <>
+                        {opportunity.isApplied ? (
+                          <button
+                            className={styles['applied-button']}
+                            type="button"
+                          >
+                            <FontAwesomeIcon icon={faCheckCircle} />
+                            <span className={styles['button-text']}>
+                              Applied
                             </span>
-                              </button>
-                            ) : (
-                                <button
-                                  className={styles['apply-now-button']}
-                                  type="button"
-                                  onClick={() =>
-                                    applyPost(
-                                      opportunity.slug,
-                                      !opportunity.isApplied,
-                                    )
-                                  }
-                                >
-                                  Apply Now
-                                </button>
-                              )}
-                          </>
+                          </button>
+                        ) : (
+                          <button
+                            className={styles['apply-now-button']}
+                            type="button"
+                            onClick={() =>
+                              applyPost(
+                                opportunity.slug,
+                                !opportunity.isApplied,
+                              )
+                            }
+                          >
+                            Apply Now
+                          </button>
                         )}
-                    </>
-                  )}
+                      </>
+                    )}
+                  </>
+                )}
 
                 <div className={styles['bookmark-view-wrapper']}>
                   <CustomToggle eventKey="1" />
@@ -326,6 +328,7 @@ class PostComponent extends Component {
                           </div>
                           <div className={styles['modal-button-wrapper']}>
                             <button
+                              type="button"
                               className={styles['negative-button']}
                               onClick={close}
                             >
@@ -346,18 +349,18 @@ class PostComponent extends Component {
                       )}
                     </Popup>
                   ) : (
-                      <FontAwesomeIcon
-                        icon={faBookmark}
-                        className={
-                          opportunity.isBookmark
-                            ? styles['active-bookmark-button']
-                            : styles['bookmark-button']
-                        }
-                        onClick={() =>
-                          bookmarkPost(opportunity.slug, !opportunity.isBookmark)
-                        }
-                      />
-                    )}
+                    <FontAwesomeIcon
+                      icon={faBookmark}
+                      className={
+                        opportunity.isBookmark
+                          ? styles['active-bookmark-button']
+                          : styles['bookmark-button']
+                      }
+                      onClick={() =>
+                        bookmarkPost(opportunity.slug, !opportunity.isBookmark)
+                      }
+                    />
+                  )}
                 </div>
               </div>
             </Card>
@@ -366,6 +369,10 @@ class PostComponent extends Component {
       </div>
     )
   }
+}
+
+CustomToggle.propTypes = {
+  eventKey: PropTypes.number,
 }
 
 PostComponent.propTypes = {
@@ -385,7 +392,7 @@ PostComponent.propTypes = {
   skills: PropTypes.array,
   tags: PropTypes.array,
   tagsLoading: PropTypes.bool,
-  fetchTagsComponent: PropTypes.func
+  fetchTagsComponent: PropTypes.func,
 }
 
 function mapDispatchToProps(dispatch) {
@@ -398,7 +405,7 @@ function mapDispatchToProps(dispatch) {
     },
     fetchTagsComponent: () => {
       return dispatch(fetchTags())
-    }
+    },
   }
 }
 

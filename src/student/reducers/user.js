@@ -11,7 +11,7 @@ const initialState = {
   isLoading: true,
   errors: '',
   user: {},
-  profileImageLoading: false
+  profileImageLoading: false,
 }
 
 const user = (state = initialState, action) => {
@@ -19,13 +19,13 @@ const user = (state = initialState, action) => {
     case UPLOAD_USER_IMAGE_REQUEST:
       return {
         ...state,
-        profileImageLoading: true
+        profileImageLoading: true,
       }
     case UPLOAD_USER_IMAGE_SUCCESS:
       return {
         ...state,
         profileImageLoading: false,
-        user: action.payload
+        user: action.payload,
       }
     case UPLOAD_USER_IMAGE_FAILURE:
       return {

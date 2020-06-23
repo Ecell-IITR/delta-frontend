@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { TOKEN_TYPE } from 'globalConstants'
-import logo from '../../images/logo.svg'
+// import logo from '../../images/logo.svg'
 // import Searchbar from '../searchbar/index'
 
 import styles from './navbar.css'
@@ -46,8 +46,8 @@ class Navbar extends React.PureComponent {
               {user && user.username ? (
                 <Link to={`/user/${user.username}`}>Profile</Link>
               ) : (
-                  <></>
-                )}
+                <></>
+              )}
             </li>
             <li
               className={
@@ -80,8 +80,8 @@ class Navbar extends React.PureComponent {
         </div>
       </div>
     ) : (
-        <></>
-      )
+      <></>
+    )
   }
 }
 

@@ -5,18 +5,18 @@ import { connect } from 'react-redux'
 import TabMenu from 'coreContainers/tab-menu'
 import ButtonGroup from 'coreContainers/button-group'
 import Post from 'coreContainers/post'
-import { fetchStudentPost, deleteStudentPost, editPost, fetchLocations, fetchSkills } from '../../../actions'
+import EmptyScreen from 'coreContainers/empty-screen'
+import PostLoading from 'coreContainers/post/loading'
+import { fetchStudentPost, deleteStudentPost, editPost } from '../../../actions'
 import {
   INTERNSHIP_POST_TYPE_KEY,
   COMPETITION_POST_TYPE_KEY,
   PROJECT_POST_TYPE_KEY,
 } from '../../../constants'
-import EmptyScreen from 'coreContainers/empty-screen'
-import PostLoading from 'coreContainers/post/loading'
 
 import styles from './index.css'
 
-export function PostComponent({
+export function PostContainer({
   fetchStudentPostComponent,
   postList,
   postListLoading,
@@ -36,10 +36,10 @@ export function PostComponent({
         Object.assign(filterObj, { my_post: true })
         break
       case 'unpublished-post':
-        Object.assign(filterObj, { unpublished_post: true })
+        Object.assign(filterObj, { unpublished_my_post: true })
         break
       case 'expired-post':
-        Object.assign(filterObj, { expired_post: true })
+        Object.assign(filterObj, { expired_my_post: true })
         break
       default:
         break
@@ -80,33 +80,33 @@ export function PostComponent({
         {postListLoading ? (
           <PostLoading count={2} />
         ) : (
-            <>
-              {postList && postList.length === 0 ? (
-                <EmptyScreen />
-              ) : (
-                  <>
-                    <div>
-                      {postList &&
-                        postList.map((post) => (
-                          <Post
-                            key={post.slug}
-                            opportunity={post}
-                            username={user.username}
-                            deletePost={deleteStudentPostComponent}
-                            editPostComponent={editPostComponent}
-                          />
-                        ))}
-                    </div>
-                  </>
-                )}
-            </>
-          )}
+          <>
+            {postList && postList.length === 0 ? (
+              <EmptyScreen />
+            ) : (
+              <>
+                <div>
+                  {postList &&
+                    postList.map((post) => (
+                      <Post
+                        key={post.slug}
+                        opportunity={post}
+                        username={user.username}
+                        deletePost={deleteStudentPostComponent}
+                        editPostComponent={editPostComponent}
+                      />
+                    ))}
+                </div>
+              </>
+            )}
+          </>
+        )}
       </div>
     </div>
   )
 }
 
-PostComponent.propTypes = {
+PostContainer.propTypes = {
   fetchStudentPostComponent: PropTypes.func,
   postList: PropTypes.array,
   postListLoading: PropTypes.bool,
@@ -137,4 +137,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(PostComponent)
+export default connect(mapStateToProps, mapDispatchToProps)(PostContainer)

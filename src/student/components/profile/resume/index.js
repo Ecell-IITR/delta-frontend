@@ -1,10 +1,12 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
+/* eslint-disable react/forbid-prop-types */
 // eslint-disable-next-line react/prop-types
 import React, { Component } from 'react'
 // import Loadable from 'react-loadable'
-import UploadResume from './uploadResume'
 import { connect } from 'react-redux'
-import styles from './index.css'
 import PropTypes from 'prop-types'
+import UploadResume from './uploadResume'
+import styles from './index.css'
 
 // const UploadResume = Loadable({
 //   loader: () => import('./uploadResume'),
@@ -29,6 +31,7 @@ class Resume extends Component {
         <div className={styles.content}>
           {studentProfile.resume ? (
             <iframe
+              title="resume"
               src={`http://localhost:8000${studentProfile.resume}`}
               width="100%"
               height="100%"
@@ -37,20 +40,20 @@ class Resume extends Component {
         </div>
         {studentProfile.resume ? (
           <div className={styles.optionsBar}>
-            <div class={styles.viewResume}>
+            <div className={styles.viewResume}>
               <a
                 href={`http://localhost:8000${studentProfile.resume}`}
-                class={styles.viewButton}
+                className={styles.viewButton}
                 target="__blank"
               >
                 View Resume
               </a>
             </div>
-            <div class={styles.viewResume}>
-              <a href="" class={styles.viewButton} target="__blank">
+            <div className={styles.viewResume}>
+              <a href="#" className={styles.viewButton} target="__blank">
                 Update Resume
               </a>
-              {/*<UploadResume />*/}
+              {/* <UploadResume /> */}
             </div>
           </div>
         ) : (
@@ -63,7 +66,7 @@ class Resume extends Component {
 
 Resume.propTypes = {
   studentProfile: PropTypes.object,
-  file: PropTypes.string,
+  // file: PropTypes.string,
 }
 
 function mapStateToProps(state) {

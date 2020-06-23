@@ -1,10 +1,10 @@
 export const makeArrayCopy = (originalArr) => {
-  let copyArr = []
-  for (let i = 0, len = originalArr.length; i < len; i++) {
+  const copyArr = []
+  for (let i = 0, len = originalArr.length; i < len; i += 1) {
     copyArr[i] = {}
-    for (let prop in originalArr[i]) {
-      copyArr[i][prop] = originalArr[i][prop]
-    }
+    Object.keys(originalArr[i]).forEach((key) => {
+      copyArr[i][key] = originalArr[i][key]
+    })
   }
   return copyArr
 }

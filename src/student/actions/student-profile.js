@@ -23,7 +23,7 @@ import {
   EDIT_USER_PROFILE_FAILURE,
   UPLOAD_USER_IMAGE_FAILURE,
   UPLOAD_USER_IMAGE_REQUEST,
-  UPLOAD_USER_IMAGE_SUCCESS
+  UPLOAD_USER_IMAGE_SUCCESS,
 } from '../constants'
 
 export const fetchStudentProfile = (profileType) => {
@@ -83,7 +83,6 @@ export const avatarUpload = (image, callback) => {
             type: UPLOAD_USER_IMAGE_SUCCESS,
             payload: res.data,
           })
-
         }
         callback(res.status)
       })
@@ -96,11 +95,9 @@ export const avatarUpload = (image, callback) => {
         })
         if (error.response) {
           callback(error.response.status)
-        }
-        else {
+        } else {
           callback('error')
         }
-
       })
   }
 }
@@ -135,7 +132,7 @@ export const deleteStudentPost = (postSlug) => {
   return (dispatch) => {
     const deletePostURL = '/api/v1/post/' + postSlug
     FetchApi('DELETE', deletePostURL, '', getToken(TOKEN_TYPE))
-      .then((res) => {
+      .then(() => {
         dispatch({
           type: DELETE_POST_SUCCESS,
           payload: postSlug,

@@ -1,10 +1,11 @@
+/* eslint-disable react/forbid-prop-types */
 import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
-import { fetchOrganizationsList, followUnfollowUser } from '../../actions'
 import TabMenu from 'coreContainers/tab-menu'
 import EmptyScreen from 'coreContainers/empty-screen'
-import OrganizationLoading from './loading'
+import OrganizationLoadingComponent from './loading'
+import { fetchOrganizationsList, followUnfollowUser } from '../../actions'
 
 import styles from './index.css'
 
@@ -35,7 +36,7 @@ export function OrganizationList({
       </div>
       <div className={styles['organization-main']}>
         {organizationsListLoading ? (
-          <OrganizationLoading count={4} />
+          <OrganizationLoadingComponent count={4} />
         ) : (
           <>
             {organizations && organizations.length === 0 ? (
@@ -44,7 +45,10 @@ export function OrganizationList({
               <div className={styles['organization-cards-container']}>
                 {organizations &&
                   organizations.map((organization) => (
-                    <div className={styles['organization-card']}>
+                    <div
+                      key={organization.id}
+                      className={styles['organization-card']}
+                    >
                       <div className={styles['card-info']}>
                         <div
                           className={styles['card-profile-image']}

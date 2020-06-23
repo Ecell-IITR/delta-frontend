@@ -47,12 +47,12 @@ export const followUnfollowUser = (username, value) => {
       null,
       getToken(TOKEN_TYPE),
     )
-      .then((res) => {
+      .then(() => {
         dispatch({
           type: FOLLOW_UNFOLLOW_USER_SUCCESS,
           payload: {
             username,
-            value: value === 1 ? true : false,
+            value: value === 1,
           },
         })
       })
