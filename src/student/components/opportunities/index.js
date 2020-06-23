@@ -11,6 +11,9 @@ import {
   faBuilding,
   faCheckCircle,
 } from '@fortawesome/free-solid-svg-icons'
+import ButtonGroup from 'coreContainers/button-group'
+import EmptyScreen from 'coreContainers/empty-screen'
+import PostLoadingComponent from 'coreContainers/post/loading'
 import {
   INTERNSHIP_POST_TYPE_KEY,
   COMPETITION_POST_TYPE_KEY,
@@ -26,9 +29,6 @@ import {
   bookmarkPost,
 } from '../../actions'
 import OrganizationListComponent from '../organisation'
-import ButtonGroup from 'coreContainers/button-group'
-import EmptyScreen from 'coreContainers/empty-screen'
-import PostLoadingComponent from 'coreContainers/post/loading'
 
 import styles from './index.css'
 
@@ -54,25 +54,25 @@ export function Opportunities({
 }) {
   const getFilterObject = (tabValue = '') => {
     const data = {}
-    data['post_type'] = filtersApplied.postType
-    const tab = tabValue ? tabValue : currentTab
+    data.post_type = filtersApplied.postType
+    const tab = tabValue || currentTab
     if (tab === 'applied-posts') {
-      data['applied_posts'] = true
+      data.applied_posts = true
     }
     if (tab === 'bookmarks') {
-      data['bookmark'] = true
+      data.bookmark = true
     }
-    if (filtersApplied['duration']) {
-      data['duration_value_ll'] = filtersApplied.duration[0]
-      data['duration_value_ul'] = filtersApplied.duration[1]
+    if (filtersApplied.duration) {
+      data.duration_value_ll = filtersApplied.duration[0]
+      data.duration_value_ul = filtersApplied.duration[1]
     }
-    if (filtersApplied['stipend']) {
-      data['stipend_ll'] = filtersApplied.stipend[0]
-      data['stipend_ul'] = filtersApplied.stipend[1]
+    if (filtersApplied.stipend) {
+      data.stipend_ll = filtersApplied.stipend[0]
+      data.stipend_ul = filtersApplied.stipend[1]
     }
-    data['duration_unit'] = filtersApplied.durationUnit
-    data['location'] = filtersApplied.location
-    data['skill_slug'] = filtersApplied.skill_slug
+    data.duration_unit = filtersApplied.durationUnit
+    data.location = filtersApplied.location
+    data.skill_slug = filtersApplied.skill_slug
     return data
   }
 
@@ -92,7 +92,7 @@ export function Opportunities({
   const handleFilterChange = (filterKey, value) => {
     const data = {}
     if (filterKey === 'skill_slug') {
-      let tempArr = []
+      const tempArr = []
       if (value) {
         value.forEach((obj) => tempArr.push(obj.value))
         data[filterKey] = tempArr
@@ -100,7 +100,7 @@ export function Opportunities({
         data[filterKey] = []
       }
     } else if (filterKey === 'durationUnit') {
-      data['duration'] = [
+      data.duration = [
         durationUnitOptions[value - 1].minValue,
         durationUnitOptions[value - 1].maxValue,
       ]
@@ -224,7 +224,9 @@ export function Opportunities({
                       }
                     >
                       {durationUnitOptions.map((option) => (
-                        <option value={option.value}>{option.label}</option>
+                        <option key={option.value} value={option.value}>
+                          {option.label}
+                        </option>
                       ))}
                     </select>
                   </div>

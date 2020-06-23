@@ -11,6 +11,7 @@ import {
   APPLY_POST_SUCCESS,
   APPLY_POST_REQUEST,
 } from '../constants'
+import { makeArrayCopy } from 'utils/makeArrayCopy'
 
 const initialState = {
   isLoading: true,
@@ -22,7 +23,7 @@ const initialState = {
 }
 
 export const modifyPostWithSlug = (postList, payload, key) => {
-  let tempArr = postList.slice(0)
+  let tempArr = makeArrayCopy(postList)
   const i = findIndex(tempArr, (item) => item.slug === payload.slug)
   tempArr[i][key] = payload.value
   return tempArr

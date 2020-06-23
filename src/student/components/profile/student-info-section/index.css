@@ -142,6 +142,16 @@
   color: red;
 }
 
+.field-count {
+  padding: 0 6px 0 0;
+  font-family: Neutrifpro-semibold;
+  font-size: 1.2rem;
+}
+
+.follow-info-wrapper {
+  display: flex;
+}
+
 .field-text {
   font-family: Neutrifpro-regular;
   font-size: 1.2rem;
@@ -150,11 +160,9 @@
   font-style: normal;
   line-height: normal;
   letter-spacing: 0.71px;
-  color: #434660;
+  color: #919191;
 }
 
-.field-count {
-  padding: 0 12px;
-  font-family: Neutrifpro-semibold;
-  font-size: 1.2rem;
+.between-gap {
+  margin: 0.5rem;
 }

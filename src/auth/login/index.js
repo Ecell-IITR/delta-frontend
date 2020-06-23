@@ -6,8 +6,8 @@ import { notify } from 'react-notify-toast'
 import { NOTIF_SUCCESS_TYPE, NOTIF_ERROR_TYPE } from 'globalConstants'
 import validateInput from 'utils/validation'
 import { Input, Button } from 'coreContainers'
-import { loginAction } from '../actions'
 import ChanneliOauthButton from 'coreContainers/oauth/channeli'
+import { loginAction } from '../actions'
 
 import styles from './style.css'
 
@@ -101,16 +101,16 @@ class LoginIndex extends Component {
                 value={password}
                 onChange={this.handleChange}
               />
-              <div className={styles.forgotPassword}>
+              {/* <div className={styles.forgotPassword}>
                 <Link to="#">Forgot Password?</Link>
-              </div>
+              </div> */}
               <Button
                 type="submit"
                 buttonContent="Log in"
                 customClassName={styles.loginSubmit}
               />
             </form>
-            <div className={styles.loginOption}>
+            {/* <div className={styles.loginOption}>
               <div className={styles.notMember}>
                 <Link to="#">If you are not a member</Link>
               </div>
@@ -119,7 +119,7 @@ class LoginIndex extends Component {
                 buttonContent="Sign up"
                 onClick={this.handleClick}
               />
-            </div>
+            </div> */}
           </div>
         </div>
         <div className={styles.loginPageImageSection}></div>

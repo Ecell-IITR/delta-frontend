@@ -9,7 +9,12 @@ import {
   faTrophy,
 } from '@fortawesome/free-solid-svg-icons'
 import SidebarMenu from 'coreContainers/sidebar-menu'
-import { fetchStudentProfile, setCurrentTab, editStudentProfile, avatarUpload } from '../../actions'
+import {
+  fetchStudentProfile,
+  setCurrentTab,
+  editStudentProfile,
+  avatarUpload,
+} from '../../actions'
 import { SELF_PROFILE, PUBLIC_PROFILE } from '../../constants'
 import StudentInfoSection from './student-info-section'
 import PostComponent from './posts'
@@ -31,15 +36,14 @@ export function StudentProfile({
   history,
   editStudentProfileComponent,
   avatarUploadComponent,
-  profileImageLoading
+  profileImageLoading,
 }) {
   useEffect(() => {
     const { params } = match
     const searchParams = new URLSearchParams(location.search)
     if (searchParams && searchParams.get('tab')) {
       setCurrentTabComponent(searchParams.get('tab'))
-      if (Object.keys(user).length > 0 && user.username && Object.keys(studentProfile).length === 0) {
-        console.log('here')
+      if (Object.keys(user).length > 0 && user.username) {
         fetchStudentProfileComponent(
           user.username === params.username ? SELF_PROFILE : PUBLIC_PROFILE,
         )
@@ -75,61 +79,59 @@ export function StudentProfile({
       {studentProfileLoading ? (
         <StudentInfoLoading />
       ) : (
-          <>
-            {studentProfile ? (
-              <div className={styles.info}>
-                <StudentInfoSection
-                  user={user}
-                  studentProfile={studentProfile}
-                  editStudentProfile={editStudentProfileComponent}
-                  avatarUploadFunc={avatarUploadComponent}
-                />
-              </div>
-            ) : (
-                <></>
-              )}
-          </>
-        )}
+        <>
+          {studentProfile ? (
+            <div className={styles.info}>
+              <StudentInfoSection
+                user={user}
+                studentProfile={studentProfile}
+                editStudentProfile={editStudentProfileComponent}
+                avatarUploadFunc={avatarUploadComponent}
+              />
+            </div>
+          ) : (
+            <></>
+          )}
+        </>
+      )}
       <div className={styles['main-container']}>
         <div className={styles.sidebar}>
           <SidebarMenu {...sidebarProps} />
         </div>
         <div className={styles.contentBox}>
           {currentTab === 'post' ? <PostComponent /> : <></>}
-          {currentTab === 'skills' ?
+          {currentTab === 'skills' ? (
             <>
-              {studentProfileLoading ?
-                <div>Loading......</div> :
-                <>
-                  {studentProfile ?
-                    <SkillsComponent /> :
-                    <></>
-                  }
-                </>
-              }
+              {studentProfileLoading ? (
+                <div>Loading......</div>
+              ) : (
+                <>{studentProfile ? <SkillsComponent /> : <></>}</>
+              )}
             </>
-            :
+          ) : (
             <></>
-          }
+          )}
           {currentTab === 'resume' ? <ResumeComponent /> : <></>}
-          {currentTab === 'achievements' ?
+          {currentTab === 'achievements' ? (
             <>
-              {studentProfileLoading ?
-                <div>Loading......</div> :
+              {studentProfileLoading ? (
+                <div>Loading......</div>
+              ) : (
                 <>
-                  {studentProfile ?
+                  {studentProfile ? (
                     <AchievementsComponent
                       editStudentProfile={editStudentProfileComponent}
                       achievements={studentProfile.achievements}
-                    /> :
+                    />
+                  ) : (
                     <></>
-                  }
+                  )}
                 </>
-              }
+              )}
             </>
-            :
+          ) : (
             <></>
-          }
+          )}
         </div>
       </div>
     </>
@@ -149,7 +151,7 @@ StudentProfile.propTypes = {
   setCurrentTabComponent: PropTypes.func,
   editStudentProfileComponent: PropTypes.func,
   avatarUploadComponent: PropTypes.func,
-  profileImageLoading: PropTypes.bool
+  profileImageLoading: PropTypes.bool,
 }
 
 function mapDispatchToProps(dispatch) {
@@ -160,12 +162,12 @@ function mapDispatchToProps(dispatch) {
     setCurrentTabComponent: (value) => {
       dispatch(setCurrentTab(value))
     },
-    editStudentProfileComponent: (body, callback = () => { }) => {
+    editStudentProfileComponent: (body, callback = () => {}) => {
       dispatch(editStudentProfile(body, callback))
     },
     avatarUploadComponent: (image, callback) => {
       dispatch(avatarUpload(image, callback))
-    }
+    },
   }
 }
 

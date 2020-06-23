@@ -6,6 +6,7 @@ import {
   FOLLOW_UNFOLLOW_USER_FAILURE,
   FOLLOW_UNFOLLOW_USER_SUCCESS,
 } from '../constants'
+import { makeArrayCopy } from 'utils/makeArrayCopy'
 
 const initialState = {
   error: '',
@@ -40,7 +41,7 @@ const organizationsReducer = (state = initialState, action) => {
         error: action.payload,
       }
     case FOLLOW_UNFOLLOW_USER_SUCCESS:
-      let tempArr = state.organizationsList.slice(0)
+      let tempArr = makeArrayCopy(state.organizationsList)
       const i = findIndex(
         tempArr,
         (item) => item.person.username === action.payload.username,

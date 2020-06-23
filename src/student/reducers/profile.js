@@ -15,6 +15,7 @@ import {
   EDIT_USER_PROFILE_REQUEST,
   EDIT_USER_PROFILE_SUCCESS,
 } from '../constants'
+import { makeArrayCopy } from 'utils/makeArrayCopy'
 
 const initialState = {
   isLoading: true,
@@ -29,14 +30,14 @@ const initialState = {
 }
 
 const deletePostFromList = (postList, postSlug) => {
-  let tempArr = postList.slice(0)
+  let tempArr = makeArrayCopy(postList)
   const i = findIndex(tempArr, (item) => item.slug === postSlug)
   tempArr.splice(i, 1)
   return tempArr
 }
 
 const modifyPostListWithSlug = (postList, payload) => {
-  let tempArr = postList.slice(0)
+  let tempArr = makeArrayCopy(postList)
   const i = findIndex(tempArr, (item) => item.slug === payload.slug)
   tempArr[i] = payload.value
   return tempArr

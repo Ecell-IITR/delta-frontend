@@ -1,3 +1,4 @@
+/* eslint-disable react/forbid-prop-types */
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
@@ -6,8 +7,9 @@ import {
   faTrophy,
   faBriefcase,
 } from '@fortawesome/free-solid-svg-icons'
-import { setCreatePostTab } from '../../actions'
 import SidebarMenu from 'coreContainers/sidebar-menu'
+import EmptyScreen from 'coreContainers/empty-screen'
+import { setCreatePostTab } from '../../actions'
 import InternshipComponent from './internship'
 import ProjectComponent from './project'
 import CompetitionComponent from './competition'
@@ -41,7 +43,7 @@ export class CreatePost extends Component {
         { slug: 'project', title: 'Project', icon: faLightbulb },
         { slug: 'competition', title: 'Competition', icon: faTrophy },
       ],
-      currentTab: currentTab,
+      currentTab,
       handleClick: this.setActiveTab,
     }
     return (
@@ -51,8 +53,16 @@ export class CreatePost extends Component {
         </div>
         <div className={styles.contentBox}>
           {currentTab === 'internship' ? <InternshipComponent /> : <></>}
-          {currentTab === 'project' ? <ProjectComponent /> : <></>}
-          {currentTab === 'competition' ? <CompetitionComponent /> : <></>}
+          {currentTab === 'project' ? (
+            <EmptyScreen text="Project form is under development!" />
+          ) : (
+            <></>
+          )}
+          {currentTab === 'competition' ? (
+            <EmptyScreen text="Competition form is under development!" />
+          ) : (
+            <></>
+          )}
         </div>
       </div>
     )
@@ -60,8 +70,10 @@ export class CreatePost extends Component {
 }
 
 CreatePost.propTypes = {
-  match: PropTypes.object,
-  setCreatePostComponent: PropTypes.func,
+  setCreatePostTabComponent: PropTypes.func,
+  currentTab: PropTypes.string,
+  location: PropTypes.object,
+  history: PropTypes.object,
 }
 
 function mapDispatchToProps(dispatch) {
