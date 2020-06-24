@@ -5,9 +5,8 @@ import rootReducer from '../rootReducer'
 
 const initialState = {}
 let middleware = [thunk]
-console.log(process.env.NODE_ENV, process.env, 'tushar')
+
 if (process.env.NODE_ENV !== 'production') {
-  console.log('I am here')
   const logger = createLogger()
   middleware = [...middleware, logger]
 }
