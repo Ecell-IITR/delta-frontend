@@ -1,4 +1,4 @@
-FROM node:9.11
+FROM node:stretch-slim
 
 LABEL maintainer="E-cell"
 
