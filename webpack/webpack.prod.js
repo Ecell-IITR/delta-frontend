@@ -76,6 +76,10 @@ module.exports = {
       filename: `${commonPaths.cssFolder}/[name].css`,
       chunkFilename: `${commonPaths.cssFolder}/[name].css`,
     }),
+    new webpack.EnvironmentPlugin([
+      'REACT_APP_DELTA_CLIENT_ID',
+      'REACT_APP_DELTA_CLIENT_SECRET'
+    ]),
     new webpack.DefinePlugin({
       'process.env': {
         'REACT_APP_DELTA_CLIENT_ID': JSON.stringify(process.env.REACT_APP_DELTA_CLIENT_ID),
