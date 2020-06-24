@@ -1,7 +1,9 @@
+require('dotenv').config();
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const TerserPlugin = require('terser-webpack-plugin')
+const webpack = require('webpack');
 
 const commonPaths = require('./paths')
 
@@ -74,6 +76,12 @@ module.exports = {
       filename: `${commonPaths.cssFolder}/[name].css`,
       chunkFilename: `${commonPaths.cssFolder}/[name].css`,
     }),
+    new webpack.DefinePlugin({
+      'process.env': {
+        'REACT_APP_DELTA_CLIENT_ID': JSON.stringify(process.env.REACT_APP_DELTA_CLIENT_ID),
+        'REACT_APP_DELTA_CLIENT_SECRET': JSON.stringify(process.env.REACT_APP_DELTA_CLIENT_SECRET),
+      }
+    })
   ],
   devtool: 'source-map',
 }

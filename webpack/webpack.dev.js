@@ -1,5 +1,6 @@
 const webpack = require('webpack')
-
+const path = require('path')
+const Dotenv = require('dotenv-webpack')
 const commonPaths = require('./paths')
 
 const PROXY_PORT = process.env.PROXY_PORT || 8000
@@ -59,5 +60,9 @@ module.exports = {
       publicPath: false,
     },
   },
-  plugins: [new webpack.HotModuleReplacementPlugin()],
+  plugins: [
+    new webpack.HotModuleReplacementPlugin(),
+    new Dotenv({
+      path: path.resolve(__dirname, './.env')
+    }),],
 }
