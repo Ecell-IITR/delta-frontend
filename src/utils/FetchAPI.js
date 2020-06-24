@@ -4,7 +4,7 @@ import axios from 'axios'
 const FetchApi = (method, url, params, TokenValue) => {
   return new Promise((resolve, reject) => {
     if (process.env.NODE_ENV === 'production') {
-      url = 'https://delta-api.ecelliitr.org' + url
+      url = 'https://delta.ecelliitr.org' + url
     }
     if (TokenValue) {
       axios({
