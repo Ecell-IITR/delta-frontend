@@ -47,6 +47,7 @@ module.exports = {
   appFavicon: resolveApp('public/favicon.svg'),
   appIndexJs: resolveModule(resolveApp, 'src/index'),
   appPackageJson: resolveApp('package.json'),
+  envPath: resolveApp('.env'),
   appSrc: resolveApp('src'),
   appTsConfig: resolveApp('tsconfig.json'),
   appJsConfig: resolveApp('jsconfig.json'),
