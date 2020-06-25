@@ -1,4 +1,4 @@
-FROM node:stretch-slim
+FROM node:latest AS build
 
 LABEL maintainer="E-cell"
 
