@@ -38,12 +38,14 @@ class AvatarUpload extends Component {
     }
     this.cropper.getCroppedCanvas().toBlob((blob) => {
       onSave(blob, (status) => {
-        this.setState({
-          loading: false,
-        })
         if (status === 200) {
           this.setState({
             open: false,
+            loading: false,
+          })
+        } else {
+          this.setState({
+            loading: false,
           })
         }
       })

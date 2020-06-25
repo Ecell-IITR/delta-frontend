@@ -23,7 +23,7 @@ class StudentInfoSection extends Component {
             <div className={styles['img-wrapper']}>
               <img
                 className={styles['student-profile-image']}
-                src={user.profileImage}
+                src={getImageURL(user.profileImage)}
                 alt="profile-img"
               />
               <AvatarUpload onSave={avatarUploadFunc} />
