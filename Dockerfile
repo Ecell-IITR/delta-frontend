@@ -14,15 +14,3 @@ RUN npm install
 COPY . .
 
 RUN npm run build
-
-
-FROM nginx:stable-alpine
-
-COPY --from=build /usr/delta/delta-frontend/build /delta-frontend
-# new
-
-COPY ./nginx-proxy.conf /etc/nginx/conf.d/default.conf
-
-EXPOSE 80
-
-CMD ["nginx", "-g", "daemon off;"]
