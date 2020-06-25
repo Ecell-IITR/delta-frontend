@@ -5,6 +5,8 @@ import Popup from 'reactjs-popup'
 import { faTimesCircle } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import InternshipFormComponent from 'coreContainers/forms/internship-form'
+import { notify } from 'react-notify-toast'
+import { NOTIF_SUCCESS_TYPE } from 'globalConstants'
 import {
   INTERNSHIP_POST_TYPE_KEY,
   // COMPETITION_POST_TYPE_KEY,
@@ -29,7 +31,8 @@ export function EditPostModal({
 }) {
   const editPostWrapper = (obj, close, callback) => {
     editPost(post.slug, obj, (status) => {
-      if (status === 200) {
+      if (status === 'success') {
+        notify.show('Successfully edited!', NOTIF_SUCCESS_TYPE, 1000)
         close()
       }
       callback()

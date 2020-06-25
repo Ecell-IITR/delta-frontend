@@ -116,7 +116,7 @@ export function InternshipForm({
       setErrTitle(true)
       return
     }
-    if (selectedDate === '' || selectedDate.trim() === '') {
+    if (selectedDate === '') {
       setErrExpiryDate(true)
       return
     }

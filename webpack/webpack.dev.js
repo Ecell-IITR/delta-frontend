@@ -1,5 +1,4 @@
 const webpack = require('webpack')
-const path = require('path')
 const Dotenv = require('dotenv-webpack')
 const commonPaths = require('./paths')
 
@@ -60,9 +59,5 @@ module.exports = {
       publicPath: false,
     },
   },
-  plugins: [
-    new webpack.HotModuleReplacementPlugin(),
-    new Dotenv({
-      path: path.resolve(__dirname, './.env')
-    }),],
+  plugins: [new webpack.HotModuleReplacementPlugin(), new Dotenv()],
 }

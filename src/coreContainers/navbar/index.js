@@ -11,7 +11,7 @@ import styles from './navbar.css'
 // import PropTypes from 'prop-types'
 class Navbar extends React.PureComponent {
   render() {
-    const { user, location } = this.props
+    const { user, location, userLoading } = this.props
     const activeRoute = location.pathname
     const isLoggedIn = localStorage.getItem(TOKEN_TYPE)
     return isLoggedIn ? (
@@ -25,59 +25,67 @@ class Navbar extends React.PureComponent {
             <Searchbar />
           </div> */}
         </div>
-        <div className={styles.subnavbar}>
-          <ul>
-            <li
-              className={
-                activeRoute.includes('/opportunities')
-                  ? styles['active-nav-link']
-                  : styles['nav-link']
-              }
-            >
-              <Link to="/opportunities">Opportunities</Link>
-            </li>
-            <li
-              className={
-                activeRoute.includes('/user')
-                  ? styles['active-nav-link']
-                  : styles['nav-link']
-              }
-            >
-              {user && user.username ? (
-                <Link to={`/user/${user.username}`}>Profile</Link>
-              ) : (
-                <></>
-              )}
-            </li>
-            <li
-              className={
-                activeRoute.includes('/create-post')
-                  ? styles['active-nav-link']
-                  : styles['nav-link']
-              }
-            >
-              <Link to="/create-post">Create Post</Link>
-            </li>
-            {/* <li>
+        {userLoading ? (
+          <div></div>
+        ) : (
+          <div className={styles.subnavbar}>
+            <ul>
+              <li
+                className={
+                  activeRoute.includes('/opportunities')
+                    ? styles['active-nav-link']
+                    : styles['nav-link']
+                }
+              >
+                <Link to="/opportunities">Opportunities</Link>
+              </li>
+              <li
+                className={
+                  activeRoute.includes('/user')
+                    ? styles['active-nav-link']
+                    : styles['nav-link']
+                }
+              >
+                {user && user.username ? (
+                  <Link to={`/user/${user.username}`}>Profile</Link>
+                ) : (
+                  <></>
+                )}
+              </li>
+              <li
+                className={
+                  activeRoute.includes('/create-post')
+                    ? styles['active-nav-link']
+                    : styles['nav-link']
+                }
+              >
+                <Link to="/create-post">Create Post</Link>
+              </li>
+              {/* <li>
               <Link to="/">More</Link>
             </li> */}
-            {/* <li>
+              {/* <li>
               <Link to="/">
                 <Icon name="bell" />
               </Link>
             </li> */}
-            <li className={styles['nav-link']}>
-              <Link to="/logout">Logout</Link>
-            </li>
-            <li>
-              <img
-                src={user.profileImage}
-                className={styles['profile-pic']}
-                alt="profile"
-              />
-            </li>
-          </ul>
-        </div>
+              <li className={styles['nav-link']}>
+                <Link to="/logout">Logout</Link>
+              </li>
+              {user.profileImage ? (
+                <li>
+                  <img
+                    src={user.profileImage}
+                    className={styles['profile-pic']}
+                    alt="profile"
+                  />
+                </li>
+              ) : (
+                <></>
+              )}
+            </ul>
+          </div>
+        )}
       </div>
     ) : (
       <></>
@@ -88,11 +96,13 @@ class Navbar extends React.PureComponent {
 Navbar.propTypes = {
   user: PropTypes.object,
   location: PropTypes.object,
+  userLoading: PropTypes.bool,
 }
 
 function mapStateToProps(state) {
   return {
     user: state.student.user.user,
+    userLoading: state.student.user.isLoading,
   }
 }
 
