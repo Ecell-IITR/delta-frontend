@@ -1,3 +1,4 @@
+/* eslint-disable consistent-return */
 /* eslint-disable react/prop-types */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable react/forbid-prop-types */
@@ -101,7 +102,7 @@ export function EditProfileComponent({
                   onChange={(e) => setFirstName(e.target.value)}
                   className={`${styles['edit-modal-field-input']} ${
                     inputFieldWithBorder ? styles['with-border-input'] : ''
-                    }`}
+                  }`}
                 />
               </div>
               <div className={styles['edit-modal-field']}>
@@ -116,7 +117,7 @@ export function EditProfileComponent({
                   onChange={(e) => setLastName(e.target.value)}
                   className={`${styles['edit-modal-field-input']} ${
                     inputFieldWithBorder ? styles['with-border-input'] : ''
-                    }`}
+                  }`}
                 />
               </div>
             </div>
@@ -133,15 +134,15 @@ export function EditProfileComponent({
                   onChange={(e) => setPhoneNumber(e.target.value)}
                   className={`${styles['edit-modal-field-input']} ${
                     inputFieldWithBorder ? styles['with-border-input'] : ''
-                    }`}
+                  }`}
                 />
                 {errPhoneNumber ? (
                   <div className={styles['error-display']}>
                     Phone number is invalid!
                   </div>
                 ) : (
-                    <></>
-                  )}
+                  <></>
+                )}
               </div>
             </div>
             <div className={styles['edit-modal-field-group']}>
@@ -168,7 +169,7 @@ export function EditProfileComponent({
                 onChange={(e) => setBio(e.target.value)}
                 className={`${styles['edit-modal-field-input']} ${
                   inputFieldWithBorder ? styles['with-border-input'] : ''
-                  }`}
+                }`}
               />
             </div>
           </div>
@@ -176,14 +177,14 @@ export function EditProfileComponent({
             {formLoading ? (
               <div className="spinner-border text-primary" role="status"></div>
             ) : (
-                <button
-                  type="button"
-                  onClick={() => handleForm(close)}
-                  className={styles['save-button']}
-                >
-                  Save
-                </button>
-              )}
+              <button
+                type="button"
+                onClick={() => handleForm(close)}
+                className={styles['save-button']}
+              >
+                Save
+              </button>
+            )}
           </div>
         </div>
       )}
@@ -199,7 +200,7 @@ EditProfileComponent.propTypes = {
 
 function mapDispatchToProps(dispatch) {
   return {
-    editStudentProfileComponent: (body, callback = () => { }) => {
+    editStudentProfileComponent: (body, callback = () => {}) => {
       dispatch(editStudentProfile(body, callback))
     },
   }
