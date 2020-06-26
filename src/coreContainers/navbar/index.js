@@ -6,6 +6,7 @@ import PropTypes from 'prop-types'
 import { TOKEN_TYPE } from 'globalConstants'
 // import logo from '../../images/logo.svg'
 // import Searchbar from '../searchbar/index'
+import { getImageURL } from 'utils/getImageURL'
 
 import styles from './navbar.css'
 // import PropTypes from 'prop-types'
@@ -75,7 +76,7 @@ class Navbar extends React.PureComponent {
               {user.profileImage ? (
                 <li>
                   <img
-                    src={user.profileImage}
+                    src={getImageURL(user.profileImage)}
                     className={styles['profile-pic']}
                     alt="profile"
                   />

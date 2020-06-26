@@ -20,6 +20,7 @@ import PostComponent from './posts'
 import SkillsComponent from './skills'
 import ResumeComponent from './resume'
 import AchievementsComponent from './achievements'
+import AchievementsLoadingComponent from './achievements/loading'
 import StudentInfoLoading from './student-info-section/loading'
 import styles from './index.css'
 
@@ -114,7 +115,7 @@ export function StudentProfile({
           {currentTab === 'achievements' ? (
             <>
               {studentProfileLoading ? (
-                <div>Loading......</div>
+                <AchievementsLoadingComponent />
               ) : (
                 <>
                   {studentProfile ? (

@@ -8,7 +8,9 @@ import InlineEditor from '@ckeditor/ckeditor5-build-inline'
 import styles from './index.css'
 
 export function Achievements({ editStudentProfile, achievements }) {
-  const [stateAchievements, setAchievements] = useState(achievements || '')
+  const [stateAchievements, setAchievements] = useState(
+    achievements || 'Write something about your achievements....',
+  )
   const [errAchievements, setErrAchievements] = useState('')
   const [successAchievements, setSuccessAchievements] = useState('')
   const [loading, setLoading] = useState(false)

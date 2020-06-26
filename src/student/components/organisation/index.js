@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import TabMenu from 'coreContainers/tab-menu'
 import EmptyScreen from 'coreContainers/empty-screen'
+import { getImageURL } from 'utils/getImageURL'
 import OrganizationLoadingComponent from './loading'
 import { fetchOrganizationsList, followUnfollowUser } from '../../actions'
 
@@ -53,7 +54,9 @@ export function OrganizationList({
                         <div
                           className={styles['card-profile-image']}
                           style={{
-                            backgroundImage: `url(${organization.person.profileImage})`,
+                            backgroundImage: `url(${getImageURL(
+                              organization.person.profileImage,
+                            )})`,
                           }}
                         ></div>
                         <div className={styles['card-info-desc']}>

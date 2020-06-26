@@ -37,6 +37,9 @@ class AvatarUpload extends Component {
       return
     }
     this.cropper.getCroppedCanvas().toBlob((blob) => {
+      this.setState({
+        loading: true,
+      })
       onSave(blob, (status) => {
         if (status === 200) {
           this.setState({
@@ -87,7 +90,11 @@ class AvatarUpload extends Component {
               responsive
             />
             {loading ? (
-              <div className="spinner-border text-primary" role="status"></div>
+              <div
+                className="spinner-border text-primary"
+                style={{ marginTop: '0.75rem' }}
+                role="status"
+              ></div>
             ) : (
               <button
                 type="button"
