@@ -166,3 +166,18 @@
 .between-gap {
   margin: 0.5rem;
 }
+
+.edit-icon-back {
+  padding: 0.45rem;
+  background-color: #a8a9b5;
+  display: flex;
+  align-items: center;
+  width: max-content;
+  border-radius: 50%;
+}
+
+.edit-icon {
+  color: white;
+  font-size: 0.75rem;
+  cursor: pointer;
+}

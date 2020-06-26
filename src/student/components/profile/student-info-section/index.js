@@ -4,6 +4,9 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { getImageURL } from 'utils/getImageURL'
 import Switch from '@material-ui/core/Switch'
+import { faPen } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import EditProfile from './edit-profile'
 import AvatarUpload from './avatar-upload'
 
 import styles from './index.css'
@@ -29,8 +32,8 @@ class StudentInfoSection extends Component {
               <AvatarUpload onSave={avatarUploadFunc} />
             </div>
           ) : (
-            <></>
-          )}
+              <></>
+            )}
         </div>
         <div className={styles['student-info']}>
           <div className={styles['student-personal-info']}>
@@ -45,20 +48,20 @@ class StudentInfoSection extends Component {
                   {`${studentProfile.branch && studentProfile.branch.name} 
                   ${
                     studentProfile.branch &&
-                    studentProfile.branch.name &&
-                    studentProfile.currentYear
+                      studentProfile.branch.name &&
+                      studentProfile.currentYear
                       ? '.'
                       : ''
-                  } 
+                    } 
                   ${
                     studentProfile.currentYear === 1
                       ? '1st year'
                       : studentProfile.currentYear === 2
-                      ? '2nd year'
-                      : studentProfile.currentYear === 3
-                      ? '3rd year'
-                      : `${studentProfile.currentYear}th year`
-                  } `}
+                        ? '2nd year'
+                        : studentProfile.currentYear === 3
+                          ? '3rd year'
+                          : `${studentProfile.currentYear}th year`
+                    } `}
                 </span>
               </div>
               <div>
@@ -67,7 +70,7 @@ class StudentInfoSection extends Component {
                     studentProfile.course && studentProfile.enrollmentNumber
                       ? '.'
                       : ''
-                  } ${studentProfile.enrollmentNumber}`}
+                    } ${studentProfile.enrollmentNumber}`}
                 </span>
               </div>
               <div className={styles['follow-info-wrapper']}>
@@ -80,8 +83,8 @@ class StudentInfoSection extends Component {
                       <span className={styles['field-text']}>followers</span>
                     </>
                   ) : (
-                    <></>
-                  )}
+                      <></>
+                    )}
                 </div>
                 <div className={styles['between-gap']}>.</div>
                 <div className={`${styles.availability}`}>
@@ -93,34 +96,46 @@ class StudentInfoSection extends Component {
                       <span className={styles['field-text']}>following</span>
                     </>
                   ) : (
-                    <></>
-                  )}
+                      <></>
+                    )}
                 </div>
               </div>
             </div>
-            <div className={styles['edit-icon-wrapper']}></div>
+            <div className={styles['edit-icon-wrapper']}>
+              <div className={styles['edit-icon-back']}>
+                <EditProfile
+                  triggerElement={(
+                    <FontAwesomeIcon
+                      className={styles['edit-icon']}
+                      icon={faPen}
+                    />
+                  )}
+                  inputFieldWithBorder
+                />
+              </div>
+            </div>
           </div>
           <div className={styles['student-bio']}>{studentProfile.bio}</div>
           <div className={styles.icons}>
             {studentProfile.socialLinks &&
-            studentProfile.socialLinks.length > 0 ? (
-              studentProfile.socialLinks.map((link) => (
-                <a
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  href={link.profileUrl}
-                  key={link.id}
-                >
-                  <img
-                    className={styles['website-icon-image']}
-                    src={getImageURL(link.website.websiteLogo)}
-                    alt={link.website.name}
-                  />
-                </a>
-              ))
-            ) : (
-              <></>
-            )}
+              studentProfile.socialLinks.length > 0 ? (
+                studentProfile.socialLinks.map((link) => (
+                  <a
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    href={link.profileUrl}
+                    key={link.id}
+                  >
+                    <img
+                      className={styles['website-icon-image']}
+                      src={getImageURL(link.website.websiteLogo)}
+                      alt={link.website.name}
+                    />
+                  </a>
+                ))
+              ) : (
+                <></>
+              )}
           </div>
         </div>
         <div className={styles['profile-status']}>
@@ -150,8 +165,8 @@ class StudentInfoSection extends Component {
                   />
                 </span>
               ) : (
-                <></>
-              )}
+                  <></>
+                )}
             </div>
           </div>
         </div>
