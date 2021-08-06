@@ -10,6 +10,7 @@ export function ChanneliOauthButton() {
   const getChanneliLink = () => {
     return addQueryParams('https://internet.channeli.in/oauth/authorise/', {
       client_id: process.env.REACT_APP_DELTA_CLIENT_ID,
+      redirect_uri: process.env.REACT_APP_DELTA_REDIRECT_URI,
     })
   }
   return (
