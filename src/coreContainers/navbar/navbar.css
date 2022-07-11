@@ -99,3 +99,26 @@
   height: 75px;
   width: auto;
 }
+@media screen and (max-width: 1200px) {
+  .startnav {
+    width: 30%;
+  }
+
+  .subnavbar {
+    width: 60%;
+  }
+}
+@media screen and (max-width: 800px) {
+  ul {
+    margin-block-start: 0;
+  }
+  .startnav {
+    width: 0;
+  }
+  .subnavbar {
+    width: 85%;
+  }
+  .title {
+    padding-left: 1rem;
+  }
+}
