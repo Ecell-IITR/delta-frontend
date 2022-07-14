@@ -13,12 +13,8 @@ import styles from './index.css'
 
 class StudentInfoSection extends Component {
   render() {
-    const {
-      studentProfile,
-      user,
-      editStudentProfile,
-      avatarUploadFunc,
-    } = this.props
+    const { studentProfile, user, editStudentProfile, avatarUploadFunc } =
+      this.props
     return (
       <div className={styles.profile}>
         <div className={styles['student-img']}>

@@ -99,6 +99,10 @@
   height: 75px;
   width: auto;
 }
+.navController {
+  height: 0;
+}
+
 @media screen and (max-width: 1200px) {
   .startnav {
     width: 30%;
@@ -120,5 +124,20 @@
   }
   .title {
     padding-left: 1rem;
+  }
+}
+@media screen and (max-width: 600px) {
+  .navController {
+    height: 100vh;
+  }
+  .subnavbar {
+    width: 0;
+    visibility: hidden;
+  }
+  .active-nav-link {
+    width: fit-content;
+  }
+  .nav-link {
+    width: fit-content;
   }
 }
