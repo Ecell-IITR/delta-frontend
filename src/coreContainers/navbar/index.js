@@ -15,7 +15,7 @@ import {
   CDBSidebarMenu,
   CDBSidebarMenuItem,
 } from 'cdbreact'
-import { NavLink } from 'react-router-dom'
+
 import styles from './navbar.css'
 // import PropTypes from 'prop-types'
 class Navbar extends React.PureComponent {
@@ -27,7 +27,7 @@ class Navbar extends React.PureComponent {
       <div className={styles.navbar}>
         <div
           style={{ display: 'flex', width: '0', overflow: 'scroll initial' }}
-          className={styles['navController']}
+          className={styles.navController}
         >
           <CDBSidebar textColor="#fff" backgroundColor="#2964ee">
             <CDBSidebarHeader
@@ -92,9 +92,7 @@ class Navbar extends React.PureComponent {
               </CDBSidebarMenu>
             </CDBSidebarContent>
 
-            <CDBSidebarFooter
-              style={{ textAlign: 'center' }}
-            ></CDBSidebarFooter>
+            <CDBSidebarFooter style={{ textAlign: 'center' }} />
           </CDBSidebar>
         </div>
         <div className={styles.startnav}>

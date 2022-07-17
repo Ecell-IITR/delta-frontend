@@ -5,8 +5,14 @@ import PropTypes from 'prop-types'
 
 export class SelectFilter extends Component {
   render() {
-    const { value, handleChange, options, isMulti, loading, placeholder } =
-      this.props
+    const {
+      value,
+      handleChange,
+      options,
+      isMulti,
+      loading,
+      placeholder,
+    } = this.props
     return (
       <Select
         value={value}
