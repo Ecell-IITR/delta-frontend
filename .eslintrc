@@ -13,9 +13,7 @@
   },
   "root": true,
   "rules": {
-    "prettier/prettier": ["error",{
-    "endOfLine": "auto"}
-  ],
+  
     "react/self-closing-comp": [
       "warn",
       {

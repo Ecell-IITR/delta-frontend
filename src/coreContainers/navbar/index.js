@@ -33,7 +33,7 @@ class Navbar extends React.PureComponent {
             <CDBSidebarHeader
               prefix={
                 <div className={styles.title} style={{ paddingTop: '1rem' }}>
-                  &#9776;{' '}
+                  &#9776;
                 </div>
               }
             >
