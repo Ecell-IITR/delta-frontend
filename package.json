@@ -7,7 +7,7 @@
     "start": "cross-env NODE_ENV=development webpack-dev-server --open",
     "build": "cross-env NODE_ENV=production webpack",
     "format": "pretty-quick",
-    "lint:fix": "eslint --fix src/"
+    "lint:fix": "eslint --fix ./"
   },
   "lint-staged": {
     "*.{js,jsx,scss,css,md}": [
@@ -109,7 +109,7 @@
     "eslint-config-airbnb": "18.1.0",
     "eslint-config-prettier": "6.10.1",
     "eslint-loader": "3.0.4",
-    "eslint-plugin-import": "2.20.2",
+    "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-jest": "23.8.2",
     "eslint-plugin-jsx-a11y": "6.2.3",
     "eslint-plugin-prettier": "3.1.2",
