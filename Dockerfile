@@ -13,4 +13,6 @@ RUN npm install
 
 COPY . .
 
+RUN npm run lint:fix 
+
 RUN npm run build
