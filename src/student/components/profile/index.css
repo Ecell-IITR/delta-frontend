@@ -27,7 +27,7 @@
     margin-left:24px ;
   }
 }
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 400px) {
   .info {
     height: 450px;
   }
