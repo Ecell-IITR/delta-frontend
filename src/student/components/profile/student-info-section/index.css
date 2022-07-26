@@ -199,7 +199,7 @@
     margin: -0.7rem 0;
   }
 }
-@media screen and (max-width: 380px) {
+@media screen and (max-width: 400px) {
   .label {
     position: absolute;
     bottom: -40px;
@@ -207,5 +207,13 @@
     margin-right: 52vw;
     padding-bottom: 20px; 
   
+  }
+  .edit-icon-back {
+    margin-left: -8px;
+  }
+}
+@media screen and (max-width: 350px) {
+  .edit-icon-back {
+    margin-left: -15px;
   }
 }
