@@ -96,7 +96,7 @@ class Navbar extends React.PureComponent {
           </CDBSidebar>
         </div>
         <div className={styles.startnav}>
-          <div className={styles.title}>Delta</div>
+          <div className={styles.title + ' ' + styles.titleRespon}>Delta</div>
           {/* <div>
             <img src={logo} className={styles.logo} alt="logo" />
           </div> */}

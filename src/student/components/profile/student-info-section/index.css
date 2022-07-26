@@ -119,7 +119,11 @@
 
 .label {
   position: absolute;
-  bottom: 0;
+  bottom: 0px;
+  /* margin-top: 20px;
+  margin-left: -33vw;
+  padding-bottom: 20px; */
+
 }
 
 .availability {
@@ -180,4 +184,51 @@
   color: white;
   font-size: 0.75rem;
   cursor: pointer;
+}
+@media screen and (max-width: 600px) {
+  .follow-info-wrapper {
+    flex-direction: column;
+    
+    margin-top: 0.5rem;
+  }
+  .between-gap {
+   visibility: hidden;
+   margin: -0.01rem;
+  }
+  .availability{
+    margin: -0.7rem 0;
+  }
+}
+@media screen and (max-width: 400px) {
+  .label {
+    position: absolute;
+    bottom: -85px;
+    margin-top: 35px;
+    margin-right: 52vw;
+    padding-bottom: 20px; 
+  
+  }
+  .edit-icon-back {
+    margin-left: -8px;
+  }
+  .profile{
+    height: 380px;
+  }
+  .margin-half{
+    margin-top: 1rem;
+  }
+  .follow-info-wrapper {
+    margin-top: 1rem;
+  }
+  .course_wraper{
+    margin-top: 1rem;
+  }
+  .student-bio{
+    margin-top: 1rem;
+  }
+}
+@media screen and (max-width: 350px) {
+  .edit-icon-back {
+    margin-left: -15px;
+  }
 }

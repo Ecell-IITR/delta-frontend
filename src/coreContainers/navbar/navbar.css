@@ -6,7 +6,6 @@
   flex-wrap: wrap;
   justify-content: space-between;
 }
-
 .startnav {
   display: flex;
   width: 50%;
@@ -127,6 +126,9 @@
   }
 }
 @media screen and (max-width: 600px) {
+  .titleRespon{
+    visibility: hidden;
+  }
   .navController {
     height: 100vh;
   }

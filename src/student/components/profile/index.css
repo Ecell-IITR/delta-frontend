@@ -19,3 +19,16 @@
   width: 70%;
   padding: 1rem;
 }
+
+@media screen and (max-width: 600px) {
+  .info {
+    
+    width: calc(100% - 26px) ;
+    margin-left:24px ;
+  }
+}
+@media screen and (max-width: 400px) {
+  .info {
+    height: 450px;
+  }
+}
