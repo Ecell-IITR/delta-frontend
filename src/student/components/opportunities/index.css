@@ -85,3 +85,14 @@
   line-height: normal;
   color: #5a5c74;
 }
+
+/* @media (max-width:830px){
+  .durationFilter{
+    width:auto;
+  }
+} */
+@media (max-width:850px) {
+  .durationFilter{
+    padding-right:1000%;
+  }
+}
