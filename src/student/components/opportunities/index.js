@@ -175,94 +175,95 @@ export function Opportunities({
   }
 
   return (
-    <div className={styles['opportunities-container']}>
-      <div className={styles['side-container']}>
-        <div>
-          <SidebarMenu {...sidebarProps} />
-        </div>
-        {currentTab !== 'companies' ? (
-          <div className={styles['filter-container']}>
-            <div className={styles['filter-heading']}>Filters</div>
-            {/* <div className={styles["filter-opportunityType"]}>
+    <div>
+      <div className={styles['opportunities-container']}>
+        <div className={styles['side-container']}>
+          <div className={styles.responsiveSidebarProps}>
+            <SidebarMenu {...sidebarProps} />
+          </div>
+          {currentTab !== 'companies' ? (
+            <div className={styles['filter-container']}>
+              <div className={styles['filter-heading']}>Filters</div>
+              {/* <div className={styles["filter-opportunityType"]}>
           <FilterLabel options={this.state.options} />
         </div> */}
-            <div className={styles['filter-main-container']}>
-              <div className={styles['filter-button-group']}>
-                <ButtonGroup {...buttonGroupProps} />
-              </div>
-              <div className={styles['location-filter']}>
-                <div className={styles['filter-label']}>Select location</div>
-                <SelectFilter
-                  options={locations ? getFilterOptions(locations) : []}
-                  loading={locationsLoading}
-                  placeholder="Select location"
-                  handleChange={(loc) =>
-                    handleFilterChange('location', loc ? loc.value : '')
-                  }
-                />
-              </div>
-              <div className={styles['location-filter']}>
-                <div className={styles['filter-label']}>Select skills</div>
-                <SelectFilter
-                  options={skills ? getFilterOptions(skills) : []}
-                  loading={skillsLoading}
-                  placeholder="Select skills"
-                  isMulti={true}
-                  handleChange={(valueArr) =>
-                    handleFilterChange('skill_slug', valueArr)
-                  }
-                />
-              </div>
-              <div className={styles['range-filter']}>
-                <div className={styles['filter-label-parent']}>
-                  <div className={styles['filter-label']}>Duration</div>
-                  <div>
-                    <select
-                      className={styles['filter-unit-select']}
-                      value={durationUnit}
-                      onChange={(e) =>
-                        handleFilterChange('durationUnit', e.target.value)
+              <div className={styles['filter-main-container']}>
+                <div className={styles['filter-button-group']}>
+                  <ButtonGroup {...buttonGroupProps} />
+                </div>
+                <div className={styles['location-filter']}>
+                  <div className={styles['filter-label']}>Select location</div>
+                  <SelectFilter
+                    options={locations ? getFilterOptions(locations) : []}
+                    loading={locationsLoading}
+                    placeholder="Select location "
+                    handleChange={(loc) =>
+                      handleFilterChange('location', loc ? loc.value : '')
+                    }
+                  />
+                </div>
+                <div className={styles['location-filter']}>
+                  <div className={styles['filter-label']}>Select skills</div>
+                  <SelectFilter
+                    options={skills ? getFilterOptions(skills) : []}
+                    loading={skillsLoading}
+                    placeholder="Select skills"
+                    isMulti={true}
+                    handleChange={(valueArr) =>
+                      handleFilterChange('skill_slug', valueArr)
+                    }
+                  />
+                </div>
+                <div className={styles['range-filter']}>
+                  <div className={styles['filter-label-parent']}>
+                    <div className={styles['filter-label']}>Duration</div>
+                    <div className={styles.durationFilter}>
+                      <select
+                        className={styles['filter-unit-select']}
+                        value={durationUnit}
+                        onChange={(e) =>
+                          handleFilterChange('durationUnit', e.target.value)
+                        }
+                      >
+                        {durationUnitOptions.map((option) => (
+                          <option key={option.value} value={option.value}>
+                            {option.label}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+                  </div>
+                  <div className={styles['range-filter-slider']}>
+                    <RangeFilter
+                      handleChange={(value) =>
+                        handleFilterChange('duration', value)
                       }
-                    >
-                      {durationUnitOptions.map((option) => (
-                        <option key={option.value} value={option.value}>
-                          {option.label}
-                        </option>
-                      ))}
-                    </select>
+                      value={filtersApplied.duration}
+                      minValue={durationUnitOptions[durationUnit - 1].minValue}
+                      maxValue={durationUnitOptions[durationUnit - 1].maxValue}
+                      partitionCount={3}
+                      sliderLabel={
+                        durationUnitOptions[durationUnit - 1].sliderLabel
+                      }
+                    />
                   </div>
                 </div>
-                <div className={styles['range-filter-slider']}>
-                  <RangeFilter
-                    handleChange={(value) =>
-                      handleFilterChange('duration', value)
-                    }
-                    value={filtersApplied.duration}
-                    minValue={durationUnitOptions[durationUnit - 1].minValue}
-                    maxValue={durationUnitOptions[durationUnit - 1].maxValue}
-                    partitionCount={3}
-                    sliderLabel={
-                      durationUnitOptions[durationUnit - 1].sliderLabel
-                    }
-                  />
+                <div className={styles['range-filter']}>
+                  <div className={styles['filter-label']}>Stipend</div>
+                  <div className={styles['range-filter-slider']}>
+                    <RangeFilter
+                      handleChange={(value) =>
+                        handleFilterChange('stipend', value)
+                      }
+                      value={filtersApplied.stipend}
+                      minValue={0}
+                      maxValue={8000}
+                      kFormatterBool={true}
+                      partitionCount={4}
+                    />
+                  </div>
                 </div>
-              </div>
-              <div className={styles['range-filter']}>
-                <div className={styles['filter-label']}>Stipend</div>
-                <div className={styles['range-filter-slider']}>
-                  <RangeFilter
-                    handleChange={(value) =>
-                      handleFilterChange('stipend', value)
-                    }
-                    value={filtersApplied.stipend}
-                    minValue={0}
-                    maxValue={8000}
-                    kFormatterBool={true}
-                    partitionCount={4}
-                  />
-                </div>
-              </div>
-              {/* <div className={styles['range-filter']}>
+                {/* <div className={styles['range-filter']}>
               <div className={styles['filter-label']}>No. of Employees</div>
               <div className={styles['range-filter-slider']}>
                 <RangeFilter
@@ -275,55 +276,56 @@ export function Opportunities({
                 />
               </div>
             </div> */}
+              </div>
             </div>
-          </div>
-        ) : (
-          <></>
-        )}
-      </div>
-      <div className={styles['opportunities-main-container']}>
-        {currentTab === 'companies' ? (
-          <OrganizationListComponent />
-        ) : (
-          <>
-            {isLoading ? (
-              <PostLoadingComponent count={2} />
-            ) : (
-              <>
-                {opportunitiesList && opportunitiesList.length === 0 ? (
-                  <EmptyScreen text="Opportunities not found" />
-                ) : (
-                  <>
-                    <div>
-                      {opportunitiesList ? (
-                        <div className={styles['interns-found']}>
-                          {`${opportunitiesList.length} ${getLabel()}${
-                            opportunitiesList.length > 1 ? 's' : ''
-                          } found`}
-                        </div>
-                      ) : (
-                        <></>
-                      )}
-                    </div>
-                    <div>
-                      {opportunitiesList &&
-                        opportunitiesList.map((opportunity) => (
-                          <PostComponent
-                            key={opportunity.slug}
-                            opportunity={opportunity}
-                            applyPost={applyPostComponent}
-                            bookmarkPost={bookmarkPostComponent}
-                            isAppliedLoading={isAppliedLoading}
-                            appliedLoadingSlug={appliedLoadingSlug}
-                          />
-                        ))}
-                    </div>
-                  </>
-                )}
-              </>
-            )}
-          </>
-        )}
+          ) : (
+            <></>
+          )}
+        </div>
+        <div className={styles['opportunities-main-container']}>
+          {currentTab === 'companies' ? (
+            <OrganizationListComponent />
+          ) : (
+            <>
+              {isLoading ? (
+                <PostLoadingComponent count={2} />
+              ) : (
+                <>
+                  {opportunitiesList && opportunitiesList.length === 0 ? (
+                    <EmptyScreen text="Opportunities not found" />
+                  ) : (
+                    <>
+                      <div>
+                        {opportunitiesList ? (
+                          <div className={styles['interns-found']}>
+                            {`${opportunitiesList.length} ${getLabel()}${
+                              opportunitiesList.length > 1 ? 's' : ''
+                            } found`}
+                          </div>
+                        ) : (
+                          <></>
+                        )}
+                      </div>
+                      <div>
+                        {opportunitiesList &&
+                          opportunitiesList.map((opportunity) => (
+                            <PostComponent
+                              key={opportunity.slug}
+                              opportunity={opportunity}
+                              applyPost={applyPostComponent}
+                              bookmarkPost={bookmarkPostComponent}
+                              isAppliedLoading={isAppliedLoading}
+                              appliedLoadingSlug={appliedLoadingSlug}
+                            />
+                          ))}
+                      </div>
+                    </>
+                  )}
+                </>
+              )}
+            </>
+          )}
+        </div>
       </div>
     </div>
   )
