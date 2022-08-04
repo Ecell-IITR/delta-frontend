@@ -64,7 +64,7 @@ class StudentInfoSection extends Component {
                   } `}
                 </span>
               </div>
-              <div  className={styles.course_wraper}>
+              <div className={styles.course_wraper}>
                 <span className={styles.roll}>
                   {`${studentProfile.course} ${
                     studentProfile.course && studentProfile.enrollmentNumber
