@@ -178,7 +178,7 @@ export function Opportunities({
     <div>
       <div className={styles['opportunities-container']}>
         <div className={styles['side-container']}>
-          <div className={styles.responsiveSidebarProps}>
+          <div className={styles['responsiveSidebarProps']}>
             <SidebarMenu {...sidebarProps} />
           </div>
           {currentTab !== 'companies' ? (
@@ -217,7 +217,7 @@ export function Opportunities({
                 <div className={styles['range-filter']}>
                   <div className={styles['filter-label-parent']}>
                     <div className={styles['filter-label']}>Duration</div>
-                    <div className={styles.durationFilter}>
+                    <div className={styles['durationFilter']}>
                       <select
                         className={styles['filter-unit-select']}
                         value={durationUnit}
