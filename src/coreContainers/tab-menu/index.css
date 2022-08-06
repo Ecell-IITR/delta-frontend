@@ -4,11 +4,11 @@
 }
 
 .tab-box {
+  flex:1;
   font-size: 1.2rem;
   font-weight: 500;
   color: #5a5c74;
   text-align: center;
-  word-break: break-all;
   padding: 0.75rem 2rem;
   font-family: Neutrifpro-semibold;
 }
@@ -16,3 +16,34 @@
 .tab-box:hover {
   cursor: pointer;
 }
+
+
+
+
+@media screen and (max-width :861px)
+{
+  .menu-container{
+      background: white;
+      display: flex; 
+      align-items: flex-end;
+      width: 100%;
+      flex-wrap: wrap;
+      justify-content: stretch;
+    }
+  }
+
+  
+  
+ @media screen and (max-width:400px)
+ {
+  .tab-box {
+    flex:1;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #5a5c74;
+    text-align: center;
+    padding: 0.75rem 2rem;
+    font-family: Neutrifpro-semibold;
+  }
+  
+ }

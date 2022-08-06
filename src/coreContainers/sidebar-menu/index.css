@@ -1,11 +1,13 @@
 .menu-container {
   background: white;
+  
+  
 }
 
 .row-container {
-  display: flex;
-  align-items: center;
+   align-items: center;
   padding: 1.5rem 0.75rem;
+ 
 }
 
 .row-container:hover {
@@ -13,12 +15,14 @@
 }
 
 .row-title {
+ 
   font-size: 1.3rem;
   font-weight: 500;
   color: #5a5c74;
   text-align: center;
   word-break: break-all;
   padding: 0 0.5rem;
+ 
 }
 
 .row-icon {
@@ -31,4 +35,27 @@
   margin: 0 1rem;
   font-size: 1.4rem;
   color: white;
+}
+
+
+@media screen and (max-width :861px)
+{
+  .menu-container {
+    background: white;
+    display: flex; 
+    
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: stretch;
+   
+  }
+
+  .row-container {
+   flex-direction: row;
+   height: 5rem;
+   width: 19rem; 
+   
+  }
+  
+ 
 }
