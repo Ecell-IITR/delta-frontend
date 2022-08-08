@@ -43,17 +43,22 @@
   .menu-container {
     background: white;
     display: flex; 
-    
     width: 100%;
     flex-wrap: wrap;
+    flex-direction: column;
     justify-content: stretch;
+    align-items: center;
+    /* background-color:yellow; */
    
   }
 
   .row-container {
    flex-direction: row;
    height: 5rem;
-   width: 19rem; 
+   width: 100%; 
+  display: flex;
+  align-items: center;
+  /* justify-content: center; */
    
   }
   

@@ -26,9 +26,19 @@ export default class TabMenu extends Component {
                   }
             }
             key={item.slug}
-          >
+          ><div className={styles['cont-wrapper']}>
             {item.title}
+            </div>
+            {/* {console.log("here it is")} */}
+
+            
+            {console.log(item.title)}
+
+            
+            
           </div>
+        
+        
         ))}
       </div>
     )
