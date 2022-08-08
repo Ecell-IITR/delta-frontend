@@ -19,20 +19,39 @@ import {
 import styles from './navbar.css'
 // import PropTypes from 'prop-types'
 class Navbar extends React.PureComponent {
+  constructor(props) {
+    super(props)
+    this.state = {
+      Nav: true,
+    }
+  }
+
   render() {
     const { user, location, userLoading } = this.props
     const activeRoute = location.pathname
     const isLoggedIn = localStorage.getItem(TOKEN_TYPE)
+    const { state } = this
+    const setState = (Newstate) => this.setState(Newstate)
     return isLoggedIn ? (
       <div className={styles.navbar}>
         <div
           style={{ display: 'flex', width: '0', overflow: 'scroll initial' }}
           className={styles.navController}
         >
-          <CDBSidebar textColor="#fff" backgroundColor="#2964ee">
+          <CDBSidebar
+            textColor="#fff"
+            backgroundColor={state.Nav ? '#2964ee' : 'transparent'}
+          >
             <CDBSidebarHeader
               prefix={
-                <div className={styles.title} style={{ paddingTop: '1rem' }}>
+                <div
+                  aria-hidden="true"
+                  onClick={() => {
+                    setState({ Nav: !state.Nav })
+                  }}
+                  className={styles.title}
+                  style={{ paddingTop: '1rem' }}
+                >
                   &#9776;
                 </div>
               }
