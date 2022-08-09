@@ -37,7 +37,7 @@
   color: white;
 }
 
-
+/* 
 @media screen and (max-width :861px)
 {
   .menu-container {
@@ -48,7 +48,7 @@
     flex-direction: column;
     justify-content: stretch;
     align-items: center;
-    /* background-color:yellow; */
+    background-color:yellow;
    
   }
 
@@ -58,9 +58,44 @@
    width: 100%; 
   display: flex;
   align-items: center;
-  /* justify-content: center; */
+  justify-content: center;
    
   }
   
  
+} */
+
+
+
+@media screen and (max-width:997px)
+{
+
+  
+  .menu-container {
+    display: flex;
+    flex-direction: row;
+    width: 100%; 
+    
+  }
+  
+
+ .row-container {
+  flex:1;
+  align-items: center;
+ padding: 1.5rem 0.75rem;
+ width: 100%;
+
+} 
+
+}
+
+@media screen and (max-width:679px)
+{
+  .menu-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%; 
+    
+  }
+
 }
