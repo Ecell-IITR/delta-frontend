@@ -130,3 +130,68 @@
   font-size: 0.75rem;
   font-family: Neutrifpro-regular;
 }
+
+@media only screen and (max-width:768px){
+  .modal-container{
+    /* background-color: rgb(128, 128, 64); */
+    padding:0;
+    /* padding: 0 10px; */
+
+  }
+
+  .modal-main{
+    padding:0;
+    /* background-color: pink;  */
+    display: flex;
+    flex-direction: column;
+  }
+
+  .edit-modal-field-group{
+    /* background-color: yellow;  */
+    /* padding: 10px 10px;  */
+    display: flex;
+    flex-direction: column;
+    width:100%;
+    padding:0;
+    
+    /* align-items:center; */
+
+  }
+
+  .edit-modal-field{
+    /* background-color: lightgreen; */
+    width: 100%;
+    padding:0;
+    margin: 10px 0;
+    /* flex-direction: row; */
+    /* margin: 2px; */
+    /* width: 100%; */
+  }
+
+  .edit-modal-field-label{
+    /* background-color: slategray; */
+    /* width:100%; */
+  }
+
+  .edit-modal-field-input{
+    width:100%;
+  }
+
+
+  .durationLabel{
+    padding: 0 10px 0 0;
+  }
+
+  .durationContainer{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .required-field{
+    /* background-color: palevioletred; */
+  }
+
+
+
+}

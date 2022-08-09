@@ -9,9 +9,20 @@
 .sidebar {
   width: 25%;
   padding: 1rem;
+  /* font-size: 1rem; */
 }
 
 .contentBox {
   width: 75%;
   padding: 1rem;
+  /* background-color: aqua; */
+}
+
+@media screen and (max-width:768px){
+  .sidebar{
+    width: 40%;
+    font-size: 1vw;
+    display: flex;;
+
+  }
 }

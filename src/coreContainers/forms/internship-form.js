@@ -168,7 +168,7 @@ export function InternshipForm({
             ) : (
               <></>
             )}
-          </div>
+          </div>ˀ
           <div className={styles['edit-modal-field']}>
             <label className={styles['edit-modal-field-label']}>Stipend</label>
             <input
@@ -305,10 +305,10 @@ export function InternshipForm({
         </div>
         <div className={styles['edit-modal-field-group']}>
           <div className={styles['edit-modal-field']}>
-            <div className={styles['modal-label-wrapper']}>
+            <div className={`modal-label-wrapper ${styles.durationContainer}`}>
               <label
                 style={{ display: 'flex', alignItems: 'center' }}
-                className={styles['edit-modal-field-label']}
+                className={`edit-modal-field-label ${styles.durationLabel}`}
               >
                 Duration
               </label>
