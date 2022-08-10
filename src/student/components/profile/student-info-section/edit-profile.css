@@ -1,6 +1,7 @@
 .modal-container {
   padding: 1rem 0;
   position: relative;
+ 
 }
 
 .modal-title-text {
@@ -9,6 +10,7 @@
   line-height: normal;
   color: #434660;
   padding: 0 2rem;
+  color: aqua;
 }
 
 .modal-close-button {
@@ -49,7 +51,7 @@
 }
 
 .edit-modal-field-label {
-  font-size: 1.2rem;
+  font-size: 1.5rem;
   font-family: Neutrifpro-regular;
   line-height: normal;
   color: #434660;
