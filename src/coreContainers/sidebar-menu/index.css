@@ -1,7 +1,6 @@
 .menu-container {
   background: white;
   
-  
 }
 
 .row-container {
@@ -51,7 +50,6 @@
     background-color:yellow;
    
   }
-
   .row-container {
    flex-direction: row;
    height: 5rem;
