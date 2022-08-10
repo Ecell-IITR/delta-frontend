@@ -1,7 +1,15 @@
 {
   "parser": "babel-eslint",
-  "plugins": ["react", "jest", "prettier"],
-  "extends": ["airbnb", "plugin:prettier/recommended", "prettier/react"],
+  "plugins": [
+    "react",
+    "jest",
+    "prettier"
+  ],
+  "extends": [
+    "airbnb",
+    "plugin:prettier/recommended",
+    "prettier/react"
+  ],
   "globals": {
     "React": true,
     "document": true,
@@ -13,7 +21,6 @@
   },
   "root": true,
   "rules": {
-  
     "react/self-closing-comp": [
       "warn",
       {
@@ -32,7 +39,10 @@
           "rendering"
         ],
         "groups": {
-          "rendering": ["/^render.+$/", "render"]
+          "rendering": [
+            "/^render.+$/",
+            "render"
+          ]
         }
       }
     ],
@@ -46,7 +56,9 @@
     "jsx-a11y/anchor-is-valid": [
       "warn",
       {
-        "aspects": ["invalidHref"]
+        "aspects": [
+          "invalidHref"
+        ]
       }
     ],
     "react/jsx-boolean-value": 0,
@@ -54,11 +66,17 @@
     "react/jsx-filename-extension": [
       "warn",
       {
-        "extensions": [".jsx", ".js"]
+        "extensions": [
+          ".jsx",
+          ".js"
+        ]
       }
     ],
     "react/jsx-props-no-spreading": 0,
-    "react/jsx-first-prop-new-line": ["warn", "multiline"],
+    "react/jsx-first-prop-new-line": [
+      "warn",
+      "multiline"
+    ],
     "react/jsx-handler-names": [
       "warn",
       {
@@ -66,9 +84,14 @@
         "eventHandlerPropPrefix": "on"
       }
     ],
-    "react/jsx-indent": ["warn", 2],
+    "react/jsx-indent": [
+      "warn",
+      2
+    ],
     "react/jsx-key": "error",
-    "react/jsx-wrap-multilines": ["warn"],
+    "react/jsx-wrap-multilines": [
+      "warn"
+    ],
     "react/jsx-indent-props": 0,
     "no-trailing-spaces": [
       2,
@@ -92,7 +115,9 @@
   },
   "overrides": [
     {
-      "files": ["*.md"],
+      "files": [
+        "*.md"
+      ],
       "excludedFiles": "*.md"
     }
   ]

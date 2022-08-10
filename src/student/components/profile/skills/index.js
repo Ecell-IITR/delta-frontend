@@ -25,8 +25,11 @@ class Skill extends Component {
   }
 
   componentDidMount = () => {
-    const { studentSkills, setAddedSkillsComponent, fetchSkillsComponent } =
-      this.props
+    const {
+      studentSkills,
+      setAddedSkillsComponent,
+      fetchSkillsComponent,
+    } = this.props
     setAddedSkillsComponent(studentSkills)
     fetchSkillsComponent()
   }
