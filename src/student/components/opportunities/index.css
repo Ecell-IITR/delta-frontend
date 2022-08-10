@@ -85,3 +85,28 @@
   line-height: normal;
   color: #5a5c74;
 }
+
+
+@media screen and (max-width:997px)
+{
+
+  .opportunities-container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  
+  .side-container {
+    width: 100%;
+    padding: 1rem 1rem;
+  }
+  
+  .opportunities-main-container {
+    width: 100%;
+    padding: 0 0.5rem;
+    margin: 1rem 0;
+  }
+
+
+
+}
