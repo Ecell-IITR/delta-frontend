@@ -88,22 +88,23 @@
 
 
 @media screen and (max-width:1000px)
-{
 
-  .opportunities-container {
-    display: flex;
-    flex-direction: column;
-  }
+  {
 
+    .opportunities-container {
+      display: flex;
+      flex-direction: column;
+    }
   
-  .side-container {
-    width: 100%;
-    padding: 3rem 3rem;
-  }
   
-  .opportunities-main-container {
-    width: 100%;
-    padding: 0 0.5rem;
-    margin: 1rem 0;
-  }
+    .side-container {
+      width: 100%;
+      padding: 1rem 1rem;
+    }
+  
+    .opportunities-main-container {
+      width: 100%;
+      padding: 0 0.5rem;
+      margin: 1rem 0;
+    }
 }
