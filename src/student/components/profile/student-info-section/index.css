@@ -188,7 +188,6 @@
 @media screen and (max-width: 600px) {
   .follow-info-wrapper {
     flex-direction: column;
-    
     margin-top: 0.5rem;
   }
   .between-gap {
