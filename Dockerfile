@@ -9,10 +9,10 @@ WORKDIR /usr/delta/delta-frontend
 COPY ./package.json ./package.json
 # COPY ./yarn.lock ./yarn.lock
 
-RUN npm install 
-
-RUN npm run lint:fix
+RUN npm install
 
 COPY . .
+
+RUN npm run lint:fix 
 
 RUN npm run build
