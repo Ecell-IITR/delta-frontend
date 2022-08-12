@@ -11,7 +11,7 @@
 }
 
 .student-img {
-  padding: 1rem;
+  padding: 1rem;  
 }
 
 .img-wrapper {
@@ -178,6 +178,7 @@
   align-items: center;
   width: max-content;
   border-radius: 50%;
+  
 }
 
 .edit-icon {
@@ -186,7 +187,7 @@
   cursor: pointer;
 }
 @media screen and (max-width: 600px) {
-  .follow-info-wrapper {
+  .follow-info-wrapper {   
     flex-direction: column;
     margin-top: 0.5rem;
   }
@@ -198,36 +199,81 @@
     margin: -0.7rem 0;
   }
 }
-@media screen and (max-width: 400px) {
-  .label {
-    position: absolute;
-    bottom: -85px;
-    margin-top: 35px;
-    margin-right: 52vw;
-    padding-bottom: 20px; 
+@media screen and (max-width: 420px) {
   
+ .student-name {
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+  line-height:1.1;
+ }
+   
+  .student-branch, .roll{
+    margin-top: -6rem;
+    font-size: 0.9rem;
+  font-weight: 480;
+  letter-spacing: 0.2px;
+  line-height:0.9;
+  }
+  .roll{
+    position: relative;
+    margin-top: -2rem ;
+  }
+  .availability{
+    margin:-0.4rem 0;
+    font-weight: 480;
+    line-height: 0.8;
+    font-size:0.9rem;
+  }
+  .student-bio{
+  line-height:0.8;
+  letter-spacing: 0.3px;
+  font-size: 0.9rem;
+  font-weight: 460;
+  margin-top: -5rem;
+  margin-top:-0.4rem;
   }
   .edit-icon-back {
-    margin-left: -8px;
+     margin-top:0em;
+     margin-left:5.8em;
   }
   .profile{
     height: 380px;
+    flex-direction: column;
+    padding-left: 8em;
+    line-height: 0.9;
+    height: fit-content;
+  }
+  .field-count,.field-text{
+    font-size: 0.9rem;
+    font-weight: 480;
+    margin-top:-0.4rem;
   }
   .margin-half{
-    margin-top: 1rem;
+    margin-top: -0.1rem;
   }
   .follow-info-wrapper {
-    margin-top: 1rem;
+    margin-top: 0.4rem;
   }
   .course_wraper{
-    margin-top: 1rem;
+    margin-top: 0.5rem;
   }
   .student-bio{
-    margin-top: 1rem;
+    margin-top: 0rem;
+  }
+  .span{
+    margin-top: 2px;
+  }
+  .label{
+    position: relative;
+    margin-top: 4px;
+    margin-left:5rem;
   }
 }
 @media screen and (max-width: 350px) {
+  
   .edit-icon-back {
-    margin-left: -15px;
-  }
+    margin-top:0em;
+    margin-left:5.8em;
+ }
 }

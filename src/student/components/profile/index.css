@@ -33,6 +33,9 @@ flex:1;
     margin-left:24px ;
   }
 }
+@media screen and (max-width: 700px) {
+  
+}
 @media screen and (max-width: 400px) {
   .info {
     height: 450px;
