@@ -240,7 +240,7 @@
   .profile{
     height: 380px;
     flex-direction: column;
-    padding-left: 8em;
+    
     line-height: 0.9;
     height: fit-content;
   }
