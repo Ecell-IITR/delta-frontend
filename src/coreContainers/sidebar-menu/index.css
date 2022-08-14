@@ -1,5 +1,6 @@
 .menu-container {
   background: white;
+ 
   
 }
 
@@ -71,7 +72,7 @@
   
   .menu-container {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     width: 100%; 
     
   }
