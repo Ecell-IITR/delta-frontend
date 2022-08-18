@@ -1,13 +1,12 @@
 .menu-container {
   background: white;
- 
-  
 }
 
 .row-container {
-   align-items: center;
+  display: flex;
+  align-items: center;
   padding: 1.5rem 0.75rem;
- 
+  
 }
 
 .row-container:hover {
@@ -15,14 +14,12 @@
 }
 
 .row-title {
- 
   font-size: 1.3rem;
   font-weight: 500;
   color: #5a5c74;
   text-align: center;
   word-break: break-all;
   padding: 0 0.5rem;
- 
 }
 
 .row-icon {
@@ -36,43 +33,13 @@
   font-size: 1.4rem;
   color: white;
 }
-
-/* 
-@media screen and (max-width :861px)
-{
-  .menu-container {
-    background: white;
-    display: flex; 
-    width: 100%;
-    flex-wrap: wrap;
-    flex-direction: column;
-    justify-content: stretch;
-    align-items: center;
-    background-color:yellow;
-   
-  }
-  .row-container {
-   flex-direction: row;
-   height: 5rem;
-   width: 100%; 
-  display: flex;
-  align-items: center;
-  justify-content: center;
-   
-  }
-  
- 
-} */
-
-
-
-@media screen and (max-width:997px)
+@media screen and (max-width:1000px)
 {
 
   
   .menu-container {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     width: 100%; 
     
   }
@@ -88,7 +55,7 @@
 
 }
 
-@media screen and (max-width:679px)
+@media screen and (max-width:780px)
 {
   .menu-container {
     display: flex;
