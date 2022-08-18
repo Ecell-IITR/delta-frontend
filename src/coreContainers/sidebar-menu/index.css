@@ -7,7 +7,11 @@
 .row-container {
    align-items: center;
   padding: 1.5rem 0.75rem;
+<<<<<<< Updated upstream
  
+=======
+  
+>>>>>>> Stashed changes
 }
 
 .row-container:hover {
@@ -88,7 +92,11 @@
 
 }
 
+<<<<<<< Updated upstream
 @media screen and (max-width:679px)
+=======
+@media screen and (max-width:780px)
+>>>>>>> Stashed changes
 {
   .menu-container {
     display: flex;

@@ -4,6 +4,7 @@
   margin-left: auto;
   margin-right: auto;
   margin-top: 2rem;
+  justify-content: center;
 }
 
 .sidebar {
@@ -14,4 +15,37 @@
 .contentBox {
   width: 75%;
   padding: 1rem;
+  display: flex;
+  
 }
+
+@media screen and (max-width:1000px)
+{
+
+  .create-post-container {
+    display: flex;
+    flex-direction: column;
+    width:100%;
+  }
+
+  
+  .sidebar {
+    width: 100%;
+    padding: 3rem 3rem;
+    display:flex ;
+  }
+  
+  .contentBox {
+    display: flex;
+    width: 130%;
+    margin: 1rem 0;
+    padding: 3rem 3rem;
+   
+  }
+}
+
+/* @media screen and (max-width:875px) {
+  .contentBox{
+    flex-shrink: 0;
+  }
+} */

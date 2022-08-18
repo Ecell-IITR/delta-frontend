@@ -205,7 +205,7 @@ export function InternshipForm({
             />
           </div>
         </div>
-        <div className={styles['edit-modal-field-group']}>
+        <div className={styles['']}>
           <div className={styles['edit-modal-field']}>
             <label className={styles['edit-modal-field-label']}>
               Required skills
@@ -239,7 +239,7 @@ export function InternshipForm({
             />
           </div>
         </div>
-        <div className={styles['edit-modal-field-group']}>
+        <div className={styles['edit-modal-field-group1']}>
           <div className={styles['edit-modal-field']}>
             <label className={styles['edit-modal-field-label']}>
               Post Expiry Date
@@ -287,7 +287,7 @@ export function InternshipForm({
               <></>
             )}
           </div>
-          <div className={styles['edit-modal-field']}>
+          <div className={styles['edit-modal-field2']}>
             <label className={styles['edit-modal-field-label']}>Tags</label>
             <div className={styles['edit-modal-filter-wrapper']}>
               <SelectFilter
