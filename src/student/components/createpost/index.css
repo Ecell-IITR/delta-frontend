@@ -43,3 +43,8 @@
    
   }
 }
+@media screen and (max-width:400px){
+  .contentBox {
+  padding: 3rem 0rem;
+  }
+}
