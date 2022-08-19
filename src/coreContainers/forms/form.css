@@ -159,3 +159,17 @@
   flex-direction:row;
  }
 }
+@media screen and (max-width:300px)  {
+  .modal-main{
+    padding: 0 ;
+  }
+  .edit-modal-field{
+    margin-left: -2rem;
+  }
+}
+@media screen and (max-width:350px)  {
+ 
+  .edit-modal-field{
+    margin-left: -2rem;
+  }
+}
