@@ -181,6 +181,7 @@ export function InternshipForm({
                 inputFieldWithBorder ? styles['with-border-input'] : ''
               }`}
             />
+
             <div className={styles['help-text']}>
               Note: For 20k, write 20000 in the input field.
             </div>
