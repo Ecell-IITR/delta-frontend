@@ -8,26 +8,45 @@
 
 .modal-main {
   padding: 0 2rem 1rem 2rem;
+  
+  
 }
 
 .edit-modal-field-group {
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
 }
 
 .edit-modal-field-group .edit-modal-field {
   width: 48%;
+}
+.edit-modal-field-group1{
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  
 }
 
 .edit-modal-field {
   padding: 0.5rem 0;
   display: flex;
   flex-direction: column;
+  flex-wrap: wrap;
+}
+.edit-modal-field2 {
+  padding: 0.5rem 0;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  width:50%;
 }
 
 .modal-label-wrapper {
   display: flex;
   justify-content: space-between;
+  padding: 5%;
+  justify-content: space-around;
 }
 
 .edit-modal-field-label {
@@ -64,6 +83,7 @@
   font-size: 1rem;
   padding: 0.5rem 0.75rem;
   font-family: Neutrifpro-regular;
+  max-width: 100%;
 }
 
 .with-border-input {
@@ -129,4 +149,27 @@
   color: #5a5c74;
   font-size: 0.75rem;
   font-family: Neutrifpro-regular;
+}
+@media screen and (max-width:780px) {
+ .edit-modal-field-input{
+  max-width: 100%;
+ }
+ .edit-modal-field1{
+  display: flex;
+  flex-direction:row;
+ }
+}
+@media screen and (max-width:300px)  {
+  .modal-main{
+    padding: 0 ;
+  }
+  .edit-modal-field{
+    margin-left: -2rem;
+  }
+}
+@media screen and (max-width:350px)  {
+ 
+  .edit-modal-field{
+    margin-left: -2rem;
+  }
 }
