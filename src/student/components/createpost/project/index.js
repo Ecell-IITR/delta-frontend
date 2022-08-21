@@ -2,7 +2,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
-import _projectForm from 'coreContainers/forms/project-form'
+import ProjectForm from 'coreContainers/forms/project-form'
 import { notify } from 'react-notify-toast'
 import { NOTIF_SUCCESS_TYPE } from 'globalConstants'
 import {
@@ -41,7 +41,7 @@ export function CreateInternshipComponent({
 
   return (
     <div className={styles['form-container']}>
-      <_projectForm
+      <ProjectForm
         skills={skills}
         skillsLoading={skillsLoading}
         fetchSkills={fetchSkillsComponent}

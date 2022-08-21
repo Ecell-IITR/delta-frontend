@@ -54,11 +54,8 @@ export class CreatePost extends Component {
         <div className={styles.contentBox}>
           {currentTab === 'internship' ? <InternshipComponent /> : <></>}
           {currentTab === 'project' ? <ProjectComponent /> : <></>}
-          
-          
-          
-          
-{/*           
+
+          {/*
           (
             <EmptyScreen text="Project form is under development!" />
           ) : (
