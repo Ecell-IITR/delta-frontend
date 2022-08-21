@@ -11,38 +11,69 @@
   
   
 }
+.project{
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  font-family: Neutrifpro-regular;
+  color: grey;
+  background-color:white;
+  padding: .2rem;
+  height: 2.3rem;
+  border-radius: .4rem;
+}
+.change{
 
+  display: flex;
+  flex-direction: row;
+  width:100%;
+  justify-content:space-between;
+}
+
+.parent{ 
+  gap: .3rem;
+  display: flex;
+  flex-direction: row;
+  font-family: Neutrifpro-regular;
+  color: black;
+ /* height: 2.2rem; */
+ /* border-radius: .5rem; */
+
+}
 .edit-modal-field-group {
+  width:100% ;
+ 
   display: flex;
   justify-content: space-between;
-  flex-wrap: wrap;
 }
 
 .edit-modal-field-group .edit-modal-field {
   width: 48%;
+  flex-direction: column;
 }
 .edit-modal-field-group1{
   display: flex;
   justify-content: space-between;
-  flex-wrap: wrap;
+
   
 }
 
 .edit-modal-field {
+  width: 100%;
+  /* border: 1px solid black; */
   padding: 0.5rem 0;
   display: flex;
   flex-direction: column;
-  flex-wrap: wrap;
 }
 .edit-modal-field2 {
   padding: 0.5rem 0;
   display: flex;
   flex-direction: column;
-  flex-wrap: wrap;
   width:50%;
 }
 
 .modal-label-wrapper {
+ 
   display: flex;
   justify-content: space-between;
   padding: 5%;
@@ -55,6 +86,8 @@
   line-height: normal;
   color: #434660;
   margin: 0 0 0.5rem 0;
+  padding: 1rem;
+  /* background-color:blue; */
 }
 
 .filter-unit-select {
@@ -164,12 +197,103 @@
     padding: 0 ;
   }
   .edit-modal-field{
-    margin-left: -2rem;
+    margin-left: -1rem;
   }
 }
 @media screen and (max-width:350px)  {
  
   .edit-modal-field{
-    margin-left: -2rem;
+    margin-left: -1rem;
+  }
+/* .change{
+
+  display: flex;
+  flex-direction: row;
+  width:100%;
+  justify-content:space-between;
+} */
+
+/* .ui{
+  background-color: red;
+  height: 1rem;
+} */
+
+/* .left{
+  
+  padding: 2rem;
+  margin-left:10px;
+  
+} */
+
+/* .help{
+  border-right-color: red;
+} */
+
+
+.project{
+  font-family: Neutrifpro-regular;
+  color: grey;
+  background-color:white;
+  padding: .2rem;
+  height: 2.3rem;
+  border-radius: .4rem;
+  overflow: hidden;
+}
+
+}
+input[type=file]{
+  height: 0;
+  visibility: hidden;
+
+}
+.summit{
+  gap: .2rem;
+  display: flex;
+  flex-direction: row;
+}
+
+@media screen and (max-width:957px) {
+  .edit-modal-field-group {
+    display: flex;
+    /* flex-direction: column; */
+    justify-content: space-between;
+    width: 100%;
+    
+  }
+
+  .modal-main{
+    width: 100%;
+    /* background-color:yellow; */
+  }
+  
+
+  .edit-modal-field-group {
+    width: 100%;
+    
+    padding: 0.5rem 0;
+    
+  }
+
+  .change{
+
+    display: flex;
+    flex-direction: column;
+   
+  }
+
+  .edit-modal-field-label{
+    width: 100%;
+  }
+ 
+
+}
+
+@media screen and (max-width:440px)
+{
+  .summit{
+    height: 3rem;
+    display: flex;
+    flex-direction: column;
+
   }
 }
