@@ -136,7 +136,7 @@ export function ProjectForm({
       is_publish: isPublish,
       post_type: PROJECT_POST_TYPE_KEY,
       duration_value: durationValue,
-      // duration_unit: durationUnit,
+      duration_unit: 'month',
     }
 
     setFormLoading(true)
