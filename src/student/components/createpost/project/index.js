@@ -30,7 +30,7 @@ export function CreateInternshipComponent({
     createPostComponent(obj, (status) => {
       if (status === 200) {
         notify.show(
-          'Successfully created a internship!',
+          'Successfully created a Project!',
           NOTIF_SUCCESS_TYPE,
           1000,
         )

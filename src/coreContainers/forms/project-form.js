@@ -40,11 +40,11 @@ export function ProjectForm({
     // }
   }, [])
 
-  // const durationUnitOptions = [
-  //   { value: 1, label: 'Day', durationValue: 1 },
-  //   { value: 2, label: 'Week', durationValue: 7 },
-  //   { value: 3, label: 'Month', durationValue: 30 },
-  // ]
+  const durationUnitOptions = [
+    { value: 1, label: 'Day', durationValue: 1 },
+    { value: 2, label: 'Week', durationValue: 7 },
+    { value: 3, label: 'Month', durationValue: 30 },
+  ]
 
   const [title, setTitle] = useState(
     formObj && formObj.title ? formObj.title : '',
@@ -75,7 +75,7 @@ export function ProjectForm({
     formObj && formObj.imValue ? formObj.imValue : '',
   )
 
-  // const [durationUnit, setDurationUnit] = useState(1)
+  const [durationUnit, setDurationUnit] = useState(1)
 
   const [errTitle, setErrTitle] = useState(false)
   const [errExpiryDate, setErrExpiryDate] = useState(false)
@@ -125,6 +125,7 @@ export function ProjectForm({
       setErrExpiryDate(true)
       return
     }
+    console.log(selectedDate.getTime() / 1000)
     const obj = {
       title,
       stipend,
@@ -136,7 +137,7 @@ export function ProjectForm({
       is_publish: isPublish,
       post_type: PROJECT_POST_TYPE_KEY,
       duration_value: durationValue,
-      duration_unit: 'month',
+      duration_unit: durationUnit,
     }
 
     setFormLoading(true)
@@ -230,8 +231,8 @@ export function ProjectForm({
             {/* <input type="file" id="image"/> */}
             <input
               type="file"
-              placeholder="Duration value"
-              name="duration-value"
+              placeholder=""
+              name="competionPoster"
               value={imValue}
               id="image"
               onChange={(e) => setImValue(e.target.value)}
@@ -240,7 +241,17 @@ export function ProjectForm({
               }`}
             />
           </div>
-
+          <select
+                  className={styles['filter-unit-select']}
+                  value={durationUnit}
+                  onChange={(e) => setDurationUnit(e.target.value)}
+                >
+                  {durationUnitOptions.map((option) => (
+                    <option key={option.value} value={option.value}>
+                      {option.label}
+                    </option>
+                  ))}
+                </select>
           <div className={styles['edit-modal-field']}>
             <label className={styles['edit-modal-field-label']}>
               Approx Duration
