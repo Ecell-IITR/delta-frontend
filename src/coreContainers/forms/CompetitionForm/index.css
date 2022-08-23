@@ -1,3 +1,12 @@
+input[type=file] {
+  display: none;
+}
+.competion{
+ 
+  width: 100%;
+  
+  background-color: #ffffff;
+}
 .modal-title-text {
     font-size: 1.4em;
     font-family: Neutrifpro-regular;
@@ -168,7 +177,9 @@
     }
   }
   @media screen and (max-width:350px)  {
-   
+    .modal-main{
+      padding: 0 ;
+    }
     .edit-modal-field{
       margin-left: -2rem;
     }

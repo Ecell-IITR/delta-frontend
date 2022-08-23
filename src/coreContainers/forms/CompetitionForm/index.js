@@ -7,7 +7,10 @@ import InlineEditor from '@ckeditor/ckeditor5-build-inline'
 import { SelectFilter } from 'coreContainers/filters'
 import { Responsive } from 'semantic-ui-react'
 import { DateInput } from 'semantic-ui-calendar-react'
-import { INTERNSHIP_POST_TYPE_KEY } from '../../../student/constants'
+import {
+  INTERNSHIP_POST_TYPE_KEY,
+  COMPETITION_POST_TYPE_KEY,
+} from '../../../student/constants'
 
 import styles from './index.css'
 
@@ -45,13 +48,18 @@ export function CompetitionForm({
     { value: 2, label: 'Week', durationValue: 7 },
     { value: 3, label: 'Month', durationValue: 30 },
   ]
+  const typeOptions = [
+    { value: 'OnSpot', label: 'OnSpot' },
+    { value: 'Online', label: 'Online' },
+  ]
 
+  const [imValue, setimValue] = useState(
+    formObj && formObj.competionPoster ? formObj.competionPoster : '',
+  )
   const [title, setTitle] = useState(
     formObj && formObj.title ? formObj.title : '',
   )
-  const [stipend, setStipend] = useState(
-    formObj && formObj.stipend ? formObj.stipend : '',
-  )
+  
   const [description, setDescription] = useState(
     formObj && formObj.description ? formObj.description : '',
   )
@@ -71,11 +79,11 @@ export function CompetitionForm({
     formObj && formObj.durationValue ? formObj.durationValue : '',
   )
   const [durationUnit, setDurationUnit] = useState(1)
-
+  const [type, setType] = useState('OnSpot')
   const [errTitle, setErrTitle] = useState(false)
   const [errExpiryDate, setErrExpiryDate] = useState(false)
   const [formLoading, setFormLoading] = useState(false)
-
+  const [link, setlink] = useState('')
   const getFilterOptions = (filterList, valueKey, labelKey) => {
     const resultArr = []
     filterList.forEach((filter) =>
@@ -122,16 +130,19 @@ export function CompetitionForm({
     }
     const obj = {
       title,
-      stipend,
+      // stipend,
       description,
       skill_slugs: getValueFromArray(stateSkills, 'slug'),
       location: stateLocation.slug,
       tag_hashes: getValueFromArray(stateTags, 'hash'),
       expiry_timestamp: selectedDate.getTime() / 1000,
       is_publish: isPublish,
-      post_type: INTERNSHIP_POST_TYPE_KEY,
+      post_type: COMPETITION_POST_TYPE_KEY,
       duration_value: durationValue,
       duration_unit: durationUnit,
+      competition_type: type,
+      competition_file: imValue,
+      competition_link: link,
     }
 
     setFormLoading(true)
@@ -170,21 +181,19 @@ export function CompetitionForm({
             )}
           </div>
           <div className={styles['edit-modal-field']}>
-            <label className={styles['edit-modal-field-label']}>Stipend</label>
+            <label className={styles['edit-modal-field-label']}>
+              Link To Competion
+            </label>
             <input
               type="text"
-              placeholder="Stipend"
-              name="stipend"
-              value={stipend}
-              onChange={(e) => setStipend(e.target.value)}
+              placeholder="link to competion"
+              name="link-to-competion"
+              value={link}
+              onChange={(e) => setlink(e.target.value)}
               className={`${styles['edit-modal-field-input']} ${
                 inputFieldWithBorder ? styles['with-border-input'] : ''
               }`}
             />
-
-            <div className={styles['help-text']}>
-              Note: For 20k, write 20000 in the input field.
-            </div>
           </div>
         </div>
         <div className={styles['edit-modal-field']}>
@@ -327,6 +336,7 @@ export function CompetitionForm({
                 </select>
               </div>
             </div>
+            
             <input
               type="text"
               placeholder="Duration value"
@@ -341,6 +351,55 @@ export function CompetitionForm({
               Note: For 2 months, write 2 in the input field and select month
               from dropdown.
             </div>
+
+
+
+            <div className={styles['modal-label-wrapper']}>
+              <label
+                style={{ display: 'flex', alignItems: 'center' }}
+                className={styles['edit-modal-field-label']}
+              >
+                Mode of Competion
+              </label>
+              <div>
+              <select
+                className={styles['filter-unit-select']}
+                value={type}
+                onChange={(e) => setType(e.target.value)}
+              >
+                {typeOptions.map((option) => (
+                  <option key={option.value} value={option.value}>
+                    {option.label}
+                  </option>
+                ))}
+              </select>
+              </div>
+            </div>
+            <label style={{padding:"5%"}} className={styles['edit-modal-field-label']}>Poster For The Competion</label>
+            <label className={`${styles['edit-modal-field-input']} ${styles.competion}`} For="image">
+             
+              &nbsp;
+              {imValue ? imValue.substr(1, 30) + '.......' : 'Upload Here'}{' '}
+            </label>
+
+            <input
+              type="file"
+              placeholder=""
+              name="competionPoster"
+              value={imValue}
+              id="image"
+              onChange={(e) => setimValue(e.target.value)}
+              className={`${styles['edit-modal-field-input']} ${
+                inputFieldWithBorder ? styles['with-border-input'] : ''
+              }`}
+            />
+         
+            
+
+            <div>
+              
+            </div>
+            <div> </div>
           </div>
         </div>
       </div>

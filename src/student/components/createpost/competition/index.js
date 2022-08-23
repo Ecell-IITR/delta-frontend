@@ -42,7 +42,7 @@ export function CreateCompetitionComponent({
 
   return (
     <div className={styles['form-container']}>
-      <InternshipForm
+      <CompetitionForm
         skills={skills}
         skillsLoading={skillsLoading}
         fetchSkills={fetchSkillsComponent}

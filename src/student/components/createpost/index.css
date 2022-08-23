@@ -50,9 +50,9 @@
   
   }
 }
-@media screen and (max-width:300px){
+@media screen and (max-width:350px){
   .contentBox {
-  padding: 3rem;
+  padding: 0;
   width: 100%;
   
   }
