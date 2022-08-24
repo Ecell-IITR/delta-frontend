@@ -129,9 +129,9 @@ export function CompetitionForm({
       return
     }
     const obj = {
-      title,
+      title:title,
       // stipend,
-      description,
+      description:description,
       skill_slugs: getValueFromArray(stateSkills, 'slug'),
       location: stateLocation.slug,
       tag_hashes: getValueFromArray(stateTags, 'hash'),
@@ -142,7 +142,7 @@ export function CompetitionForm({
       duration_unit: durationUnit,
       competition_type: type,
       competition_file: imValue,
-      competition_link: link,
+      link_to_apply: link,
     }
 
     setFormLoading(true)
@@ -167,7 +167,7 @@ export function CompetitionForm({
               placeholder="Title"
               name="title"
               value={title}
-              onChange={(e) => setTitle(e.target.value)}
+              onChange={(e) => {setTitle(e.target.value);console.log(title)}}
               className={`${styles['edit-modal-field-input']} ${
                 inputFieldWithBorder ? styles['with-border-input'] : ''
               }`}
