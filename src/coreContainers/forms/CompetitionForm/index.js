@@ -128,6 +128,10 @@ export function CompetitionForm({
       setErrExpiryDate(true)
       return
     }
+    let form_data = new FormData();
+    form_data.append('competition_file', imValue, imValue.name);
+    form_data.append('post_type', COMPETITION_POST_TYPE_KEY);
+    form_data.append("expiry_timestamp", selectedDate.getTime() / 1000);
     const obj = {
       title:title,
       // stipend,
@@ -147,10 +151,10 @@ export function CompetitionForm({
 
     setFormLoading(true)
     if (action === 'edit') {
-      onAction(obj, modalCloseFunc, () => setFormLoading(false))
+      onAction(form_data, modalCloseFunc, () => setFormLoading(false))
     }
     if (action === 'create') {
-      onAction(obj, () => setFormLoading(false))
+      onAction(form_data, () => setFormLoading(false))
     }
   }
 
@@ -379,16 +383,16 @@ export function CompetitionForm({
             <label className={`${styles['edit-modal-field-input']} ${styles.competion}`} For="image">
              
               &nbsp;
-              {imValue ? imValue.substr(1, 30) + '.......' : 'Upload Here'}{' '}
+              Upload Here
             </label>
 
             <input
               type="file"
               placeholder=""
               name="competionPoster"
-              value={imValue}
+              
               id="image"
-              onChange={(e) => setimValue(e.target.value)}
+              onChange={(e) => {setimValue(e.target.files[0]),console.log(e.target.files[0]) }}
               className={`${styles['edit-modal-field-input']} ${
                 inputFieldWithBorder ? styles['with-border-input'] : ''
               }`}
