@@ -3,7 +3,6 @@
   position: relative;
  
 }
-
 .modal-title-text {
   font-size: 1.4em;
   font-family: Neutrifpro-regular;
@@ -131,3 +130,55 @@
   font-size: 0.75rem;
   font-family: Neutrifpro-regular;
 }
+@media screen and (max-width: 720px){
+
+  .edit-modal-field-group{
+    flex-direction: column;
+     }
+  .modal-main{
+      margin-right: 0px;
+      padding-right: 0px;
+      padding-left: 8px;
+     }
+   .edit-modal-field{
+    padding-right: 0px;
+   }
+   .edit-modal-field-label{
+    font-size: 1.2em;
+    width: 70vw;
+   }
+   .modal-container{
+    margin:0px;
+    padding: 0px;
+   }
+}
+@media screen and (max-width: 600px){
+  
+  .edit-modal-field-input{
+    width: 30vw;
+   
+  } 
+}
+@media screen and (max-width: 450px) {
+  
+  .edit-modal-field-input{
+    width: 40vw;
+   }
+   .modal-main{
+    padding-left: 0px;
+   }
+   .modal-title-text{
+    padding-left: 4px;
+   }
+}
+@media screen and (max-width: 280px){
+  .edit-modal-field-input {
+    width:50vw;
+  }
+ .modal-title-text{
+  padding-left: 0px;
+  width:20vw;
+  padding-right: 0px;
+  width:40vw;
+ }
+} 
