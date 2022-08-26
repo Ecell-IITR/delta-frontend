@@ -23,7 +23,7 @@
   border-radius: .4rem;
 }
 .change{
-
+/* background-color:yellow; */
   display: flex;
   flex-direction: row;
   width:100%;
@@ -57,6 +57,15 @@
 
   
 }
+.addTag{
+  /* background-color:yellow; */
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  /* justify-content: center; */
+  /* align-items: center; */
+  gap:2rem;
+}
 
 .edit-modal-field {
   width: 100%;
@@ -69,7 +78,7 @@
   padding: 0.5rem 0;
   display: flex;
   flex-direction: column;
-  width:50%;
+  width:100%;
 }
 
 .modal-label-wrapper {
@@ -205,29 +214,6 @@
   .edit-modal-field{
     margin-left: -1rem;
   }
-/* .change{
-
-  display: flex;
-  flex-direction: row;
-  width:100%;
-  justify-content:space-between;
-} */
-
-/* .ui{
-  background-color: red;
-  height: 1rem;
-} */
-
-/* .left{
-  
-  padding: 2rem;
-  margin-left:10px;
-  
-} */
-
-/* .help{
-  border-right-color: red;
-} */
 
 
 .project{
@@ -255,7 +241,6 @@ input[type=file]{
 @media screen and (max-width:957px) {
   .edit-modal-field-group {
     display: flex;
-    /* flex-direction: column; */
     justify-content: space-between;
     width: 100%;
     
@@ -263,7 +248,7 @@ input[type=file]{
 
   .modal-main{
     width: 100%;
-    /* background-color:yellow; */
+   
   }
   
 
@@ -272,13 +257,6 @@ input[type=file]{
     
     padding: 0.5rem 0;
     
-  }
-
-  .change{
-
-    display: flex;
-    flex-direction: column;
-   
   }
 
   .edit-modal-field-label{
@@ -295,5 +273,13 @@ input[type=file]{
     display: flex;
     flex-direction: column;
 
+  }
+}
+
+@media screen and (max-width:767px)
+{
+  .change{
+    display: flex;
+    flex-direction: column;
   }
 }

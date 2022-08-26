@@ -17,10 +17,12 @@ export function ProjectForm({
   skills,
   skillsLoading,
   fetchSkills,
-  // locations,
-  // fetchLocations,
-  // tags,
-  // fetchTags,
+  locations,
+  locationsLoading,
+  fetchLocations,
+  tagsLoading,
+  tags,
+  fetchTags,
   onAction,
   formObj,
   modalCloseFunc,
@@ -29,15 +31,15 @@ export function ProjectForm({
   publishButton,
 }) {
   useEffect(() => {
-    // if (Object.keys(locations).length === 0) {
-    //   fetchLocations()
-    // }
+    if (Object.keys(locations).length === 0) {
+      fetchLocations()
+    }
     if (Object.keys(skills).length === 0) {
       fetchSkills()
     }
-    // if (Object.keys(tags).length === 0) {
-    //   fetchTags()
-    // }
+    if (Object.keys(tags).length === 0) {
+      fetchTags()
+    }
   }, [])
 
   const durationUnitOptions = [
@@ -58,12 +60,12 @@ export function ProjectForm({
   const [stateSkills, setSkills] = useState(
     formObj && formObj.requiredSkills ? formObj.requiredSkills : [],
   )
-  // const [stateLocation, setLocation] = useState(
-  //   formObj && formObj.location ? formObj.location : '',
-  // )
-  // const [stateTags, setTags] = useState(
-  //   formObj && formObj.tags ? formObj.tags : [],
-  // )
+  const [stateLocation, setLocation] = useState(
+    formObj && formObj.location ? formObj.location : '',
+  )
+  const [stateTags, setTags] = useState(
+    formObj && formObj.tags ? formObj.tags : [],
+  )
   const [selectedDate, setSelectedDate] = useState(
     formObj && formObj.postExpiryDate ? new Date(formObj.postExpiryDate) : '',
   )
@@ -99,15 +101,15 @@ export function ProjectForm({
     return tempArr
   }
 
-  // const getLocationObj = (loc) => {
-  //   if (loc) {
-  //     return {
-  //       value: loc.slug,
-  //       label: loc.name,
-  //     }
-  //   }
-  //   return {}
-  // }
+  const getLocationObj = (loc) => {
+    if (loc) {
+      return {
+        value: loc.slug,
+        label: loc.name,
+      }
+    }
+    return {}
+  }
   const dateCurrent = new Date()
   dateCurrent.setDate(dateCurrent.getDate() + 1)
 
@@ -131,8 +133,8 @@ export function ProjectForm({
       stipend,
       description,
       skill_slugs: getValueFromArray(stateSkills, 'slug'),
-      // location: stateLocation.slug,
-      // tag_hashes: getValueFromArray(stateTags, 'hash'),
+      location: stateLocation.slug,
+      tag_hashes: getValueFromArray(stateTags, 'hash'),
       expiry_timestamp: selectedDate.getTime() / 1000,
       is_publish: isPublish,
       post_type: PROJECT_POST_TYPE_KEY,
@@ -231,6 +233,9 @@ export function ProjectForm({
             {/* <input type="file" id="image"/> */}
             <input
               type="file"
+              accept="image/png" 
+              accept="image/jpeg"
+              accept="image/jpg"
               placeholder=""
               name="competionPoster"
               value={imValue}
@@ -241,7 +246,7 @@ export function ProjectForm({
               }`}
             />
           </div>
-          <select
+          {/* <select
                   className={styles['filter-unit-select']}
                   value={durationUnit}
                   onChange={(e) => setDurationUnit(e.target.value)}
@@ -251,7 +256,7 @@ export function ProjectForm({
                       {option.label}
                     </option>
                   ))}
-                </select>
+                </select> */}
           <div className={styles['edit-modal-field']}>
             <label className={styles['edit-modal-field-label']}>
               Approx Duration
@@ -350,8 +355,60 @@ export function ProjectForm({
               </div>
             </div>
           </div>
+
+
+          </div>
+
+
+
+
+
+
+
+          <div className={styles['edit-modal-field2']}>
+          <div className={styles['addTag']}>
+
+            
+          <div className={styles['edit-modal-field']}>
+            <label className={styles['edit-modal-field-label']}>Tags</label>
+              <SelectFilter
+                options={tags ? getFilterOptions(tags, 'hash', 'title') : []}
+                loading={tagsLoading}
+                placeholder="Select tags"
+                isMulti={true}
+                value={getFilterOptions(stateTags, 'hash', 'title')}
+                handleChange={(valueArr) => {
+                  setTags(valueArr)
+                }}
+              />
+            
+          </div>
+          
+          <div className={styles['edit-modal-field']}>
+            <label className={styles['edit-modal-field-label']}>Location</label>
+            <SelectFilter
+              options={
+                locations ? getFilterOptions(locations, 'slug', 'name') : []
+              }
+              loading={locationsLoading}
+              placeholder="Select locations"
+              isMulti={false}
+              value={getLocationObj(stateLocation)}
+              handleChange={(value) => {
+                setLocation(value)
+              }}
+            />
+          </div>
+          </div>
+
+
         </div>
       </div>
+
+
+
+
+    
 
       <div className={styles['button-wrapper']}>
         {formLoading ? (
