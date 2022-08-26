@@ -290,8 +290,9 @@
 }
 @media  screen and (max-width:330px) {
   .user-section-wrapper{
-    margin-right: 5vw;
+    margin-right: 8vw;
     flex-direction: column;
+    margin-left: 0px;
   }
   .post-user-section{
     margin-right: 8vw;
