@@ -39,7 +39,7 @@
   
   .menu-container {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     width: 100%; 
     
   }
@@ -63,5 +63,19 @@
     width: 100%; 
     
   }
+
+}
+
+
+@media screen and (max-width:957px)
+{
+  
+.row-container {
+  align-items: center;
+ padding: 1.5rem 0.75rem;
+ /* background-color: blue; */
+
+}
+
 
 }

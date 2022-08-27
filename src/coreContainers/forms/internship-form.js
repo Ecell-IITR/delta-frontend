@@ -49,6 +49,7 @@ export function InternshipForm({
   const [title, setTitle] = useState(
     formObj && formObj.title ? formObj.title : '',
   )
+
   const [stipend, setStipend] = useState(
     formObj && formObj.stipend ? formObj.stipend : '',
   )

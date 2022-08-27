@@ -193,3 +193,18 @@
     width: 80vw !important;
   }
 }
+
+@media screen and (max-width:1063px)
+{
+  .loginPageImageSection{
+    display: none;
+  }
+
+  .loginInput {
+    width: 90%;
+    /* display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column; */
+  }
+}
