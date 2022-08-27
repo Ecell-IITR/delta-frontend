@@ -45,9 +45,17 @@
    margin-left: -1rem;
   }
 }
+
+@media screen and (max-width:350px){
+  .contentBox {
+  padding: 0;
+  width: 100%;
+  
+
 @media screen and ( max-width:300px)
 { 
   .contentBox {
    margin-left: 1rem;
+
   }
 }

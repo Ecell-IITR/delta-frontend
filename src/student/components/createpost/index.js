@@ -11,8 +11,9 @@ import SidebarMenu from 'coreContainers/sidebar-menu'
 import EmptyScreen from 'coreContainers/empty-screen'
 import { setCreatePostTab } from '../../actions'
 import InternshipComponent from './internship'
+import CompetitionComponent from './competition'
 import ProjectComponent from './project'
-// import CompetitionComponent from './competition'
+
 
 import styles from './index.css'
 
@@ -60,12 +61,10 @@ export class CreatePost extends Component {
             <EmptyScreen text="Project form is under development!" />
           ) : (
             <></>
-          )} */}
-          {currentTab === 'competition' ? (
-            <EmptyScreen text="Competition form is under development!" />
-          ) : (
-            <></>
+
           )}
+          {currentTab === 'competition' ? <CompetitionComponent /> : <></>}
+
         </div>
       </div>
     )

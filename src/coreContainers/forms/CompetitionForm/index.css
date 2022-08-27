@@ -1,3 +1,11 @@
+input[type='file'] {
+  display: none;
+}
+.competion {
+  width: 100%;
+
+  background-color: #ffffff;
+}
 .modal-title-text {
   font-size: 1.4em;
   font-family: Neutrifpro-regular;
@@ -8,85 +16,41 @@
 
 .modal-main {
   padding: 0 2rem 1rem 2rem;
-  
-  
-}
-.project{
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  font-family: Neutrifpro-regular;
-  color: grey;
-  background-color:white;
-  padding: .2rem;
-  height: 2.3rem;
-  border-radius: .4rem;
-}
-.change{
-/* background-color:yellow; */
-  display: flex;
-  flex-direction: row;
-  width:100%;
-  justify-content:space-between;
 }
 
-.parent{ 
-  gap: .3rem;
-  display: flex;
-  flex-direction: row;
-  font-family: Neutrifpro-regular;
-  color: black;
- /* height: 2.2rem; */
- /* border-radius: .5rem; */
-
-}
 .edit-modal-field-group {
-  width:100% ;
- 
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
 }
 
 .edit-modal-field-group .edit-modal-field {
   width: 48%;
-  flex-direction: column;
 }
-.edit-modal-field-group1{
+.edit-modal-field-group1 {
   display: flex;
   justify-content: space-between;
-
-  
-}
-.addTag{
-  /* background-color:yellow; */
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  /* justify-content: center; */
-  /* align-items: center; */
-  gap:2rem;
+  flex-wrap: wrap;
 }
 
 .edit-modal-field {
-  width: 100%;
-  /* border: 1px solid black; */
   padding: 0.5rem 0;
   display: flex;
   flex-direction: column;
+  flex-wrap: wrap;
 }
 .edit-modal-field2 {
   padding: 0.5rem 0;
   display: flex;
   flex-direction: column;
-  width:100%;
+  flex-wrap: wrap;
+  width: 50%;
 }
 
 .modal-label-wrapper {
- 
   display: flex;
   justify-content: space-between;
-  padding: 5%;
-  justify-content: space-around;
+
 }
 
 .edit-modal-field-label {
@@ -95,8 +59,6 @@
   line-height: normal;
   color: #434660;
   margin: 0 0 0.5rem 0;
-  padding: 1rem;
-  /* background-color:blue; */
 }
 
 .filter-unit-select {
@@ -192,94 +154,37 @@
   font-size: 0.75rem;
   font-family: Neutrifpro-regular;
 }
-@media screen and (max-width:780px) {
- .edit-modal-field-input{
-  max-width: 100%;
- }
- .edit-modal-field1{
-  display: flex;
-  flex-direction:row;
- }
-}
-@media screen and (max-width:300px)  {
-  
-  .edit-modal-field{
-    margin-left: -1rem;
+@media screen and (max-width: 780px) {
+  .edit-modal-field-input {
+    max-width: 100%;
   }
-}
-@media screen and (max-width:350px)  {
-  .modal-main{
-    padding: 0 ;
+  .help-text{
+    padding-bottom: 5%;
   }
-  .edit-modal-field{
-    margin-left: -1rem;
-  }
-
-
-.project{
-  font-family: Neutrifpro-regular;
-  color: grey;
-  background-color:white;
-  padding: .2rem;
-  height: 2.3rem;
-  border-radius: .4rem;
-  overflow: hidden;
-}
-
-}
-input[type=file]{
-  height: 0;
-  visibility: hidden;
-
-}
-.summit{
-  gap: .2rem;
-  display: flex;
-  flex-direction: row;
-}
-
-@media screen and (max-width:957px) {
-  .edit-modal-field-group {
+  .edit-modal-field1 {
     display: flex;
-    justify-content: space-between;
-    width: 100%;
-    
+    flex-direction: row;
   }
-
-  .modal-main{
-    width: 100%;
-   
-  }
-  
-
-  .edit-modal-field-group {
-    width: 100%;
-    
-    padding: 0.5rem 0;
-    
-  }
-
-  .edit-modal-field-label{
-    width: 100%;
-  }
- 
-
 }
 
-@media screen and (max-width:440px)
-{
-  .summit{
-    height: 3rem;
-    display: flex;
+@media screen and (max-width: 550px) {
+  .modal-main {
+    padding: 0;
+  }
+  .edit-modal-field {
+    margin-left: -2rem;
+  }
+}
+
+@media screen and (max-width :450px){
+  .edit-modal-field-group{
     flex-direction: column;
-
   }
-}
-
-@media screen and (max-width:767px)
-{
-  .change{
-    display: flex;
-    flex-direction: column;
+  .edit-modal-field-input{
+    width: 76vw;
+  }
+  .edit-modal-field {
+    margin-left: 0rem;
+    width: 100%!important;
   }
 }
