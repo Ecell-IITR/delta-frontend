@@ -49,8 +49,8 @@ export function CompetitionForm({
     { value: 3, label: 'Month', durationValue: 30 },
   ]
   const typeOptions = [
-    { value: 'OnSpot', label: 'OnSpot' },
-    { value: 'Online', label: 'Online' },
+    { value: 2, label: 'OnSpot' },
+    { value: 1, label: 'Online' },
   ]
 
   const [imValue, setimValue] = useState(
@@ -79,7 +79,7 @@ export function CompetitionForm({
     formObj && formObj.durationValue ? formObj.durationValue : '',
   )
   const [durationUnit, setDurationUnit] = useState(1)
-  const [type, setType] = useState('OnSpot')
+  const [Type, setType] = useState('OnSpot')
   const [errTitle, setErrTitle] = useState(false)
   const [errExpiryDate, setErrExpiryDate] = useState(false)
   const [formLoading, setFormLoading] = useState(false)
@@ -132,23 +132,33 @@ export function CompetitionForm({
     form_data.append('competition_file', imValue, imValue.name);
     form_data.append('post_type', COMPETITION_POST_TYPE_KEY);
     form_data.append("expiry_timestamp", selectedDate.getTime() / 1000);
-    const obj = {
-      title:title,
+    form_data.append('title', title);
+          //title:title,
       // stipend,
-      description:description,
-      skill_slugs: getValueFromArray(stateSkills, 'slug'),
-      location: stateLocation.slug,
-      tag_hashes: getValueFromArray(stateTags, 'hash'),
-      expiry_timestamp: selectedDate.getTime() / 1000,
-      is_publish: isPublish,
-      post_type: COMPETITION_POST_TYPE_KEY,
-      duration_value: durationValue,
-      duration_unit: durationUnit,
-      competition_type: type,
-      competition_file: imValue,
-      link_to_apply: link,
-    }
-
+      form_data.append('description', description);
+      // description:description,
+      form_data.append('skill_slugs', getValueFromArray(stateSkills, 'slug'),);
+      // skill_slugs: getValueFromArray(stateSkills, 'slug'),
+      form_data.append('location',stateLocation.slug)
+      // location: stateLocation.slug,
+      form_data.append('tags_hashes', getValueFromArray(stateTags,  'hash'),);
+      // tag_hashes: getValueFromArray(stateTags, 'hash'),
+      // expiry_timestamp: selectedDate.getTime() / 1000,
+      form_data.append('is_publish', isPublish);
+      // is_publish: isPublish,
+      // post_type: COMPETITION_POST_TYPE_KEY,
+      form_data.append('duration_value', durationValue);
+      // duration_value: durationValue,
+      form_data.append('duration_unit', durationUnit);
+      // duration_unit: durationUnit,
+      // competition_type: type,
+      // competition_file: imValue,
+      // link_to_apply: link,
+      
+      form_data.append('competition_type', Type);
+      form_data.append('link_to_apply', link);
+    
+      console.log(Type)
     setFormLoading(true)
     if (action === 'edit') {
       onAction(form_data, modalCloseFunc, () => setFormLoading(false))
@@ -189,7 +199,7 @@ export function CompetitionForm({
               Link To Competion
             </label>
             <input
-              type="text"
+              type="url"
               placeholder="link to competion"
               name="link-to-competion"
               value={link}
@@ -368,7 +378,7 @@ export function CompetitionForm({
               <div>
               <select
                 className={styles['filter-unit-select']}
-                value={type}
+                value={Type}
                 onChange={(e) => setType(e.target.value)}
               >
                 {typeOptions.map((option) => (
