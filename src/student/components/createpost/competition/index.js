@@ -2,7 +2,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
-import InternshipForm from 'coreContainers/forms/internship-form'
 import CompetitionForm from 'coreContainers/forms/competitionForm'
 import { notify } from 'react-notify-toast'
 import { NOTIF_SUCCESS_TYPE } from 'globalConstants'

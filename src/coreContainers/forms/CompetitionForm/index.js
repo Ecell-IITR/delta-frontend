@@ -7,10 +7,7 @@ import InlineEditor from '@ckeditor/ckeditor5-build-inline'
 import { SelectFilter } from 'coreContainers/filters'
 import { Responsive } from 'semantic-ui-react'
 import { DateInput } from 'semantic-ui-calendar-react'
-import {
-  INTERNSHIP_POST_TYPE_KEY,
-  COMPETITION_POST_TYPE_KEY,
-} from '../../../student/constants'
+import { COMPETITION_POST_TYPE_KEY } from '../../../student/constants'
 
 import styles from './index.css'
 
@@ -59,7 +56,7 @@ export function CompetitionForm({
   const [title, setTitle] = useState(
     formObj && formObj.title ? formObj.title : '',
   )
-  
+
   const [description, setDescription] = useState(
     formObj && formObj.description ? formObj.description : '',
   )
@@ -128,43 +125,43 @@ export function CompetitionForm({
       setErrExpiryDate(true)
       return
     }
-    let form_data = new FormData();
-    form_data.append('competition_file', imValue, imValue.name);
-    form_data.append('post_type', COMPETITION_POST_TYPE_KEY);
-    form_data.append("expiry_timestamp", selectedDate.getTime() / 1000);
-    form_data.append('title', title);
-          //title:title,
-      // stipend,
-      form_data.append('description', description);
-      // description:description,
-      form_data.append('skill_slugs', getValueFromArray(stateSkills, 'slug'),);
-      // skill_slugs: getValueFromArray(stateSkills, 'slug'),
-      form_data.append('location',stateLocation.slug)
-      // location: stateLocation.slug,
-      form_data.append('tags_hashes', getValueFromArray(stateTags,  'hash'),);
-      // tag_hashes: getValueFromArray(stateTags, 'hash'),
-      // expiry_timestamp: selectedDate.getTime() / 1000,
-      form_data.append('is_publish', isPublish);
-      // is_publish: isPublish,
-      // post_type: COMPETITION_POST_TYPE_KEY,
-      form_data.append('duration_value', durationValue);
-      // duration_value: durationValue,
-      form_data.append('duration_unit', durationUnit);
-      // duration_unit: durationUnit,
-      // competition_type: type,
-      // competition_file: imValue,
-      // link_to_apply: link,
-      
-      form_data.append('competition_type', Type);
-      form_data.append('link_to_apply', link);
-    
-      console.log(Type)
+    const formData = new FormData()
+    formData.append('competition_file', imValue, imValue.name)
+    formData.append('post_type', COMPETITION_POST_TYPE_KEY)
+    formData.append('expiry_timestamp', selectedDate.getTime() / 1000)
+    formData.append('title', title)
+    // title:title,
+    // stipend,
+    formData.append('description', description)
+    // description:description,
+    formData.append('skill_slugs', getValueFromArray(stateSkills, 'slug'))
+    // skill_slugs: getValueFromArray(stateSkills, 'slug'),
+    formData.append('location', stateLocation.slug)
+    // location: stateLocation.slug,
+    formData.append('tags_hashes', getValueFromArray(stateTags, 'hash'))
+    // tag_hashes: getValueFromArray(stateTags, 'hash'),
+    // expiry_timestamp: selectedDate.getTime() / 1000,
+    formData.append('is_publish', isPublish)
+    // is_publish: isPublish,
+    // post_type: COMPETITION_POST_TYPE_KEY,
+    formData.append('duration_value', durationValue)
+    // duration_value: durationValue,
+    formData.append('duration_unit', durationUnit)
+    // duration_unit: durationUnit,
+    // competition_type: type,
+    // competition_file: imValue,
+    // link_to_apply: link,
+
+    formData.append('competition_type', Type)
+    formData.append('link_to_apply', link)
+
+    console.log(Type)
     setFormLoading(true)
     if (action === 'edit') {
-      onAction(form_data, modalCloseFunc, () => setFormLoading(false))
+      onAction(formData, modalCloseFunc, () => setFormLoading(false))
     }
     if (action === 'create') {
-      onAction(form_data, () => setFormLoading(false))
+      onAction(formData, () => setFormLoading(false))
     }
   }
 
@@ -181,7 +178,10 @@ export function CompetitionForm({
               placeholder="Title"
               name="title"
               value={title}
-              onChange={(e) => {setTitle(e.target.value);console.log(title)}}
+              onChange={(e) => {
+                setTitle(e.target.value)
+                console.log(title)
+              }}
               className={`${styles['edit-modal-field-input']} ${
                 inputFieldWithBorder ? styles['with-border-input'] : ''
               }`}
@@ -350,7 +350,7 @@ export function CompetitionForm({
                 </select>
               </div>
             </div>
-            
+
             <input
               type="text"
               placeholder="Duration value"
@@ -366,8 +366,6 @@ export function CompetitionForm({
               from dropdown.
             </div>
 
-
-
             <div className={styles['modal-label-wrapper']}>
               <label
                 style={{ display: 'flex', alignItems: 'center' }}
@@ -376,43 +374,46 @@ export function CompetitionForm({
                 Mode of Competion
               </label>
               <div>
-              <select
-                className={styles['filter-unit-select']}
-                value={Type}
-                onChange={(e) => setType(e.target.value)}
-              >
-                {typeOptions.map((option) => (
-                  <option key={option.value} value={option.value}>
-                    {option.label}
-                  </option>
-                ))}
-              </select>
+                <select
+                  className={styles['filter-unit-select']}
+                  value={Type}
+                  onChange={(e) => setType(e.target.value)}
+                >
+                  {typeOptions.map((option) => (
+                    <option key={option.value} value={option.value}>
+                      {option.label}
+                    </option>
+                  ))}
+                </select>
               </div>
             </div>
-            <label style={{paddingTop:"5%"}} className={styles['edit-modal-field-label']}>Poster For The Competion</label>
-            <label className={`${styles['edit-modal-field-input']} ${styles.competion}`} For="image">
-             
-              &nbsp;
-              Upload Here
+            <label
+              style={{ paddingTop: '5%' }}
+              className={styles['edit-modal-field-label']}
+            >
+              Poster For The Competion
+            </label>
+            <label
+              className={`${styles['edit-modal-field-input']} ${styles.competion}`}
+              For="image"
+            >
+              &nbsp; Upload Here
             </label>
 
             <input
               type="file"
               placeholder=""
               name="competionPoster"
-              
               id="image"
-              onChange={(e) => {setimValue(e.target.files[0]),console.log(e.target.files[0]) }}
+              onChange={(e) => {
+                setimValue(e.target.files[0])
+              }}
               className={`${styles['edit-modal-field-input']} ${
                 inputFieldWithBorder ? styles['with-border-input'] : ''
               }`}
             />
-         
-            
 
-            <div>
-              
-            </div>
+            <div></div>
             <div> </div>
           </div>
         </div>
