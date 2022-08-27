@@ -128,26 +128,40 @@ export function ProjectForm({
       return
     }
     console.log(selectedDate.getTime() / 1000)
-    const obj = {
-      title,
-      stipend,
-      description,
-      skill_slugs: getValueFromArray(stateSkills, 'slug'),
-      location: stateLocation.slug,
-      tag_hashes: getValueFromArray(stateTags, 'hash'),
-      expiry_timestamp: selectedDate.getTime() / 1000,
-      is_publish: isPublish,
-      post_type: PROJECT_POST_TYPE_KEY,
-      duration_value: durationValue,
-      duration_unit: durationUnit,
-    }
+    let form_data = new FormData()
+
+    // const obj = {
+    //   title,
+    //   stipend,
+    //   description,
+    //   skill_slugs: getValueFromArray(stateSkills, 'slug'),
+    //   location: stateLocation.slug,
+    //   tag_hashes: getValueFromArray(stateTags, 'hash'),
+    //   expiry_timestamp: selectedDate.getTime() / 1000,
+    //   is_publish: isPublish,
+    //   post_type: PROJECT_POST_TYPE_KEY,
+    //   duration_value: durationValue,
+    //   duration_unit: durationUnit,
+    // }
+    form_data.append('title', title)
+    form_data.append('stipend', stipend)
+    form_data.append('description', description)
+    form_data.append('skill_slugs', getValueFromArray(stateSkills, 'slug'))
+    form_data.append('location', stateLocation.slug)
+    form_data.append('tag_hashes', getValueFromArray(stateTags, 'hash'))
+    form_data.append('expiry_timestamp', selectedDate.getTime() / 1000)
+    form_data.append('is_publish', isPublish)
+    form_data.append('post_type', PROJECT_POST_TYPE_KEY)
+    form_data.append('duration_value', durationValue)
+    form_data.append('duration_unit', durationUnit)
+    form_data.append('project_file', imValue, imValue.name)
 
     setFormLoading(true)
     if (action === 'edit') {
-      onAction(obj, modalCloseFunc, () => setFormLoading(false))
+      onAction(form_data, modalCloseFunc, () => setFormLoading(false))
     }
     if (action === 'create') {
-      onAction(obj, () => setFormLoading(false))
+      onAction(form_data, () => setFormLoading(false))
     }
   }
 
@@ -227,20 +241,23 @@ export function ProjectForm({
             <label className={styles.project} htmlFor="image">
               {' '}
               &nbsp;{' '}
-              {imValue ? imValue.substr(1, 30) + '.......' : 'Upload Here'}{' '}
+              {imValue
+                ? imValue.name.substr(1, 30) + imValue.name.length > 30
+                  ? '.......'
+                  : ''
+                : 'Upload Here'}
             </label>
             <label></label>
             {/* <input type="file" id="image"/> */}
             <input
               type="file"
-              accept="image/png" 
+              accept="image/png"
               accept="image/jpeg"
               accept="image/jpg"
               placeholder=""
               name="competionPoster"
-              value={imValue}
               id="image"
-              onChange={(e) => setImValue(e.target.value)}
+              onChange={(e) => setImValue(e.target.files[0])}
               className={`${styles['edit-modal-field-input']} ${
                 inputFieldWithBorder ? styles['with-border-input'] : ''
               }`}
@@ -355,22 +372,12 @@ export function ProjectForm({
               </div>
             </div>
           </div>
+        </div>
 
-
-          </div>
-
-
-
-
-
-
-
-          <div className={styles['edit-modal-field2']}>
+        <div className={styles['edit-modal-field2']}>
           <div className={styles['addTag']}>
-
-            
-          <div className={styles['edit-modal-field']}>
-            <label className={styles['edit-modal-field-label']}>Tags</label>
+            <div className={styles['edit-modal-field']}>
+              <label className={styles['edit-modal-field-label']}>Tags</label>
               <SelectFilter
                 options={tags ? getFilterOptions(tags, 'hash', 'title') : []}
                 loading={tagsLoading}
@@ -381,34 +388,28 @@ export function ProjectForm({
                   setTags(valueArr)
                 }}
               />
-            
-          </div>
-          
-          <div className={styles['edit-modal-field']}>
-            <label className={styles['edit-modal-field-label']}>Location</label>
-            <SelectFilter
-              options={
-                locations ? getFilterOptions(locations, 'slug', 'name') : []
-              }
-              loading={locationsLoading}
-              placeholder="Select locations"
-              isMulti={false}
-              value={getLocationObj(stateLocation)}
-              handleChange={(value) => {
-                setLocation(value)
-              }}
-            />
-          </div>
-          </div>
+            </div>
 
-
+            <div className={styles['edit-modal-field']}>
+              <label className={styles['edit-modal-field-label']}>
+                Location
+              </label>
+              <SelectFilter
+                options={
+                  locations ? getFilterOptions(locations, 'slug', 'name') : []
+                }
+                loading={locationsLoading}
+                placeholder="Select locations"
+                isMulti={false}
+                value={getLocationObj(stateLocation)}
+                handleChange={(value) => {
+                  setLocation(value)
+                }}
+              />
+            </div>
+          </div>
         </div>
       </div>
-
-
-
-
-    
 
       <div className={styles['button-wrapper']}>
         {formLoading ? (
