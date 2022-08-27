@@ -63,7 +63,7 @@ class PostComponent extends Component {
         return (
           <div className={styles['user-section-wrapper']}>
             <div>
-              <div>{person.username}</div>
+              <div>{person.username.substring(0, 10)}</div>
               <div>{STUDENT_ROLE}</div>
             </div>
             <div className={styles['user-image']}>
@@ -75,7 +75,7 @@ class PostComponent extends Component {
         return (
           <div className={styles['user-section-wrapper']}>
             <div>
-              <div>{person.username}</div>
+              <div>{person.username.substring(0, 10)}</div>
               <div>{companyDomain}</div>
             </div>
             <div className={styles['user-image']}>
