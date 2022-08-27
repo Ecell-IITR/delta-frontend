@@ -389,7 +389,7 @@ export function CompetitionForm({
               </select>
               </div>
             </div>
-            <label style={{padding:"5%"}} className={styles['edit-modal-field-label']}>Poster For The Competion</label>
+            <label style={{paddingTop:"5%"}} className={styles['edit-modal-field-label']}>Poster For The Competion</label>
             <label className={`${styles['edit-modal-field-input']} ${styles.competion}`} For="image">
              
               &nbsp;
