@@ -42,11 +42,11 @@ export function ProjectForm({
     }
   }, [])
 
-  const durationUnitOptions = [
-    { value: 1, label: 'Day', durationValue: 1 },
-    { value: 2, label: 'Week', durationValue: 7 },
-    { value: 3, label: 'Month', durationValue: 30 },
-  ]
+  // const durationUnitOptions = [
+  //   { value: 1, label: 'Day', durationValue: 1 },
+  //   { value: 2, label: 'Week', durationValue: 7 },
+  //   { value: 3, label: 'Month', durationValue: 30 },
+  // ]
 
   const [title, setTitle] = useState(
     formObj && formObj.title ? formObj.title : '',
@@ -77,7 +77,7 @@ export function ProjectForm({
     formObj && formObj.imValue ? formObj.imValue : '',
   )
 
-  const [durationUnit, setDurationUnit] = useState(1)
+  // const [durationUnit, setDurationUnit] = useState(1)
 
   const [errTitle, setErrTitle] = useState(false)
   const [errExpiryDate, setErrExpiryDate] = useState(false)
@@ -128,7 +128,7 @@ export function ProjectForm({
       return
     }
     console.log(selectedDate.getTime() / 1000)
-    let form_data = new FormData()
+    const formData = new FormData()
 
     // const obj = {
     //   title,
@@ -143,25 +143,25 @@ export function ProjectForm({
     //   duration_value: durationValue,
     //   duration_unit: durationUnit,
     // }
-    form_data.append('title', title)
-    form_data.append('stipend', stipend)
-    form_data.append('description', description)
-    form_data.append('skill_slugs', getValueFromArray(stateSkills, 'slug'))
-    form_data.append('location', stateLocation.slug)
-    form_data.append('tag_hashes', getValueFromArray(stateTags, 'hash'))
-    form_data.append('expiry_timestamp', selectedDate.getTime() / 1000)
-    form_data.append('is_publish', isPublish)
-    form_data.append('post_type', PROJECT_POST_TYPE_KEY)
-    form_data.append('duration_value', durationValue)
-    form_data.append('duration_unit', durationUnit)
-    form_data.append('project_file', imValue, imValue.name)
+    formData.append('title', title)
+    formData.append('stipend', stipend)
+    formData.append('description', description)
+    formData.append('skill_slugs', getValueFromArray(stateSkills, 'slug'))
+    formData.append('location', stateLocation.slug)
+    formData.append('tag_hashes', getValueFromArray(stateTags, 'hash'))
+    formData.append('expiry_timestamp', selectedDate.getTime() / 1000)
+    formData.append('is_publish', isPublish)
+    formData.append('post_type', PROJECT_POST_TYPE_KEY)
+    // formData.append('duration_value', durationValue)
+    // formData.append('duration_unit', durationUnit)
+    formData.append('project_file', imValue, imValue.name)
 
     setFormLoading(true)
     if (action === 'edit') {
-      onAction(form_data, modalCloseFunc, () => setFormLoading(false))
+      onAction(formData, modalCloseFunc, () => setFormLoading(false))
     }
     if (action === 'create') {
-      onAction(form_data, () => setFormLoading(false))
+      onAction(formData, () => setFormLoading(false))
     }
   }
 
@@ -242,18 +242,15 @@ export function ProjectForm({
               {' '}
               &nbsp;{' '}
               {imValue
-                ? imValue.name.substr(1, 30) + imValue.name.length > 30
-                  ? '.......'
-                  : ''
+                ? imValue.name.substr(1, 30) +
+                  (imValue.name.length > 30 ? '.......' : '')
                 : 'Upload Here'}
             </label>
             <label></label>
             {/* <input type="file" id="image"/> */}
             <input
               type="file"
-              accept="image/png"
-              accept="image/jpeg"
-              accept="image/jpg"
+              accept="image/png, image/gif, image/jpeg"
               placeholder=""
               name="competionPoster"
               id="image"
@@ -375,7 +372,7 @@ export function ProjectForm({
         </div>
 
         <div className={styles['edit-modal-field2']}>
-          <div className={styles['addTag']}>
+          <div className={styles.addTag}>
             <div className={styles['edit-modal-field']}>
               <label className={styles['edit-modal-field-label']}>Tags</label>
               <SelectFilter
@@ -446,6 +443,7 @@ export function ProjectForm({
 // }
 
 ProjectForm.propTypes = {
+  locationsLoading: PropTypes.bool,
   fetchLocations: PropTypes.func,
   fetchSkills: PropTypes.func,
   modalCloseFunc: PropTypes.func,

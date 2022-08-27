@@ -5,8 +5,7 @@ const FetchApi = (method, url, params, TokenValue) => {
   return new Promise((resolve, reject) => {
     if (process.env.NODE_ENV === 'production') {
       url = 'https://delta.ecelliitr.org' + url
-    }
-    else {
+    } else {
       url = 'http://localhost:8000' + url
     }
     if (TokenValue) {

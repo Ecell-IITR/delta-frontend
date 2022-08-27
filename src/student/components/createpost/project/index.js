@@ -29,11 +29,7 @@ export function CreateInternshipComponent({
   const createPostWrapper = (obj, callback) => {
     createPostComponent(obj, (status) => {
       if (status === 200) {
-        notify.show(
-          'Successfully created a Project!',
-          NOTIF_SUCCESS_TYPE,
-          1000,
-        )
+        notify.show('Successfully created a Project!', NOTIF_SUCCESS_TYPE, 1000)
       }
       callback()
     })
