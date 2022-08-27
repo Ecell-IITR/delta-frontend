@@ -397,11 +397,16 @@ export function CompetitionForm({
               className={`${styles['edit-modal-field-input']} ${styles.competion}`}
               For="image"
             >
-              &nbsp; Upload Here
+              &nbsp;
+              {imValue
+                ? imValue.name.substr(0, 30) +
+                  (imValue.name.length > 30 ? '.......' : '')
+                : 'Upload Here'}
             </label>
 
             <input
               type="file"
+              accept="image/png, image/gif, image/jpeg"
               placeholder=""
               name="competionPoster"
               id="image"
