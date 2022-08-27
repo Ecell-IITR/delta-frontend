@@ -7,19 +7,21 @@ import InlineEditor from '@ckeditor/ckeditor5-build-inline'
 import { SelectFilter } from 'coreContainers/filters'
 import { Responsive } from 'semantic-ui-react'
 import { DateInput } from 'semantic-ui-calendar-react'
-import { INTERNSHIP_POST_TYPE_KEY } from '../../student/constants'
+import { PROJECT_POST_TYPE_KEY } from '../../student/constants'
+// import { InputFile } from 'semantic-ui-react-input-file'
+// import Apple from '/Users/divyanshudev/Desktop/delta-frontend/src/coreContainers/filters/inputForm/index.js'
 
 import styles from './form.css'
 
-export function InternshipForm({
+export function ProjectForm({
   skills,
   skillsLoading,
   fetchSkills,
   locations,
   locationsLoading,
   fetchLocations,
-  tags,
   tagsLoading,
+  tags,
   fetchTags,
   onAction,
   formObj,
@@ -49,7 +51,6 @@ export function InternshipForm({
   const [title, setTitle] = useState(
     formObj && formObj.title ? formObj.title : '',
   )
-
   const [stipend, setStipend] = useState(
     formObj && formObj.stipend ? formObj.stipend : '',
   )
@@ -71,6 +72,11 @@ export function InternshipForm({
   const [durationValue, setDurationValue] = useState(
     formObj && formObj.durationValue ? formObj.durationValue : '',
   )
+
+  const [imValue, setImValue] = useState(
+    formObj && formObj.imValue ? formObj.imValue : '',
+  )
+
   const [durationUnit, setDurationUnit] = useState(1)
 
   const [errTitle, setErrTitle] = useState(false)
@@ -121,26 +127,41 @@ export function InternshipForm({
       setErrExpiryDate(true)
       return
     }
-    const obj = {
-      title,
-      stipend,
-      description,
-      skill_slugs: getValueFromArray(stateSkills, 'slug'),
-      location: stateLocation.slug,
-      tag_hashes: getValueFromArray(stateTags, 'hash'),
-      expiry_timestamp: selectedDate.getTime() / 1000,
-      is_publish: isPublish,
-      post_type: INTERNSHIP_POST_TYPE_KEY,
-      duration_value: durationValue,
-      duration_unit: durationUnit,
-    }
+    console.log(selectedDate.getTime() / 1000)
+    let form_data = new FormData()
+
+    // const obj = {
+    //   title,
+    //   stipend,
+    //   description,
+    //   skill_slugs: getValueFromArray(stateSkills, 'slug'),
+    //   location: stateLocation.slug,
+    //   tag_hashes: getValueFromArray(stateTags, 'hash'),
+    //   expiry_timestamp: selectedDate.getTime() / 1000,
+    //   is_publish: isPublish,
+    //   post_type: PROJECT_POST_TYPE_KEY,
+    //   duration_value: durationValue,
+    //   duration_unit: durationUnit,
+    // }
+    form_data.append('title', title)
+    form_data.append('stipend', stipend)
+    form_data.append('description', description)
+    form_data.append('skill_slugs', getValueFromArray(stateSkills, 'slug'))
+    form_data.append('location', stateLocation.slug)
+    form_data.append('tag_hashes', getValueFromArray(stateTags, 'hash'))
+    form_data.append('expiry_timestamp', selectedDate.getTime() / 1000)
+    form_data.append('is_publish', isPublish)
+    form_data.append('post_type', PROJECT_POST_TYPE_KEY)
+    form_data.append('duration_value', durationValue)
+    form_data.append('duration_unit', durationUnit)
+    form_data.append('project_file', imValue, imValue.name)
 
     setFormLoading(true)
     if (action === 'edit') {
-      onAction(obj, modalCloseFunc, () => setFormLoading(false))
+      onAction(form_data, modalCloseFunc, () => setFormLoading(false))
     }
     if (action === 'create') {
-      onAction(obj, () => setFormLoading(false))
+      onAction(form_data, () => setFormLoading(false))
     }
   }
 
@@ -154,7 +175,7 @@ export function InternshipForm({
             </label>
             <input
               type="text"
-              placeholder="Title"
+              placeholder="Enter Title of Project"
               name="title"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
@@ -170,11 +191,12 @@ export function InternshipForm({
               <></>
             )}
           </div>
+
           <div className={styles['edit-modal-field']}>
             <label className={styles['edit-modal-field-label']}>Stipend</label>
             <input
               type="text"
-              placeholder="Stipend"
+              placeholder="Enter stipend"
               name="stipend"
               value={stipend}
               onChange={(e) => setStipend(e.target.value)}
@@ -187,9 +209,10 @@ export function InternshipForm({
             </div>
           </div>
         </div>
+
         <div className={styles['edit-modal-field']}>
           <label className={styles['edit-modal-field-label']}>
-            Description
+            Work Description
           </label>
           <div
             className={`${styles['editor-wrapper']} ${
@@ -206,91 +229,155 @@ export function InternshipForm({
             />
           </div>
         </div>
-        <div className={styles['']}>
+
+        <div className={styles['edit-modal-field-group']}>
           <div className={styles['edit-modal-field']}>
             <label className={styles['edit-modal-field-label']}>
-              Required skills
+              <div className={styles.summit}>
+                <div className={styles.leftProject}>Project</div>
+                <div className={styles.rigthFile}>File</div>
+              </div>
             </label>
-            <div className={styles['edit-modal-filter-wrapper']}>
-              <SelectFilter
-                options={skills ? getFilterOptions(skills, 'slug', 'name') : []}
-                loading={skillsLoading}
-                placeholder="Select skills"
-                isMulti={true}
-                value={getFilterOptions(stateSkills, 'slug', 'name')}
-                handleChange={(valueArr) => {
-                  setSkills(valueArr)
-                }}
-              />
-            </div>
+            <label className={styles.project} htmlFor="image">
+              {' '}
+              &nbsp;{' '}
+              {imValue
+                ? imValue.name.substr(1, 30) + imValue.name.length > 30
+                  ? '.......'
+                  : ''
+                : 'Upload Here'}
+            </label>
+            <label></label>
+            {/* <input type="file" id="image"/> */}
+            <input
+              type="file"
+              accept="image/png"
+              accept="image/jpeg"
+              accept="image/jpg"
+              placeholder=""
+              name="competionPoster"
+              id="image"
+              onChange={(e) => setImValue(e.target.files[0])}
+              className={`${styles['edit-modal-field-input']} ${
+                inputFieldWithBorder ? styles['with-border-input'] : ''
+              }`}
+            />
           </div>
+          {/* <select
+                  className={styles['filter-unit-select']}
+                  value={durationUnit}
+                  onChange={(e) => setDurationUnit(e.target.value)}
+                >
+                  {durationUnitOptions.map((option) => (
+                    <option key={option.value} value={option.value}>
+                      {option.label}
+                    </option>
+                  ))}
+                </select> */}
           <div className={styles['edit-modal-field']}>
-            <label className={styles['edit-modal-field-label']}>Location</label>
-            <SelectFilter
-              options={
-                locations ? getFilterOptions(locations, 'slug', 'name') : []
-              }
-              loading={locationsLoading}
-              placeholder="Select locations"
-              isMulti={false}
-              value={getLocationObj(stateLocation)}
-              handleChange={(value) => {
-                setLocation(value)
-              }}
+            <label className={styles['edit-modal-field-label']}>
+              Approx Duration
+            </label>
+            <input
+              type="text"
+              placeholder="Duration value"
+              name="duration-value"
+              value={durationValue}
+              onChange={(e) => setDurationValue(e.target.value)}
+              className={`${styles['edit-modal-field-input']} ${
+                inputFieldWithBorder ? styles['with-border-input'] : ''
+              }`}
             />
           </div>
         </div>
-        <div className={styles['edit-modal-field-group1']}>
-          <div className={styles['edit-modal-field']}>
-            <label className={styles['edit-modal-field-label']}>
-              Post Expiry Date
-            </label>
-            <div className={styles['edit-modal-filter-wrapper']}>
-              <Responsive {...Responsive.onlyMobile}>
-                <DateInput
-                  closable
-                  name="endDate"
-                  minDate={dateCurrent}
-                  placeholder="Expiry date"
-                  value={selectedDate}
-                  iconPosition="left"
-                  inline
-                  required
-                  dateFormat="YYYY-MM-DD"
-                  onChange={(event, { value }) =>
-                    setSelectedDate(new Date(value))
-                  }
-                />
-              </Responsive>
-              <Responsive minWidth={Responsive.onlyMobile.maxWidth + 1}>
-                <DateInput
-                  closable
-                  fluid
-                  popupPosition="bottom center"
-                  name="endDate"
-                  minDate={dateCurrent}
-                  placeholder="Expires on"
-                  value={selectedDate}
-                  iconPosition="left"
-                  required
-                  dateFormat="YYYY-MM-DD"
-                  onChange={(event, { value }) =>
-                    setSelectedDate(new Date(value))
-                  }
-                />
-              </Responsive>
-            </div>
-            {errExpiryDate ? (
-              <div className={styles['error-display']}>
-                Expiry date field cannot be empty!
+
+        <div className={styles['edit-modal-field-group']}>
+          <div className={styles.change}>
+            <div className={styles['edit-modal-field']}>
+              <label className={styles['edit-modal-field-label']}>
+                <div className={styles.parent}>
+                  <div className={styles.left}>Post</div>
+                  <div className={styles.middle}>Expiry</div>
+                  <div className={styles.rigth}>Date</div>
+                </div>
+              </label>
+              <div className={styles['edit-modal-filter-wrapper']}>
+                <div className={styles['edit-modal-filter-wrapper']}>
+                  <Responsive {...Responsive.onlyMobile}>
+                    <DateInput
+                      closable
+                      name="endDate"
+                      minDate={dateCurrent}
+                      placeholder="Expiry date"
+                      value={selectedDate}
+                      iconPosition="left"
+                      inline
+                      required
+                      dateFormat="YYYY-MM-DD"
+                      onChange={(event, { value }) =>
+                        setSelectedDate(new Date(value))
+                      }
+                    />
+                  </Responsive>
+
+                  <Responsive minWidth={Responsive.onlyMobile.maxWidth + 1}>
+                    <DateInput
+                      closable
+                      fluid
+                      popupPosition="bottom center"
+                      name="endDate"
+                      minDate={dateCurrent}
+                      placeholder="Expires on"
+                      value={selectedDate}
+                      iconPosition="left"
+                      required
+                      dateFormat="YYYY-MM-DD"
+                      onChange={(event, { value }) =>
+                        setSelectedDate(new Date(value))
+                      }
+                    />
+                  </Responsive>
+                </div>
+                {errExpiryDate ? (
+                  <div className={styles['error-display']}>
+                    Expiry date field cannot be empty!
+                  </div>
+                ) : (
+                  <></>
+                )}
               </div>
-            ) : (
-              <></>
-            )}
+            </div>
+
+            <div className={styles['edit-modal-field']}>
+              <label className={styles['edit-modal-field-label']}>
+                <div className={styles.parent}>
+                  <div className={styles.left}>Required</div>
+                  <div className={styles.middle}>Skill</div>
+                  <div className={styles.rigth}>Set</div>
+                </div>
+              </label>
+              <div className={styles['edit-modal-filter-wrapper']}>
+                <SelectFilter
+                  options={
+                    skills ? getFilterOptions(skills, 'slug', 'name') : []
+                  }
+                  loading={skillsLoading}
+                  placeholder="Select skills"
+                  isMulti={true}
+                  value={getFilterOptions(stateSkills, 'slug', 'name')}
+                  handleChange={(valueArr) => {
+                    setSkills(valueArr)
+                  }}
+                />
+              </div>
+            </div>
           </div>
-          <div className={styles['edit-modal-field2']}>
-            <label className={styles['edit-modal-field-label']}>Tags</label>
-            <div className={styles['edit-modal-filter-wrapper']}>
+        </div>
+
+        <div className={styles['edit-modal-field2']}>
+          <div className={styles['addTag']}>
+            <div className={styles['edit-modal-field']}>
+              <label className={styles['edit-modal-field-label']}>Tags</label>
               <SelectFilter
                 options={tags ? getFilterOptions(tags, 'hash', 'title') : []}
                 loading={tagsLoading}
@@ -302,48 +389,28 @@ export function InternshipForm({
                 }}
               />
             </div>
-          </div>
-        </div>
-        <div className={styles['edit-modal-field-group']}>
-          <div className={styles['edit-modal-field']}>
-            <div className={styles['modal-label-wrapper']}>
-              <label
-                style={{ display: 'flex', alignItems: 'center' }}
-                className={styles['edit-modal-field-label']}
-              >
-                Duration
+
+            <div className={styles['edit-modal-field']}>
+              <label className={styles['edit-modal-field-label']}>
+                Location
               </label>
-              <div>
-                <select
-                  className={styles['filter-unit-select']}
-                  value={durationUnit}
-                  onChange={(e) => setDurationUnit(e.target.value)}
-                >
-                  {durationUnitOptions.map((option) => (
-                    <option key={option.value} value={option.value}>
-                      {option.label}
-                    </option>
-                  ))}
-                </select>
-              </div>
-            </div>
-            <input
-              type="text"
-              placeholder="Duration value"
-              name="duration-value"
-              value={durationValue}
-              onChange={(e) => setDurationValue(e.target.value)}
-              className={`${styles['edit-modal-field-input']} ${
-                inputFieldWithBorder ? styles['with-border-input'] : ''
-              }`}
-            />
-            <div className={styles['help-text']}>
-              Note: For 2 months, write 2 in the input field and select month
-              from dropdown.
+              <SelectFilter
+                options={
+                  locations ? getFilterOptions(locations, 'slug', 'name') : []
+                }
+                loading={locationsLoading}
+                placeholder="Select locations"
+                isMulti={false}
+                value={getLocationObj(stateLocation)}
+                handleChange={(value) => {
+                  setLocation(value)
+                }}
+              />
             </div>
           </div>
         </div>
       </div>
+
       <div className={styles['button-wrapper']}>
         {formLoading ? (
           <div className="spinner-border text-primary" role="status"></div>
@@ -378,13 +445,12 @@ export function InternshipForm({
 //   modalCloseFunc: () => { },
 // }
 
-InternshipForm.propTypes = {
+ProjectForm.propTypes = {
   fetchLocations: PropTypes.func,
   fetchSkills: PropTypes.func,
   modalCloseFunc: PropTypes.func,
   publishButton: PropTypes.bool,
   locations: PropTypes.array,
-  locationsLoading: PropTypes.bool,
   skills: PropTypes.array,
   skillsLoading: PropTypes.bool,
   tags: PropTypes.array,
@@ -396,4 +462,4 @@ InternshipForm.propTypes = {
   action: PropTypes.string,
 }
 
-export default InternshipForm
+export default ProjectForm

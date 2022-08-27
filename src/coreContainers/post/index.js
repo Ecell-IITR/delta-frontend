@@ -231,7 +231,7 @@ class PostComponent extends Component {
       tags,
       tagsLoading,
     } = this.props
-    const ownUser = opportunity.userMinProfile.person.username === username
+    const ownUser = opportunity?.userMinProfile?.person?.username === username
 
     return (
       <div className={styles.post}>

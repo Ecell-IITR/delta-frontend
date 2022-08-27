@@ -6,6 +6,9 @@ const FetchApi = (method, url, params, TokenValue) => {
     if (process.env.NODE_ENV === 'production') {
       url = 'https://delta.ecelliitr.org' + url
     }
+    else {
+      url = 'http://localhost:8000' + url
+    }
     if (TokenValue) {
       axios({
         method,
