@@ -52,7 +52,7 @@ class Navbar extends React.PureComponent {
                   className={styles.title}
                   style={{ paddingTop: '1rem' }}
                 >
-                  &#9776;
+                  {state.Nav ? <> &#10006; </> : <>&#9776;</>}
                 </div>
               }
             >
