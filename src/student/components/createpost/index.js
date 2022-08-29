@@ -62,7 +62,7 @@ export class CreatePost extends Component {
           ) : (
             <></>
 
-          )}
+          )}*/}
           {currentTab === 'competition' ? <CompetitionComponent /> : <></>}
 
         </div>
