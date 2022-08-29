@@ -1,5 +1,5 @@
 /* eslint-disable react/forbid-prop-types */
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import Popup from 'reactjs-popup'
 import { faTimesCircle } from '@fortawesome/free-solid-svg-icons'
@@ -15,6 +15,13 @@ import {
 
 import styles from './edit-popup.css'
 
+function getWindowDimensions() {
+  const { innerWidth: width, innerHeight: height } = window
+  return {
+    width,
+    height,
+  }
+}
 export function EditPostModal({
   triggerElement,
   post,
@@ -29,6 +36,18 @@ export function EditPostModal({
   tagsLoading,
   fetchTags,
 }) {
+  const [windowDimensions, setWindowDimensions] = useState(
+    getWindowDimensions(),
+  )
+  useEffect(() => {
+    function handleResize() {
+      setWindowDimensions(getWindowDimensions())
+    }
+
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
+
   const editPostWrapper = (obj, close, callback) => {
     editPost(post.slug, obj, (status) => {
       if (status === 'success') {
@@ -38,8 +57,17 @@ export function EditPostModal({
       callback()
     })
   }
+  function widthRendere() {
+    return windowDimensions.width > 1000 ? '60%' : '90%'
+  }
   return (
-    <Popup trigger={triggerElement} modal>
+    <Popup
+      contentStyle={{ width: widthRendere(), height: '70%' }}
+      trigger={triggerElement}
+      modal
+    >
+      {/* {console.log(windowDimensions.width)} */}
+      {/* contentStyle={{width: widthRendere() ,height:"70%" }}  */}
       {(close) => (
         <div className={styles['modal-container']}>
           <div className={styles['modal-close-button']}>
@@ -66,7 +94,7 @@ export function EditPostModal({
                 publishButton
               />
             ) : (
-              <></>
+              <>i dont work</>
             )}
           </div>
         </div>
