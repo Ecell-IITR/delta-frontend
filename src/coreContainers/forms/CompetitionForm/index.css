@@ -1,7 +1,10 @@
-.modal-container {
-  padding: 1rem 0;
-  position: relative;
- 
+input[type='file'] {
+  display: none;
+}
+.competion {
+  width: 100%;
+
+  background-color: #ffffff;
 }
 .modal-title-text {
   font-size: 1.4em;
@@ -9,53 +12,72 @@
   line-height: normal;
   color: #434660;
   padding: 0 2rem;
-  color: aqua;
-}
-
-.modal-close-button {
-  position: absolute;
-  right: 2rem;
-  top: 1rem;
-  cursor: pointer;
 }
 
 .modal-main {
-  margin: 1rem 0;
-  height: 60vh;
   padding: 0 2rem 1rem 2rem;
-  overflow-y: auto;
-  border-bottom: 1px solid #a8a9b5;
-  border-top: 1px solid #a8a9b5;
-  scroll-padding: 20px 0;
 }
 
 .edit-modal-field-group {
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
 }
 
 .edit-modal-field-group .edit-modal-field {
   width: 48%;
+}
+.edit-modal-field-group1 {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
 }
 
 .edit-modal-field {
   padding: 0.5rem 0;
   display: flex;
   flex-direction: column;
+  flex-wrap: wrap;
+}
+.edit-modal-field2 {
+  padding: 0.5rem 0;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  width: 50%;
 }
 
 .modal-label-wrapper {
   display: flex;
   justify-content: space-between;
+
 }
 
 .edit-modal-field-label {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   font-family: Neutrifpro-regular;
   line-height: normal;
   color: #434660;
   margin: 0 0 0.5rem 0;
- 
+}
+
+.filter-unit-select {
+  font-family: Neutrifpro-regular;
+  font-size: 1rem;
+  line-height: normal;
+  color: #5a5c74;
+  margin: 0.5rem 0;
+  background: white;
+  border-radius: 4px;
+  border: solid 1.2px #a8a9b5;
+  padding: 0.25rem;
+}
+
+.filter-unit-select option {
+  font-family: Neutrifpro-regular;
+  font-size: 1rem;
+  line-height: normal;
+  color: #5a5c74;
 }
 
 .edit-modal-field-input {
@@ -65,6 +87,7 @@
   font-size: 1rem;
   padding: 0.5rem 0.75rem;
   font-family: Neutrifpro-regular;
+  max-width: 100%;
 }
 
 .with-border-input {
@@ -131,55 +154,37 @@
   font-size: 0.75rem;
   font-family: Neutrifpro-regular;
 }
-@media screen and (max-width: 720px){
+@media screen and (max-width: 780px) {
+  .edit-modal-field-input {
+    max-width: 100%;
+  }
+  .help-text{
+    padding-bottom: 5%;
+  }
+  .edit-modal-field1 {
+    display: flex;
+    flex-direction: row;
+  }
+}
 
+@media screen and (max-width: 550px) {
+  .modal-main {
+    padding: 0;
+  }
+  .edit-modal-field {
+    margin-left: -2rem;
+  }
+}
+
+@media screen and (max-width :450px){
   .edit-modal-field-group{
     flex-direction: column;
-     }
-  .modal-main{
-      margin-right: 0px;
-      padding-right: 0px;
-      padding-left: 8px;
-     }
-   .edit-modal-field{
-    padding-right: 0px;
-   }
-   .edit-modal-field-label{
-    font-size: 1.2em;
-    width: 70vw;
-   }
-   .modal-container{
-    margin:0px;
-    padding: 0px;
-   }
-}
-@media screen and (max-width: 600px){
-  
-  .edit-modal-field-input{
-    width: 30vw;
-   
-  } 
-}
-@media screen and (max-width: 450px) {
-  
-  .edit-modal-field-input{
-    width: 40vw;
-   }
-   .modal-main{
-    padding-left: 0px;
-   }
-   .modal-title-text{
-    padding-left: 4px;
-   }
-}
-@media screen and (max-width: 280px){
-  .edit-modal-field-input {
-    width:50vw;
   }
- .modal-title-text{
-  padding-left: 0px;
-  width:20vw;
-  padding-right: 0px;
-  width:40vw;
- }
-} 
+  .edit-modal-field-input{
+    width: 76vw;
+  }
+  .edit-modal-field {
+    margin-left: 0rem;
+    width: 100%!important;
+  }
+}
