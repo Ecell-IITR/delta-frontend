@@ -135,6 +135,9 @@
   .edit-modal-field-group{
     flex-direction: column;
      }
+     .edit-modal-field-input{
+      width: 50vw;}
+
   .modal-main{
       margin-right: 0px;
       padding-right: 0px;
@@ -155,14 +158,14 @@
 @media screen and (max-width: 600px){
   
   .edit-modal-field-input{
-    width: 30vw;
+    width: 50vw;
    
   } 
 }
 @media screen and (max-width: 450px) {
   
   .edit-modal-field-input{
-    width: 40vw;
+    width: 50vw;
    }
    .modal-main{
     padding-left: 0px;
@@ -171,9 +174,11 @@
     padding-left: 4px;
    }
 }
-@media screen and (max-width: 280px){
+
+@media screen and (max-width: 300px){
   .edit-modal-field-input {
     width:50vw;
+   
   }
  .modal-title-text{
   padding-left: 0px;
@@ -181,4 +186,34 @@
   padding-right: 0px;
   width:40vw;
  }
+ .modal-container{
+  width: 60vw;
+ }
+ .modal-main{
+  width: 60vw;
+ }
+ .button-wrapper{
+  height: 10vw;
+ }
+ .save-button{
+  height: 25px;
+  padding-top: 4px;
+  width:45px;
+  padding-left: 6px;
+  margin-left: 40%;
+}
+ 
 } 
+@media screen and (max-width: 260px) {
+  .modal-main{
+    width: 70vw;
+    height: 90vw;
+   
+   }
+   .save-button{
+   height: 25px;
+   padding-top: 4px;
+   width:45px;
+   padding-left: 6px;
+}
+}
