@@ -9,7 +9,7 @@ import { notify } from 'react-notify-toast'
 import { NOTIF_SUCCESS_TYPE } from 'globalConstants'
 import {
   INTERNSHIP_POST_TYPE_KEY,
-  // COMPETITION_POST_TYPE_KEY,
+  COMPETITION_POST_TYPE_KEY,
   // PROJECT_POST_TYPE_KEY,
 } from '../../student/constants'
 

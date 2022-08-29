@@ -34,7 +34,7 @@ import EditPost from './edit-popup'
 import { fetchLocations, fetchSkills, fetchTags } from '../../student/actions'
 
 import styles from './index.css'
-
+console.log('opportunity.applicantsCount')
 function CustomToggle({ eventKey }) {
   const [open, setOpen] = useState(false)
   const decoratedOnClick = useAccordionToggle(eventKey, () => setOpen(!open))
@@ -170,7 +170,7 @@ class PostComponent extends Component {
                 </div>
                 <div
                   className={styles['work-description-body']}
-                  dangerouslySetInnerHTML={{ __html: description }}
+                  dangerouslySetInnerHTML={{ __html: opportunity.description }}
                 ></div>
               </div>
             ) : (
@@ -231,7 +231,8 @@ class PostComponent extends Component {
       tags,
       tagsLoading,
     } = this.props
-    const ownUser = opportunity.userMinProfile.person.username === username
+
+    const ownUser = opportunity?.userMinProfile?.person?.username === username
 
     return (
       <div className={styles.post}>
@@ -239,16 +240,130 @@ class PostComponent extends Component {
         <div>
           <Accordion defaultActiveKey="0">
             <Card className={styles['accordion-card']}>
+            
+            <div className={styles['post-upper-section']}>
+            <div className={styles['post-uppermost-info-sec']}>
+              <div className={styles['post-basic-info-wrapper']}>
+                <div className={styles['post-title']}>{opportunity.title}</div>
+                <div
+                  className={styles['post-sti-work']}
+                >{`Stipend: ${kFormatter(opportunity.stipend)}`}</div>
+              </div>
+              </div>
+              <div className={styles['post-some-info-section']}>
+              <div>
+                <FontAwesomeIcon icon={faUser} />
+                <span>{opportunity.applicantsCount} Applicants</span>
+              </div>
+             
+                {/* <div>
+                  <FontAwesomeIcon icon={faMapMarker} />
+                  <span>{opportunity.location.name}</span>
+                </div> */}
+            
+                 <div>
+                  <FontAwesomeIcon icon={faCalendar} />
+                  <span>
+                    {`${opportunity.durationValue} day${
+                      opportunity.durationValue > 1 ? 's' : ''
+                    }`}
+                  </span>
+                </div>
+                <div>
+                <FontAwesomeIcon icon={faClock} />
+                <span>
+                  {new Date(opportunity.postExpiryDate) < Date.now()
+                    ? 'Expired'
+                    : `${getTimeLeft(opportunity.postExpiryDate)} left`}
+                </span>
+              </div>
+              </div>
+              </div>
+             
+            
               <Accordion.Collapse
                 eventKey="1"
                 className={styles['accordion-collapse']}
               >
                 <Card.Body className={styles['accordion-card-body']}>
                   {this.getPostCollapseSection()}
+                  <div className={styles['work-description']}>
+                <div className={styles['work-description-header']}>
+                  Work Description
+                </div>
+                <div
+                  className={styles['work-description-body']}
+                  dangerouslySetInnerHTML={{ __html: opportunity.description }}
+                ></div>
+              </div>
+              <div className={styles['skill-required']}>
+                <div className={styles['skill-required-header']}>
+                  Skill-set required
+                </div>
+                <div className={styles['skill-required-body']}>
+                  {opportunity.requiredSkills.map((skill) => (
+                    <div key={skill.slug}>{skill.name}</div>
+                  ))}
+                </div>
+              </div>
+              <div className={styles['skill-required']}>
+                <div className={styles['skill-required-header']}>Tags</div>
+                <div className={styles['tags-body']}>
+                  {opportunity.tags.map((tag) => (
+                    <div className={styles.tag} key={tag.hash}>
+                      {tag.title}
+                    </div>
+                  ))}
+                </div>
+              </div>
+                  
+{/*         
+          <div className={styles['post-collapse-section']}>
+            
+              <div className={styles['work-description']}>
+                <div className={styles['work-description-header']}>
+                  Work Description
+                </div>
+                <div
+                  className={styles['work-description-body']}
+                  dangerouslySetInnerHTML={{ __html: description }}
+                ></div>
+              </div>
+           
+            
+          
+              <div className={styles['skill-required']}>
+                <div className={styles['skill-required-header']}>
+                  Skill-set required
+                </div>
+                <div className={styles['skill-required-body']}>
+                  {requiredSkills.map((skill) => (
+                    <div key={skill.slug}>{skill.name}</div>
+                  ))}
+                </div>
+              </div>
+           
+           
+              <div className={styles['skill-required']}>
+                <div className={styles['skill-required-header']}>Tags</div>
+                <div className={styles['tags-body']}>
+                {tags.map((tag) => (
+                    <div className={styles.tag} key={tag.hash}>
+                      {tag.title}
+                    </div>
+                  ))}
+                    </div>
+                    </div>
+                    </div> */}
+                
+                
+              
+            
+              
                 </Card.Body>
               </Accordion.Collapse>
               <div className={styles['post-lower-section']}>
-                {ownUser ? (
+                {!ownUser ? (
                   <EditPost
                     triggerElement={
                       <button
