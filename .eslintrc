@@ -13,7 +13,7 @@
   },
   "root": true,
   "rules": {
-  
+    "import/no-named-as-default": 0,
     "react/self-closing-comp": [
       "warn",
       {

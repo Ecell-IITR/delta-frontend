@@ -5,10 +5,10 @@ import Popup from 'reactjs-popup'
 import { faTimesCircle } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import InternshipFormComponent from 'coreContainers/forms/internship-form'
-import CompetitionForm from '../forms/CompetitionForm'
-import ProjectForm from '../forms/project-form'
 import { notify } from 'react-notify-toast'
 import { NOTIF_SUCCESS_TYPE } from 'globalConstants'
+import CompetitionForm from '../forms/CompetitionForm'
+import ProjectForm from '../forms/project-form'
 import {
   INTERNSHIP_POST_TYPE_KEY,
   COMPETITION_POST_TYPE_KEY,
@@ -70,7 +70,7 @@ export function EditPostModal({
             ) : (
               <></>
             )}
-            {post.postType === COMPETITION_POST_TYPE_KEY? (
+            {post.postType === COMPETITION_POST_TYPE_KEY ? (
               <CompetitionForm
                 formObj={post}
                 onAction={editPostWrapper}
