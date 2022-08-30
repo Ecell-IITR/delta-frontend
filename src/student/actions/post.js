@@ -49,7 +49,6 @@ export const editPost = (postSlug, body, callback) => {
 export const createPost = (body, callback) => {
   return (dispatch) => {
     dispatch({ type: CREATE_POST_REQUEST })
-    console.log(body)
     FetchApi('POST', '/api/v1/post/create/', body, getToken(TOKEN_TYPE))
       .then((res) => {
         dispatch({

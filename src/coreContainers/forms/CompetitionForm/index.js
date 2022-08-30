@@ -155,7 +155,6 @@ export function CompetitionForm({
     formData.append('competition_type', Type)
     formData.append('link_to_apply', link)
 
-    console.log(Type)
     setFormLoading(true)
     if (action === 'edit') {
       onAction(formData, modalCloseFunc, () => setFormLoading(false))
@@ -180,7 +179,6 @@ export function CompetitionForm({
               value={title}
               onChange={(e) => {
                 setTitle(e.target.value)
-                console.log(title)
               }}
               className={`${styles['edit-modal-field-input']} ${
                 inputFieldWithBorder ? styles['with-border-input'] : ''

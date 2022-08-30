@@ -9,7 +9,6 @@ import { Responsive } from 'semantic-ui-react'
 import { DateInput } from 'semantic-ui-calendar-react'
 import { PROJECT_POST_TYPE_KEY } from '../../student/constants'
 // import { InputFile } from 'semantic-ui-react-input-file'
-// import Apple from '/Users/divyanshudev/Desktop/delta-frontend/src/coreContainers/filters/inputForm/index.js'
 
 import styles from './form.css'
 
@@ -127,7 +126,7 @@ export function ProjectForm({
       setErrExpiryDate(true)
       return
     }
-    console.log(selectedDate.getTime() / 1000)
+
     const formData = new FormData()
 
     // const obj = {

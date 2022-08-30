@@ -37,7 +37,6 @@ import { fetchLocations, fetchSkills, fetchTags } from '../../student/actions'
 
 import styles from './index.css'
 
-console.log('opportunity.applicantsCount')
 function CustomToggle({ eventKey }) {
   const [open, setOpen] = useState(false)
   const decoratedOnClick = useAccordionToggle(eventKey, () => setOpen(!open))
@@ -169,7 +168,7 @@ class PostComponent extends Component {
   render() {
     const {
       opportunity,
-      username,
+
       bookmarkPost,
       appliedLoadingSlug,
       isAppliedLoading,
@@ -185,13 +184,17 @@ class PostComponent extends Component {
       fetchTagsComponent,
       tags,
       tagsLoading,
+      user,
     } = this.props
-    const ownUser = opportunity?.userMinProfile?.person?.username === username
-    console.log(this.props)
+
+    const ownUser =
+      opportunity?.userMinProfile?.person?.username === user.username
+
     const typeOptions = {
       2: 'OnSpot',
       1: 'Online',
     }
+
     return (
       <div className={styles.post}>
         <div>{this.getPostUpperSection()}</div>
@@ -501,6 +504,7 @@ CustomToggle.propTypes = {
 }
 
 PostComponent.propTypes = {
+  user: PropTypes.object,
   opportunity: PropTypes.object,
   applyPost: PropTypes.func,
   username: PropTypes.string,
@@ -536,6 +540,7 @@ function mapDispatchToProps(dispatch) {
 
 function mapStateToProps(state) {
   return {
+    user: state.student.user.user,
     locations: state.student.filters.locations,
     locationsLoading: state.student.filters.locationsLoading,
     skillsLoading: state.student.skill.skillsLoading,
