@@ -288,7 +288,7 @@
     flex-direction: column;
   }
 }
-@media  screen and (max-width:330px) {
+@media  screen and (max-width:350px) {
   .user-section-wrapper{
     margin-right: 8vw;
     flex-direction: column;

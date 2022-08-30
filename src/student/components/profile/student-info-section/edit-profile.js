@@ -2,7 +2,7 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable react/forbid-prop-types */
-import React, { useState } from 'react'
+import React, { useState , useEffect} from 'react'
 import { findIndex } from 'lodash'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
@@ -13,8 +13,26 @@ import { SelectFilter } from 'coreContainers/filters'
 import { notify } from 'react-notify-toast'
 import { NOTIF_SUCCESS_TYPE } from 'globalConstants'
 import { editStudentProfile } from '../../../actions'
-
+ 
 import styles from './edit-profile.css'
+
+function changeWindowSize() {
+  const [size, setsize] = useState([window.innerWidth]);
+  useEffect(() => {
+        const  handleResize = () => {
+          setsize([window.innerWidth]);
+        }
+    
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+      }, [])
+  return size;  
+}
+ function widthrendere() {
+  const [width] = changeWindowSize();
+  return({width}> 1000 ? '75%':'60%')
+}
+  
 
 export function EditProfileComponent({
   triggerElement,
@@ -55,6 +73,8 @@ export function EditProfileComponent({
     return currentYearOptions[i]
   }
 
+  
+  
   const handleForm = (close) => {
     if (phoneNumber) {
       const phoneNum = phoneNumber.replace(/[^\d]/g, '')
@@ -80,9 +100,18 @@ export function EditProfileComponent({
     })
   }
 
-  return (
-    <Popup trigger={triggerElement} modal>
+  return ( 
+   
+     <Popup  
+     contentStyle={{
+     width: widthrendere(),
+     
+    } }
+
+     trigger={triggerElement} modal  
+     >
       {(close) => (
+      
         <div className={styles['modal-container']}>
           <div className={styles['modal-close-button']}>
             <FontAwesomeIcon icon={faTimesCircle} onClick={close} />
@@ -187,10 +216,14 @@ export function EditProfileComponent({
             )}
           </div>
         </div>
-      )}
+        )}
+        
+      
     </Popup>
-  )
+    
+     )
 }
+
 
 EditProfileComponent.propTypes = {
   userProfile: PropTypes.object,
