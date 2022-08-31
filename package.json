@@ -9,18 +9,7 @@
     "format": "pretty-quick",
     "lint:fix": "eslint --fix src/"
   },
-  "lint-staged": {
-    "*.{js,jsx,scss,css,md}": [
-      "prettier --write --single-quote",
-      "eslint --fix",
-      "git add"
-    ]
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
+  
   "repository": "https://github.com/Ecell-IITR/delta-frontend/",
   "author": "Ecell IITR",
   "license": "ISC",
