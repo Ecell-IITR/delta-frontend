@@ -6,7 +6,7 @@ import CKEditor from '@ckeditor/ckeditor5-react'
 import InlineEditor from '@ckeditor/ckeditor5-build-inline'
 import { SelectFilter } from 'coreContainers/filters'
 import { Responsive } from 'semantic-ui-react'
-import { DateInput } from 'semantic-ui-calendar-react'
+// import { DateInput } from 'semantic-ui-calendar-react'
 import { INTERNSHIP_POST_TYPE_KEY } from '../../student/constants'
 
 import styles from './form.css'
@@ -49,7 +49,6 @@ export function InternshipForm({
   const [title, setTitle] = useState(
     formObj && formObj.title ? formObj.title : '',
   )
-
   const [stipend, setStipend] = useState(
     formObj && formObj.stipend ? formObj.stipend : '',
   )
@@ -248,8 +247,10 @@ export function InternshipForm({
             </label>
             <div className={styles['edit-modal-filter-wrapper']}>
               <Responsive {...Responsive.onlyMobile}>
-                <DateInput
+                <input
+                  type="date"
                   closable
+                  className={styles['edit-modal-field-input']}
                   name="endDate"
                   minDate={dateCurrent}
                   placeholder="Expiry date"
@@ -258,13 +259,13 @@ export function InternshipForm({
                   inline
                   required
                   dateFormat="YYYY-MM-DD"
-                  onChange={(event, { value }) =>
-                    setSelectedDate(new Date(value))
-                  }
+                  onChange={(e) => setSelectedDate(new Date(e.target.value))}
                 />
               </Responsive>
               <Responsive minWidth={Responsive.onlyMobile.maxWidth + 1}>
-                <DateInput
+                <input
+                  type="date"
+                  className={styles['edit-modal-field-input']}
                   closable
                   fluid
                   popupPosition="bottom center"
@@ -275,9 +276,7 @@ export function InternshipForm({
                   iconPosition="left"
                   required
                   dateFormat="YYYY-MM-DD"
-                  onChange={(event, { value }) =>
-                    setSelectedDate(new Date(value))
-                  }
+                  onChange={(e) => setSelectedDate(new Date(e.target.value))}
                 />
               </Responsive>
             </div>

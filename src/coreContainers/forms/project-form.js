@@ -6,7 +6,7 @@ import CKEditor from '@ckeditor/ckeditor5-react'
 import InlineEditor from '@ckeditor/ckeditor5-build-inline'
 import { SelectFilter } from 'coreContainers/filters'
 import { Responsive } from 'semantic-ui-react'
-import { DateInput } from 'semantic-ui-calendar-react'
+// import { DateInput } from 'semantic-ui-calendar-react'
 import { PROJECT_POST_TYPE_KEY } from '../../student/constants'
 // import { InputFile } from 'semantic-ui-react-input-file'
 
@@ -300,7 +300,9 @@ export function ProjectForm({
               <div className={styles['edit-modal-filter-wrapper']}>
                 <div className={styles['edit-modal-filter-wrapper']}>
                   <Responsive {...Responsive.onlyMobile}>
-                    <DateInput
+                    <input
+                      className={styles['edit-modal-field-input']}
+                      type="date"
                       closable
                       name="endDate"
                       minDate={dateCurrent}
@@ -310,14 +312,16 @@ export function ProjectForm({
                       inline
                       required
                       dateFormat="YYYY-MM-DD"
-                      onChange={(event, { value }) =>
-                        setSelectedDate(new Date(value))
+                      onChange={(e) =>
+                        setSelectedDate(new Date(e.target.value))
                       }
                     />
                   </Responsive>
 
                   <Responsive minWidth={Responsive.onlyMobile.maxWidth + 1}>
-                    <DateInput
+                    <input
+                      className={styles['edit-modal-field-input']}
+                      type="date"
                       closable
                       fluid
                       popupPosition="bottom center"
@@ -328,8 +332,8 @@ export function ProjectForm({
                       iconPosition="left"
                       required
                       dateFormat="YYYY-MM-DD"
-                      onChange={(event, { value }) =>
-                        setSelectedDate(new Date(value))
+                      onChange={(e) =>
+                        setSelectedDate(new Date(e.target.value))
                       }
                     />
                   </Responsive>

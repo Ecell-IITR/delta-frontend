@@ -6,7 +6,7 @@ import CKEditor from '@ckeditor/ckeditor5-react'
 import InlineEditor from '@ckeditor/ckeditor5-build-inline'
 import { SelectFilter } from 'coreContainers/filters'
 import { Responsive } from 'semantic-ui-react'
-import { DateInput } from 'semantic-ui-calendar-react'
+// import { DateInput } from 'semantic-ui-calendar-react'
 import { COMPETITION_POST_TYPE_KEY } from '../../../student/constants'
 
 import styles from './index.css'
@@ -268,13 +268,14 @@ export function CompetitionForm({
             </label>
             <div className={styles['edit-modal-filter-wrapper']}>
               <Responsive {...Responsive.onlyMobile}>
-                <DateInput
+                <input
+                  type="date"
                   closable
                   name="endDate"
                   minDate={dateCurrent}
                   placeholder="Expiry date"
                   value={selectedDate}
-                  iconPosition="left"
+                  className={styles['edit-modal-field-input']}
                   inline
                   required
                   dateFormat="YYYY-MM-DD"
@@ -284,8 +285,10 @@ export function CompetitionForm({
                 />
               </Responsive>
               <Responsive minWidth={Responsive.onlyMobile.maxWidth + 1}>
-                <DateInput
+                <input
+                  type="date"
                   closable
+                  className={styles['edit-modal-field-input']}
                   fluid
                   popupPosition="bottom center"
                   name="endDate"
@@ -295,9 +298,7 @@ export function CompetitionForm({
                   iconPosition="left"
                   required
                   dateFormat="YYYY-MM-DD"
-                  onChange={(event, { value }) =>
-                    setSelectedDate(new Date(value))
-                  }
+                  onChange={(e) => setSelectedDate(new Date(e.target.value))}
                 />
               </Responsive>
             </div>
