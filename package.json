@@ -1,6 +1,6 @@
 {
   "name": "delta-web",
-  "version": "3.0.0",
+  "version": "2.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -71,8 +71,7 @@
     "redux-thunk": "^2.3.0",
     "semantic-ui-calendar-react": "^0.15.3",
     "semantic-ui-css": "^2.4.1",
-    "semantic-ui-react": "^0.86.0",
-    "semantic-ui-react-input-file": "^1.0.3"
+    "semantic-ui-react": "^0.86.0"
   },
   "resolutions": {
     "babel-core": "7.0.0-bridge.0"
