@@ -10,6 +10,8 @@ COPY ./package.json ./package.json
 
 COPY ./yarn.lock ./yarn.lock
 
+RUN yarn add node-sass@npm:sass
+
 RUN yarn
 
 COPY . .
