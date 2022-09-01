@@ -68,6 +68,9 @@ export function ProjectForm({
   const [selectedDate, setSelectedDate] = useState(
     formObj && formObj.postExpiryDate ? new Date(formObj.postExpiryDate) : '',
   )
+  const [selectedDatev, setSelectedDatev] = useState(
+    formObj && formObj.postExpiryDate ? formObj.postExpiryDate : '',
+  )
   const [durationValue, setDurationValue] = useState(
     formObj && formObj.durationValue ? formObj.durationValue : '',
   )
@@ -307,14 +310,15 @@ export function ProjectForm({
                       name="endDate"
                       minDate={dateCurrent}
                       placeholder="Expiry date"
-                      value={selectedDate}
+                      value={selectedDatev}
                       iconPosition="left"
                       inline
                       required
                       dateFormat="YYYY-MM-DD"
-                      onChange={(e) =>
+                      onChange={(e) => {
                         setSelectedDate(new Date(e.target.value))
-                      }
+                        setSelectedDatev(e.target.value)
+                      }}
                     />
                   </Responsive>
 
@@ -328,13 +332,14 @@ export function ProjectForm({
                       name="endDate"
                       minDate={dateCurrent}
                       placeholder="Expires on"
-                      value={selectedDate}
+                      value={selectedDatev}
                       iconPosition="left"
                       required
                       dateFormat="YYYY-MM-DD"
-                      onChange={(e) =>
+                      onChange={(e) => {
                         setSelectedDate(new Date(e.target.value))
-                      }
+                        setSelectedDatev(e.target.value)
+                      }}
                     />
                   </Responsive>
                 </div>

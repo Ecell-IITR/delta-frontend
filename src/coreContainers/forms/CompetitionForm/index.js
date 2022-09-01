@@ -72,6 +72,9 @@ export function CompetitionForm({
   const [selectedDate, setSelectedDate] = useState(
     formObj && formObj.postExpiryDate ? new Date(formObj.postExpiryDate) : '',
   )
+  const [selectedDatev, setSelectedDatev] = useState(
+    formObj && formObj.postExpiryDate ? formObj.postExpiryDate : '',
+  )
   const [durationValue, setDurationValue] = useState(
     formObj && formObj.durationValue ? formObj.durationValue : '',
   )
@@ -274,14 +277,15 @@ export function CompetitionForm({
                   name="endDate"
                   minDate={dateCurrent}
                   placeholder="Expiry date"
-                  value={selectedDate}
+                  value={selectedDatev}
                   className={styles['edit-modal-field-input']}
                   inline
                   required
                   dateFormat="YYYY-MM-DD"
-                  onChange={(event, { value }) =>
-                    setSelectedDate(new Date(value))
-                  }
+                  onChange={(e) => {
+                    setSelectedDate(new Date(e.target.value))
+                    setSelectedDatev(e.target.value)
+                  }}
                 />
               </Responsive>
               <Responsive minWidth={Responsive.onlyMobile.maxWidth + 1}>
@@ -294,11 +298,14 @@ export function CompetitionForm({
                   name="endDate"
                   minDate={dateCurrent}
                   placeholder="Expires on"
-                  value={selectedDate}
+                  value={selectedDatev}
                   iconPosition="left"
                   required
                   dateFormat="YYYY-MM-DD"
-                  onChange={(e) => setSelectedDate(new Date(e.target.value))}
+                  onChange={(e) => {
+                    setSelectedDate(new Date(e.target.value))
+                    setSelectedDatev(e.target.value)
+                  }}
                 />
               </Responsive>
             </div>
