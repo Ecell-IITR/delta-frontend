@@ -70,6 +70,9 @@ export function InternshipForm({
   const [selectedDatev, setSelectedDatev] = useState(
     formObj && formObj.postExpiryDate ? formObj.postExpiryDate : '',
   )
+  const [googleFormLink, setGoogleFormLink] = useState(
+    formObj && formObj.googleFormLink ? formObj.googleFormLink : '',
+  )
   const [durationValue, setDurationValue] = useState(
     formObj && formObj.durationValue ? formObj.durationValue : '',
   )
@@ -124,6 +127,7 @@ export function InternshipForm({
       return
     }
     const obj = {
+      google_form_link: googleFormLink,
       title,
       stipend,
       description,
@@ -350,6 +354,20 @@ export function InternshipForm({
               Note: For 2 months, write 2 in the input field and select month
               from dropdown.
             </div>
+            <br />
+            <label className={styles['edit-modal-field-label']}>
+              Google Form
+            </label>
+            <input
+              type="link"
+              placeholder="Google Form Link"
+              name="Google-Form-Link"
+              value={googleFormLink}
+              onChange={(e) => setGoogleFormLink(e.target.value)}
+              className={`${styles['edit-modal-field-input']} ${
+                inputFieldWithBorder ? styles['with-border-input'] : ''
+              }`}
+            />
           </div>
         </div>
       </div>

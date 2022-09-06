@@ -7,6 +7,7 @@ import PropTypes from 'prop-types'
 import Accordion from 'react-bootstrap/Accordion'
 import { useAccordionToggle } from 'react-bootstrap/AccordionToggle'
 import Card from 'react-bootstrap/Card'
+
 import {
   faChevronDown,
   faChevronUp,
@@ -332,7 +333,24 @@ class PostComponent extends Component {
                       </div>
                     </div>
                   ) : (
-                    <></>
+                    <>
+                      {opportunity.postType === INTERNSHIP_POST_TYPE_KEY ? (
+                        <>
+                          <div className={styles['skill-required']}>
+                            <div className={styles['skill-required-header']}>
+                              Google Form Link
+                            </div>
+                            <div className={styles['tags-body']}>
+                              <a href={opportunity.googleFormLink}>
+                                {opportunity.googleFormLink}
+                              </a>
+                            </div>
+                          </div>
+                        </>
+                      ) : (
+                        <></>
+                      )}
+                    </>
                   )}
 
                   {/*
@@ -422,12 +440,16 @@ class PostComponent extends Component {
                           <button
                             className={styles['apply-now-button']}
                             type="button"
-                            onClick={() =>
+                            onClick={() => {
                               applyPost(
                                 opportunity.slug,
                                 !opportunity.isApplied,
                               )
-                            }
+                              // if(opportunity.postType === INTERNSHIP_POST_TYPE_KEY){
+                              //       // navigate(opportunity.google-form-link)
+
+                              //     }
+                            }}
                           >
                             Apply Now
                           </button>
