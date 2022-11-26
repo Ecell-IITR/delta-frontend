@@ -1,8 +1,8 @@
 require('dotenv').config()
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
-// const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
-// const TerserPlugin = require('terser-webpack-plugin')
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
+const TerserPlugin = require('terser-webpack-plugin')
 const webpack = require('webpack')
 
 const commonPaths = require('./paths')
@@ -15,17 +15,17 @@ module.exports = {
     chunkFilename: `${commonPaths.jsFolder}/[name].[chunkhash].js`,
   },
   optimization: {
-    // minimizer: [
-    //   // new TerserPlugin({
-    //   //   // Use multi-process parallel running to improve the build speed
-    //   //   // Default number of concurrent runs: os.cpus().length - 1
-    //   //   parallel: true,
-    //   //   // Enable file caching
-    //   //   cache: true,
-    //   //   sourceMap: true,
-    //   // }),
-    //   new OptimizeCSSAssetsPlugin(),
-    // ],
+    minimizer: [
+      new TerserPlugin({
+        // Use multi-process parallel running to improve the build speed
+        // Default number of concurrent runs: os.cpus().length - 1
+        parallel: true,
+        // Enable file caching
+        cache: true,
+        sourceMap: true,
+      }),
+      new OptimizeCSSAssetsPlugin(),
+    ],
     // Automatically split vendor and commons
     //   // https://twitter.com/wSokra/status/969633336732905474
     //   // https://medium.com/webpack/webpack-4-code-splitting-chunk-graph-and-the-splitchunks-optimization-be739a861366
