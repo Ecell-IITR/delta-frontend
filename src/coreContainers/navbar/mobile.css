@@ -1,0 +1,159 @@
+.header {
+    display: flex;
+    flex-direction: row;
+    position: fixed;
+    top: 0;
+  }
+  
+  .mobileNavbarMajorContainer {
+    position: fixed;
+    flex-direction: row-reverse;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 112px;
+    background-color: #2964ee;
+    user-select: none;
+    z-index: 1000;
+    display: flex;
+  }
+  
+  .mobileNavbarMajorContainer input {
+    display: flex;
+    position: absolute;
+    top: 30px;
+    right: 7px;
+    width: 50px;
+    height: 40px;
+    margin: 6px 0;
+    cursor: pointer;
+    opacity: 0;
+    z-index: 2;
+    float: right;
+  }
+  
+  .Hamburger {
+    background-color: #2964ee;
+    width: 50px;
+    float: right;
+    margin-top: 1.75em;
+    display: inline;
+  }
+  
+  .mobileNavbarMajorContainer ul {
+    background-color: #2964ee;
+    position: fixed;
+    width: 100%;
+    height: auto;
+    padding-left: 10px;
+    padding-bottom: 1.8vh;
+    margin-top: 112px;
+    opacity: 0.9;
+    transform-origin: 0% 0%;
+    transform: translate(0, -160%);
+    transition: transform 0.5s cubic-bezier(0.89, -0.63, 0, 1.75);
+    z-index: 999;
+  }
+  .mobileNavbarMajorContainer input:checked ~ ul {
+    transform: none;
+  }
+  
+  .mobilenavMenuSubcontent1 {
+    background: inherit;
+    z-index: 99;
+    cursor: pointer;
+  }
+  
+  .mobilenavMenuItems {
+    font-size: 1rem;
+    line-height: 4vw;
+    background: inherit;
+    opacity: 1;
+    margin-top: 1.2rem;
+    color: #ffffff !important;
+  }
+  .mobilenavMenu{
+    color: #ffffff !important;
+  }
+  .mobilenavMenuCATag {
+    font-size: 1.3rem;
+    margin-top: 3rem;
+    margin-bottom: 2rem;
+    color: #ffffff !important;
+    font-weight: bolder !important;
+  }
+  .mobilenavMenuLinks {
+    background: inherit !important;
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 600;
+    padding-left: 15px;
+  }
+  
+  @media screen and (max-width: 768px) {
+    .mobileNavbarMajorContainer {
+      display: unset;
+    }
+    .HamburgerContainer {
+      cursor: pointer;
+    }
+  
+    .bar1,
+    .bar2,
+    .bar3 {
+      width: 35px;
+      height: 5px;
+      background-color: white;
+      margin: 6px 0;
+      transition: 0.4s;
+    }
+  
+    input:checked ~ .HAmburger > .bar1 {
+      -webkit-transform: rotate(-45deg) translate(-9px, 6px);
+      transform: rotate(-45deg) translate(-9px, 6px);
+    }
+  
+    input:checked ~ .HAmburger > .bar2 {
+      opacity: 0;
+    }
+  
+    input:checked ~ .HAmburger > .bar3 {
+      -webkit-transform: rotate(45deg) translate(-8px, -8px);
+      transform: rotate(45deg) translate(-8px, -8px);
+    }
+  }
+  
+  @media screen and (max-width: 768px) {
+    .navbarMobileContainer {
+      display: block;
+      width: 100%;
+      padding: 50% inherit !important;
+      background: inherit;
+      height: auto;
+    }
+    .HamburgerContainer {
+      float: right;
+      background: inherit;
+      margin: 10% 0;
+      margin-right: 2vw;
+      width: 8vw;
+    }
+    .navbarLogoMobile {
+      float: left;
+      background: transparent;
+      margin-top: 1.75em;
+      margin-left: 1.25em;
+      width: 12.5em;
+      height: 3.75em;
+    }
+  }
+  
+  @media all and (device-width: 768px) and (device-height: 1024px) and (orientation: portrait) {
+    .navbarLogoMobile {
+      float: left;
+      background: transparent;
+      margin-top: 25px;
+      margin-left: 1px;
+      margin-right: 430px;
+    }
+  }

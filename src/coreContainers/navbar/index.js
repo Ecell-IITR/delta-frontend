@@ -7,38 +7,40 @@ import { TOKEN_TYPE } from 'globalConstants'
 // import logo from '../../images/logo.svg'
 // import Searchbar from '../searchbar/index'
 import { getImageURL } from 'utils/getImageURL'
-import {
-  CDBSidebar,
-  CDBSidebarContent,
-  CDBSidebarFooter,
-  CDBSidebarHeader,
-  CDBSidebarMenu,
-  CDBSidebarMenuItem,
-} from 'cdbreact'
+// import {
+//   CDBSidebar,
+//   CDBSidebarContent,
+//   CDBSidebarFooter,
+//   CDBSidebarHeader,
+//   CDBSidebarMenu,
+//   CDBSidebarMenuItem,
+// } from 'cdbreact'
+
+import HeaderMobile from './mobile' 
 
 import styles from './navbar.css'
 // import PropTypes from 'prop-types'
 class Navbar extends React.PureComponent {
-  constructor(props) {
-    super(props)
-    this.state = {
-      Nav: true,
-    }
-  }
+  // constructor(props) {
+  //   super(props)
+  //   this.state = {
+  //     Nav: true,
+  //   }
+  // }
 
   render() {
     const { user, location, userLoading } = this.props
     const activeRoute = location.pathname
     const isLoggedIn = localStorage.getItem(TOKEN_TYPE)
-    const { state } = this
-    const setState = (Newstate) => this.setState(Newstate)
+    // const { state } = this
+    // const setState = (Newstate) => this.setState(Newstate)
     return isLoggedIn ? (
       <div className={styles.navbar}>
         <div
           style={{ display: 'flex', width: '0', overflow: 'scroll initial' }}
           className={styles.navController}
         >
-          <CDBSidebar
+          {/* <CDBSidebar
             textColor="#fff"
             backgroundColor={state.Nav ? '#2964ee' : 'transparent'}
           >
@@ -112,7 +114,8 @@ class Navbar extends React.PureComponent {
             </CDBSidebarContent>
 
             <CDBSidebarFooter style={{ textAlign: 'center' }} />
-          </CDBSidebar>
+          </CDBSidebar> */}
+          <HeaderMobile/>
         </div>
         <div className={styles.startnav}>
           <div className={styles.title + ' ' + styles.titleRespon}>Delta</div>
