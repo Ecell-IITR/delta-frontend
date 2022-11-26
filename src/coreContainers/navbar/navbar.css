@@ -100,6 +100,7 @@
 }
 .navController {
   height: 0;
+  display: none;
 }
 
 @media screen and (max-width: 1200px) {
@@ -131,6 +132,10 @@
   }
   .navController {
     height: 100vh;
+    display: flex;
+  }
+  .startnav{
+    display: none;
   }
   .subnavbar {
     

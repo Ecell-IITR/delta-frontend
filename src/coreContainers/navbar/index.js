@@ -37,7 +37,7 @@ class Navbar extends React.PureComponent {
     return isLoggedIn ? (
       <div className={styles.navbar}>
         <div
-          style={{ display: 'flex', width: '0', overflow: 'scroll initial' }}
+         
           className={styles.navController}
         >
           {/* <CDBSidebar
@@ -115,8 +115,8 @@ class Navbar extends React.PureComponent {
 
             <CDBSidebarFooter style={{ textAlign: 'center' }} />
           </CDBSidebar> */}
-          <HeaderMobile/>
-        </div>
+          <HeaderMobile user={user} />
+         </div>
         <div className={styles.startnav}>
           <div className={styles.title + ' ' + styles.titleRespon}>Delta</div>
           {/* <div>

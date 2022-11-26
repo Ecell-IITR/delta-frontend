@@ -1,16 +1,10 @@
 
-import React, { useState, useEffect} from 'react';
+import logoDelta from "../../images/delta.png"
+import React from 'react';
 import styles from './mobile.css'
 import { Link } from 'react-router-dom'
-export const HeaderMobile = () => {
-  const [isCA, setIsCA] = useState(false);
+export const HeaderMobile = (user) => {
 
-  useEffect(() => {
-    if (localStorage.getItem('userRoleType') === 'CA') setIsCA(true);
-    return () => {
-      setIsCA(false);
-    };
-  }, []);
   return (
     <div className={styles.mobileNavbarMajorContainer}>
       <input type='checkbox' />
@@ -21,71 +15,23 @@ export const HeaderMobile = () => {
         <div className={styles.bar3}></div>
       </div>
       <Link to='/' className={styles.image} >
-        <img
-          src=''
-          alt='navbar-logo'
-          className={styles.navbarLogoMobile}
-        />
+      <div className={styles.title + ' ' + styles.titleRespon}>Delta</div>
       </Link>
       <ul className={styles.mobilenavMenuSubcontent1}>
         <li className={styles.mobilenavMenuItems}>
-          <Link to='/' >
-            <div className={styles.mobilenavMenu}>HOME</div>
-          </Link>
+        <Link to="/opportunities"><div className={styles.mobilenavMenu}>Opportunities</div></Link>
         </li>
         {
           <li className={styles.mobilenavMenuItems}>
-            <Link to='/team' >
-              <div className={styles.mobilenavMenu}>TEAM</div>
-            </Link>
+            <Link to={`/user/${user.username}`}><div className={styles.mobilenavMenu}>Profile</div></Link>
           </li>
         }
         <li className={styles.mobilenavMenuItems}>
-          <Link to='/events' >
-            <div  className={styles.mobilenavMenu}>EVENTS</div>
-          </Link>
+        <Link to="/create-post"><div className={styles.mobilenavMenu}>Create Post</div></Link>
         </li>
         <li className={styles.mobilenavMenuItems}>
-          <Link to='/speakers' >
-            <div className={styles.mobilenavMenu}>SPEAKERS</div>
-          </Link>
+        <Link to="/logout"><div className={styles.mobilenavMenu}>Logout</div></Link>
         </li>
-        <li className={styles.mobilenavMenuItems}>
-          <Link to='/sponsors' >
-            <div className={styles.mobilenavMenu}>SPONSORS</div>
-          </Link>
-        </li>
-        <li className={styles.mobilenavMenuItems}>
-          <Link to='/#faq' >
-            <div className={styles.mobilenavMenu}>FAQ</div>
-          </Link>
-        </li>
-        {isCA && (
-          <>
-            <li className={styles.mobilenavMenuItems}>
-              <Link to='/cap/tasks' >
-                <div className={styles.mobilenavMenu}>
-                  CAMPUS AMBASSADOR
-                </div>
-              </Link>
-            </li>
-            <li className={styles.mobilenavMenuItems}>
-              <Link to='/cap/tasks' >
-                <div className={styles.mobilenavMenu}>TASKS</div>
-              </Link>
-            </li>
-            <li className={styles.mobilenavMenuItems}>
-              <Link to='/cap/leaderboard' >
-                <div className={styles.mobilenavMenu}>LEADERBOARD</div>
-              </Link>
-            </li>
-            <li className={styles.mobilenavMenuItems}>
-              <Link to='/cap/resources' >
-                <div className={styles.mobilenavMenu}>CA RULEBOOK</div>
-              </Link>
-            </li>
-          </>
-        )}
         
       </ul>
     </div>
