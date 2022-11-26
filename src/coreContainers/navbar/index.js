@@ -7,7 +7,7 @@ import { TOKEN_TYPE } from 'globalConstants'
 
 import { getImageURL } from 'utils/getImageURL'
 
-import HeaderMobile from './mobile' 
+import HeaderMobile from './mobile'
 
 import styles from './navbar.css'
 // import PropTypes from 'prop-types'
@@ -27,12 +27,9 @@ class Navbar extends React.PureComponent {
     // const setState = (Newstate) => this.setState(Newstate)
     return isLoggedIn ? (
       <div className={styles.navbar}>
-        <div
-         
-          className={styles.navController}
-        >
+        <div className={styles.navController}>
           <HeaderMobile user={user} />
-         </div>
+        </div>
         <div className={styles.startnav}>
           <div className={styles.title + ' ' + styles.titleRespon}>Delta</div>
           {/* <div>
