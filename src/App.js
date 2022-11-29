@@ -4,14 +4,14 @@ import { Route, Switch } from 'react-router-dom'
 import Navbar from 'coreContainers/navbar'
 import PrivateRoute from './routeUtils/privateRoute'
 import FreeRoute from './routeUtils/freeRoute'
-
+import Footer from './coreContainers/footer'
 import './App.css'
 
 export default class App extends Component {
   render() {
     return (
       <>
-        <Route path="/" component={Navbar} />
+        <Route path="/" component={Footer} />
         <Switch>
           <FreeRoute
             exact
