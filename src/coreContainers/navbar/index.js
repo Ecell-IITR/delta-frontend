@@ -8,7 +8,7 @@ import { TOKEN_TYPE } from 'globalConstants'
 import { getImageURL } from 'utils/getImageURL'
 
 import HeaderMobile from './mobile'
-
+import Footer from '../footer'
 import styles from './navbar.css'
 // import PropTypes from 'prop-types'
 class Navbar extends React.PureComponent {
@@ -25,7 +25,7 @@ class Navbar extends React.PureComponent {
     const isLoggedIn = localStorage.getItem(TOKEN_TYPE)
     // const { state } = this
     // const setState = (Newstate) => this.setState(Newstate)
-    return isLoggedIn ? (
+    return isLoggedIn ? (<>
       <div className={styles.navbar}>
         <div className={styles.navController}>
           <HeaderMobile user={user} />
@@ -94,10 +94,11 @@ class Navbar extends React.PureComponent {
           </div>
         )}
       </div>
-    ) : (
-      <></>
+      <Footer/></>
+     ) : (
+      <><Footer/></>
     )
-  }
+     }
 }
 
 Navbar.propTypes = {
