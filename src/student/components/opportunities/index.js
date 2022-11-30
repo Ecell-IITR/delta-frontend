@@ -257,7 +257,7 @@ export function Opportunities({
                       }
                       value={filtersApplied.stipend}
                       minValue={0}
-                      maxValue={8000}
+                      maxValue={100000}
                       kFormatterBool={true}
                       partitionCount={4}
                     />
