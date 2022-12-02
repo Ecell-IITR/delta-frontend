@@ -20,7 +20,5 @@
 
 #### Login URL:
 
-```
-http://localhost:3000/login
-```
+```http://localhost:3000/login```
 #### For Devlopment use Super User Credentials for login Dont use channeli for Login for devlopment

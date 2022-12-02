@@ -3,27 +3,33 @@ import PropTypes from 'prop-types'
 import Slider from '@material-ui/core/Slider'
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles'
 import { kFormatter } from 'utils/numberFormatter'
+import { faFileExcel } from '@fortawesome/free-solid-svg-icons'
 
 const THEME = createMuiTheme({
   typography: {
     fontSize: '0.8rem',
     fontFamily: 'Neutrifpro-regular',
     color: '#5a5c74',
+  
   },
   overrides: {
     MuiSlider: {
       thumb: {
         color: '#2964ee',
+        
       },
       track: {
         color: '#2964ee',
+        
       },
       rail: {
         color: '#bdc0c0',
-      },
+      
     },
   },
+}
 })
+
 
 export class RangeFilter extends Component {
   valueText = (value) => `${value}`
@@ -60,8 +66,9 @@ export class RangeFilter extends Component {
           value={value}
           onChange={(e, val) => handleChange(val)}
           valueLabelDisplay="auto"
+          valueLabelFontsize='10px'
           aria-labelledby="range-slider"
-          getAriaValueText={this.valueText}
+          getAriaValueText={this.valueText}            
           min={minValue}
           max={maxValue}
           marks={marks}
