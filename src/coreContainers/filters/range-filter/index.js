@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Slider from '@material-ui/core/Slider'
-// import { styled } from '@mui/material/styles'
-// import TextField from '@mui/material/TextField'
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles'
 import { kFormatter } from 'utils/numberFormatter'
 import { faFileExcel } from '@fortawesome/free-solid-svg-icons'
@@ -31,11 +29,7 @@ const THEME = createMuiTheme({
   },
 }
 })
-// const PrettoSlider = styled(Slider)({
-//   '& .MuiSlider-valueLabel':{
-//        fontSize: 7,
-//       }
-// })
+
 
 export class RangeFilter extends Component {
   valueText = (value) => `${value}`
