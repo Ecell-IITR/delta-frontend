@@ -267,7 +267,7 @@ class PostComponent extends Component {
               >
                 <Card.Body className={styles['accordion-card-body']}>
                   {this.getPostCollapseSection()}
-                  <div className={styles['work-description']}>
+                  {/* <div className={styles['work-description']}>
                     <div className={styles['work-description-header']}>
                       Work Description
                     </div>
@@ -277,7 +277,7 @@ class PostComponent extends Component {
                         __html: opportunity.description,
                       }}
                     ></div>
-                  </div>
+                  </div> */}
                   <div className={styles['skill-required']}>
                     <div className={styles['skill-required-header']}>
                       Skill-set required
@@ -352,45 +352,6 @@ class PostComponent extends Component {
                       )}
                     </>
                   )}
-
-                  {/*
-          <div className={styles['post-collapse-section']}>
-            
-              <div className={styles['work-description']}>
-                <div className={styles['work-description-header']}>
-                  Work Description
-                </div>
-                <div
-                  className={styles['work-description-body']}
-                  dangerouslySetInnerHTML={{ __html: description }}
-                ></div>
-              </div>
-           
-            
-          
-              <div className={styles['skill-required']}>
-                <div className={styles['skill-required-header']}>
-                  Skill-set required
-                </div>
-                <div className={styles['skill-required-body']}>
-                  {requiredSkills.map((skill) => (
-                    <div key={skill.slug}>{skill.name}</div>
-                  ))}
-                </div>
-              </div>
-           
-           
-              <div className={styles['skill-required']}>
-                <div className={styles['skill-required-header']}>Tags</div>
-                <div className={styles['tags-body']}>
-                {tags.map((tag) => (
-                    <div className={styles.tag} key={tag.hash}>
-                      {tag.title}
-                    </div>
-                  ))}
-                    </div>
-                    </div>
-                    </div> */}
                 </Card.Body>
               </Accordion.Collapse>
               <div className={styles['post-lower-section']}>
