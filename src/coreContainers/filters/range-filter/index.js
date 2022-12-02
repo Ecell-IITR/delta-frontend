@@ -27,9 +27,6 @@ const THEME = createMuiTheme({
       rail: {
         color: '#bdc0c0',
       
-      valueLabel: {
-       size: '10px',
-      }
     },
   },
 }
