@@ -27,7 +27,12 @@ import {
 export const fetchSkills = () => {
   return (dispatch) => {
     dispatch({ type: FETCH_SKILLS_REQUEST })
-    FetchApi('GET', '/api/v1/utilities/skills/', null, getToken(TOKEN_TYPE))
+    FetchApi(
+      'GET',
+      '/api/v1/utilities/skills_search/',
+      null,
+      getToken(TOKEN_TYPE),
+    )
       .then((res) => {
         if (res.data) {
           dispatch({ type: FETCH_SKILLS_SUCCESS, payload: res.data })

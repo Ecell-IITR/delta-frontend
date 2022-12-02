@@ -7,13 +7,15 @@ WORKDIR /usr/delta/delta-frontend
 # Copy the yarn.lock file over to the container
 # This command implies an image rebuild when npm dependencies change
 COPY ./package.json ./package.json
-# COPY ./yarn.lock ./yarn.lock
 
+COPY ./yarn.lock ./yarn.lock
 
-RUN npm install
+RUN yarn add node-sass@npm:sass
+
+RUN yarn
 
 COPY . .
 
-RUN npm run lint:fix 
+RUN yarn lint:fix 
 
-RUN npm run build
+RUN yarn run build

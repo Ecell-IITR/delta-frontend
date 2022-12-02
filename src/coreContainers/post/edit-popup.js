@@ -7,10 +7,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import InternshipFormComponent from 'coreContainers/forms/internship-form'
 import { notify } from 'react-notify-toast'
 import { NOTIF_SUCCESS_TYPE } from 'globalConstants'
+import CompetitionForm from '../forms/CompetitionForm'
+import ProjectForm from '../forms/project-form'
 import {
   INTERNSHIP_POST_TYPE_KEY,
-  // COMPETITION_POST_TYPE_KEY,
-  // PROJECT_POST_TYPE_KEY,
+  COMPETITION_POST_TYPE_KEY,
+  PROJECT_POST_TYPE_KEY,
 } from '../../student/constants'
 
 import styles from './edit-popup.css'
@@ -49,6 +51,48 @@ export function EditPostModal({
           <div className={styles['modal-main']}>
             {post.postType === INTERNSHIP_POST_TYPE_KEY ? (
               <InternshipFormComponent
+                formObj={post}
+                onAction={editPostWrapper}
+                skills={skills}
+                skillsLoading={skillsLoading}
+                fetchSkills={fetchSkills}
+                locations={locations}
+                locationsLoading={locationsLoading}
+                fetchLocations={fetchLocations}
+                tags={tags}
+                tagsLoading={tagsLoading}
+                fetchTags={fetchTags}
+                modalCloseFunc={close}
+                inputFieldWithBorder
+                action="edit"
+                publishButton
+              />
+            ) : (
+              <></>
+            )}
+            {post.postType === COMPETITION_POST_TYPE_KEY ? (
+              <CompetitionForm
+                formObj={post}
+                onAction={editPostWrapper}
+                skills={skills}
+                skillsLoading={skillsLoading}
+                fetchSkills={fetchSkills}
+                locations={locations}
+                locationsLoading={locationsLoading}
+                fetchLocations={fetchLocations}
+                tags={tags}
+                tagsLoading={tagsLoading}
+                fetchTags={fetchTags}
+                modalCloseFunc={close}
+                inputFieldWithBorder
+                action="edit"
+                publishButton
+              />
+            ) : (
+              <></>
+            )}
+            {post.postType === PROJECT_POST_TYPE_KEY ? (
+              <ProjectForm
                 formObj={post}
                 onAction={editPostWrapper}
                 skills={skills}

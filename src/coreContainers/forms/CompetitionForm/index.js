@@ -7,11 +7,11 @@ import InlineEditor from '@ckeditor/ckeditor5-build-inline'
 import { SelectFilter } from 'coreContainers/filters'
 import { Responsive } from 'semantic-ui-react'
 // import { DateInput } from 'semantic-ui-calendar-react'
-import { INTERNSHIP_POST_TYPE_KEY } from '../../student/constants'
+import { COMPETITION_POST_TYPE_KEY } from '../../../student/constants'
 
-import styles from './form.css'
+import styles from './index.css'
 
-export function InternshipForm({
+export function CompetitionForm({
   skills,
   skillsLoading,
   fetchSkills,
@@ -45,13 +45,18 @@ export function InternshipForm({
     { value: 2, label: 'Week', durationValue: 7 },
     { value: 3, label: 'Month', durationValue: 30 },
   ]
+  const typeOptions = [
+    { value: 2, label: 'OnSpot' },
+    { value: 1, label: 'Online' },
+  ]
 
+  const [imValue, setimValue] = useState(
+    formObj && formObj.competionPoster ? formObj.competionPoster : '',
+  )
   const [title, setTitle] = useState(
     formObj && formObj.title ? formObj.title : '',
   )
-  const [stipend, setStipend] = useState(
-    formObj && formObj.stipend ? formObj.stipend : '',
-  )
+
   const [description, setDescription] = useState(
     formObj && formObj.description ? formObj.description : '',
   )
@@ -70,18 +75,15 @@ export function InternshipForm({
   const [selectedDatev, setSelectedDatev] = useState(
     formObj && formObj.postExpiryDate ? formObj.postExpiryDate : '',
   )
-  const [googleFormLink, setGoogleFormLink] = useState(
-    formObj && formObj.googleFormLink ? formObj.googleFormLink : '',
-  )
   const [durationValue, setDurationValue] = useState(
     formObj && formObj.durationValue ? formObj.durationValue : '',
   )
   const [durationUnit, setDurationUnit] = useState(1)
-
+  const [Type, setType] = useState('OnSpot')
   const [errTitle, setErrTitle] = useState(false)
   const [errExpiryDate, setErrExpiryDate] = useState(false)
   const [formLoading, setFormLoading] = useState(false)
-
+  const [link, setlink] = useState('')
   const getFilterOptions = (filterList, valueKey, labelKey) => {
     const resultArr = []
     filterList.forEach((filter) =>
@@ -126,27 +128,42 @@ export function InternshipForm({
       setErrExpiryDate(true)
       return
     }
-    const obj = {
-      google_form_link: googleFormLink,
-      title,
-      stipend,
-      description,
-      skill_slugs: getValueFromArray(stateSkills, 'slug'),
-      location: stateLocation.slug,
-      tag_hashes: getValueFromArray(stateTags, 'hash'),
-      expiry_timestamp: selectedDate.getTime() / 1000,
-      is_publish: isPublish,
-      post_type: INTERNSHIP_POST_TYPE_KEY,
-      duration_value: durationValue,
-      duration_unit: durationUnit,
-    }
+    const formData = new FormData()
+    formData.append('competition_file', imValue, imValue.name)
+    formData.append('post_type', COMPETITION_POST_TYPE_KEY)
+    formData.append('expiry_timestamp', selectedDate.getTime() / 1000)
+    formData.append('title', title)
+    // title:title,
+    // stipend,
+    formData.append('description', description)
+    // description:description,
+    formData.append('skill_slugs', getValueFromArray(stateSkills, 'slug'))
+    // skill_slugs: getValueFromArray(stateSkills, 'slug'),
+    formData.append('location', stateLocation.slug)
+    // location: stateLocation.slug,
+    formData.append('tags_hashes', getValueFromArray(stateTags, 'hash'))
+    // tag_hashes: getValueFromArray(stateTags, 'hash'),
+    // expiry_timestamp: selectedDate.getTime() / 1000,
+    formData.append('is_publish', isPublish)
+    // is_publish: isPublish,
+    // post_type: COMPETITION_POST_TYPE_KEY,
+    formData.append('duration_value', durationValue)
+    // duration_value: durationValue,
+    formData.append('duration_unit', durationUnit)
+    // duration_unit: durationUnit,
+    // competition_type: type,
+    // competition_file: imValue,
+    // link_to_apply: link,
+
+    formData.append('competition_type', Type)
+    formData.append('link_to_apply', link)
 
     setFormLoading(true)
     if (action === 'edit') {
-      onAction(obj, modalCloseFunc, () => setFormLoading(false))
+      onAction(formData, modalCloseFunc, () => setFormLoading(false))
     }
     if (action === 'create') {
-      onAction(obj, () => setFormLoading(false))
+      onAction(formData, () => setFormLoading(false))
     }
   }
 
@@ -163,7 +180,9 @@ export function InternshipForm({
               placeholder="Title"
               name="title"
               value={title}
-              onChange={(e) => setTitle(e.target.value)}
+              onChange={(e) => {
+                setTitle(e.target.value)
+              }}
               className={`${styles['edit-modal-field-input']} ${
                 inputFieldWithBorder ? styles['with-border-input'] : ''
               }`}
@@ -177,21 +196,19 @@ export function InternshipForm({
             )}
           </div>
           <div className={styles['edit-modal-field']}>
-            <label className={styles['edit-modal-field-label']}>Stipend</label>
+            <label className={styles['edit-modal-field-label']}>
+              Link To Competion
+            </label>
             <input
-              type="text"
-              placeholder="Stipend"
-              name="stipend"
-              value={stipend}
-              onChange={(e) => setStipend(e.target.value)}
+              type="url"
+              placeholder="link to competion"
+              name="link-to-competion"
+              value={link}
+              onChange={(e) => setlink(e.target.value)}
               className={`${styles['edit-modal-field-input']} ${
                 inputFieldWithBorder ? styles['with-border-input'] : ''
               }`}
             />
-
-            <div className={styles['help-text']}>
-              Note: For 20k, write 20000 in the input field.
-            </div>
           </div>
         </div>
         <div className={styles['edit-modal-field']}>
@@ -257,12 +274,11 @@ export function InternshipForm({
                 <input
                   type="date"
                   closable
-                  className={styles['edit-modal-field-input']}
                   name="endDate"
                   minDate={dateCurrent}
                   placeholder="Expiry date"
                   value={selectedDatev}
-                  iconPosition="left"
+                  className={styles['edit-modal-field-input']}
                   inline
                   required
                   dateFormat="YYYY-MM-DD"
@@ -275,8 +291,8 @@ export function InternshipForm({
               <Responsive minWidth={Responsive.onlyMobile.maxWidth + 1}>
                 <input
                   type="date"
-                  className={styles['edit-modal-field-input']}
                   closable
+                  className={styles['edit-modal-field-input']}
                   fluid
                   popupPosition="bottom center"
                   name="endDate"
@@ -340,6 +356,7 @@ export function InternshipForm({
                 </select>
               </div>
             </div>
+
             <input
               type="text"
               placeholder="Duration value"
@@ -354,20 +371,61 @@ export function InternshipForm({
               Note: For 2 months, write 2 in the input field and select month
               from dropdown.
             </div>
-            <br />
-            <label className={styles['edit-modal-field-label']}>
-              Google Form
+
+            <div className={styles['modal-label-wrapper']}>
+              <label
+                style={{ display: 'flex', alignItems: 'center' }}
+                className={styles['edit-modal-field-label']}
+              >
+                Mode of Competion
+              </label>
+              <div>
+                <select
+                  className={styles['filter-unit-select']}
+                  value={Type}
+                  onChange={(e) => setType(e.target.value)}
+                >
+                  {typeOptions.map((option) => (
+                    <option key={option.value} value={option.value}>
+                      {option.label}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </div>
+            <label
+              style={{ paddingTop: '5%' }}
+              className={styles['edit-modal-field-label']}
+            >
+              Poster For The Competion
             </label>
+            <label
+              className={`${styles['edit-modal-field-input']} ${styles.competion}`}
+              For="image"
+            >
+              &nbsp;
+              {imValue
+                ? imValue.name.substr(0, 30) +
+                  (imValue.name.length > 30 ? '.......' : '')
+                : 'Upload Here'}
+            </label>
+
             <input
-              type="link"
-              placeholder="Google Form Link"
-              name="Google-Form-Link"
-              value={googleFormLink}
-              onChange={(e) => setGoogleFormLink(e.target.value)}
+              type="file"
+              accept="image/png, image/gif, image/jpeg"
+              placeholder=""
+              name="competionPoster"
+              id="image"
+              onChange={(e) => {
+                setimValue(e.target.files[0])
+              }}
               className={`${styles['edit-modal-field-input']} ${
                 inputFieldWithBorder ? styles['with-border-input'] : ''
               }`}
             />
+
+            <div></div>
+            <div> </div>
           </div>
         </div>
       </div>
@@ -405,7 +463,7 @@ export function InternshipForm({
 //   modalCloseFunc: () => { },
 // }
 
-InternshipForm.propTypes = {
+CompetitionForm.propTypes = {
   fetchLocations: PropTypes.func,
   fetchSkills: PropTypes.func,
   modalCloseFunc: PropTypes.func,
@@ -423,4 +481,4 @@ InternshipForm.propTypes = {
   action: PropTypes.string,
 }
 
-export default InternshipForm
+export default CompetitionForm
