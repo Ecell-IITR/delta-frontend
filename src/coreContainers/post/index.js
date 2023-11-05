@@ -334,7 +334,8 @@ class PostComponent extends Component {
                     </div>
                   ) : (
                     <>
-                      {opportunity.postType === INTERNSHIP_POST_TYPE_KEY && opportunity.googleFormLink ? (
+                      {opportunity.postType === INTERNSHIP_POST_TYPE_KEY &&
+                      opportunity.googleFormLink ? (
                         <>
                           <div className={styles['skill-required']}>
                             <div className={styles['skill-required-header']}>

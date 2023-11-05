@@ -1,4 +1,4 @@
-FROM node:latest AS build
+FROM node:16
 
 LABEL maintainer="E-cell"
 
@@ -10,7 +10,7 @@ COPY ./package.json ./package.json
 
 COPY ./yarn.lock ./yarn.lock
 
-RUN yarn add node-sass@npm:sass
+# RUN yarn add node-sass@npm:sass
 
 RUN yarn
 
@@ -18,4 +18,7 @@ COPY . .
 
 RUN yarn lint:fix 
 
-RUN yarn run build
+RUN yarn build
+
+CMD ["yarn","serve"]
+
