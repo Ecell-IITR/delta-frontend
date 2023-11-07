@@ -8,7 +8,7 @@
     "build": " cross-env NODE_ENV=production webpack",
     "format": "pretty-quick",
     "lint:fix": "eslint --fix src/",
-    "serve": "serve -s build  -l 5000"
+    "serve": "serve -l 5000 -s build"
   },
   "lint-staged": {
     "*.{js,jsx,scss,css,md}": [
@@ -44,6 +44,7 @@
     "babel-plugin-transform-react-pure-class-to-function": "1.0.1",
     "babel-plugin-transform-react-remove-prop-types": "0.4.24",
     "bootstrap": "^4.4.1",
+    "caniuse-lite": "^1.0.30001561",
     "core-js": "3.6.4",
     "dotenv-webpack": "^1.8.0",
     "lodash": "4.17.15",
